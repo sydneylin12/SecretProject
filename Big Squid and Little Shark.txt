@@ -1,5 +1,3 @@
-# Secret Project
-
 Once upon a time, in a vast sea, there lived a Big Squid and a Little Shark.
 
 The Big Squid was looking for a sea creature to attach to, but he was unable to attach to the other sea creatures.
@@ -41,3 +39,8 @@ Over time, the Big Squid and the Little Shark grew more comfortable with each ot
 The Big Squid and the Little Shark learned to hunt as a team, and they began catching more and more fish each time!
 
 Even though they lived in different parts of the ocean, the Big Squid and the Little Shark had been closer and happier than ever before.
+
+
+
+
+
