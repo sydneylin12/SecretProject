@@ -33,10 +33,9 @@ input.addEventListener('keydown', (e) => {
 });
 
 text.addEventListener('click', (e) => {
-	count = count + 1;
 	if (e.target === text) {
-		count += 1;
-		if (count >= 50) {
+		count = count + 1;
+		if (count >= 25) {
 			const urlPrefix = isLocalBuild() ? '' : path;
 			window.location.href = urlPrefix + storyPage;
 		}
