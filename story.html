@@ -10,6 +10,7 @@
 		body,
 		h1 {
 			font-family: "Raleway", sans-serif;
+			background-color: rgb(78,201,245);
 		}
 		body,
 		html {
@@ -24,17 +25,25 @@
 		}
 		.w3-display-middle {
 			text-align: center;
+			max-width: 700px;
 		}
 		.w3-border-grey {
 			border-color: white !important;
+		}
+		p {
+			font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+			text-align: center;
+			font-size:40px;
+			color:black;
 		}
 	</style>
 </head>
 <body>
 	<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
 		<div class="w3-display-middle">
-			<p id="story"class="w3-animate-top" style="width:600px;font-size:40px;color:black;font-family: cursive;">[STORY TEXT]</h2>
+			<p id="story"class="w3-animate-bottom">[STORY TEXT]</p>
 		</div>
+		<p id="progress"class="w3-animate-bottom" style="font-size:20px;top: 90%;">[STORY TEXT]</p>
 	</div>
 </body>
 </html>

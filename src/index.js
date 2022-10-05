@@ -21,7 +21,12 @@ input.addEventListener('keydown', (e) => {
 		const entered = input.value;
 		if (entered === password) {
 			window.location.href = isCorrectDate() ? secretURL : rickRoll;
-		} else {
+		}
+		// Use double equals here since it's a number to string comparison
+		else if (entered == 12) {
+			alert('Wooooow, how thoughtful :)');
+		}
+		else {
 			alert('Wrong passcode, nice try!')
 		}
 	}
