@@ -9,22 +9,27 @@ let count = 0;
 
 const isLocalBuild = () => {
 	return window.location.href.includes('file');
-}
+};
 
 const isCorrectDate = () => {
 	const day = new Date();
 	return day.getDate() === 17 && day.getMonth() === 9;
-}
+};
+
+const getStoryUrl = () => {
+	const urlPrefix = isLocalBuild() ? '' : path;
+	return urlPrefix + storyPage;
+};
 
 input.addEventListener('keydown', (e) => {
 	if (e.key === 'Enter') {
-		const entered = input.value;
+		const entered = input.value.toUpperCase();
 		if (entered === password) {
-			window.location.href = isCorrectDate() ? secretURL : rickRoll;
+			window.location.href = isCorrectDate() ? getStoryUrl() : rickRoll;
 		}
 		// Use double equals here since it's a number to string comparison
-		else if (entered == 12) {
-			alert('Wooooow, how thoughtful :)');
+		else if (password.includes(entered)) {
+			alert(`${entered.length} of ${password.length} characters correct!`);
 		}
 		else {
 			alert('Wrong passcode, nice try!')
@@ -36,8 +41,7 @@ text.addEventListener('click', (e) => {
 	if (e.target === text) {
 		count = count + 1;
 		if (count >= 25) {
-			const urlPrefix = isLocalBuild() ? '' : path;
-			window.location.href = urlPrefix + storyPage;
+			window.location.href = secretURL;
 		}
 	}
 });
