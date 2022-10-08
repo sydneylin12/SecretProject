@@ -9,10 +9,11 @@ const computeDate = () => {
 	const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 	const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 	el.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+	return distance;
 };
 
 const x = setInterval(function () {
-	computeDate();
+	const distance = computeDate();
 	if (distance < 0) {
 		clearInterval(x);
 		el.innerHTML = 'Done!';
