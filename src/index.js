@@ -1,7 +1,7 @@
 const input = document.getElementById('passwordInput');
 const text = document.getElementById('clickMe');
 const password = window.atob('Mk4xNkE3NDgyQzU/VFU=');
-const secretURL = window.atob('aHR0cHM6Ly95b3V0dS5iZS9rTUExWEY5NjVFVQ==');
+const secretURL = window.atob('aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj04alFfZjVwM3A5byZhYl9jaGFubmVsPU15UGlhbm9BY2FkZW1pYQ==');
 const rickRoll = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
 const path = 'https://sydneylin12.github.io/SecretProject/';
 const storyPage = 'story.html';
@@ -25,7 +25,7 @@ input.addEventListener('keydown', (e) => {
 	if (e.key === 'Enter') {
 		const entered = input.value.toUpperCase();
 		if (entered === password) {
-			window.location.href = isCorrectDate() ? getStoryUrl() : rickRoll;
+			window.location.href = isCorrectDate() ? secretURL : rickRoll;
 		}
 		// Use double equals here since it's a number to string comparison
 		else if (password.includes(entered)) {
@@ -41,7 +41,7 @@ text.addEventListener('click', (e) => {
 	if (e.target === text) {
 		count = count + 1;
 		if (count >= 25) {
-			window.location.href = secretURL;
+			window.location.href = getStoryUrl();
 		}
 	}
 });

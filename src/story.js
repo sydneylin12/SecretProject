@@ -73,3 +73,32 @@ document.addEventListener('keydown', (e) => {
 		refreshText();
 	}
 });
+
+// Swipe code - https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
+let touchstartX = 0
+let touchendX = 0
+    
+function checkDirection() {
+	let indexDiff = 0;
+  	if (touchendX < touchstartX) {
+		console.log('swiped left!')
+		indexDiff = -1;
+  	}
+  	if (touchendX > touchstartX) {
+		console.log('swiped right!')
+		indexDiff = 1;
+  	}
+	index = index + indexDiff;
+	index = index >= storyText.length ? storyText.length - 1 : index;
+	index = index < 0 ? 0 : index;
+	refreshText();
+};
+
+document.addEventListener('touchstart', e => {
+  	touchstartX = e.changedTouches[0].screenX
+});
+
+document.addEventListener('touchend', e => {
+  	touchendX = e.changedTouches[0].screenX
+  	checkDirection()
+});
