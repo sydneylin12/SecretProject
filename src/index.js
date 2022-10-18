@@ -27,11 +27,16 @@ const getStoryUrl = () => {
 	return urlPrefix + storyPage;
 };
 
+const getUrl = (filename) => {
+	const urlPrefix = isLocalBuild() ? '' : path;
+	return urlPrefix + filename;
+};
+
 input.addEventListener('keydown', (e) => {
 	if (e.key === 'Enter') {
 		const entered = input.value.toUpperCase();
 		if (entered === password) {
-			window.location.href = WangXian;
+			window.location.href = getUrl('main-view.html');
 		}
 		else if (password.includes(entered)) {
 			alert(`${entered.length} of ${password.length} characters correct!`);
