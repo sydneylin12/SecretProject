@@ -1,19 +1,13 @@
 const input = document.getElementById('passwordInput');
 const text = document.getElementById('clickMe');
-const password = window.atob('Mk4xNkE3NDgyQzU/VFU=');
-const secretURL = window.atob('aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj04alFfZjVwM3A5byZhYl9jaGFubmVsPU15UGlhbm9BY2FkZW1pYQ==');
-const rickRoll = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+const password = '2283';
+const WangXian = 'https://www.youtube.com/watch?v=8jQ_f5p3p9o&ab_channel=MyPianoAcademia';
 const path = 'https://sydneylin12.github.io/SecretProject/';
 const storyPage = 'story.html';
 let count = 0;
 
 const isLocalBuild = () => {
 	return window.location.href.includes('file');
-};
-
-const isCorrectDate = () => {
-	const day = new Date();
-	return day.getDate() === 17 && day.getMonth() === 9;
 };
 
 const getStoryUrl = () => {
@@ -25,9 +19,8 @@ input.addEventListener('keydown', (e) => {
 	if (e.key === 'Enter') {
 		const entered = input.value.toUpperCase();
 		if (entered === password) {
-			window.location.href = isCorrectDate() ? secretURL : rickRoll;
+			window.location.href = WangXian;
 		}
-		// Use double equals here since it's a number to string comparison
 		else if (password.includes(entered)) {
 			alert(`${entered.length} of ${password.length} characters correct!`);
 		}

@@ -1,4 +1,4 @@
-const countDownDate = new Date("Oct 17, 2022").getTime();
+const countDownDate = new Date("Oct 25, 2022").getTime();
 const el = document.getElementById('countdown');
 
 const computeDate = () => {
