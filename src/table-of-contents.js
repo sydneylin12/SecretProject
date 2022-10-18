@@ -15,6 +15,8 @@ el.addEventListener('click', (e) => {
 	if (text.includes('Chapter') && text.length <= 10) {
 		const chapterNumber = parseInt(text.split(' ').pop());
 		console.log(chapterNumber);
-		// TODO - redirect to the chapter
+		// TODO - redirect to the chapter or load text
+		const reader = new FileReader();
+		reader.readAsText('chapters/3.txt');
 	}
 });
