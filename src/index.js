@@ -14,28 +14,14 @@ const music = document.getElementById('musicText');
  */
 const password = '25魏ELR🚗';
 const WangXian = 'https://www.youtube.com/watch?v=8jQ_f5p3p9o&ab_channel=MyPianoAcademia';
-const path = 'https://sydneylin12.github.io/SecretProject/';
 const storyPage = 'story.html';
-
-const isLocalBuild = () => {
-	return window.location.href.includes('file');
-};
-
-const getStoryUrl = () => {
-	const urlPrefix = isLocalBuild() ? '' : path;
-	return urlPrefix + storyPage;
-};
-
-const getUrl = (filename) => {
-	const urlPrefix = isLocalBuild() ? '' : path;
-	return urlPrefix + filename;
-};
+const covers = 'main-view.html';
 
 input.addEventListener('keydown', (e) => {
 	if (e.key === 'Enter') {
 		const entered = input.value.toUpperCase();
 		if (entered === password || entered === 'SIDLINDEV') {
-			window.location.href = getUrl('main-view.html');
+			window.location.href = covers;
 		}
 		else if (password.includes(entered)) {
 			alert(`${entered.length} of ${password.length} characters correct!`);
@@ -47,7 +33,7 @@ input.addEventListener('keydown', (e) => {
 });
 
 story.addEventListener('click', () => {
-	window.location.href = getStoryUrl();
+	window.location.href = storyPage;
 });
 
 music.addEventListener('click', () => {
