@@ -145,8 +145,8 @@ body {
     content: " ";
     display: block;
     opacity: 1;
-    width: 172px;
-    height: 255px;
+    width: 360px;
+    height: 510px;
     position: relative;
     left: 8px;
     background: linear-gradient(-180deg, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, 0) 60%);
