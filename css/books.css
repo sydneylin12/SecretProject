@@ -22,6 +22,7 @@ select {
     margin: 0;
     padding: 0;
 }
+
 body {
     height: 100%;
     display: flex;
@@ -155,13 +156,12 @@ body {
 .book:hover::before {
     transform: translateY(9px);
     opacity: 1;
-  
+
 }
 
 .dr {
-position: absolute;
-  bottom: 16px; 
-  right: 16px;
-  width:100px;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 100px;
 }
- 

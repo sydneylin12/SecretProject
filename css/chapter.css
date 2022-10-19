@@ -3,15 +3,15 @@ h1 {
 	font-family: "Raleway", sans-serif;
 }
 
+h1 {
+	margin-top: 50px;
+	top: 0px !important;
+}
+
 body,
 html {
 	height: 100%;
 	background-color: #ceecff;
-}
-
-input {
-	opacity: 25%;
-	width: 50%;
 }
 
 .bgimg {
@@ -22,6 +22,8 @@ input {
 
 .w3-display-middle {
 	text-align: center;
+	width: 80%;
+	max-width: 900px;
 }
 
 .w3-border-grey {
@@ -31,10 +33,12 @@ input {
 li {
 	text-decoration: underline;
 }
+
 p {
 	height: 80%;
 	overflow-y: scroll;
-	white-space: pre;
+	overflow-x: auto;
+	white-space: pre-line;
 	border: 2px solid gray;
 	border-radius: 20px;
 	padding: 5px;
