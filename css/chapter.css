@@ -1,0 +1,41 @@
+body,
+h1 {
+	font-family: "Raleway", sans-serif;
+}
+
+body,
+html {
+	height: 100%;
+	background-color: #ceecff;
+}
+
+input {
+	opacity: 25%;
+	width: 50%;
+}
+
+.bgimg {
+	min-height: 100%;
+	background-position: center;
+	background-size: cover;
+}
+
+.w3-display-middle {
+	text-align: center;
+}
+
+.w3-border-grey {
+	border-color: white !important;
+}
+
+li {
+	text-decoration: underline;
+}
+p {
+	height: 80%;
+	overflow-y: scroll;
+	white-space: pre;
+	border: 2px solid gray;
+	border-radius: 20px;
+	padding: 5px;
+}

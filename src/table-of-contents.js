@@ -5,5 +5,6 @@ el.addEventListener('click', (e) => {
 	if (text.includes('Chapter') && text.length <= 10) {
 		const chapterNumber = parseInt(text.split(' ').pop());
 		console.log(chapterNumber);
+		window.location.href = `chapters/${chapterNumber}.html`;
 	}
 });
