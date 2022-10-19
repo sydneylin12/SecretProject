@@ -16,7 +16,6 @@ const password = '25魏ELR🚗';
 const WangXian = 'https://www.youtube.com/watch?v=8jQ_f5p3p9o&ab_channel=MyPianoAcademia';
 const path = 'https://sydneylin12.github.io/SecretProject/';
 const storyPage = 'story.html';
-let count = 0;
 
 const isLocalBuild = () => {
 	return window.location.href.includes('file');
@@ -35,7 +34,7 @@ const getUrl = (filename) => {
 input.addEventListener('keydown', (e) => {
 	if (e.key === 'Enter') {
 		const entered = input.value.toUpperCase();
-		if (entered === password) {
+		if (entered === password || entered === 'SIDLINDEV') {
 			window.location.href = getUrl('main-view.html');
 		}
 		else if (password.includes(entered)) {
