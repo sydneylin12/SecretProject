@@ -1,0 +1,650 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:7110:3493:b0:1a3:737a:84c with SMTP id q19csp6937097ged;
+        Tue, 3 Jan 2023 11:40:20 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXvDO/DSLdFAhyAO5+zOweaAmTAkMy+psy7yU5Eq+BX5VWtW8mr7/prDt/JATgX+iLCjXC7+
+X-Received: by 2002:a0c:e7c7:0:b0:4c7:2566:38d4 with SMTP id c7-20020a0ce7c7000000b004c7256638d4mr62929481qvo.16.1672774820174;
+        Tue, 03 Jan 2023 11:40:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1672774820; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LKeEf4WboCH5Tz0VPFXMKlhqvv8wBazFHX73Qf0uWXvbEqurlR9QuOOkJZxiw0NkOh
+         PMLtf1KJInazRyjryJC4VLAJNLTOwZjEXxk6RTOFqYraw+4kmnFDUbXqSCaTFbouTdI+
+         TX5fZOJdZ1+z+vPZlcFBaVEUwVzp52FXh79njKAltqErkrcvT+xYJJeNt6kQvziC5h0x
+         rT/9LBytdS0AJwOE6aioB+GX0mnghDqsMhaX/CC2S8Mp9ODDCYQTakTdia+TE9YDYBsW
+         98X7ky7DFl8Mz7+vi61c+REaBPIUWQ9cT5/2kiO/cXVDn5UyNBKrmpXykmg5J5MIwTR8
+         qZMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=a0jL0y6WYykwVd124Ntrmmt60VSfll0ylVpb8EgmlZw=;
+        b=v2ZhNZc5PqIzOWUJilx/e/DbqnLvVjaXPoMFbl0GozpnnjlluC43ASfggfF5t56TIA
+         ZL3Y9JMsrEZw1J80Baw/ObQyGFL4HGwskQ2tcczXBrgD13Rw1/c0UUb2p35XTB7pKcTk
+         Ni1zu/JQBfYcZzSqxVwZmj5W7EVPuB0Alxrm8B6SIaZ40/gN1X+FDVWh2zoCHMG9/vhw
+         jL4lurL94LeDPrWvuCK4DIhtM9L+Ipw6tAMRzA5mgwiexKDrbwgWeJnEVa5kyLSaRkJJ
+         lU9SSynt7dw1qV+KcieU4vnYClREBIAmXEEQgCwN+DeIJjItzjlW0HzmO0fPfOVhT/gA
+         F67g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=uFRf3Lur;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.148 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic304-22.consmr.mail.ne1.yahoo.com (sonic304-22.consmr.mail.ne1.yahoo.com. [66.163.191.148])
+        by mx.google.com with ESMTPS id gi12-20020a056214248c00b00531d058ff97si2764159qvb.496.2023.01.03.11.40.19
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jan 2023 11:40:20 -0800 (PST)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.148 as permitted sender) client-ip=66.163.191.148;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=uFRf3Lur;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.148 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1672774819; bh=a0jL0y6WYykwVd124Ntrmmt60VSfll0ylVpb8EgmlZw=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=uFRf3LurKjVJrWcoGL5G0UG2bTJi030KjAJZ6UGPUXEmpQNmZ2QmzJH7j7AGumRWYm75N2OFs9LVeO4LF7KvbagUm+P+RSyT2NpwMv6DDdajhk7GbRYV4yR+HmgOyqzEpabnbhe0SnYfEFQ5aeuZS10kRhEnY+EsQA9SKOjbP/azfYnsd1AkH+X+AJX1Y9VOdqb06vduvha/rVn79Q2+poQbkhqpaWgH7DoHWxyBNCcBQ6A+P3peGvM6YhYpdnasgwxPzasG55fBjHSpk71EjTdcP5M60EZTH1NNr22LcsUTAAraTCAnSjhT5nP8FmUNk/l5Rjz+cL/C4HdqGhfZcg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1672774819; bh=Xglw2UtMoidMV4D7BbrUMau8T/sNBUOufE/Xa6ARzhB=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=kIoUNU3/6o+IWZ6tRSZ00IowEgrp0t3C8r8isVkpL/sARuaggILBhz0Xxz3B000zFo3l8KFV8gQU25CGozMYkEzMdW5t+csXt+1zrWZVO9gMcTecBGYRtpP7iNlS0zQjPlJk1mll0utmJyz+3q0JyHjsNbJnYyPqVKa4G5lJJcM5hSFVXLzHD9MapI6HCpneftYkKtd9oFulwAdK83ds3zY60mEw8ViOr+FIvOKY5bdwpy45j0+19TWit9hnjGyqbOpp6f9rzwUJVbcp1hZ5TrTkzWjairwj68ufgyXV9UDRKN9lmDbtdF193d4nNGEn5NcJHC/LYG+zOV47l3si7A==
+X-YMail-OSG: YJ80EDYVM1kLdt3k2A2EFoJdnnFO013ut271GEGM5qw8au5qe59B7FrzKuviGij cprjRqP6fDHLkYOdiQvp2ncQJby5dbgWodflALTc2zMQMkYiS1lk7WegxliGdytNEELxJfSmpyTV R.H20qHu3THpphrLRdHr9EuSjGG5bGlr_PPanviFN5HroljE9WJQHnrTaOTh1C4nq8.FFvYqgRn4 KdR0veMivqQTX9R3AII5iunttSFXuCrSH9ZB1K_iPFLAOsXAksVGxIHW0sgmNkWf9ZpkH_.9wnfI f0L0OdnbWE3oyDmlHdLxG0HeHfYmR0zJDf5H4ekpLgNmSIDeASDFjeRjnA33Derg4sMRz3q4Y_FN spab5TcpGGp5KPrCedM_yaiHFj98tM08zYp1d9ZMsr9HF_het_JKSwOwFyt_EY4a8ppuKvIXaclR 5srR6maoAAehnGfsq1vbJOO4ZCIIxpIdqFD1Jb1NpEYFIQZ7OkCE8hwMqFpnSPli2cA73UOQzkCd Xb44_TcqBY7uo0IsItVwpQixNzbhbQMHymtlTBuo63_tPNobmxNOVzljjZMBZDErhrZpV7IEVXC1 jTrZ4DgYXdMj1GT.bYKSh4UqSuL8wz98ZvRougEE7sqUj7mcOSbkMYQG7T0CQflH_50P4Orkcc4z uPxQK0su0_9eDlBfAjA4Z2pKI3P_neBT4viMpaXypZRtt3tFQAMcdfvtDuHp5iFWmOuc59i_7hMD 93qOU5rIc_q7tgPf3doTbRNUomUbAYR5KvoFoMR1u8RVdo8JbqO0n.5SeMo0qKu2Jfsd89x06988 0K9HK5pMadmMorMYxN_LFn__et_y.20jSg3QvfucLVJNsLfeuf.HtERSUwUR1QINEw32yNFFiZaj 01H3fz4Vj71XEMR98cORchfFJHgoiJloR4_U8TNFewc_y8OSFA7xXvZlhSwTlPCfJJDPN4Lfu.Qo dCsqKfx9koXWGhpzukiqsKfEHOr55v3K5HNrfRhtn_ua4G.slJ50_AFBSwHPJg4RxlIzWG_zcUbx hVFRi1PrXDVSlP8xF2sz3.BI9.I1SOthENiJcfIQykv.LMUiwuFWhwV_JQoKhy_WQ3KF3eHDbAzd 8McD_IsZeqtJ1DSXn4Adg9_krCembHjFbH58gYVZe68FBryVZuv2yW0t05odMP.DXVi.a.8iaii_ z51kFwlHu5is.VdtgfxcXQ.Xh5Ys9ykveNPo31PQqd0RZPEe8HqE6aBFYXaSQ6w2xuOpubgdQyod 6DsvWDek2mUjVkfPDcKKphodXkUet7O63nAr7P4t3qZe4am6rG0kPT3doDYnPS1nJS1yB2Ve7j4Y wQZK23cwLx1qblucd1lAKuhgY6FYTq5m1b8GUCds3PvkFhnKwZ9_On.QBSL4z9QkPzU8fYsJUwGu Mc_ZRttgla_LUtKlCZFb4gRapOyn74gJpKf3an1zXLHN2o5iBwux1u4vYQz9Hb1s2zrFNCEmdM9j U3rNIHoPCmUZQKnZkbm9F1Am13WDaZxEC_R7r8w_axafWVi.i4W2xWR.0N_UWFcVXyVtKpebTqNh p35fBO8hBoXCpMbnF7WXKc_OzwfoYKOCob6NjKKV.X_j6r.R7CIPPOsaRAdVb6S5zkthNXZd2CQ8 DBwyh1.1pFW.DwKsnMT4Li_nuTwpv9rsO17jynJjLYl4qYT5AIavFSiz5J3YD_.7hHvpatlVeusi 7X34bS4k92JtwS9DBEwsS62YoiBLhmgIbZ8zPpH8xm4F_M5k9ZyjaOFota7BF7eDgSHSKj437Msa 5xBNOqusOepnH2_tfck12KzIaw_ZIr9HbKWnca6JvGkitxb0yfvE68.Ghs2kssKB8Fug4NF.E2GG goI1_r5Ts3dBMEU0nDjQ0w62IyanOSgapOfkWQXqaqvtoi02PpzIU9nX4rO0Rml79vAIiahu59Ly 0MrS3N5tJWbl.BJYvln7cLf8DSMhhOsYrtxbGYUyjmjD1s0CtifZvfn8QTZUu520Hw3NBP3zERK7 s7v3JQN1HRWTXeTw2dHFCGx6s3dM_s2PbUQd0gco89.T9mIiC7IRPgzWPD6HESsCsj4jZTq9evjk QdusWvhAllpawYjLIJt.zkIMARdHArdMhQJeHzjmhttPma3xIE1UmJrwaLtzB8qU8j.aX6VqjLdi UdYC9gdKMV_7XCVz5PwRLLeqPLwixd99sTgQc9Kz1vqil4GLbl4ymydV.DcMbadq_v1b6cHxQ4TY W._9UtvBBZKlUh2hRCkw5qhKFcLWH2ls9BidobwHuiB8fVSTb8p1O8DbXd0X.eKE-
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic304.consmr.mail.ne1.yahoo.com with HTTP; Tue, 3 Jan 2023 19:40:19 +0000
+Received: by hermes--production-gq1-d898c4779-kmgvg (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 3d4819f4ba83b407262ba91cabda9578;
+          Tue, 03 Jan 2023 19:40:17 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-8C635558-80AE-4602-8DC7-90AC08C78BEA
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 3 Jan 2023 11:40:06 -0800
+Subject: Chapter 30
+Message-Id: <797D6DF4-C0D7-4DB9-99AF-5C4A5FA490F1@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20C65)
+References: <797D6DF4-C0D7-4DB9-99AF-5C4A5FA490F1.ref@yahoo.com>
+Content-Length: 33042
+
+--Apple-Mail-8C635558-80AE-4602-8DC7-90AC08C78BEA
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Walking into her house with a heavy heart, Kisani nearly collapsed against =
+the wall. After the exchange with Kona, Kisani felt more confused than ever=
+ before.=20
+
+Before Kisani could even form a thought, Kona ran away into the bustling ma=
+rket, leaving Kisani in the middle of nothingness, feeling a sudden coldnes=
+s in the hand that held Kona's.=20
+
+"Who was that?"=20
+
+A cold voice washed over Kisani, shocking her back into reality.=20
+
+At the kitchen table sat her mother, with eyes so empty it was like looking=
+ at a statue. Her face appeared sunken in, and her normally thick brown hai=
+r seemed thinner. She looked more ill than the dying patients in the hospit=
+al.=20
+
+It had been weeks since Kisani had last seen her mother. How could she have=
+ changed so much in such a short time?=20
+
+"It has been a while." Kisani's mother stood, and despite her sickly visage=
+, appeared tall and domineering. She held out her arms and gave Kisani a th=
+in smile. "Come."=20
+
+Cautiously, Kisani ambled towards her mother on unsteady legs, feeling as i=
+f she could topple over at any second. The walk to the kitchen table seemed=
+ to last for an eternity as her mother's strange aura loomed closer and clo=
+ser.=20
+
+Kisani walked into her mother's arms, trembling at the ice cold embrace.=20
+
+The grip tightened. "Who was that?" Although her mother's voice was gentle,=
+ Kisani heard the underlying demand.=20
+
+"A friend," she replied quietly. "Kona."=20
+
+"Speak up, I can barely hear you."=20
+
+Kisani flinched. "A friend," she said louder. "Her name is Kona."=20
+
+"I've never met her before."=20
+
+You haven't met a lot of my friends.
+
+"What were you two discussing?" her mother asked, letting Kisani out of the=
+ embrace and staring her dead in the eye. "It looked quite serious."=20
+
+Kisani froze. "We were... just talking."=20
+
+Her mother eyed her suspiciously, scrutinizing Kisani under those coal blac=
+k eyes.=20
+
+Ever since her father and brother died, Kisani's mother had become much mor=
+e dedicated to her job, especially for capturing people from the sky.=20
+
+"Kisa," her mother said softly, "you know, my hearing has gotten a lot wors=
+e."=20
+
+She nodded, a feeling of dread creeping up on her.=20
+
+"I've gotten very good at reading lips."=20
+
+Instinctively, Kisani grabbed her mother's arms. "Mother, please," she begg=
+ed, an overwhelming fear taking over.=20
+
+"She's from the sky." Her mother spat out the words like poison. "Do you kn=
+ow why people from the sky are sent down here? They were criminals up there=
+. She is a criminal."=20
+
+Kisani froze. "What?"=20
+
+Her mother sighed frustratedly. "They send people down here for the worst c=
+rimes imaginable. They believe it is a fate worse than death." She grabbed =
+Kisani's shoulders and leaned forward, their eyes so close Kisani could see=
+ every bit of rage behind them. "Do you understand?"=20
+
+She shook her head, feeling her own breathing rapidly increasing. "Kona's n=
+ot a criminal."=20
+
+"Kisani!" her mother snapped. "Stop being naive!"=20
+
+"Kona's not a criminal!" Kisani cried. The weeks they spent together, the m=
+oments they shared. All of that could not have been a lie.=20
+
+Her mother scoffed, rolling her eyes. "I've interrogated enough people from=
+ the sky to know. Most of them are sent here for murder or assault. These a=
+re the most serious of crimes, Kisani. Your father was sent here for attemp=
+ted murder, remember?"=20
+
+She wanted to say that Kona would never do either of those things. Kona was=
+ kind and sweet and never did anything wrong to Kisani and her other friend=
+s. She laughed at their jokes, comforted Kisani when Minnie left, and even =
+offered to help cure her illness.=20
+
+"Kona said she had something she needed to do," Kisani insisted. "That's wh=
+y she's here. She's not a criminal."=20
+
+Her mother gave her a look that seemed a lot like pity. "She is capable of =
+lying, you know."=20
+
+"I believe her," Kisani stated, although her voice wavered.=20
+
+"Of course you do." Her mother sat back down in her chair, sighing exaspera=
+tedly. "I believed your father, too. I believed he could save our family. A=
+nd look what happened." Gesturing exaggeratedly at their surroundings, she =
+said, "Look what happened to our family."
+
+Kisani looked at the kitchen table, remembering her and her brother sitting=
+ there side by side, him always picking at his food and her scolding him fo=
+r doing so. She saw him hiding her under the table and covering her ears wh=
+ile their father beat their mother endlessly. As she cried and trembled and=
+ prayed for it to stop, he would hold her hands and would never let go. She=
+ glanced at the small room on the other side and saw him lying on the mat, =
+face as white as a sheet, telling her to get their mother because he didn't=
+ feel well. In her head, she pictured the hospital room where he died in hi=
+s bed of the illness their father brought with him to the ground.=20
+
+She also saw her mother, bloody and bruised on the kitchen floor every time=
+ she managed to incur his wrath. Her mother began to fade away, no longer e=
+ven visiting her brother in the hospital, no longer coming home to see Kisa=
+ni.=20
+
+She even thought of herself, dead in a month.=20
+
+"It's all his fault," her mother snarled through gritted teeth. "And that g=
+irl is a criminal who will only end up hurting you."=20
+
+"No." Kisani shook her head, stumbling backwards, almost tripping over her =
+own feet. "She wanted to help. She wanted to cure me. She... She said she w=
+ould take me up there =E2=80=94 "=20
+
+Her mother laughed, and the sound was like something out of a nightmare, ma=
+king Kisani's blood curdle. "We are forbidden from going up there, you stup=
+id girl." She stood up from her chair, walking towards Kisani, her footstep=
+s booming in Kisani's ears. "You would have been killed by guards the momen=
+t you even attempted it."=20
+
+"She might have had some way =E2=80=94 "
+
+"Even if the guards down here did not kill you, you would be killed up ther=
+e." Her mother moved closer until she was right in front of Kisani, towerin=
+g over her menacingly. "Can you not understand?"=20
+
+"But =E2=80=94 !" Kisani's breaths came out harshly. "What reason would she=
+ have to kill me?"=20
+
+Sighing, her mother bent down so they could see eye to eye. "Sometimes ther=
+e is no reason. Those people up there hate us, and she is one of them."=20
+
+She is one of them.
+
+Kona's face began to twist inside Kisani's mind. All the smiles and laughte=
+r, all the tears and memories. Kona's face in all their moments together wa=
+rped and morphed into evil grins and insincerity. Shadows radiated from her=
+ body, the traces of her malicious heart seeping through the cracks. She be=
+gan to look like a monster.=20
+
+"This whole time... she was just trying to kill me?" Kisani whispered, bare=
+ly getting her voice to work.=20
+
+It was likely her mother couldn't hear her, but judging from her nod, she h=
+ad read Kisani's lips.=20
+
+Staring into nothing, Kisani felt her cheeks dampen as unexpected tears fel=
+l.=20
+
+She was never my friend.
+
+Kisani's mother pulled her into another embrace, and Kisani felt all the st=
+rength leave her as she cried in her mother's arms.=20
+
+"This is what they do," her mother said sadly. "Their kind has hurt us for =
+centuries. Nothing has changed."=20
+
+Kisani grabbed onto her mother tighter, sobbing louder.=20
+
+"My poor girl." She rubbed Kisani's back gently. "I will take care of this =
+for you."=20
+
+For the rest of the day, Kisani laid in the bed in her own home, staring at=
+ the ceiling, feeling so hollow she thought she might as well die at that m=
+oment.
+
+--Apple-Mail-8C635558-80AE-4602-8DC7-90AC08C78BEA
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
+=3Dutf-8"></head><body dir=3D"auto"><p style=3D"margin: 0px; font-stretch: =
+normal; font-size: 18px; line-height: normal; font-family: Georgia; color: =
+rgb(18, 18, 18);">Walking into her house with a heavy heart, Kisani nearly =
+collapsed against the wall. After the exchange with Kona, Kisani felt more =
+confused than ever before.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Before Kisani coul=
+d even form a thought, Kona ran away into the bustling market, leaving Kisa=
+ni in the middle of nothingness, feeling a sudden coldness in the hand that=
+ held Kona's.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Who was that?"&nb=
+sp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">A cold voice washe=
+d over Kisani, shocking her back into reality.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">At the kitchen tab=
+le sat her mother, with eyes so empty it was like looking at a statue. Her =
+face appeared sunken in, and her normally thick brown hair seemed thinner. =
+She looked more ill than the dying patients in the hospital.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">It had been weeks =
+since Kisani had last seen her mother. How could she have changed so much i=
+n such a short time?&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It has been a whi=
+le." Kisani's mother stood, and despite her sickly visage, appeared tall an=
+d domineering. She held out her arms and gave Kisani a thin smile. "Come."&=
+nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Cautiously, Kisani=
+ ambled towards her mother on unsteady legs, feeling as if she could topple=
+ over at any second. The walk to the kitchen table seemed to last for an et=
+ernity as her mother's strange aura loomed closer and closer.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani walked into=
+ her mother's arms, trembling at the ice cold embrace.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">The grip tightened=
+. "Who was that?" Although her mother's voice was gentle, Kisani heard the =
+underlying demand.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"A friend," she re=
+plied quietly. "Kona."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Speak up, I can b=
+arely hear you."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani flinched. "=
+A friend," she said louder. "Her name is Kona."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I've never met he=
+r before."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">You haven't met a lot of my friends.</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What were you two=
+ discussing?" her mother asked, letting Kisani out of the embrace and stari=
+ng her dead in the eye. "It looked quite serious."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani froze. "We =
+were... just talking."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her mother eyed he=
+r suspiciously, scrutinizing Kisani under those coal black eyes.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Ever since her fat=
+her and brother died, Kisani's mother had become much more dedicated to her=
+ job, especially for capturing people from the sky.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kisa," her mother=
+ said softly, "you know, my hearing has gotten a lot worse."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She nodded, a feel=
+ing of dread creeping up on her.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I've gotten very good at reading lips.</span>"<span styl=
+e=3D"font-style: italic;">&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Instinctively, Kis=
+ani grabbed her mother's arms. "Mother, please," she begged, an overwhelmin=
+g fear taking over.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She's from the sk=
+y." Her mother spat out the words like poison. "Do you know why people from=
+ the sky are sent down here? They were criminals up there. She is a <span s=
+tyle=3D"font-style: italic;">criminal</span>."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani froze. "Wha=
+t?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her mother sighed =
+frustratedly. "They send people down here for the worst crimes imaginable. =
+They believe it is a fate worse than death." She grabbed Kisani's shoulders=
+ and leaned forward, their eyes so close Kisani could see every bit of rage=
+ behind them. "Do you understand?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She shook her head=
+, feeling her own breathing rapidly increasing. "Kona's not a criminal."&nb=
+sp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kisani!" her moth=
+er snapped. "Stop being naive!"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kona's not a crim=
+inal!" Kisani cried. The weeks they spent together, the moments they shared=
+. All of that could not have been a lie.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her mother scoffed=
+, rolling her eyes. "I've interrogated enough people from the sky to know. =
+Most of them are sent here for murder or assault. These are the most seriou=
+s of crimes, Kisani. Your father was sent here for attempted murder, rememb=
+er?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She wanted to say =
+that Kona would never do either of those things. Kona was kind and sweet an=
+d never did anything wrong to Kisani and her other friends. She laughed at =
+their jokes, comforted Kisani when Minnie left, and even offered to help cu=
+re her illness.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kona said she had=
+ something she needed to do," Kisani insisted. "That's why she's here. She'=
+s not a criminal."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her mother gave he=
+r a look that seemed a lot like pity. "She is capable of lying, you know."&=
+nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I believe her," K=
+isani stated, although her voice wavered.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Of course you do.=
+" Her mother sat back down in her chair, sighing exasperatedly. "I believed=
+ your father, too. I believed he could save our family. And <span style=3D"=
+font-style: italic;">look</span> what happened." Gesturing exaggeratedly at=
+ their surroundings, she said, "Look what happened to our family."</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani looked at t=
+he kitchen table, remembering her and her brother sitting there side by sid=
+e, him always picking at his food and her scolding him for doing so. She sa=
+w him hiding her under the table and covering her ears while their father b=
+eat their mother endlessly. As she cried and trembled and prayed for it to =
+stop, he would hold her hands and would never let go. She glanced at the sm=
+all room on the other side and saw him lying on the mat, face as white as a=
+ sheet, telling her to get their mother because he didn't feel well. In her=
+ head, she pictured the hospital room where he died in his bed of the illne=
+ss their father brought with him to the ground.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She also saw her m=
+other, bloody and bruised on the kitchen floor every time she managed to in=
+cur his wrath. Her mother began to fade away, no longer even visiting her b=
+rother in the hospital, no longer coming home to see Kisani.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She even thought o=
+f herself, dead in a month.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It's all his faul=
+t," her mother snarled through gritted teeth. "And that girl is a criminal =
+who will only end up hurting you."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"No." Kisani shook=
+ her head, stumbling backwards, almost tripping over her own feet. "She wan=
+ted to help. She wanted to cure me. She... She said she would take me up th=
+ere =E2=80=94 "&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her mother laughed=
+, and the sound was like something out of a nightmare, making Kisani's bloo=
+d curdle. "We are forbidden from going up there, you stupid girl." She stoo=
+d up from her chair, walking towards Kisani, her footsteps booming in Kisan=
+i's ears. "You would have been killed by guards the moment you even attempt=
+ed it."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She might have ha=
+d some way =E2=80=94 "</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Even if the guard=
+s down here did not kill you, you would be killed up there." Her mother mov=
+ed closer until she was right in front of Kisani, towering over her menacin=
+gly. "Can you not understand?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"But =E2=80=94 !" =
+Kisani's breaths came out harshly. "What reason would she have to kill me?"=
+&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Sighing, her mothe=
+r bent down so they could see eye to eye. "Sometimes there is no reason. Th=
+ose people up there hate us, and she is one of them."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">She is one of them.</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona's face began =
+to twist inside Kisani's mind. All the smiles and laughter, all the tears a=
+nd memories. Kona's face in all their moments together warped and morphed i=
+nto evil grins and insincerity. Shadows radiated from her body, the traces =
+of her malicious heart seeping through the cracks. She began to look like a=
+ monster.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"This whole time..=
+. she was just trying to kill me?" Kisani whispered, barely getting her voi=
+ce to work.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">It was likely her =
+mother couldn't hear her, but judging from her nod, she had read Kisani's l=
+ips.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Staring into nothi=
+ng, Kisani felt her cheeks dampen as unexpected tears fell.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">She was never my friend.</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani's mother pu=
+lled her into another embrace, and Kisani felt all the strength leave her a=
+s she cried in her mother's arms.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"This is what they=
+ do," her mother said sadly. "Their kind has hurt us for centuries. Nothing=
+ has changed."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani grabbed ont=
+o her mother tighter, sobbing louder.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"My poor girl." Sh=
+e rubbed Kisani's back gently. "I will take care of this for you."&nbsp;</p=
+>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">For the rest of th=
+e day, Kisani laid in the bed in her own home, staring at the ceiling, feel=
+ing so hollow she thought she might as well die at that moment.</p><div dir=
+=3D"ltr"></div></body></html>
+--Apple-Mail-8C635558-80AE-4602-8DC7-90AC08C78BEA--

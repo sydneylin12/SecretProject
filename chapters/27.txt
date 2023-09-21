@@ -1,0 +1,1021 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:6504:d0c:b0:201:1116:7d10 with SMTP id c12csp453077lty;
+        Wed, 9 Nov 2022 09:56:14 -0800 (PST)
+X-Google-Smtp-Source: AMsMyM6yKIurSUrqb4Wltk3CfKjKZP78zLzRbKfg3P10D9S+AMcS3L7PacZnNqUuFrBP+T4rH/BN
+X-Received: by 2002:a05:6902:13c3:b0:6be:e1c6:8e6d with SMTP id y3-20020a05690213c300b006bee1c68e6dmr1056550ybu.260.1668016573898;
+        Wed, 09 Nov 2022 09:56:13 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1668016573; cv=none;
+        d=google.com; s=arc-20160816;
+        b=0tRRTTY+ysM7aceCZDE5Ch8ewC2A79U5AeIcLdhFuw5T7OpU2RlfQy74WLsk1VBOCx
+         NOt/Uxpt5H4BB6UYVK3d+Gxc7R7x1gzkQ66UORvagp21gQLizqwMURM91LDfr5sH1JLw
+         Rbo55XgcpPWc5o2deU63Hrxe/hlne/5zgLaMq/kBr3f9u0EQKUR8gNJefPWfyXeuOH5l
+         24kh/N11ALLKaPblKtKKazcB41HeSKjm+jV7cCP1EHDK9rI7/wj2TC6EzAtNycHUfoiI
+         muydAPCvsi1YTIiqyLNmkumYyL4ecU+hLFvg5pzeh9kBK4uyvxkf0tUfgDchrO1cSlyq
+         K/Vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=lnI2d4w2LHEQ1C/CS59ivou9LqMxtmEB71lcZNOTLnc=;
+        b=JDE7ypbljf0hnTdsjNOz/2pX6Iac8JgVLulJJLYXQjBy0zPFA+prj4JpxUHaKbZcoS
+         JcLL/268SNmDKPv9kj/MxKCb+mDccsfwpIKGnEToJqaCbJNWbyqFkczoUAbkt9Sca4GE
+         jf1x7PbkweUUnw2icF2EAFLeIi79qv7d044dPuG4fMftuE8esezJslvfzSOZf79nO1Fp
+         1khLVjDUF0VAM0hmBDKf1F8/pPC3Qoku7XKvddbe/7rvZNspjq3kkH4FxRW6vC5ahBla
+         hSckmqBG3vExON+zWBg8Nnw70WCoSn+o+uihlurf0vVHPv7lAHWTEmRNYrEWSlIEvrIz
+         Ovxg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Q2XF1h9d;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.205 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic312-24.consmr.mail.ne1.yahoo.com (sonic312-24.consmr.mail.ne1.yahoo.com. [66.163.191.205])
+        by mx.google.com with ESMTPS id 187-20020a810ec4000000b0034d4eeafc40si17264836ywo.550.2022.11.09.09.56.13
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Nov 2022 09:56:13 -0800 (PST)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.205 as permitted sender) client-ip=66.163.191.205;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Q2XF1h9d;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.205 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1668016573; bh=lnI2d4w2LHEQ1C/CS59ivou9LqMxtmEB71lcZNOTLnc=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=Q2XF1h9drhne6xcTEUd72HRmgPk7+v3Z1pA7YUZA/qEan7wvY04XFMANS0J6eqZqumXmCywLgkgfE5gE0dtNQ8yzHHTklQZ+Ub91GDdOSIWvc9bzIusYJ9eTleOW+BGzehQkJWhtzDXSp/HoUz1AQ1A6ah5kAOGLq9+9Niv5LH6ESnetH4BBwhXFPHDdZPbFNmqCu+OxIdBSRkq/YgqMRdRRvGeQM//zY3eGBiaGnfm9IH4Wa/HX/V1XjoKKLP6ZZH3BnvkZXmg9snvK7YYDwljx13m6c4us9JszO6KnUxz8zq6bo2s9tpxH6eFsF+t/5CnULWlFrDca/zIFC6+iHg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1668016573; bh=ZhxURmhcyXcQ3GEJ5ukoXp8dlu1/sw+eJJ9pz3D+BOU=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=HdwSZge60kNkfwC1MnprEVsud7xnpY7NX6XCmBAU8YSHcBfVg423FUKBvgcJ4qsAaw17DIDOPeQ0+cBtmiViw5I1KHsDJ7nZymFKU12LaXNkYBLGCC84XEYmAgbarxzbiW/SfTc16ujVUtJBA1J2K2YmJQB6TulwYmkVEM4qrfZtxSZXQWIzI00Tt+/nvi2tLfggs/FpO4trF7JpOtjKFBfDKpBMX6poiiSedAQabYNf0q8Z9bHgvvZAra3VQ+WhqnytzSrIxMctSVMbBrd6sGmszxNbLa4VgPQGEaa8/ZwzluD5/v002gI+26z8YFU2DMjS7PCNU86G1IUL9Fs4fA==
+X-YMail-OSG: knl_05wVM1k7cXnPGCKYTGSKz87XcpyNtJfRte9wb7U4w8kRMFqNpqmUI8GwZdX Xgm_Ry9pMW7Gz0beqS8vKUhM_PAGjuIKww.Tx0MAllky6sPuhiOLxO5tAGhuXUVa2jLFTuy0Rcx1 EmvdnjJkgflhXjtYIRRPdgM4.RQbVgFnXSrCav_NT_MVLpV1qdjvc767EQMON2Z2JX1rgHb_fpqi 71DxUQqV2KNqK.2xEft5eAhH3z0yhBjyxaQEBnhwA7JplhVfrHsXFVpxxbeZZKau3yC3nnfLTD_. jCNJZqQ.XosDGwYfs.ptkry8UC1_gToqx_iqDPUhQLsMoIDmpwwywOIkXMVoqLJf2HDEb1ZZUZOb u0kZC_0kOmNkwe4tIYpDwnG9JD2ObXdA6rd4wTrh1EbqECOnoc9frL0j0ufx8Oiq8uVxi2IfUfwd vGYED3VAeEpSfbaPlNfnpx79Kx.vAUB6Y13KUtVV55QYQXaF4KhVR1bp6MN8GalYBMDESO_rWNlY 4aX7fFXh3gzFlFDM7zFrPsCqMG_In.B6_zeMqovvw61gw2J9PHJrZgipqBDEmQlX8k0e5izkEggn RufBv8btjVFOufKwhU.yh6tUye.VWqYHCPQP05TqoCu.isiEEAhUkl0EXUGdahyDVk3aQzvLgwwk tW81Pg_wU02qu5.kN4WfpELB9zpzakJD51p9sEDY1yxMy1ZutuGErmb7_jRZHoxoO0P5RysqFUCh uajCrfZiBGLYbhUSFm06I.aog.eTWF7HzER3LNrXy5X0EqM3VmWJwB9SazZiSR6Aw3RjWQJaOjbf 7H3lgEaZE9Wxe11woK_p7qWdO9hEDeny3cFw8KGHqW40sLxS7S4OZNndsYQ_M88.wIQvGd1knVL. a.bvv9WNhlUNBxD8fj2Ii6yXztAKdwBWbaP6psfDhN70k8j6pqDz_VklJ640u1mAL5RE_D9s3k.U zSvFq3i4Ye19..MwMyLPD4GWFbB3384yEl3GSFqosIDwPTogbwfqKRZyyTOO.1EB6Kz8qTpQY7sa GYoWgZk.OJBLmCVY3IUjq3.uhC3rq58baIX6_CSlcI1SyG8IutqPGmTsfLjm6oG6ko8Uyw7vqVmW XEi0M5qZFvNSYL5uYZsVBWdh524VMQulQQTTHcMrMSEiH3TKs2H8IMnlajfmhYb4rMV56O0fF2Jw LjI5b3AftmHXLhKProBpvWs4P8Nc3HW27aP7umKRsSgwnkSzbPwZdoqk7C_0j1yJLJC8v8XNeOQE M9gvb00A52XpEYwyDCaSoCEwx6bOhG6c5Twtlg84ahZaR3Z_vr.0Q_6ys_LxOyxMhrSMSURQmtEQ FMoaIvYkMs5I2b5qY15izijsd2QaZrlUelFaz4XeBTiBdn5Cc7qKZc4szJ2.W5Y.cVCh0o7o3_kq j.Bg.bCabD2lRW3H4yfia8eki46R8WyCQ9WapdJWaigXdn5AXe52aMko5Uq3GEGXY_ciD3Cn7wgj rS35mgZKeLD5CXZXBSuW5YHQsvbEWeGUETz_0Dos4iMEJqsodEmkIVNrchqOtjpqNDaERIPniiV9 E3hQW_vHZzYmctjK85sv1rY9QVpSoXKOyMs4FZW6MiV8F1U5Kb4.S6h9q3GT1f6n5S.C5QeUvvUQ _mC4J5OyhujW9XhD68L8EKCCoLuPz8uEod9JvPZUE6muInJEkS4po_OgwRbFOc8GjqrZghFsXBZ4 6AQZy3KgFnXi1BjwTl9J4qmOqfJn3K3985PPmekMqDMOFvFp.DdI5i9I6ASq0YzTQiUtsQNM6R88 bzAk0HOymdWX_Pu.F1u7tf24QlHC0IutcjOPmR9L7v6gi0PlEYiNtiMSZfRVCIN.9HbvOUJEE07H kRMdkhNBCnEwejaynSK0XsYe5UG_EDr85.2poxHHSEQXlngoXV60nCzhVmK4Xv3gZdDiyv.xEOHc TwOh.Jerar1H0hef1NHaNQUD3mINAViEFdhaQWN_k8wA2a7WLFBNop1.VR_LdRwEDcrSpg1LAznz 3s6YNnX_tbK3YRvk_mw9H2v21W51equgDliGKJBnJcrg1xNHe4e2tvZ3ai3rPhOjD4JXr8nwlNt5 NIR1zhKNfw5BbEPynH20qi9fVJqOTqewL2Z.pA5ACYrCkO2ryY2ahU2lk07E8l8h9_oL_guJWdxu 9vBrWEyCdK1qwGsicz2gs34ZTbIRQwmDprElxvxPmCfeelcnCSBSMmOidRIaHqwFdqfH1U7rJ_Rn sC1lOORuwIjEfEVgfc3HoWMA91EDturfVblD1tsIYGWeQKrPjEy.1ikPYog--
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic312.consmr.mail.ne1.yahoo.com with HTTP; Wed, 9 Nov 2022 17:56:13 +0000
+Received: by hermes--production-bf1-5878955b5f-jp8q4 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 67fdc175d0c561f35de842c8d2040270;
+          Wed, 09 Nov 2022 17:56:09 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-D22103E8-1AC6-4A1B-B7C5-81C508DA3E09
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Wed, 9 Nov 2022 09:55:57 -0800
+Subject: Chapter 27
+Message-Id: <6BCCA13D-466E-4DF4-9B41-C5C66C5DE24C@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20B82)
+References: <6BCCA13D-466E-4DF4-9B41-C5C66C5DE24C.ref@yahoo.com>
+Content-Length: 52897
+
+--Apple-Mail-D22103E8-1AC6-4A1B-B7C5-81C508DA3E09
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Before the sun could show itself through the windows, Rosella forced hersel=
+f to wake up. As quietly as possible, she slipped out of bed and began to p=
+ack her things.=20
+
+In a large cloth bag, Rosella placed all her necessities, which wasn't much=
+. A hair comb, a shawl, all the money she had, two spare dresses. She decid=
+ed to wear the one Astero gave her, as it would be something to remember hi=
+m by.=20
+
+She would leave before he woke, before he could leave behind his life for h=
+er.=20
+
+Rosella held the necklace he gave her, wondering if she should take it with=
+ her or leave it. It was so beautiful, a rare pink gem. It would be worth a=
+ fortune, but Rosella could never bring herself to sell it. She promised to=
+ make enough money to pay Astero back, but it would take years.=20
+
+Perhaps she should leave it for him to sell to get the money back. Rosella =
+decided to leave it on the kitchen counter for him to find. She wanted desp=
+erately to wear it, to feel like an Ozario again, but she did not have the =
+right to. Astero would find it. And hopefully, he would not come after her.=
+=20
+
+Quietly, Rosella opened the door and slipped outside her room, hoping Aster=
+o was still sound asleep. The sun hadn't risen, and Astero rarely woke up b=
+efore she did, so she was confident she could make her escape.=20
+
+However, when she descended the stairs, Astero was sitting at the kitchen t=
+able, wide awake, and judging by his cloak and packed bag, ready to go.=20
+
+He smiled, and Rosella groaned.=20
+
+"You don't seem happy to see me," he noted, standing up.=20
+
+"I was hoping not to," she grumbled.=20
+
+"I thought you might do something like this." Astero reached over and took =
+her bag as well. "Ready to go?"=20
+
+Looking at his eyes that showed absolutely no hesitation, at that moment, R=
+osella decided to give up. No matter what she tried, he seemed to know her =
+too well. And it wasn't like she didn't want him to come along.=20
+
+"I just want you to be sure about this," she said, looking into his dark ey=
+es, trying to see any signs of doubt or reluctance.=20
+
+But she saw none.=20
+
+His face broke out into the brightest smile, and she couldn't help but smil=
+e back. Astero held out his hand. "Let's go?"=20
+
+Rather than taking it, Rosella handed him the necklace. He looked down at i=
+t, confused. For a moment, Rosella thought he might take it back. It was hi=
+s, after all. However, Astero held both ends of it and placed it around her=
+ neck. She moved her hair aside for easier access, and the coldness of his =
+fingers brushed against her skin, causing her to shiver involuntarily. Once=
+ the clasp was on, he stepped back, and she turned around to face him.=20
+
+Somehow, he looked happier than before. "It looks good on you. The dress, t=
+oo."=20
+
+She reached for his hand and held it in her own, interlocking their fingers=
+. His hand was warm and comforting. Rosella had spent years looking out for=
+ herself. She had always been alone, and while it felt strange to have some=
+one to rely on, it also felt like bliss.=20
+
+It would take them a week of nonstop traveling to get to the east. Rosella =
+had never been there, not even in the sky. She heard the weather was even w=
+armer than the north in the summer, which made Rosella worried, for the hea=
+t was already enough in Onen. However, Astero said his mother was from the =
+east, so the heat didn't bother him as much, as he seemed used to it. It wo=
+uld be nice to have him at her side there. =20
+
+The two of them walked along the village. It was early in the day, the sun =
+barely showing itself amidst the land in the sky. This small village where =
+Rosella had lived for just a few months began to feel like home. And now, b=
+ecause of her past mistakes, she would be leaving it behind.=20
+
+"Are you all right?" Astero asked as they strolled through the streets, his=
+ eyes full of concern.
+
+Rosella sighed. "I just wonder if this same thing will happen in the east. =
+And then it will keep happening until everyone in the whole world hates me,=
+ and I'll have nowhere left to go."=20
+
+"If that happens, I will stay by your side," Astero assured, squeezing her =
+hand tighter.=20
+
+It was almost amusing how he didn't deny that was a possibility.=20
+
+"Do you know any nice places in the east?" Rosella asked.=20
+
+Astero nearly jumped, as if he wasn't expecting this question. He laughed, =
+almost uncomfortably. "Uh... would I?"=20
+
+Rosella turned to look at him in confusion. "You said your mother was from =
+there, and you had been there?"=20
+
+His eyes widened for a split second, but then he forcefully laughed. "Right=
+! No, yes, I remember saying that, of course."=20
+
+"Of course."=20
+
+"Yes!" He continued to laugh, and Rosella began to grow concerned. "I'm sor=
+ry, my memory is not the best."=20
+
+"Clearly."=20
+
+He cleared his throat awkwardly. "It has been a long time since I've been t=
+here. I don't remember the place very well."=20
+
+Rosella smiled softly at him. "Then it will be an adventure for the both of=
+ us."=20
+
+Hand in hand, the pair made their way to the outskirts of the village, the =
+sun slowly rising in the sky. Rosella turned back one last time. This was t=
+he place she lived the longest. Because it was in the north, she even felt =
+close to her old home. This was where she finally found a woman to stay wit=
+h, in a home she finally felt safe in. It was where she met Astero.=20
+
+She looked at him now, dressed as shabbily as her, his dark hair messier th=
+an when she had first seen him. There was a hint of fatigue in his features=
+, likely from the hours of working, as well as his recent sickness. It migh=
+t have just been her imagination, but he also looked thinner already. Dark =
+circles under his eyes showed he had not been sleeping well, perhaps from t=
+he uncomfortable mat he had been sleeping on. And yet, those eyes, so beaut=
+iful and bright, never changed.=20
+
+Rosella wondered if he would think any different of her if he found out abo=
+ut her past. If he left, she would most likely be fine. She had spent so ma=
+ny years looking after herself, after all. But strangely enough, Rosella di=
+d not want to imagine what a future without him would be like. Perhaps she =
+had grown attached.=20
+
+And that was never a good thing.=20
+
+"We can buy horses on the way there," he said as they walked along the road=
+. "I'll pay, of course."=20
+
+She rolled her eyes, knowing she couldn't change his mind to just walk the =
+whole way. It was what she would have done had she been alone.=20
+
+"Do you need anything else?" Astero asked. "More clothes?"=20
+
+Rosella shook her head. "I just want breakfast."=20
+
+"Here." Astero reached into one of his sacks and pulled out something wrapp=
+ed in paper. He handed it to her, and Rosella took it from him skeptically.=
+=20
+
+"What is this?" she asked, inspecting it.=20
+
+"Breakfast!" he replied cheerfully.=20
+
+She raised an eyebrow questioningly, but nevertheless, Rosella slowly unwra=
+pped the paper.=20
+
+It was something akin to an egg tart, but Rosella couldn't be sure.=20
+
+"Where... did you get this?" she asked cautiously.=20
+
+He smiled so brightly, Rosella almost melted. "I made it!"=20
+
+Her eyes widened. She looked down at the thing Astero had made. Was it even=
+ edible?=20
+
+"I asked Gwenda how to make it," he said, seeming quite proud of himself.=
+=20
+
+Gwenda was one of the bakers in the village, and she owned a pastry stall t=
+hat sold delicious desserts. Rosella didn't know if she should blame this o=
+n Gwenda's teaching skills or Astero's ability to bake. Probably the latter=
+.=20
+
+"It..." Rosella didn't know what to say. She looked up at him, and she didn=
+'t know what kind of face she was making, but Astero's smile slowly cracked=
+.=20
+
+Rosella quickly smiled and said, "It looks delicious!" and ate it all in on=
+e bite.=20
+
+She did her best not to gag.=20
+
+"Really?" His eyes sparkled with delight. "I stayed up all night trying to =
+make it."=20
+
+Her heart ached, and she convinced herself it was the best food she had eve=
+r had. "I loved it."=20
+
+"I made more if you're still hungry!"=20
+
+Rosella's stomach lurched at the thought of eating more, but she thought of=
+ Astero in the kitchen all night baking whatever this was just for her. Ast=
+ero, someone who likely never had to cook for himself, did this for her.=20
+
+So she said she was hungry, and she ate three more until Rosella's stomach =
+was on the brink of bringing it all back up.=20
+
+For two hours, the pair walked along the road, and the entire journey, Rose=
+lla barely noticed the pain in her feet, nor the sweat dripping down her fa=
+ce. With nothing to do but converse on the road heading east, all Rosella w=
+anted was to learn every little thing about Astero.=20
+
+"Do you have siblings?" she had asked.=20
+
+He shook his head. "Do you?"=20
+
+"Two. An older brother and sister."=20
+
+He looked surprised. "You do?"=20
+
+"They're back home." Rosella pondered if she should tell him this, but perh=
+aps it couldn't hurt. "I was actually banished from my home."=20
+
+Strangely enough, Astero didn't look surprised. "I'm so sorry," he said, lo=
+oking dejected.=20
+
+She laughed, nudging his shoulder. "Always apologizing. Apologetic Astero."=
+=20
+
+Astero chuckled half heartedly. "That's me."=20
+
+"They're twins," Rosella explained, wanting to talk about them, to feel clo=
+ser to them somehow. "Five years older than me."=20
+
+He smiled. "Us, too."=20
+
+"Hmm?"=20
+
+"You're five... years..." Astero seemed to have come to a realization and c=
+losed his eyes, cringing. "Never mind."=20
+
+"I'm five years older than you?" Rosella had no idea when they had talked a=
+bout their ages. She could have sworn it never came up.=20
+
+"What are their names?" he asked abruptly.=20
+
+"Crisanto and Willow. Why are you changing the subject?"=20
+
+"I know, you were talking about your siblings and I interrupted. I apologiz=
+e." Astero bowed his head.=20
+
+"That's not =E2=80=94 "=20
+
+"Were you close with them?"=20
+
+"I... yes, sort of." She decided to accept his desire to stay away from the=
+ topic of their ages. "I was closer to my brother."=20
+
+"Do you miss them?" he asked sadly.=20
+
+"Of course." Rosella missed her family more than anything. She gazed up at =
+the sky, wondering what they were doing at this moment. She imagined her fa=
+ther had retired from clan leader duties, and perhaps Soro Crisanto had tak=
+en over as leader. Anle Willow would be at his side, protecting him always,=
+ hopefully when she returned from her travels around the sky. Anessia Aewin=
+, Soro Crisanto's wife, would be there as well. Her mother and father would=
+ be living in a cottage somewhere in the Ozario clan hillsides, surrounded =
+by flowers.=20
+
+The moment Rosella felt tears threatening to fall, she shook her head fierc=
+ely and laughed. "Why are we talking about me? I was going to ask you quest=
+ions."=20
+
+"I want to know more about you," Astero replied easily, as if that didn't m=
+ake her heart jump.=20
+
+"But I'd like to know more about you too," she insisted. "Did your parents =
+love flowers as well?"=20
+
+"Hm? What makes you say that?"=20
+
+"Your name," she pointed out. "All my siblings and I are named after flower=
+s. My parents loved gardening."=20
+
+Astero smiled, as if he were remembering something pleasant. "Yes, my mothe=
+r loves flowers."=20
+
+"Asters are beautiful," said Rosella, grinning. "Your mother has good taste=
+."=20
+
+He shook his head. "Roses are more beautiful," Astero insisted. "Especially=
+ pink ones."=20
+
+She rolled her eyes. "There you go flirting again."=20
+
+"Can't I have an opinion?"=20
+
+"You're cheeky."=20
+
+Astero winked, and Rosella laughed, unable to remember a time when she had =
+been so happy.=20
+
+Until they reached a town to stop and rest, for two hours, the aster and th=
+e rose stayed side by side, as if they were the only two flowers in the who=
+le world.
+
+Sent from my iPhone
+--Apple-Mail-D22103E8-1AC6-4A1B-B7C5-81C508DA3E09
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
+=3Dutf-8"></head><body dir=3D"auto"><p style=3D"margin: 0px; font-stretch: =
+normal; font-size: 18px; line-height: normal; font-family: Georgia; color: =
+rgb(18, 18, 18);">Before the sun could show itself through the windows, Ros=
+ella forced herself to wake up. As quietly as possible, she slipped out of =
+bed and began to pack her things.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">In a large cloth b=
+ag, Rosella placed all her necessities, which wasn't much. A hair comb, a s=
+hawl, all the money she had, two spare dresses. She decided to wear the one=
+ Astero gave her, as it would be something to remember him by.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She would leave be=
+fore he woke, before he could leave behind his life for her.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella held the n=
+ecklace he gave her, wondering if she should take it with her or leave it. =
+It was so beautiful, a rare pink gem. It would be worth a fortune, but Rose=
+lla could never bring herself to sell it. She promised to make enough money=
+ to pay Astero back, but it would take years.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Perhaps she should=
+ leave it for him to sell to get the money back. Rosella decided to leave i=
+t on the kitchen counter for him to find. She wanted desperately to wear it=
+, to feel like an Ozario again, but she did not have the right to. Astero w=
+ould find it. And hopefully, he would not come after her.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Quietly, Rosella o=
+pened the door and slipped outside her room, hoping Astero was still sound =
+asleep. The sun hadn't risen, and Astero rarely woke up before she did, so =
+she was confident she could make her escape.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">However, when she =
+descended the stairs, Astero was sitting at the kitchen table, wide awake, =
+and judging by his cloak and packed bag, ready to go.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">He smiled, and Ros=
+ella groaned.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You don't seem ha=
+ppy to see me," he noted, standing up.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I was hoping not =
+to," she grumbled.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I thought you mig=
+ht do something like this." Astero reached over and took her bag as well. "=
+Ready to go?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Looking at his eye=
+s that showed absolutely no hesitation, at that moment, Rosella decided to =
+give up. No matter what she tried, he seemed to know her too well. And it w=
+asn't like she didn't want him to come along.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I just want you t=
+o be sure about this," she said, looking into his dark eyes, trying to see =
+any signs of doubt or reluctance.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">But she saw none.&=
+nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">His face broke out=
+ into the brightest smile, and she couldn't help but smile back. Astero hel=
+d out his hand. "Let's go?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rather than taking=
+ it, Rosella handed him the necklace. He looked down at it, confused. For a=
+ moment, Rosella thought he might take it back. It was his, after all. Howe=
+ver, Astero held both ends of it and placed it around her neck. She moved h=
+er hair aside for easier access, and the coldness of his fingers brushed ag=
+ainst her skin, causing her to shiver involuntarily. Once the clasp was on,=
+ he stepped back, and she turned around to face him.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Somehow, he looked=
+ happier than before. "It looks good on you. The dress, too."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She reached for hi=
+s hand and held it in her own, interlocking their fingers. His hand was war=
+m and comforting. Rosella had spent years looking out for herself. She had =
+always been alone, and while it felt strange to have someone to rely on, it=
+ also felt like bliss.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">It would take them=
+ a week of nonstop traveling to get to the east. Rosella had never been the=
+re, not even in the sky. She heard the weather was even warmer than the nor=
+th in the summer, which made Rosella worried, for the heat was already enou=
+gh in Onen. However, Astero said his mother was from the east, so the heat =
+didn't bother him as much, as he seemed used to it. It would be nice to hav=
+e him at her side there.&nbsp;&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">The two of them wa=
+lked along the village. It was early in the day, the sun barely showing its=
+elf amidst the land in the sky. This small village where Rosella had lived =
+for just a few months began to feel like home. And now, because of her past=
+ mistakes, she would be leaving it behind.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Are you all right=
+?" Astero asked as they strolled through the streets, his eyes full of conc=
+ern.</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella sighed. "I=
+ just wonder if this same thing will happen in the east. And then it will k=
+eep happening until everyone in the whole world hates me, and I'll have now=
+here left to go."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"If that happens, =
+I will stay by your side," Astero assured, squeezing her hand tighter.&nbsp=
+;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">It was almost amus=
+ing how he didn't deny that was a possibility.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you know any n=
+ice places in the east?" Rosella asked.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero nearly jump=
+ed, as if he wasn't expecting this question. He laughed, almost uncomfortab=
+ly. "Uh... would I?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella turned to =
+look at him in confusion. "You said your mother was from there, and you had=
+ been there?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">His eyes widened f=
+or a split second, but then he forcefully laughed. "Right! No, yes, I remem=
+ber saying that, of course."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Of course."&nbsp;=
+</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Yes!" He continue=
+d to laugh, and Rosella began to grow concerned. "I'm sorry, my memory is n=
+ot the best."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Clearly."&nbsp;</=
+p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">He cleared his thr=
+oat awkwardly. "It has been a long time since I've been there. I don't reme=
+mber the place very well."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella smiled sof=
+tly at him. "Then it will be an adventure for the both of us."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Hand in hand, the =
+pair made their way to the outskirts of the village, the sun slowly rising =
+in the sky. Rosella turned back one last time. This was the place she lived=
+ the longest. Because it was in the north, she even felt close to her old h=
+ome. This was where she finally found a woman to stay with, in a home she f=
+inally felt safe in. It was where she met Astero.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She looked at him =
+now, dressed as shabbily as her, his dark hair messier than when she had fi=
+rst seen him. There was a hint of fatigue in his features, likely from the =
+hours of working, as well as his recent sickness. It might have just been h=
+er imagination, but he also looked thinner already. Dark circles under his =
+eyes showed he had not been sleeping well, perhaps from the uncomfortable m=
+at he had been sleeping on. And yet, those eyes, so beautiful and bright, n=
+ever changed.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella wondered i=
+f he would think any different of her if he found out about her past. If he=
+ left, she would most likely be fine. She had spent so many years looking a=
+fter herself, after all. But strangely enough, Rosella did not want to imag=
+ine what a future without him would be like. Perhaps she had grown attached=
+.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">And that was never=
+ a good thing.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"We can buy horses=
+ on the way there," he said as they walked along the road. "I'll pay, of co=
+urse."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She rolled her eye=
+s, knowing she couldn't change his mind to just walk the whole way. It was =
+what she would have done had she been alone.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you need anyth=
+ing else?" Astero asked. "More clothes?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella shook her =
+head. "I just want breakfast."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Here." Astero rea=
+ched into one of his sacks and pulled out something wrapped in paper. He ha=
+nded it to her, and Rosella took it from him skeptically.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What is this?" sh=
+e asked, inspecting it.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Breakfast!" he re=
+plied cheerfully.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She raised an eyeb=
+row questioningly, but nevertheless, Rosella slowly unwrapped the paper.&nb=
+sp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">It was something a=
+kin to an egg tart, but Rosella couldn't be sure.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Where... did you =
+get this?" she asked cautiously.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">He smiled so brigh=
+tly, Rosella almost melted. "I made it!"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her eyes widened. =
+She looked down at the thing Astero had made. Was it even edible?&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I asked Gwenda ho=
+w to make it," he said, seeming quite proud of himself.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Gwenda was one of =
+the bakers in the village, and she owned a pastry stall that sold delicious=
+ desserts. Rosella didn't know if she should blame this on Gwenda's teachin=
+g skills or Astero's ability to bake. Probably the latter.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It..." Rosella di=
+dn't know what to say. She looked up at him, and she didn't know what kind =
+of face she was making, but Astero's smile slowly cracked.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella quickly sm=
+iled and said, "It looks delicious!" and ate it all in one bite.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She did her best n=
+ot to gag.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Really?" His eyes=
+ sparkled with delight. "I stayed up all night trying to make it."&nbsp;</p=
+>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her heart ached, a=
+nd she convinced herself it was the best food she had ever had. "I loved it=
+."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I made more if yo=
+u're still hungry!"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella's stomach =
+lurched at the thought of eating more, but she thought of Astero in the kit=
+chen all night baking whatever this was just for her. Astero, someone who l=
+ikely never had to cook for himself, did this for her.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">So she said she wa=
+s hungry, and she ate three more until Rosella's stomach was on the brink o=
+f bringing it all back up.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">For two hours, the=
+ pair walked along the road, and the entire journey, Rosella barely noticed=
+ the pain in her feet, nor the sweat dripping down her face. With nothing t=
+o do but converse on the road heading east, all Rosella wanted was to learn=
+ every little thing about Astero.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you have sibli=
+ngs?" she had asked.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">He shook his head.=
+ "Do you?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Two. An older bro=
+ther and sister."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">He looked surprise=
+d. "You do?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"They're back home=
+." Rosella pondered if she should tell him this, but perhaps it couldn't hu=
+rt. "I was actually banished from my home."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Strangely enough, =
+Astero didn't look surprised. "I'm so sorry," he said, looking dejected.&nb=
+sp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She laughed, nudgi=
+ng his shoulder. "Always apologizing. Apologetic Astero."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero chuckled ha=
+lf heartedly. "That's me."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"They're twins," R=
+osella explained, wanting to talk about them, to feel closer to them someho=
+w. "Five years older than me."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">He smiled. "Us, to=
+o."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Hmm?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You're five... ye=
+ars..." Astero seemed to have come to a realization and closed his eyes, cr=
+inging. "Never mind."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'm five years ol=
+der than you?" Rosella had no idea when they had talked about their ages. S=
+he could have sworn it never came up.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What are their na=
+mes?" he asked abruptly.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Crisanto and Will=
+ow. Why are you changing the subject?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I know, you were =
+talking about your siblings and I interrupted. I apologize." Astero bowed h=
+is head.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"That's not =E2=80=
+=94 "&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Were you close wi=
+th them?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I... yes, sort of=
+." She decided to accept his desire to stay away from the topic of their ag=
+es. "I was closer to my brother."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you miss them?=
+" he asked sadly.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Of course." Rosel=
+la missed her family more than anything. She gazed up at the sky, wondering=
+ what they were doing at this moment. She imagined her father had retired f=
+rom clan leader duties, and perhaps Soro Crisanto had taken over as leader.=
+ Anle Willow would be at his side, protecting him always, hopefully when sh=
+e returned from her travels around the sky. Anessia Aewin, Soro Crisanto's =
+wife, would be there as well. Her mother and father would be living in a co=
+ttage somewhere in the Ozario clan hillsides, surrounded by flowers.&nbsp;<=
+/p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">The moment Rosella=
+ felt tears threatening to fall, she shook her head fiercely and laughed. "=
+Why are we talking about me? I was going to ask you questions."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I want to know mo=
+re about you," Astero replied easily, as if that didn't make her heart jump=
+.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"But I'd like to k=
+now more about you too," she insisted. "Did your parents love flowers as we=
+ll?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Hm? What makes yo=
+u say that?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Your name," she p=
+ointed out. "All my siblings and I are named after flowers. My parents love=
+d gardening."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero smiled, as =
+if he were remembering something pleasant. "Yes, my mother loves flowers."&=
+nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Asters are beauti=
+ful," said Rosella, grinning. "Your mother has good taste."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">He shook his head.=
+ "Roses are more beautiful," Astero insisted. "Especially pink ones."&nbsp;=
+</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She rolled her eye=
+s. "There you go flirting again."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Can't I have an o=
+pinion?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You're cheeky."&n=
+bsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero winked, and=
+ Rosella laughed, unable to remember a time when she had been so happy.&nbs=
+p;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Until they reached=
+ a town to stop and rest, for two hours, the aster and the rose stayed side=
+ by side, as if they were the only two flowers in the whole world.</p><br><=
+div dir=3D"ltr">Sent from my iPhone</div></body></html>
+--Apple-Mail-D22103E8-1AC6-4A1B-B7C5-81C508DA3E09--

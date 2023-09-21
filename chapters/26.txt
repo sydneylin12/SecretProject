@@ -1,0 +1,900 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:ab3:1a66:0:b0:1e8:13c9:66b6 with SMTP id g93csp2042572ltg;
+        Sat, 22 Oct 2022 10:40:32 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7bJYZ9eLpg6Z/fQv2/PW+xKvl/zO+IB44TTW6ULbw5EXDscQf6hhAdio/xu8ygPAXw1E0l
+X-Received: by 2002:a05:6214:5006:b0:4b4:9a51:f811 with SMTP id jo6-20020a056214500600b004b49a51f811mr21881790qvb.44.1666460432207;
+        Sat, 22 Oct 2022 10:40:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1666460432; cv=none;
+        d=google.com; s=arc-20160816;
+        b=a0ZdVmBy1FMqdS9YZMBpFdKbjk1RUklh6S0jEXzubidqxMGcKmrqDaLVxd6vhPEbkb
+         etyHDXwIPu5Be9jjk79oHGNTr+H89esTfFaytPTxcy2Bd/4MfYf1zn1y1kjYFOiVDzsK
+         fdtEjdhORsDeghVUnRskABLPgI2GbLGmJU60hpOksJmJlSOw/xVVHKFHbu+Lw9piKXjK
+         BvrJGsWRqBzt3x8e9m2W74WtQh0XwJASkvblxCIjFR5AGRmcI6A8eKGJ7iuBmEAS3KcK
+         KbWDAPHBy7Z3heKaI21QCwTcQrPFLLDs36WNlTsn3SmnaWkvpLDMxFwebTyHqDOC4Obi
+         jiGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=3g8I/iPLdhlfzqzKFesouILtZkOQ2o4+GgGKxsgvrgQ=;
+        b=cpFydFTt3qJBrtyt9ER0rR5uVpYAZ+v4JLVNBdPAQBbDXvvq/OIb0XoA86NFZvJshA
+         knBaqchat4pLptIFZiyGw1z8Gx6ELxOhA7wv7yg2cYa5k2aX5OJ5HAVgGgsOVouANR6e
+         IPEd4ZkcTRytRoDf0umf6e7TSUZO5D6evBaxOohuGvSrvgYWwC0Okc4u5TXl3s2ip1Xl
+         ztBvlKQTKj60IGYNDGSrMUZQBGGJLH62lI1mbrb8tCr6cRbfU6Nn/+9mZjFWCuXoxDjI
+         cHj3VhvhnqXXuciFQwL5ynh1VoJ9mKUO0PxKyv4hCNjNCU2peHVDjGVgBIBCTCyPr26n
+         7hOg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=aP7wVd1m;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.147 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic304-21.consmr.mail.ne1.yahoo.com (sonic304-21.consmr.mail.ne1.yahoo.com. [66.163.191.147])
+        by mx.google.com with ESMTPS id i63-20020a37b842000000b006b8f3cfec88si13108719qkf.446.2022.10.22.10.40.31
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Oct 2022 10:40:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.147 as permitted sender) client-ip=66.163.191.147;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=aP7wVd1m;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.147 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1666460431; bh=3g8I/iPLdhlfzqzKFesouILtZkOQ2o4+GgGKxsgvrgQ=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=aP7wVd1mstOuw6MLxam9CSDqMJrjX/k66SV+vxc5cQgtTFfDrNe3nrDFJaOaO6557MaDwMVt4UIOIcfr/MINclLy3fAcPNYrfZptyPaXlpDHyp7f+R/rQwCjvCOzPIUJ+neRyhgPPt4+li/vpXaSkLoUZv/obvdK6u/H+S7LCX1xBtV/jTopxMiXLrY5nfPPsAPy62p40VhEz+Z/iH9tCPsUHBNpHMLtSBEbnDB/TT4vDhRhYTW+KJucBOluHwsyHu5nxlkBnvDN32oB45w49pJ7FfvhfUSrVpLo9ocsKMJ8JsBWnqDTTKecmnqsmLOTPGUepL6dRqgQfPGbkYXncg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1666460431; bh=i2CR+9LGJ8UrjZw4rboudY24SIgFilZ3C5JQ0nPpyZH=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=kEhxwZay6JkTMFnoNGZ/J4WwmwQB1f0NLPKSyJ7X4VYr3uA8aCL/tfUQayiXEirYPxc6XGXd2yRgJ05jWKaeEzuDZgAt0LFj8R5gGDoXcsJR7mRb35XbDq2MY10Os+HrAPhFoV7vJh2HYB8+jLz82i9l04etK0jmNIH2+zSZG1fCs3gR1A8r3kQwSNJDNcQHwrQihuK34coSOie2jWVW2pG2JV1rQtpjbKTjUs24TFzh/EpAu950wKXUlcI/oykUVpkzGrzc+BGVsQAQ3SHB6N40IU1H7Wis9zKxxYo/aBqQdJwG4uG7SZhOmowqS8NdTp5KeK4+W2YquZ9CIhajSg==
+X-YMail-OSG: J3R16LUVM1khNUYqwEqlaDNX3Sy_XP9fkzLNwPrvNw2Kd.e1hjv4DKkRukmzHcy IWQJvO_8SSZUHGNEsvRrNh2mzD098B26JJGZpCG5sFCGX0LgGp4OnGjW7iPRk5Bge8_Yy4MIlE43 6c_iUrRj4hgbOSp.ERyZhl6nyKY0T0pN0DR0uGXssVftu5iC0_n1VsBb4W45m1dmPBQ9tQMq8IAQ pVd8Sxm9HwlQGGXi7awm78G8rnT6OXrWkRbyomyP5qSQsaz8LCO7vBku6xy50EltSl8MA4f29qEz URQB.0geIDtGsneM0x4fDj8fqkB5j9_kBReXAqXBumoUNs._vmg5sGlSOUD6lDTxkdHu_q9v1TgT SH6_IAyyjpFz7qplScaxJU9C7qUd9mznJNC_Agc0PyJO.ZG4BySqBkogzncgwHAPEBMYSZZNpanZ TsKFfuCv5cBpv57ZFCaSDMo1.dZMvFEmij9q3fUUGKEOH7oHJ6VYfFbnwg1f6I49NKBOILTd7HLb eYiR2NeIF6L7B930OE3kl8VGQhLqhcn1Lyu2bTMPekD1kFqOR8lm1UyjuWkuvvUOSQ_cDJfYkK39 w.qVe1cmnM1n8aPLtArCIFjE6QIllQ.OuMt3fDal_os._gY2v.GijJJwXk.XHxiuCnlVpEkMx8PZ RLDl9bffVlVq.3bOjCpPCVSZymFpp4FtHGixB4qiIkr7irMtz7HeW6pFde35EITfkcidaMOXhSgz 01xbz8aOXURCRN8ef0IDeVPRrRmJAM33zlgvf9Zgx9jyOMa.BMB3JrkdEfmSqlvXmA5JXNp1ysCy 7cYG4c1b8jKkCJnF0qSf1slU4CJm7KxmJUkviQOeZhk5YszPe0M0XatrdRiNdgxsYQ3dPkCtD0cX 95BP3oLhKrZmkKL5w723ql1bIp9GjJJmlgokqmdc9ELrIRcD2ZUi8s89q5601mSjfVVXHNWWv2dq Dw4NehymPDOXPnTtDPb3tCHSUpcv5OUvvGwINqyJnmQLsL_.c8cNU3DWycwfCqS6n70ZtSI2TzDm B0vSzZ.i92DlAlj2fhwCa4xZQs3gIKdLaBBy4zb89THeC0mwkawSK4DQrJZB7hqZJHkno56Qr9_w wVQ.CNv1IQhDgx6m5aEvLm3VEX.98oTa3godi0TbKTYds7IPsjRgqKTNo_1eA.78VskIrUB1CeT3 bTM2K3xyGbv3NWmfPK7Bmo5qIksS.2OaYddAjea9DgQ8m_CNWA4AwW0jvfBKemBb1.RcvABspy8o bXk8CtiT6fv2_16MjzOdxWpGXnwtirKFYOV3Phstjk76hPeSnbvjCM.DJ9uhQ4xEpspffMFxLCx6 mZuFFnlsRpj_0m1aoxWIMukcD0Z9iMFTe7VmSHm4xL28i8.ZYAZy2ljfY71aM6WQ0CqucvxCs9P2 5DBTsXWloehb06QFmqIpF9GBjecDQMdzxMMfyqGVW2AqQibSzXH7HO1ytVUJQhIs.vJiecj8RHHu wfNPN2_Zq50XkiF6J2VyUEkh0d4FUK70.I0yQY.jlfNozjsFTfCoNqh_JBDnQaNUZPW_DT27rw3t sZE7u6upzHNLKyOm5DRAbmjHDEy4RvJJddF5rBCQDiLrY2LI_oeXnsfYAgJZEvDO6YvQd5e2N5Jl JXDwVUl7n5DgnvfnuUPiNDrgvwGEW_uQn.l4dB4h0bRyeLvmjNBNCD3fpp0qwXOc8M_INAqja7Gn l7_H9NcTFddvPa_C1VkndamHi.tc8zy9aGJX8lKT1TyvOHPpn.3MMv56eMbMJSh.sXX_eIi7d54I THBYnIqzdeONJKGPsSHnaZOJXAJmlWCjnQ.sXavsUyAlCb1svRxcP4KMqg0HT1nQIbFStDs3eMEq F3boPtxHVX1oDJFZy2kpauWvYUgBxNZVwc21g0NX02AhMClLqii3WQNeLf0vNGLIv7DUcwMURI8f WpeHJhHIryO9fW_ksf2IND_rvzetpO3Vcw_fdYFEtW0KHfQIRO9cEmMMSIXVsZ5glQEIGpG88XFb SmkhPjXtQz1h9xz5qQjqG0TJyKWv20GcRr4yyeiZsh0PVUXkanmz.WhJ8ejGBLz9PLMsAvALXRKi 0WHmTFiIlxefyDtJ9mukvudWDUcwpLdXVpmW2UU3mXgi6S8wVHQngWvoLUsC_zKCuSdiryqGCxmN OR48SVPW6M.9hU6RsrS95F.ojnYvd1o9dk772agF9cg4VNnegC3amkpbA9.8MMQ2x3nrfkDLnoU4 iJM2okXFC4muRp7dDkzZ7SAqjkevG96B.7epfHIVLsPBhhY5QHO.Kf0M6Og--
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic304.consmr.mail.ne1.yahoo.com with HTTP; Sat, 22 Oct 2022 17:40:31 +0000
+Received: by hermes--production-ne1-c47ffd5f5-zzt69 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 4840a35acef6f61c964b3fa56775e0ba;
+          Sat, 22 Oct 2022 17:40:28 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-1CF401F6-96D8-4BEC-A3A6-824CEDA0A93D
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Sat, 22 Oct 2022 10:40:16 -0700
+Subject: Chapter 26
+Message-Id: <FDA72F2C-7C3F-4664-9395-4A5B69980F12@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20A362)
+References: <FDA72F2C-7C3F-4664-9395-4A5B69980F12.ref@yahoo.com>
+Content-Length: 46590
+
+--Apple-Mail-1CF401F6-96D8-4BEC-A3A6-824CEDA0A93D
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+It has been just two weeks since Kona made her way to the ground, and in th=
+at time, she felt so much joy she didn't know what to do with herself. Perh=
+aps this was the ground. Perhaps this was another part of the sky. Those th=
+oughts did not bother Kona, for she enjoyed this place nonetheless. It bega=
+n to feel like a fantasy, a dream she conjured up from the happier parts of=
+ her mind. She might have died the second she stepped on the ground, and th=
+is was the afterlife. Either way, she was certainly willing to stay.=20
+
+Kona stayed in the hospital, spending time with her new friends. Minnie was=
+ there for a broken leg. Damien was there for a spinal injury and was usual=
+ly wheeled around by Lawrence, his younger brother, who was there for a bro=
+ken cheekbone. And Kisani had some unknown illness that had been keeping he=
+r in the hospital for five years.=20
+
+She did not forget her original goal to find Astero Elessai. It had just ta=
+ken a backseat to finding her footing on the ground. Surely Lady Willow wou=
+ld understand. Kona had spent her entire life fighting to survive, and for =
+the first time, she found a place where she did not have to struggle.=20
+
+A few more days. She would give herself a few more days experiencing this b=
+liss.=20
+
+Kona laid in the grass outside the hospital, gazing up at the land in the s=
+ky. Just above her, a war was about to start. Clans were against each other=
+, preparing to kill one another for revenge. It was so much more peaceful h=
+ere.=20
+
+A face appeared over Kona's. Kisani stood above her, displaying a wide smil=
+e that always took Kona's breath away. Even in the sky, Kona had never seen=
+ someone so beautiful, someone who radiated the warmth of the sun.=20
+
+"What are you doing?" she asked, moving to lay down beside her.=20
+
+Kisani was gentle but strong, and she was smarter than she let others belie=
+ve. She took care of the others like an older sister, even though her physi=
+cally weak body tired her out more than most people. In a way, Kona admired=
+ her. She was a different type of strong compared to Lady Willow.=20
+
+"Have you had lunch?" Kisani asked, her brown eyes turning amber in the sun=
+light.
+
+"Not yet."=20
+
+"You should eat," scolded Kisani. "You're still healing, you know."=20
+
+"I will, I will." Despite the nagging, Kona couldn't help but smile.=20
+
+"Minnie's leaving today." Kisani gazed up at the land in the sky, a bitters=
+weet expression on her face. "Damien and Lawrence are leaving in two weeks.=
+"=20
+
+"That's good, isn't it?"=20
+
+"It is." She sighed. "I'll just miss them."=20
+
+"They'll visit you," Kona assured.=20
+
+"I know."=20
+
+But she didn't look so sure.=20
+
+"They will," insisted Kona.=20
+
+"I just might be gone by the time they do."=20
+
+Kisani rarely voiced concern. She always had a smile on her face and never =
+complained about her situation. Whenever the others asked her about it, she=
+ would tell them optimistically how treatment was going well.=20
+
+Kona didn't even comprehend that she could have been lying.=20
+
+"Did Celeste say anything?" Kona sat up so she could see Kisani better, and=
+ the other girl's gaze was empty, staring blankly up at Kona's home in the =
+clouds.=20
+
+"She said I have two months, maybe less. Our village doesn't have the resou=
+rces to cure me."=20
+
+"Then let's go somewhere that does have the resources."=20
+
+Kisani laughed, sounding uncharacteristically bitter. "Like where?"=20
+
+The Jourman clan was famous for its sciences and medicinal practices. Safir=
+o Jourman was one of the best doctors in the sky, and his three children al=
+l grew up to become just like him. Their clan had produced cures for many i=
+llnesses, including the plague that nearly killed all of the north hundreds=
+ of years ago. If there was a place that had the ability to cure Kisani, it=
+ would be there.=20
+
+Besides, with her brown skin and thick dark hair, she already looked like a=
+ member of the Jourman clan. Kisani would blend in so easily.=20
+
+But revealing this to her, Kona would simultaneously be revealing she was f=
+rom the sky. Her mission was obviously more important, and yet, wouldn't Ki=
+sani die without her help?=20
+
+"I..." Kona started. "There's - "=20
+
+"Hey!" Damien's voice came from the entrance to the hospital. "Minnie's lea=
+ving!"
+
+Kisani sat up abruptly. She grabbed Kona's hand, and the two of them ran th=
+rough the entrance, passing Damien and Lawrence, into the main room of the =
+hospital. Minnie was there, grinning happily as she held the hands of two p=
+eople, presumably her parents.=20
+
+The moment Minnie saw Kisani, her eyes turned watery, tears threatening to =
+cascade down her cheeks. Kona learned that Minnie had been at the hospital =
+for eight months, and Kisani had been there the entire time, caring for her=
+. It didn't take long for Kona to see how close they were.=20
+
+Kisani let go of Kona's hand and bolted over to Minnie, bending down to emb=
+race her small frame. Minnie's arms wrapped around Kisani's neck, and the t=
+wo of them held on to each other for dear life, as if letting go meant lett=
+ing go for good.=20
+
+"I'll visit you, I promise," Minnie sobbed.=20
+
+"You better." Kisani was also clearly crying, but she was likely holding in=
+ the tears to appear strong in front of Minnie.=20
+
+They let go of each other reluctantly, and Kona suddenly felt an ache in he=
+r chest.=20
+
+Lady Willow found her when she was ten years old. She was the person who sa=
+ved her when Kona had nothing. To repay her, Kona stayed by Lady Willow's s=
+ide, doing whatever she needed. For the past two weeks, when Kona was alone=
+ and afraid, it was her new friends, especially Kisani, who gave her joy. K=
+ona had a duty to repay them, and if that meant revealing that she was from=
+ the sky, so be it. If it meant saving Kisani's life, it would be worth it.=
+=20
+
+When Minnie left, Kona and Kisani sat in the dining hall with Damien and La=
+wrence, all eating together quietly. Damien, who usually radiated energy, s=
+eemed to have lost some of it.=20
+
+Kona wanted to say something, but she felt out of place. She had only known=
+ Minnie for two weeks, and out of everyone, Kona talked to her the least. T=
+hey were both introverted and relied on the others for conversation. Kona s=
+pent most of her time with Kisani, and she only saw Minnie once in a while.=
+=20
+
+However, she could clearly see how much the others cared for her, especiall=
+y Kisani. And the thought that Kisani wouldn't be able to see Minnie again =
+broke her heart.=20
+
+After lunch, Kisani had her usual checkup with Celeste. During this time, K=
+ona usually went around the village and asked others if they knew someone n=
+amed Astero Elessai.
+
+This place was called Ludha, and it was the closest village by the northern=
+ staircase. Astero Elessai should have come across this place when he desce=
+nded, so it was strange that no one seemed to have heard the name. Perhaps =
+he had an alias, which, if he did, Kona would be immensely surprised, for s=
+he did not peg the Elessai heir to be rather intelligent.=20
+
+Apparently, strange people came and went from Ludha all the time. It was so=
+ close to the stairway that anyone from the sky would end up here. However,=
+ Kona was too cautious to ask about that.=20
+
+When she came back to the hospital, Kisani was usually in her room, waiting=
+ for her. Today, when Kona opened the doors, she was gone.=20
+
+"She's outside," said Celeste from behind her, passing by. Judging from her=
+ darkened expression, Kona knew this could be nothing good.=20
+
+She ran out the main entrance and went around back, where the garden was. O=
+n this summer day, the sky was gray and filled with clouds.=20
+
+Kisani sat on a bench surrounded by dead trees. The sounds of her sobs chil=
+led Kona to the bone. She wanted to do something, but comforting someone wa=
+s not her specialty.=20
+
+At that moment, Kisani looked up, her face red and tear-stained and hopeles=
+s.=20
+
+"Kona?" she called.=20
+
+Kona walked over slowly. "What happened?"=20
+
+"It's one month now." Kisani gave a harsh laugh. "A month."=20
+
+Kona didn't know what to say.=20
+
+"Do you know why my illness is incurable?"=20
+
+"Why?"=20
+
+"Apparently, it's an illness from the sky."=20
+
+Kona startled, stopping in her tracks just a few feet from Kisani.=20
+
+"I'm not from the sky," Kisanj said hurriedly, waving her hands almost fran=
+tically. "My father was, though. He was banished for trying to murder someo=
+ne who was apparently like royalty."=20
+
+It was hard for Kona to process this. "That's... I don't believe it."=20
+
+"I know, it's hard to believe. He's dead now. Killed himself after trying t=
+o go back up. He tried using a little boy to get him up there, but the boy =
+never came back, and my father lost all hope."=20
+
+"So your father had this illness?"=20
+
+She nodded. "My brother, too. It took him already."=20
+
+"Kisani, I can help you."=20
+
+Kisani looked up curiously. "What do you mean?"=20
+
+Kona looked around cautiously, her heart already pounding. She took a seat =
+next to Kisani on the bench, clenching her fists together in an effort to k=
+eep from shaking. "I can get you to the sky," she whispered. "You can be tr=
+eated there."=20
+
+Kisani's eyes widened. "Kona... what are you talking about?"=20
+
+Swallowing hard, despite the fear, Kona forced herself to get out the words=
+. "I'm from the sky."=20
+
+Kisani just stared.=20
+
+"One of the clans up there specializes in medicine. They can cure almost an=
+y illness the sky has." Kona took Kisani's hands into her own. They were bo=
+th deathly cold. "You need to come with me."=20
+
+"I... I don't understand."=20
+
+"We can sneak up the stairway. I have a way to do it."
+
+Kona could not read the expression on Kisani's face. It was frozen, not rev=
+ealing a hint of emotion.=20
+
+"Kisani?"=20
+
+She shook her head, her eyes staring at nothing. "I can't."=20
+
+"What?"=20
+
+"I can't.=E2=80=9D
+
+"Then you'll die!"=20
+
+Kisani's face hardened, and she stared daggers at Kona. "I'd rather die tha=
+n turn to the sky for help."=20
+
+Kona flinched.=20
+
+Kisani stood up. Without saying a word, she stood up and walked away from K=
+ona, presumably back to the hospital.=20
+
+She didn't even imagine Kisani would refuse her help. Kona's breaths came o=
+ut harsh and quick, and she took out the knife she always kept in her shawl=
+ to calm herself down. Slicing a cut into her arm, Kona's breaths slowed. S=
+he sliced another, then another, watched the blood drip onto the ground.=20
+
+It would be okay. They could pretend this never happened.
+
+Sent from my iPhone
+--Apple-Mail-1CF401F6-96D8-4BEC-A3A6-824CEDA0A93D
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
+=3Dutf-8"></head><body dir=3D"auto"><p style=3D"margin: 0px; font-stretch: =
+normal; font-size: 18px; line-height: normal; font-family: Georgia; color: =
+rgb(18, 18, 18);">It has been just two weeks since Kona made her way to the=
+ ground, and in that time, she felt so much joy she didn't know what to do =
+with herself. Perhaps this was the ground. Perhaps this was another part of=
+ the sky. Those thoughts did not bother Kona, for she enjoyed this place no=
+netheless. It began to feel like a fantasy, a dream she conjured up from th=
+e happier parts of her mind. She might have died the second she stepped on =
+the ground, and this was the afterlife. Either way, she was certainly willi=
+ng to stay.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona stayed in the=
+ hospital, spending time with her new friends. Minnie was there for a broke=
+n leg. Damien was there for a spinal injury and was usually wheeled around =
+by Lawrence, his younger brother, who was there for a broken cheekbone. And=
+ Kisani had some unknown illness that had been keeping her in the hospital =
+for five years.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She did not forget=
+ her original goal to find Astero Elessai. It had just taken a backseat to =
+finding her footing on the ground. Surely Lady Willow would understand. Kon=
+a had spent her entire life fighting to survive, and for the first time, sh=
+e found a place where she did not have to struggle.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">A few more days. S=
+he would give herself a few more days experiencing this bliss.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona laid in the g=
+rass outside the hospital, gazing up at the land in the sky. Just above her=
+, a war was about to start. Clans were against each other, preparing to kil=
+l one another for revenge. It was so much more peaceful here.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">A face appeared ov=
+er Kona's. Kisani stood above her, displaying a wide smile that always took=
+ Kona's breath away. Even in the sky, Kona had never seen someone so beauti=
+ful, someone who radiated the warmth of the sun.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What are you doin=
+g?" she asked, moving to lay down beside her.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani was gentle =
+but strong, and she was smarter than she let others believe. She took care =
+of the others like an older sister, even though her physically weak body ti=
+red her out more than most people. In a way, Kona admired her. She was a di=
+fferent type of strong compared to Lady Willow.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Have you had lunc=
+h?" Kisani asked, her brown eyes turning amber in the sunlight.</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Not yet."&nbsp;</=
+p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You should eat," =
+scolded Kisani. "You're still healing, you know."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I will, I will." =
+Despite the nagging, Kona couldn't help but smile.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Minnie's leaving =
+today." Kisani gazed up at the land in the sky, a bittersweet expression on=
+ her face. "Damien and Lawrence are leaving in two weeks."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"That's good, isn'=
+t it?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It is." She sighe=
+d. "I'll just miss them."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"They'll visit you=
+," Kona assured.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I know."&nbsp;</p=
+>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">But she didn't loo=
+k so sure.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"They will," insis=
+ted Kona.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I just might be g=
+one by the time they do."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani rarely voic=
+ed concern. She always had a smile on her face and never complained about h=
+er situation. Whenever the others asked her about it, she would tell them o=
+ptimistically how treatment was going well.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona didn't even c=
+omprehend that she could have been lying.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Did Celeste say a=
+nything?" Kona sat up so she could see Kisani better, and the other girl's =
+gaze was empty, staring blankly up at Kona's home in the clouds.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She said I have t=
+wo months, maybe less. Our village doesn't have the resources to cure me."&=
+nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Then let's go som=
+ewhere that does have the resources."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani laughed, so=
+unding uncharacteristically bitter. "Like where?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">The Jourman clan w=
+as famous for its sciences and medicinal practices. Safiro Jourman was one =
+of the best doctors in the sky, and his three children all grew up to becom=
+e just like him. Their clan had produced cures for many illnesses, includin=
+g the plague that nearly killed all of the north hundreds of years ago. If =
+there was a place that had the ability to cure Kisani, it would be there.&n=
+bsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Besides, with her =
+brown skin and thick dark hair, she already looked like a member of the Jou=
+rman clan. Kisani would blend in so easily.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">But revealing this=
+ to her, Kona would simultaneously be revealing she was from the sky. Her m=
+ission was obviously more important, and yet, wouldn't Kisani die without h=
+er help?&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I..." Kona starte=
+d. "There's - "&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Hey!" Damien's vo=
+ice came from the entrance to the hospital. "Minnie's leaving!"</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani sat up abru=
+ptly. She grabbed Kona's hand, and the two of them ran through the entrance=
+, passing Damien and Lawrence, into the main room of the hospital. Minnie w=
+as there, grinning happily as she held the hands of two people, presumably =
+her parents.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">The moment Minnie =
+saw Kisani, her eyes turned watery, tears threatening to cascade down her c=
+heeks. Kona learned that Minnie had been at the hospital for eight months, =
+and Kisani had been there the entire time, caring for her. It didn't take l=
+ong for Kona to see how close they were.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani let go of K=
+ona's hand and bolted over to Minnie, bending down to embrace her small fra=
+me. Minnie's arms wrapped around Kisani's neck, and the two of them held on=
+ to each other for dear life, as if letting go meant letting go for good.&n=
+bsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'll visit you, I=
+ promise," Minnie sobbed.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You better." Kisa=
+ni was also clearly crying, but she was likely holding in the tears to appe=
+ar strong in front of Minnie.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">They let go of eac=
+h other reluctantly, and Kona suddenly felt an ache in her chest.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Willow found =
+her when she was ten years old. She was the person who saved her when Kona =
+had nothing. To repay her, Kona stayed by Lady Willow's side, doing whateve=
+r she needed. For the past two weeks, when Kona was alone and afraid, it wa=
+s her new friends, especially Kisani, who gave her joy. Kona had a duty to =
+repay them, and if that meant revealing that she was from the sky, so be it=
+. If it meant saving Kisani's life, it would be worth it.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">When Minnie left, =
+Kona and Kisani sat in the dining hall with Damien and Lawrence, all eating=
+ together quietly. Damien, who usually radiated energy, seemed to have lost=
+ some of it.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona wanted to say=
+ something, but she felt out of place. She had only known Minnie for two we=
+eks, and out of everyone, Kona talked to her the least. They were both intr=
+overted and relied on the others for conversation. Kona spent most of her t=
+ime with Kisani, and she only saw Minnie once in a while.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">However, she could=
+ clearly see how much the others cared for her, especially Kisani. And the =
+thought that Kisani wouldn't be able to see Minnie again broke her heart.&n=
+bsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">After lunch, Kisan=
+i had her usual checkup with Celeste. During this time, Kona usually went a=
+round the village and asked others if they knew someone named Astero Elessa=
+i.</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">This place was cal=
+led Ludha, and it was the closest village by the northern staircase. Astero=
+ Elessai should have come across this place when he descended, so it was st=
+range that no one seemed to have heard the name. Perhaps he had an alias, w=
+hich, if he did, Kona would be immensely surprised, for she did not peg the=
+ Elessai heir to be rather intelligent.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Apparently, strang=
+e people came and went from Ludha all the time. It was so close to the stai=
+rway that anyone from the sky would end up here. However, Kona was too caut=
+ious to ask about that.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">When she came back=
+ to the hospital, Kisani was usually in her room, waiting for her. Today, w=
+hen Kona opened the doors, she was gone.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She's outside," s=
+aid Celeste from behind her, passing by. Judging from her darkened expressi=
+on, Kona knew this could be nothing good.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She ran out the ma=
+in entrance and went around back, where the garden was. On this summer day,=
+ the sky was gray and filled with clouds.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani sat on a be=
+nch surrounded by dead trees. The sounds of her sobs chilled Kona to the bo=
+ne. She wanted to do something, but comforting someone was not her specialt=
+y.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">At that moment, Ki=
+sani looked up, her face red and tear-stained and hopeless.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kona?" she called=
+.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona walked over s=
+lowly. "What happened?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It's one month no=
+w." Kisani gave a harsh laugh. "A month."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona didn't know w=
+hat to say.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you know why m=
+y illness is incurable?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Why?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Apparently, it's =
+an illness from the sky."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona startled, sto=
+pping in her tracks just a few feet from Kisani.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'm not from the =
+sky," Kisanj said hurriedly, waving her hands almost frantically. "My fathe=
+r was, though. He was banished for trying to murder someone who was apparen=
+tly like royalty."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">It was hard for Ko=
+na to process this. "That's... I don't believe it."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I know, it's hard=
+ to believe. He's dead now. Killed himself after trying to go back up. He t=
+ried using a little boy to get him up there, but the boy never came back, a=
+nd my father lost all hope."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"So your father ha=
+d this illness?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She nodded. "My br=
+other, too. It took him already."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kisani, I can hel=
+p you."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani looked up c=
+uriously. "What do you mean?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona looked around=
+ cautiously, her heart already pounding. She took a seat next to Kisani on =
+the bench, clenching her fists together in an effort to keep from shaking. =
+"I can get you to the sky," she whispered. "You can be treated there."&nbsp=
+;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani's eyes wide=
+ned. "Kona... what are you talking about?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Swallowing hard, d=
+espite the fear, Kona forced herself to get out the words. "I'm from the sk=
+y."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani just stared=
+.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"One of the clans =
+up there specializes in medicine. They can cure almost any illness the sky =
+has." Kona took Kisani's hands into her own. They were both deathly cold. "=
+You need to come with me."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I... I don't unde=
+rstand."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"We can sneak up t=
+he stairway. I have a way to do it."</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona could not rea=
+d the expression on Kisani's face. It was frozen, not revealing a hint of e=
+motion.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kisani?"&nbsp;</p=
+>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She shook her head=
+, her eyes staring at nothing. "I can't."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What?"&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I <i>can't.=E2=80=
+=9D</i></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Then you'll die!"=
+&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani's face hard=
+ened, and she stared daggers at Kona. "I'd rather die than turn to the <spa=
+n style=3D"font-style: italic;">sky</span> for help."&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona flinched.&nbs=
+p;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani stood up. W=
+ithout saying a word, she stood up and walked away from Kona, presumably ba=
+ck to the hospital.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">She didn't even im=
+agine Kisani would refuse her help. Kona's breaths came out harsh and quick=
+, and she took out the knife she always kept in her shawl to calm herself d=
+own. Slicing a cut into her arm, Kona's breaths slowed. She sliced another,=
+ then another, watched the blood drip onto the ground.&nbsp;</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);">It would be okay. =
+They could pretend this never happened.</p><br><div dir=3D"ltr">Sent from m=
+y iPhone</div></body></html>
+--Apple-Mail-1CF401F6-96D8-4BEC-A3A6-824CEDA0A93D--
