@@ -18,3 +18,13 @@ story.addEventListener('click', () => {
 music.addEventListener('click', () => {
 	window.location.href = WangXian;
 });
+
+
+const getData = async () => {
+	const jsonName = 'sky-full-of-flowers.json';
+	const response = await fetch(`https://raw.githubusercontent.com/sydneylin12/SecretProject/main/${jsonName}`);
+	const data = await response.json();
+	console.log(data);
+};
+
+getData();
