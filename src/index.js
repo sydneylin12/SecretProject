@@ -1,4 +1,3 @@
-const input = document.getElementById('passwordInput');
 const story = document.getElementById('storyText');
 const music = document.getElementById('musicText');
 const book = document.getElementById('bookText');
@@ -18,13 +17,3 @@ story.addEventListener('click', () => {
 music.addEventListener('click', () => {
 	window.location.href = WangXian;
 });
-
-// Make data request to public github repo
-const getData = async () => {
-	const chapterName = '1.html';
-	const response = await fetch(`https://raw.githubusercontent.com/sydneylin12/SecretProject/main/chapters/${chapterName}`);
-	const data = await response.text();
-	console.log(data);
-};
-
-getData();
