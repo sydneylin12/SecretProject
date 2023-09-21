@@ -26,10 +26,14 @@ const getAndLoadChapterData = async () => {
 	let trimmed;
 	if (data.includes('<html>')) {
 		trimmed = data.match(/<html>([\s\S]*?)<\/html>/)[0];
+		content.innerHTML = trimmed;
 	} else {
-		trimmed = data;
+		const child = document.createElement('p');
+		child.className = 'chapter-paragraph';
+		child.innerHTML = data;
+		content.innerHTML = '';
+		content.appendChild(child);
 	}
-	content.innerHTML = trimmed;
 };
 
 const trimBetweenStrings = (str, startStr, endStr) => {

@@ -23,3 +23,26 @@ html {
     border-radius: 10px;
     border: solid black;
 }
+
+.chapter-paragraph {
+	margin: 0px;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-stretch: normal;
+    font-size: 18px;
+    line-height: normal;
+    font-family: Georgia;
+    font-size-adjust: none;
+    font-kerning: auto;
+    font-variant-alternates: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-variant-position: normal;
+    font-feature-settings: normal;
+    font-optical-sizing: auto;
+    font-variation-settings: normal;
+    color: rgb(18, 18, 18);
+    min-height: 20.5px;
+	white-space: pre-wrap;
+}
