@@ -1,0 +1,1276 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:7110:5583:b0:193:426e:808a with SMTP id g3csp1655543gei;
+        Sat, 3 Sep 2022 06:52:32 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4P123COewCcPI3h3VR72cK9l+MIP0nBBE3z5QwEwuRqQqlwDFN/Lh7dlF10qUtQ76fbGIi
+X-Received: by 2002:a81:6644:0:b0:344:f925:1096 with SMTP id a65-20020a816644000000b00344f9251096mr4884539ywc.287.1662213151877;
+        Sat, 03 Sep 2022 06:52:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1662213151; cv=none;
+        d=google.com; s=arc-20160816;
+        b=azhnHP/UQw+ErD4VMwUZUytm+HeKFawohenfZNJ7m1WvgfsnCcuR6UWhciIoaz7rui
+         FBFol8KsCkpXxDk1JP6zgHfcWH1yRwuJ7Dg41E9pXEPjyOc55cKgJAr7gO45V05rBBso
+         v4tJYSxVqqWNF345y9yffrpskyRxpnK8vdTpeUjvugrJCyfg02g0gAL08dpxJ5hRsalc
+         x4JqxsdfUxXlFejkZjN4xvFtdjW0LMZ2ruP34nipGnQ68VXwp2Npf5nr+R0o/jsTlo4c
+         hcVouks8/0MydWm7K972lB9/6iA5os1rFFC6kSUY4hYQAQt4gs5mlLUP9hoDVYAtq0Rk
+         uWyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=NBnGnC9r7zDd3/2cbbhj98OeZdE6zvYtkE3rVR4VVBM=;
+        b=FrBeksjYgKWFMT2EKBFMqw6BP4OG18+JcPOCQz/wkexfhyugJ6vzICLbCk40rHjFsm
+         OJ5sHrajWp/f3Lf+5TiWwBNihkafBb3DcXXPJ+H1wznOjsXLlDtXumA6kvRe3+m159U4
+         D6ZMyYwG+LX6CkWEPcKA6KT3TbKdazJdoiNhzQnsV4/P1b4uHC6WBBxAIDEBbbih/GJj
+         rcC/KP1UAQJfxJXWi/Z2MOjyZPZV/rVEC1bxdN3P03KDJ1u46p0BieTxCCU+tyXeIaCO
+         ic5eYnaqlaFTts3+TwJXPa0XBIzhPzFxCSjETXfj30HVVoHdxzFIohQWnUbjXVRS5LdJ
+         v3+g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=lj96ZYAH;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.185.31 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic313-56.consmr.mail.ne1.yahoo.com (sonic313-56.consmr.mail.ne1.yahoo.com. [66.163.185.31])
+        by mx.google.com with ESMTPS id 81-20020a811354000000b003417aecf174si3370979ywt.368.2022.09.03.06.52.31
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 03 Sep 2022 06:52:31 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.185.31 as permitted sender) client-ip=66.163.185.31;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=lj96ZYAH;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.185.31 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1662213151; bh=NBnGnC9r7zDd3/2cbbhj98OeZdE6zvYtkE3rVR4VVBM=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=lj96ZYAH4N/n36huzff9Zhjlupd4OueyGxL63k/3JG/HIGvrK/4Cd88YQ1B82PjJU4G7qn2RtJqf//+G33U2xSjXJwmsnXYFDiiMl/fv6sd/XX+RFx+rszjOtXc4TMkYzDDXcJI0RE/yNwpHysw/ApRYin34GhoqI45odzSAbHYhpqE19sakcKa/fhVCfQjXglejKzAgMqTlTXva5vslcmg4SHhKs+lFJAMXMZOC0/RBL0jR/A2xXFTw3nwoBQrvVbKN0miTk3zg40eIJt64Ka2ey7G/o1Fxd6b0jNWcMfG7rGOY3iCII+lR6UdIymUwOZt7XAI4Z/J7PdRdzXwo5A==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1662213151; bh=EaSheUR4+ZzkdlyEGm6BpwV9ebUXe2E6cy5y6EI26JF=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=Dh3FBcemDQFtSvrgRAcOj8bLUmXbWee5f+fPL4RKuCFA5Rv++BG9FvBGKSFfR50a6HJMzrulJkIAG5nbOG/czEcN+ZGBVLBt5p7LwbQ6ZHYJeoOMscuxIxRxlAZZbg6GZ0g06gMtu19hC+2eC3+QNZ0OCFd/awL6XeDYjbNCTQ/5dgf55dOiQo8rphCQCTNocI34n0RWaRHtnqNJZvYrPUQIi900Hkde0jiZCkABCn2BBb6cBG/qI4szcjZtFCslIGVDUIvvVdMIXbDOn3UL8F/nVvQHsZI0GgvgNBc8o9IsleFT8qZcRO158vXs+NN9kg/q8cf55z2cAkwPVVQnjw==
+X-YMail-OSG: o.CGAa0VM1kUBJz_lZfvISgkNZ6GGLHfsbbwiPEkFGjOymXadAbQYRqI4R5gUlM Anelg01qozgwKd3iOyMo4ID3_Gr9pYMgIfgUkt_YJ3FCVcLJXjHFCe5ZDcrUswcKnio2CdQF7Yv. g6C2Q92b_uf4fvxABYalBLyH4pihbtJUpXXrIhKR1y25gYAFB4QH_5UsAXYS35lXN53rbBcotGb6 ebE1X7yP9qX1cZpg03P16HKev2bWWFcOlW5KdcceOT5KhprP7ZshyxBzoAvAiniMqNRJ37YQi55i 5gcznMY5Qan0_KMQwkhbecUXDzWIGIWqjqw9PpjmnIK.7jxMVAmO7eO4tuYPd25jmW53ZDHfsSYq 4cq1IYFOHL.CTCMN7RC1.Yx8j2OHivjwL8U_XQZRzMsA.mlG_FD5LlKgEfPzg6bgnqfPlHPooSEh n9HL6lAZrllWwf0EtCr5hDMxerGAOeGHRxncKS1FawDsJ1Jx6bIq_smIu3BHKXTn4TueW82sBaOS wsyFfLToj1zZSZ9fnvXh_S.ia.wnIYQznUMjYNu9W5W2P3haXy4infi56vH0znZNO1FWvWk.Oaco c1eYAuT.g8.tCPtpjvqBAymvH9s_Mg_NKHZUNCta1zxnvRNDLYTDe1UIAsMOzB.w4sjNglMZkFsh vfT0ySzYlQucJMfWx_gLUMuOay9HfjLWz3kWmPx4nRjUtJIsVLNKFkOIPBPGkB7xzZpAPJqdP1En FMZzvw7guC4mgneju6ZwYaZAXb7_sAzlIyGVpuJC58kyI.SkIYqqR.8HpipWxuaU6ubgXirzAcTj EFo_K6VfwJkVcG0dwZirUEPb5ytwc_aOqX0JSvCF44LHQXziD9uZ_eHqGnwKIJfvKFAqG5QGZLk. jG5fN4Ha6C6LRcgWobTbV_ec.2EmMcvW7kKb_Gf2NdzoUbmnLiZyx6y60EQEKVyXErBaEuD0cy3O J1RG_CGCYYtBYCLCUDrinRMATzchk86564E1nLFUjJMPq2vHlLm6fdhZmYpUVuwGMIxbsntJFrLn 2lMYyoz.99sDukFHV.o9Ck3LULbI6CsEprSOg.ry3xECMLZ.d9dx68TAefnIm1JjP369X7zcisyr KgdKYZGOWfAir0014xT8V6LOJvBtulGJQiLt5jk5j2I5rqrRWOg1_IuCMt7ACupcDc4NV.ctiD_0 pabzSCc0GfE.4twji6ysiHaQDxHVPhinmuBSZz65ijCaPSrgWxsajX9pys1u5WPEfYLuVR0f3zA7 YjOtqpsXKBUz06Rt0pu.MJGmOuoNqnf_2xCM2kXIm8e0wTXNYT4OODDl2p1QqFYAtOBSn_klcuq4 OmmFuks9THpxh_mP0g7GP2dGBK2tx0ZRsWuJMyBDHYSw_ich56Vs12LaP1P6DXSOwD6HuYAnbGc2 oGo259_LdnGrZxQ3F16UZ4.ZRMMLVD2ku.64DpBNjLR5SzOJ7NGbgctzn4r0LohwGfSVfZGJ7egv 8WWhF8SDXh8F0N9LaE60kz8lYEAVWlRgb6vS7nWSJ9YsfNtSqJ.Keu5h7IvAmprLiSDhkHZjreBc zxJTcJnXrdS_bSNJyumwfSvVfCpNJkHtZkeJGBfYYkuecb2tTZ4y5baBPViMOZIvCe5WD5EpfcR8 .ihZypLDE2ktFLAxnk4xN3ykwn8.B_EGdoBAyN71kEeFpPDufggqbRwBy699Jsab8wkllDgmBo_r 1twdEHZVEDnkZKITcLFkMQuUnaQ1vEkZabvKDLaOiEExa4IxM4kAzjSEMIszfehAQ5.dRQp7LJsp RBPY1DunAAVLqJu5EeRI4Bl3hb5iMxsad1Yz.BZeQiZCc.gVU0L7FD0Y6Ge_tygAX9pJRPguL0sn pXk5Gx1yK9tPWmgBu6AQSuyh..a9b3JJmNGfzTJnkHncFj_uAtHsMYAxF7UvO5L5OZGbHs5POAOl r7PIHLtVNNKtl8q7nKmb1EZSBKSoNSYggTBwrS5ScyiZaprG8BGwVYvEJAKlMXqtuqi5BF1E0.Ki Ld_oJP41U4uHutOz_xuLWRqj4re8_GRAXzGR2Zok2q1Kq9Is45YVTrpD9FfAuAN_NQktnYudKj45 RItzKk.grv2K87wYVuilYZ09UIDsW3nJa9JA4jER5Vkc41DD8xWGMUxw26fGkLb_0ba6irGXnGVR samjM0X9FjOcfkhXUxZv0Dxk74Ak6sYYeLf5sHDr7i6Sbgjeul4AiiXjgIcr9ekaHn2iUKMNs3it A2r1v.fs6yVMVyQ_W9GZxw7b9bCvc7brjc_Y9o8uUqvmWxtY70C7SjWMhB0NqFREivjc8
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.ne1.yahoo.com with HTTP; Sat, 3 Sep 2022 13:52:31 +0000
+Received: by hermes--production-gq1-5499fdd576-fw6rc (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 630d86fc0a8081269b955059867c7125;
+          Sat, 03 Sep 2022 13:52:25 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-21CB83E7-D9E8-41CF-8659-1D08A95D83D6
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Sat, 3 Sep 2022 06:52:24 -0700
+Subject: Chapter 19
+Message-Id: <7F4C3A95-8006-4D24-9D55-66DADAAF4F61@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (19G82)
+References: <7F4C3A95-8006-4D24-9D55-66DADAAF4F61.ref@yahoo.com>
+Content-Length: 67801
+
+--Apple-Mail-21CB83E7-D9E8-41CF-8659-1D08A95D83D6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+The only thing about the Fen clan manor Astero didn't particularly like was=
+ his bed. It was smaller than the one back home, and much less comfortable,=
+ with fewer cushions and blankets. However, the room was beautiful. Everyth=
+ing was lower to the ground: lower tables, chairs, windows. In the washroom=
+, candles illuminated the small space. Astero missed the flowers that decor=
+ated the washroom back home, but the candles were indeed enchanting.=20
+
+After reuniting with her siblings, Astero and his mother were led by servan=
+ts to their own rooms. Later, they would meet with the clan leader, Raigo F=
+en, Astero's grandfather.=20
+
+He was admiring the decorations in his room when a knock sounded at the doo=
+r.=20
+
+"Come in," he called, and his mother entered.=20
+
+"Do you like the room?" she asked, walking over to sit on one of the low be=
+nches at the dining table.=20
+
+He nodded, moving to sit down across from her. "Are we going to visit grand=
+father?"=20
+
+"He is busy at the moment," she replied, sounding a bit disappointed. "We w=
+ill have dinner with him later."=20
+
+"What are we doing until then?"=20
+
+"I will be visiting some old friends. I've asked Anji and Luxian to show yo=
+u around the training grounds."
+
+"Where they practice martial arts?"=20
+
+"Yes, specifically hand-to-hand combat."=20
+
+Astero felt a wave of excitement.=20
+
+"Luxian leads the army, and Anji is a formidable fighter," explained his mo=
+ther, pouring a steaming cup of tea for herself. He hadn't even realized th=
+ere was tea. "They are willing to train you, if you'd like."=20
+
+"I'll probably embarrass myself."=20
+
+She laughed. "Probably."=20
+
+Astero feigned hurt. "Wow, mother. You don't think I'll be a natural?"=20
+
+"Sorry, sorry," she amended, clearing her throat. "I meant, I believe in yo=
+u wholeheartedly and have no doubt you'll be a prodigy."=20
+
+"Now you're just lying," he mumbled.=20
+
+And, as it turned out, Astero was indeed the opposite of a prodigy.=20
+
+As Auntie Anji managed to knock him to the ground for the hundredth time, A=
+stero heard Uncle Luxian snicker.=20
+
+"Don't worry, Astero," he said lightly. "It's only been an hour."=20
+
+He stayed on the ground, arms and legs splayed out, taking shallow breaths.=
+ "I give up," he wheezed.=20
+
+"Oh, come on." Auntie Anji grabbed his arm, hauling him to his feet. "I was=
+ going easy."=20
+
+"Please tell me you weren't," he begged.=20
+
+"I wish I could, dear nephew."=20
+
+Aster groaned.=20
+
+Although, he found it strangely easy to talk and laugh with them. Auntie An=
+ji was just eighteen years old, and Uncle Luxian was twenty. They joked and=
+ made fun of him as if they had known each other for a long time, and Aster=
+o felt grateful. In the Elessai clan, people treated him with the utmost re=
+spect, always wanting to get on his good side. Even his distant cousins and=
+ relatives of his father did not dare anger him. However, in the Fen clan, =
+they treated him like family.=20
+
+"Oh, there he is," Uncle Luxian said suddenly, looking at someone coming to=
+wards them. "The prodigy himself."=20
+
+Astero turned to look. Walking towards them was a young boy. His face was a=
+ blank slate, showing no sign of emotion. His eyes were thin and cat-like, =
+almost frightening. He wore Fen clan red, but his robes were designed with =
+black swirls. He looked younger than Astero, and quite a bit smaller, but m=
+uch more intimidating.=20
+
+When the boy arrived, he bowed his head. "Young Lady Fen. Commander Fen."=
+=20
+
+"Here to train, Xen?" Auntie Anji asked.=20
+
+He nodded. "I will not disturb you."=20
+
+"Actually, this is perfect," said Uncle Luxian, putting an arm around Aster=
+o. "Would you like to train my nephew?"=20
+
+The boy, Xen, stared at him, completely emotionless. Astero felt as if he w=
+ere staring directly into his soul. "Nephew?"=20
+
+"Josemi Mie's son," he replied, grinning. "I'm sure he'll learn a lot from =
+you, the rising star of the Fen clan."=20
+
+Xen's face remained passive, but he nodded. "Very well, Commander Fen."=20
+
+"Wonderful!" He patted Astero's shoulder. "Xen is only thirteen, but he's v=
+ery talented."=20
+
+Astero chuckled nervously. "Great."=20
+
+Xen stepped forward towards Astero, hands behind his back. "Assume a fighti=
+ng stance."=20
+
+He did as he was told.=20
+
+Then, Xen turned to his auntie and uncle, and with the most deadpan express=
+ion ever, said, "I'm afraid he's hopeless."=20
+
+It was silent for a moment before Auntie Anji and Uncle Luxian burst out la=
+ughing.=20
+
+Astero blanched. He had not been expecting that. "I - I mean I know, but - =
+"
+
+Then, he saw the ghost of a smile on the boy's face. Xen bowed again. "Forg=
+ive me, Young Lord Elessai."=20
+
+"You know who I am?"=20
+
+"Of course," he replied. "I am aware of the existence of Lady Elessai's son=
+."=20
+
+"Here, let's try something else," suggested Uncle Luxian. "Why don't we =E2=
+=80=94 "=20
+
+"Commander Fen!" shouted a voice from across the courtyard. "Young Lord Fen=
+ requires your assistance."=20
+
+He sighed. "Better go see what Sa wants."=20
+
+"I'll come too," said Auntie Anji. She turned to look at Xen and Astero. "P=
+ractice until we come back."=20
+
+"Yes, Young Lady Fen," replied Xen.=20
+
+"Oh, and Astero," Auntie Anji called back as she walked away with Uncle Lux=
+ian, "do you want to meet your baby cousin later?"=20
+
+"Of course!" he exclaimed.=20
+
+She smiled. "Then train hard!"=20
+
+Then, she and Uncle Luxian disappeared from view, leaving Astero and Xen st=
+anding in the middle of the courtyard.=20
+
+Astero had no idea what to say to him. Xen was around his age, and he hoped=
+ to become his friend, but Astero didn't know how to read him.=20
+
+"Are you a Fen?" he decided to ask.=20
+
+Xen nodded. "Yes, Young Lord Elessai. My great grandmother was the second c=
+ousin of Weixia Fen's husband."=20
+
+Astero had no idea what that meant, but he said, "So... we're distant cousi=
+ns, then?"=20
+
+"Perhaps, Young Lord Elessai."=20
+
+"Ah, you don't have to call me that." Astero had enough of that back home. =
+"Just call me Astero."=20
+
+"I do not dare."
+
+"Why not?"=20
+
+Xen looked surprised, likely because he had never heard someone ask 'why' b=
+efore. "Are you sure?" he whispered, looking around suspiciously.=20
+
+Astero laughed awkwardly. "Yes, I'm sure."=20
+
+"But you are older than me."=20
+
+"And?"
+
+"It would be disrespectful."=20
+
+"Then... how about Sa?" Sa was used in the Fen clan to address an older bro=
+ther.=20
+
+Xen seemed to consider it. "Very well. I shall address you as Sa."=20
+
+"Are there a lot of young people in the army?" Astero asked.=20
+
+"Yes, many train since age five."=20
+
+Age five? By age five, Astero could barely speak, although that was likely =
+because no one ever spoke to him.
+
+"However, few are as good as I am," said Xen with a straight face.=20
+
+"...Good for you?"=20
+
+"Indeed."=20
+
+"Do you have a lot of friends here?"=20
+
+"Not at all."=20
+
+Astero felt bad that he presumed that. "What do you do besides train?"=20
+
+Xen tilted his head in confusion. "What else would I do?"=20
+
+He should've figured.=20
+
+Astero was too tired to keep training. He said, "Well, I'm going to walk ar=
+ound the manor, if that's okay. You can... do what you came here to do."=20
+
+Astero started to walk away, but it wasn't long before he heard footsteps b=
+ehind him. He turned around and sighed. "Why are you following me?"=20
+
+"Since we became friends," he said, expressionless and emotionless, "I will=
+ show you around the manor."=20
+
+The boy was strange. His intimidating appearance and his semi-friendly, clu=
+eless nature did not line up. However, Astero had wanted to meet people his=
+ age in the Fen clan. So he asked, "Where should we go then?"=20
+
+Xen led them across the courtyard and through the many pathways around the =
+manor, passing by many servants and soldiers walking about. They were all d=
+ressed mostly in red, though the color was less bold than that of the main =
+family.=20
+
+As they walked across one of the bridges, Astero spotted boats along the wa=
+ter. People were fishing, swimming, and leisurely riding the current. It wa=
+s wintertime, but it was still warm here. It seemed simpler here, less focu=
+sed on drive and innovation. The people looked relaxed and content, and Ast=
+ero wished he could feel that way at home. In the Elessai clan, he only had=
+ his mother and father. In the Fen clan, he had aunties and uncles, cousins=
+, a grandfather, and even Xen. He felt comfort in a way he hadn't before.=
+=20
+
+Well, not exactly. The first time he had ever felt that way was when he met=
+ Rosella Ozario. There was an ache in his chest that lit up whenever he tho=
+ught of her, and the guilt he carried with him weighed heavy on his shoulde=
+rs. He thought of her every day, and it never got easier. He longed to see =
+her again. If only he had a way to descend the stairway without alerting an=
+yone. However, over the years, he learned the rotation of the guards, and i=
+t would be nearly impossible to descend without any of them noticing. Aster=
+o had no idea how he got so lucky in ascending the stairway.=20
+
+Before he knew it, Astero realized Xen had led him all the way back to the =
+center building where the main family stayed. They opened the sliding woode=
+n doors and entered.=20
+
+The seat of Raigo Fen sat atop a dais, with a low table placed in front of =
+it. Below the dais, rows and rows of tables were placed along the sides, wi=
+th cushions as their seats. A long red pathway led up to the clan leader's =
+elevated place.
+
+The walls were painted mahogany, with decorative golden suns, moons, flower=
+s, and animals. Astero marveled at their beauty.=20
+
+"Are we allowed to be in here?" he whispered to Xen.=20
+
+The boy nodded. "Hopefully."=20
+
+Astero balked. "Hopefully?"=20
+
+There was that ghost of a smile on Xen's face again. "You are his grandson.=
+ I'm sure Lord Fen will be lenient."=20
+
+"I can't tell if you're serious or not."=20
+
+"I am always serious."=20
+
+"Oh, I'm sure."=20
+
+Xen headed towards a hall towards the back of the room, and Astero had no c=
+hoice but to follow him. Behind a set of opened sliding doors was a room, a=
+nd inside stood Uncle Zhilin, Uncle Luxian, Auntie Anji, and few other peop=
+le he didn't recognize.=20
+
+"Xen, we're definitely not allowed here," Astero whispered, tugging on his =
+sleeve.=20
+
+"Of course not," he whispered back, trying his best to peek from behind the=
+ doors.=20
+
+Astero gave up trying to dissuade him. "Okay, well I'm going =E2=80=94 "
+
+"The needle works, then?" Uncle Luxian's voice, coming from inside the room=
+, was filled with awe and wonder.=20
+
+"It is still a work in progress," said Uncle Zhilin, his voice soft. "Depen=
+ding on the thickness of skin at the neck, it may not work at all."=20
+
+"Can't they just be pricked in some other place?" Auntie Anji asked.=20
+
+"It will only work on the neck."=20
+
+"And once they're paralyzed, they won't just collapse on the ground?"=20
+
+"They will be stuck in the exact position they were pricked in."=20
+
+"Amazing," Auntie Anji breathed. "Sasa, you're a genius!"=20
+
+"It wasn't just me," he replied, although his voice sounded sheepish. "Ever=
+yone worked hard on this. Thank you all."=20
+
+Xen suddenly grabbed Astero's wrist and pulled them away from the room, bac=
+k to the main room, and through the doors leading outside.=20
+
+Astero breathed heavily. He had been worried they would be found out, but h=
+e was also curious what they were working on.=20
+
+"I have seen them working on it before," said Xen in a hushed voice. His ey=
+es looked wondrous. "Young Lord Fen has been leading the project for a few =
+months now."=20
+
+"What is it?" Astero asked. "A special needle?"=20
+
+"A paralysis needle," he replied. "The Fen is at war with the Wonali and Sa=
+nu clans in the west. This is our secret weapon." It was the most expressio=
+n Astero had seen on Xen's face. He seemed excited, almost giddy.=20
+
+"How are they going to use it?" he asked curiously.=20
+
+Xen shrugged. "Probably for infiltration. Or torture."=20
+
+"Can it actually do what they said?"=20
+
+He nodded. "I have seen them experimenting on a standing person. He remaine=
+d paralyzed and standing for one minute."=20
+
+Astero had never been curious about inventions before. In the Elessai clan,=
+ there was a new one every day. However, this paralysis needle seemed to be=
+ exactly what he needed.=20
+
+He would descend the stairway and search for Rosella. The ground was vast, =
+and he had no idea where she could be, but that didn't matter. He would fin=
+d a way to save her.
+
+Sent from my iPhone
+--Apple-Mail-21CB83E7-D9E8-41CF-8659-1D08A95D83D6
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
+=3Dutf-8"></head><body dir=3D"auto"><p style=3D"margin: 0px; font-stretch: =
+normal; font-size: 18px; line-height: normal; font-family: Georgia; color: =
+rgb(18, 18, 18);"><span style=3D"font-style: italic;">The only thing about =
+the Fen clan manor Astero didn't particularly like was his bed. It was smal=
+ler than the one back home, and much less comfortable, with fewer cushions =
+and blankets. However, the room was beautiful. Everything was lower to the =
+ground: lower tables, chairs, windows. In the washroom, candles illuminated=
+ the small space. Astero missed the flowers that decorated the washroom bac=
+k home, but the candles were indeed enchanting.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">After reuniting with her siblings, Astero and his mother =
+were led by servants to their own rooms. Later, they would meet with the cl=
+an leader, Raigo Fen, Astero's grandfather.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">He was admiring the decorations in his room when a knock =
+sounded at the door.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Come in," he called, and his mother entered.&nbsp;</span=
+></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Do you like the room?" she asked, walking over to sit on=
+ one of the low benches at the dining table.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">He nodded, moving to sit down across from her. "Are we go=
+ing to visit grandfather?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"He is busy at the moment," she replied, sounding a bit d=
+isappointed. "We will have dinner with him later."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"What are we doing until then?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I will be visiting some old friends. I've asked Anji and=
+ Luxian to show you around the training grounds."</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Where they practice martial arts?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Yes, specifically hand-to-hand combat."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero felt a wave of excitement.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Luxian leads the army, and Anji is a formidable fighter,=
+" explained his mother, pouring a steaming cup of tea for herself. He hadn'=
+t even realized there was tea. "They are willing to train you, if you'd lik=
+e."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I'll probably embarrass myself."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">She laughed. "Probably."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero feigned hurt. "Wow, mother. You don't think I'll b=
+e a natural?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Sorry, sorry," she amended, clearing her throat. "I mean=
+t, I believe in you wholeheartedly and have no doubt you'll be a prodigy."&=
+nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Now you're just lying," he mumbled.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">And, as it turned out, Astero was indeed the opposite of =
+a prodigy.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">As Auntie Anji managed to knock him to the ground for the=
+ hundredth time, Astero heard Uncle Luxian snicker.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Don't worry, Astero," he said lightly. "It's only been a=
+n hour."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">He stayed on the ground, arms and legs splayed out, takin=
+g shallow breaths. "I give up," he wheezed.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Oh, come on." Auntie Anji grabbed his arm, hauling him t=
+o his feet. "I was going easy."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Please tell me you weren't," he begged.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I wish I could, dear nephew."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Aster groaned.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Although, he found it strangely easy to talk and laugh wi=
+th them. Auntie Anji was just eighteen years old, and Uncle Luxian was twen=
+ty. They joked and made fun of him as if they had known each other for a lo=
+ng time, and Astero felt grateful. In the Elessai clan, people treated him =
+with the utmost respect, always wanting to get on his good side. Even his d=
+istant cousins and relatives of his father did not dare anger him. However,=
+ in the Fen clan, they treated him like family.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Oh, there he is," Uncle Luxian said suddenly, looking at=
+ someone coming towards them. "The prodigy himself."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero turned to look. Walking towards them was a young b=
+oy. His face was a blank slate, showing no sign of emotion. His eyes were t=
+hin and cat-like, almost frightening. He wore Fen clan red, but his robes w=
+ere designed with black swirls. He looked younger than Astero, and quite a =
+bit smaller, but much more intimidating.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">When the boy arrived, he bowed his head. "Young Lady Fen.=
+ Commander Fen."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Here to train, Xen?" Auntie Anji asked.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">He nodded. "I will not disturb you."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Actually, this is perfect," said Uncle Luxian, putting a=
+n arm around Astero. "Would you like to train my nephew?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The boy, Xen, stared at him, completely emotionless. Aste=
+ro felt as if he were staring directly into his soul. "Nephew?"&nbsp;</span=
+></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Josemi Mie's son," he replied, grinning. "I'm sure he'll=
+ learn a lot from you, the rising star of the Fen clan."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen's face remained passive, but he nodded. "Very well, C=
+ommander Fen."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Wonderful!" He patted Astero's shoulder. "Xen is only th=
+irteen, but he's very talented."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero chuckled nervously. "Great."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen stepped forward towards Astero, hands behind his back=
+. "Assume a fighting stance."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">He did as he was told.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Then, Xen turned to his auntie and uncle, and with the mo=
+st deadpan expression ever, said, "I'm afraid he's hopeless."&nbsp;</span><=
+/p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">It was silent for a moment before Auntie Anji and Uncle L=
+uxian burst out laughing.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero blanched. He had not been expecting that. "I - I m=
+ean I know, but - "</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Then, he saw the ghost of a smile on the boy's face. Xen =
+bowed again. "Forgive me, Young Lord Elessai."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"You know who I am?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Of course," he replied. "I am aware of the existence of =
+Lady Elessai's son."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Here, let's try something else," suggested Uncle Luxian.=
+ "Why don't we =E2=80=94 "&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Commander Fen!" shouted a voice from across the courtyar=
+d. "Young Lord Fen requires your assistance."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">He sighed. "Better go see what Sa wants."&nbsp;</span></p=
+>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I'll come too," said Auntie Anji. She turned to look at =
+Xen and Astero. "Practice until we come back."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Yes, Young Lady Fen," replied Xen.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Oh, and Astero," Auntie Anji called back as she walked a=
+way with Uncle Luxian, "do you want to meet your baby cousin later?"&nbsp;<=
+/span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Of course!" he exclaimed.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">She smiled. "Then train hard!"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Then, she and Uncle Luxian disappeared from view, leaving=
+ Astero and Xen standing in the middle of the courtyard.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero had no idea what to say to him. Xen was around his=
+ age, and he hoped to become his friend, but Astero didn't know how to read=
+ him.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Are you a Fen?" he decided to ask.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen nodded. "Yes, Young Lord Elessai. My great grandmothe=
+r was the second cousin of Weixia Fen's husband."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero had no idea what that meant, but he said, "So... w=
+e're distant cousins, then?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Perhaps, Young Lord Elessai."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Ah, you don't have to call me that." Astero had enough o=
+f that back home. "Just call me Astero."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I do not dare."</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Why not?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen looked surprised, likely because he had never heard s=
+omeone ask 'why' before. "Are you sure?" he whispered, looking around suspi=
+ciously.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero laughed awkwardly. "Yes, I'm sure."&nbsp;</span></=
+p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"But you are older than me."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"And?"</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"It would be disrespectful."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Then... how about Sa?" Sa was used in the Fen clan to ad=
+dress an older brother.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen seemed to consider it. "Very well. I shall address yo=
+u as Sa."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Are there a lot of young people in the army?" Astero ask=
+ed.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Yes, many train since age five."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Age five? By age five, Astero could barely speak, althoug=
+h that was likely because no one ever spoke to him.</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"However, few are as good as I am," said Xen with a strai=
+ght face.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"...Good for you?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Indeed."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Do you have a lot of friends here?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Not at all."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero felt bad that he presumed that. "What do you do be=
+sides train?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen tilted his head in confusion. "What else would I do?"=
+&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">He should've figured.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero was too tired to keep training. He said, "Well, I'=
+m going to walk around the manor, if that's okay. You can... do what you ca=
+me here to do."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero started to walk away, but it wasn't long before he=
+ heard footsteps behind him. He turned around and sighed. "Why are you foll=
+owing me?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Since we became friends," he said, expressionless and em=
+otionless, "I will show you around the manor."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The boy was strange. His intimidating appearance and his =
+semi-friendly, clueless nature did not line up. However, Astero had wanted =
+to meet people his age in the Fen clan. So he asked, "Where should we go th=
+en?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen led them across the courtyard and through the many pa=
+thways around the manor, passing by many servants and soldiers walking abou=
+t. They were all dressed mostly in red, though the color was less bold than=
+ that of the main family.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">As they walked across one of the bridges, Astero spotted =
+boats along the water. People were fishing, swimming, and leisurely riding =
+the current. It was wintertime, but it was still warm here. It seemed simpl=
+er here, less focused on drive and innovation. The people looked relaxed an=
+d content, and Astero wished he could feel that way at home. In the Elessai=
+ clan, he only had his mother and father. In the Fen clan, he had aunties a=
+nd uncles, cousins, a grandfather, and even Xen. He felt comfort in a way h=
+e hadn't before.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Well, not exactly. The first time he had ever felt that w=
+ay was when he met Rosella Ozario. There was an ache in his chest that lit =
+up whenever he thought of her, and the guilt he carried with him weighed he=
+avy on his shoulders. He thought of her every day, and it never got easier.=
+ He longed to see her again. If only he had a way to descend the stairway w=
+ithout alerting anyone. However, over the years, he learned the rotation of=
+ the guards, and it would be nearly impossible to descend without any of th=
+em noticing. Astero had no idea how he got so lucky in ascending the stairw=
+ay.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Before he knew it, Astero realized Xen had led him all th=
+e way back to the center building where the main family stayed. They opened=
+ the sliding wooden doors and entered.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The seat of Raigo Fen sat atop a dais, with a low table p=
+laced in front of it. Below the dais, rows and rows of tables were placed a=
+long the sides, with cushions as their seats. A long red pathway led up to =
+the clan leader's elevated place.</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The walls were painted mahogany, with decorative golden s=
+uns, moons, flowers, and animals. Astero marveled at their beauty.&nbsp;</s=
+pan></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Are we allowed to be in here?" he whispered to Xen.&nbsp=
+;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The boy nodded. "Hopefully."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero balked. "</span>Hopefully<span style=3D"font-style=
+: italic;">?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">There was that ghost of a smile on Xen's face again. "You=
+ are his grandson. I'm sure Lord Fen will be lenient."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I can't tell if you're serious or not."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I am always serious."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Oh, I'm sure."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen headed towards a hall towards the back of the room, a=
+nd Astero had no choice but to follow him. Behind a set of opened sliding d=
+oors was a room, and inside stood Uncle Zhilin, Uncle Luxian, Auntie Anji, =
+and few other people he didn't recognize.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Xen, we're definitely not allowed here," Astero whispere=
+d, tugging on his sleeve.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Of course not," he whispered back, trying his best to pe=
+ek from behind the doors.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero gave up trying to dissuade him. "Okay, well I'm go=
+ing =E2=80=94 "</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"The needle works, then?" Uncle Luxian's voice, coming fr=
+om inside the room, was filled with awe and wonder.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"It is still a work in progress," said Uncle Zhilin, his =
+voice soft. "Depending on the thickness of skin at the neck, it may not wor=
+k at all."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Can't they just be pricked in some other place?" Auntie =
+Anji asked.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"It will only work on the neck."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"And once they're paralyzed, they won't just collapse on =
+the ground?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"They will be stuck in the exact position they were prick=
+ed in."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Amazing," Auntie Anji breathed. "Sasa, you're a genius!"=
+&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"It wasn't just me," he replied, although his voice sound=
+ed sheepish. "Everyone worked hard on this. Thank you all."&nbsp;</span></p=
+>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen suddenly grabbed Astero's wrist and pulled them away =
+from the room, back to the main room, and through the doors leading outside=
+.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero breathed heavily. He had been worried they would b=
+e found out, but he was also curious what they were working on.&nbsp;</span=
+></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I have seen them working on it before," said Xen in a hu=
+shed voice. His eyes looked wondrous. "Young Lord Fen has been leading the =
+project for a few months now."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"What is it?" Astero asked. "A special needle?"&nbsp;</sp=
+an></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"A paralysis needle," he replied. "The Fen is at war with=
+ the Wonali and Sanu clans in the west. This is our secret weapon." It was =
+the most expression Astero had seen on Xen's face. He seemed excited, almos=
+t giddy.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"How are they going to use it?" he asked curiously.&nbsp;=
+</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Xen shrugged. "Probably for infiltration. Or torture."&nb=
+sp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Can it actually do what they said?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">He nodded. "I have seen them experimenting on a standing =
+person. He remained paralyzed and standing for one minute."&nbsp;</span></p=
+>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Astero had never been curious about inventions before. In=
+ the Elessai clan, there was a new one every day. However, this paralysis n=
+eedle seemed to be exactly what he needed.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">He would descend the stairway and search for Rosella. The=
+ ground was vast, and he had no idea where she could be, but that didn't ma=
+tter. He would find a way to save her.</span></p><br><div dir=3D"ltr">Sent =
+from my iPhone</div></body></html>
+--Apple-Mail-21CB83E7-D9E8-41CF-8659-1D08A95D83D6--

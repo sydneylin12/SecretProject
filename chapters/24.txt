@@ -1,0 +1,455 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:7110:413c:b0:196:97c1:3ca2 with SMTP id w28csp138006gea;
+        Fri, 16 Sep 2022 22:57:55 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7HB0ehTYSgtCNAtkfHQQA2C84ceEwWnh8ZN2M3OvvqfE4XKPToCGTkhYXQ2w7ixbhIpxzI
+X-Received: by 2002:a05:622a:54b:b0:35c:d0ea:6f14 with SMTP id m11-20020a05622a054b00b0035cd0ea6f14mr4828842qtx.307.1663394274833;
+        Fri, 16 Sep 2022 22:57:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1663394274; cv=none;
+        d=google.com; s=arc-20160816;
+        b=KJurPg9c/tBoNaqwO0UOB65d8vKXoFiaav/6wq0GsBoBeFjWRyHsqvnmFiJeg/d3xt
+         iOtuYRNJ+HlkmXEDY55Kl7TSlAZBNi0VKPBD7cUhjzN9JUJbTMQKOIF/ISXGmmswAMUs
+         G6OJEa4TTBVs9pJgzWyv/AgQ60NKAJytUDnXjBXYDPktoDkoGbEBILbrRqssAnNj2Zmb
+         ZSC7OBBkjdEhD0ce2xFkfdQtIJQNhMm03cFvVFySht4KX0nvdLNT82xNPCzkiYN+uW+o
+         91G1Bku39k6vusMyq4t31Dky10gorJLmkkhLMzkEXyJyJRm623W5Y2rp53o/66kl7794
+         uoxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=bRvEH1OF+DzyxvQLz/VLpWvqGw32Qtff1OUQaG7jwzs=;
+        b=k33fN1uhE8PzWHyCk2OSheqVI81Y5FTJPYIpEl5leuXzR5nnFlw85THL7QnSgMYMnN
+         3+x9ko2FENxOHh1DZC78jC/h0j1MURUHbItG/vw8hnjwDS/qUySUOUgZMkjXYSDZUByZ
+         QlLR95D1ijWsqeNSocEY7oypDqgYJl2Hl48GPWxUc9C8Z1boPB023jSB+exJ76xANW6m
+         sY+hP8dPuaUVVzg0cVGrRrWlz2awV5RiiYSqpbPETJ5ea9Pf6UQl6k5oa/7qebnsW9kG
+         lEA/tvd3wpyRmAhrc0V06xF20BhrfbUqLcjWoeP/fsVPsXOenKTtloaCDJ1XUY8Yj+zF
+         tbaw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Y+6Ord6j;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.185.33 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic313-10.consmr.mail.ne1.yahoo.com (sonic313-10.consmr.mail.ne1.yahoo.com. [66.163.185.33])
+        by mx.google.com with ESMTPS id gu4-20020a056214260400b004992b1ec6a4si7453683qvb.431.2022.09.16.22.57.54
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Sep 2022 22:57:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.185.33 as permitted sender) client-ip=66.163.185.33;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Y+6Ord6j;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.185.33 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1663394274; bh=bRvEH1OF+DzyxvQLz/VLpWvqGw32Qtff1OUQaG7jwzs=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=Y+6Ord6jGX+c8UWmIp3EkidDcJGMZvjX/toyHBKWpIk5IQdv7HUKM63gWeK8ViFozecKGGF5F7EVg6IAQUeAhvtKPveOZV0vDOasDVGiTBreBzWkqRQ1KsDcexTjyn/A5xQpkXg5d+pTbCouEvwz0+GEz6xAkgHmWvE5k3Gy+wKUlxPGO0AuhfF7PuNdFYSKxCAjfW84+1H479l0dMyA9ubYd9tgdsFgACiIP2IPTWyynfenaWNIlqpz0mNG6xiZJdOveSOXCUYbhGYMF2OFXVTQhQNXNNsjRfmuGcuuVQeW4Xi1r/3gOGXRqf/+87XGWlhxL8jUvp1XUi9QgZ+2fg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1663394274; bh=xgxv4wCXlORYp3AgSg+Wm3/gde/6KrCgfAblECJDfvt=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=HYL0FZuPpLia0cy2IEtBXiY+G9za1piwqMqnMNIqD4S1wnXNNv4zPf9N0/DwDN4mWn2TSYi4H3N4Y1eojfIIlDE0z3jCNXdfm7S7DEaeuxHm6tmAd4Cr97HhagC7h+2K3VeeM+uUGMXb5dQPdfQcj8nFNkHxyKSndbrR3gWdlH4VqaFuA4nZ25LR0ZCvbAEszBZO0fBaJ30HtZ4iwrduzYen2AMZn+hezJIhRtKd664RpXQzUbEKtRQEi8ni3zTapUMfI/PphqEzMtrOXKeuEOJDmmG7s2P0BhXJPeQ0IIO4kN0K0mMaHKCiK3VNhmqrDqBUJwu7QXOGAi5GPsbDpA==
+X-YMail-OSG: 9vSe2qYVM1m4DCxM8abdJgEiTxUMe0xjBUiyXXDPTsTZcBrgu_UYTDyA_r74Bin eDrv1mQeCRC8NoWsNykWEI1m9Skv1NGAcrufHNCWnfpZ7aa_vy4TzlGx9O5fXZsICXb5q7Z6Hkay Afal5Ch4QSteodwzmfWRL2sLWQIv.HmhIOr1eCr22lM4D2ArYcsErEhk0_TO3o5Yhi6UZeuX1a4G qe67m0Z1g4il2drO16gKp.vFUUhPyX9BvH50JOP..7Jdm0_Mgdz5OqMIrhZtVM4u0bZD5PbPL2N2 ydaa52M6WgvAl2fgr3KyF6UsLj5Gxn2ALQvoCtxrLg2l11msq4olTaA4XsT86pd30fiZEBZOwKun Z1d0oH_3i_W_NA_A_YmcMdyrLsOWUu4AXcyBDBVHKhRGxzSSgVcYE_1TNoVq2JZqN6wnvBkl.ODu 8nftEMhDjb21rSz6oRknVuZ569yvnUzaWybWLM0rUcMnSToQCAczkzJCCPWIpZgGFlXajeQBLAoN uQzgK3t6Fl3IEs_iJSLDMIxDuEgGBS9L8tamtJXVfUl7aM1douvcTj5RZwii9S5oZqmVs0nzr_L5 jgp0oTruOd6FN98fRyMfAJ.KTPiDntEHhJMQuFuv2uli9UyuHfi8mXvTfF2jHYOczZSdOZXBloMv wNnDjN_j3Es4qvebP6W6ZvV2vOUvUSsBMkfFhM68q5mcwLzFD89uflfK8D8wsEKqdet0g2ATt24p d9wz1IvDH9sx0bytz7KO4qjz0xkoaj3ZX_TQSmw6pgzKLSBUVLyL.Q7FbPRCv5GDOgjFH5YMknk6 SirTp61lpVbTnHh4MMbm6mzfNvTtt13hKD0P0.R9hnwDZHb5ReiCsfxqV.QFVS9nv3af6Hy.P3oW oHQyCYfjyMkbEa3W3bIFT8fDeA9EJjIZnlevG3OX08ITNktNDoO73Rbvbvtlrlug8LtL4qMgiNZP TR5HqmLV3xhjT5yDqZQsN_zcNe1nuplekvqshkLpx3EEAe5sUbVqx4KRkCyEO.Dk8nOa5fApuwCn o8jmROGqHn42Un_2QH0isfdZktY4Aj5ttCgtHHF1KH37p_sRFfREHg9ZBm.hH9Acl0xxUtRGE_JM FXfpiAoUfraPDt0LtIa6cb.hXAgtCCwDhg5Bl_TP_FPD2.C1P8wJv.c1DRB.vIzJXWhw5uIbiL03 VdMq54aXXyzZ1sCGbS72fx3HNiyM8Ae7HXTb_pV9G1bhHeJUpcLvgvEW.9WveNYdkI1Lzne0FhZc lEIY6WDOV5LB71f2qx52jgYr5vQ4DwXZYRvSEdDLJXKXP6uEZhO2XgT02wRxLis54.Cu6D1iWWKp I9OGGI8hpBAk5L3deWdZGPy.Ln3LwVBoHY7eK81B5vlp9BCrye82cI4O_Trz8ifPTUVxlKkOI0oP pB0znBnncjCzw.dDl5FTraqEAAXicQTGj7FhyDLhBWISjMVAYTLNmqFk1oTAfuTtz5fMtjqOX_0Z AI1eM.J4pKIF.C7JSII9xB9VYuLEsj5QVVooWjmvVTExVjh7GUj4DyvfEAhD6aR6egT0eKIp7K2k xJpibnyIhaxLYFMU7d_JAMQmDZyQa0umj1u.vAUc8jpfQg8vgatsRmwLPeSiXr5kl0lVXbsOqsh1 Z.zqEwT12F1uCy5ixkrP1Tb7cWiY0ENWf.DSdMVJquuSr.lkVTbsoPOjjRanSrH3N3RM5yS7gtOX QL9PnySTJ2Wspz2SloVAJDCdhJ7glqVFgzrRTGshAreT6P9myZwdwhnuDoAt.Ypu7hs2TO_LPqUQ KgNO1aiSZ1tmxAsvCS7cK1DYSHGJtb0MHgILe3rdk.Ubc05d.P8YroYZQ8r__dKWuc27IV6Nydur xFut.pxc_NiCw5qQCQZZuU3PF6G9J_UMM_.Ikln7wbOwvf8VI4gQEnEfoGpa4Z2VwGL8mDrI3R1A 0TuYwrtzEgoxdSo3WRh2g3YxBSHfugDRI1drCMsUhy8dK5pd.wMHYxP3IRIvQ4JL81mmadawMG0K tCuIVxfpceJ6Jv91jgwp0Y0dviPI7Rwp4vGjma8pUbK2A0N7OWQyyaZMbhnrlIGQpULuXYimGezX 8YWVJih54h9YrrvYqP9UEflydtxCqggrmgxIltEUM9n6esKfxuxcUQr0kdGCiDLrvUUf0a_OZhcq WPjlKshHrMREdqwDoOWAinmht8aRnY.l_IoG.VMX5AXepJAisVRchjyQc6W29VXh1LVsgDequMwn DyJwSfwWU0zH0qi64Rx.LITSE0afQIZVdT2TzNZM4mv5KyHQWcP6p51Q1HhC2n3khcQ--
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.ne1.yahoo.com with HTTP; Sat, 17 Sep 2022 05:57:54 +0000
+Received: by hermes--production-bf1-64b498bbdd-jgj48 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 4d27ff9d21239303916348b9cddb991b;
+          Sat, 17 Sep 2022 05:57:48 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-C780DC6F-7849-42E5-B97F-6799A28F9C60
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Fri, 16 Sep 2022 22:57:46 -0700
+Subject: Chapter 24
+Message-Id: <62B58645-A919-40E2-B8F1-0ADFF859D650@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (19G82)
+References: <62B58645-A919-40E2-B8F1-0ADFF859D650.ref@yahoo.com>
+Content-Length: 41425
+
+--Apple-Mail-C780DC6F-7849-42E5-B97F-6799A28F9C60
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Zhilin sat atop the dais, lounging in the chair that had once belonged to h=
+is father. He found is slightly uncomfortable, and even after months of sit=
+ting on it, he couldn't get used to it.=20
+
+He had always believed he wasn't suited for a leadership role. His older si=
+ster was supposed to have succeeded their father as the Fen clan leader, bu=
+t she had been forced to marry a man who threatened their clan just for her=
+ hand in marriage.=20
+
+Despite Josemi Mie saying that she had forgiven Kairo Elessai since then, Z=
+hilin did not, and neither did their siblings. It had been traumatizing see=
+ing their older sister, normally strong and courageous, powerless in the fa=
+ce of the domineering Elessai clan. She was supposed to marry someone she l=
+oved, or at least, someone who would treat her with respect. Not someone li=
+ke him, who stormed their clan and threatened their people with war. Josemi=
+ Mie had agreed to the marriage with determined eyes, willing to make this =
+sacrifice for her people. However, when Zhilin went to visit her after she =
+was finished getting ready, she looked as if she were trying to hold hersel=
+f together, forcing herself to smile at her reflection in the glass. It mad=
+e Zhilin sick.=20
+
+No matter how much time had passed, Zhilin had never forgiven Kairo Elessai=
+ for taking his sister away.=20
+
+When Willow Ozario arrived in their clan shortly after he took over as lead=
+er, he did not hesitate to agree to her and Crisanto Ozario's plan. He sent=
+ Xen Fen to assist them, as he was the best warrior in the entire clan. Lux=
+ian was busy preparing the army for their attack on the north, and Zhilin h=
+ad sent letters to Meira and Anji who were living in their new respective c=
+lans, informing them of the process. They had enlisted the help of their hu=
+sbands to assist in the battle.=20
+
+They would bring down Kairo Elessai. Then, they would bring their sister ho=
+me.=20
+
+"Lord Fen." The attendant in front of Zhilin bowed. "Xen Fen has arrived."
+
+Zhilin nodded. "Bring him in."=20
+
+Xen walked into the room, his steps silent and stealthy. He wore robes that=
+ were mostly black, with black bands tied around his waist and arms, allowi=
+ng for quick and easy movement. A straw hat sat atop his head, and the red =
+ribbons tied to it flowed loosely along with his long black hair. His thin,=
+ up-turned eyes were as emotionless and intimidating as ever, but Zhilin ha=
+d known Xen since he was a young boy. Xen appeared cold and menacing, but h=
+e was actually quite sweet, albeit a bit awkward.=20
+
+"Has the plan begun?" Zhilin asked as Xen bowed.=20
+
+"Yes, my lord," he replied. "But the news I bring may change things."=20
+
+"How so?"=20
+
+"I overheard Lord and Lady Ozario speaking to each other of the plan. Their=
+ intentions are more extreme than they initially told us."=20
+
+"What do you mean?"=20
+
+"They don't plan to kill the clan leaders. They plan to torture them by kil=
+ling those closest to them."=20
+
+Zhilin didn't like where this was going.=20
+
+"That includes Astero Sa and Lady Elessai."=20
+
+Zhilin slammed his fist against the chair's arm rest, red filling his visio=
+n. "They wouldn't dare."=20
+
+"I'm afraid their hatred may be even greater than yours."=20
+
+"Summon Luxian," Zhilin commanded to the guards by his side. One of them hu=
+rriedly left to find him.=20
+
+"There's more," continued Xen.=20
+
+Zhilin was silent.=20
+
+"Sa has gone to the ground."=20
+
+It felt as if his heart had stopped beating.=20
+
+"No one knows why, but apparently he went there of his own free will."=20
+
+When his mother was still alive, she told Zhilin and his siblings horror st=
+ories of the ground. It was full of monsters disguised as humans, and whene=
+ver someone from the sky was sent down there, they would tear them to piece=
+s, feasting on their flesh.=20
+
+The air suddenly felt much, much colder.=20
+
+"Does Josemi Mie know?" he asked quietly.=20
+
+Xen nodded. "Lady Ozario talked to her."=20
+
+"And what are they doing about it?"=20
+
+"They're using him against her. They sent someone down there to find him in=
+ exchange for her help."=20
+
+Zhilin gripped the arm rests of his chair, taking deep, calming breaths.=20
+
+Why could Astero have gone down there?=20
+
+"And once they find him," Zhilin said quietly, "they will kill him."=20
+
+"Which means we'll have to find him first!"=20
+
+Zhilin looked up to see Luxian strolling into the room, an easygoing smile =
+on his face.=20
+
+It was easy to see that Luxian was Xen's role model. They both wore tighter=
+ robes, favored the color black, and left their long hair down. Luxian stil=
+l wore red, but his outer robes were black and made of leather, like armor.=
+=20
+
+He moved to stand beside Xen, looking up at Zhilin. "Xen can go to the grou=
+nd," he suggested easily.=20
+
+Xen's eyes widened every so slightly, but it looked to be more out of surpr=
+ise than fear.=20
+
+However, Xen was still young and believed nothing would frighten him. "Abso=
+lutely not," said Zhilin. "Why would you even suggest that?"=20
+
+Luxian took a step closer. His expression seemed more earnest now. "Sa, Xen=
+ is the best warrior in the clan, probably the best in the entire eastern s=
+ky. If Astero can survive down there, so can he."=20
+
+"How do we even know he's still alive?" Zhilin demanded.=20
+
+"He must have had something to do if he went there willingly. I can't imagi=
+ne he'd just let himself die. And he wouldn't leave Miemie."=20
+
+"And how is Xen supposed to get down there?"=20
+
+Xen raised his hand.=20
+
+"...Yes, Xen?"=20
+
+"I may have given them some paralysis needles to use to descend."=20
+
+Zhilin and Luxian balked.=20
+
+Xen shrunk back. "I had to contribute something. They don't know how to rec=
+reate it anyway."=20
+
+"And you didn't think to run this by us first?" Luxian shouted, uncharacter=
+istically mad.=20
+
+Immediately, Xen dropped to his knees and bowed so low his hat nearly fell =
+off. "I humbly apologize and will accept any punishment you see fit, my lor=
+ds."=20
+
+Zhilin groaned frustratedly. "Is that how Astero did it?"=20
+
+"I believe so," Xen replied.=20
+
+Zhilin stood up from his seat. "Very well. Your punishment will be to go to=
+ the ground and find my nephew before the Ozarios do. Do not return until y=
+ou find him, understand?"=20
+
+Xen stood up and nodded determinedly. "Yes, Lord Fen."=20
+
+He didn't want to admit it, but Luxian was right. If Astero, who Zhilin rem=
+embered had no talent for martial arts, went to the ground and was most lik=
+ely still alive, Xen could very well do the same. The Ozarios had sent some=
+one down there as well. Did they have no fear? Would they truly do anything=
+ to punish the northern leaders?=20
+
+The only one Zhilin saw as an enemy was Kairo Elessai. He didn't know how a=
+ll of them could have angered Crisanto and Willow Ozario so much.=20
+
+But he would not let them kill his sister and her son. Zhilin would use the=
+m to get rid of Kairo Elessai, and then, he would get rid of them if he had=
+ to.=20
+
+"What shall I do once I find him?" Xen asked.=20
+
+"Bring him here," replied Zhilin. "I'll send word to Mie."=20
+
+"Or I can go to the north and bring her here," suggested Luxian.=20
+
+Zhilin shook his head. "There has always been tension between us and the El=
+essai, but the others are cautious of us now as well. This always happens w=
+hen someone new assumes leadership."=20
+
+"We can't leave her there," Luxian protested.=20
+
+"When the time comes, we'll protect her," assured Zhilin.=20
+
+Luxian nodded. "Understood." He turned to Xen. "And you."=20
+
+Xen tilted his head in confusion. "Me?"=20
+
+"You'll leave immediately."=20
+
+"Yes, Commander Fen."=20
+
+"And when you come back," said Luxian, stepping closer to Xen, the height d=
+ifference almost comical, "we will discuss what you did."=20
+
+Xen looked down, his hat obscuring his face. "Yes, my lord."=20
+
+"That means, you will come back, understand?"=20
+
+"Yes, my lord."=20
+
+"You will come back in two weeks time, or I will go down there myself."=20
+
+Xen knelt to the ground on one knee. "I will not trouble you, my lord. I wi=
+ll bring him back here before two weeks time."=20
+
+"We know you will," interjected Zhilin. "Take the needles and whatever supp=
+lies you need. Luxian, accompany him to the stairway."=20
+
+The two of them bowed. "Yes, Lord Fen." Then they left immediately, leaving=
+ Zhilin alone with his guards in the main room. He sat back down in the cha=
+ir and rested his head in his hand, closing his eyes exasperatedly.=20
+
+Was he doing the right thing, sending Xen to the ground, despite knowing ho=
+w dangerous it was? Xen was only twenty-one and had his whole life ahead of=
+ him. If he died down there, Zhilin would never forgive himself.=20
+
+He had to be careful of every decision he made now. Even agreeing to go to =
+war with the north would have severe consequences, and it was all for reven=
+ge.=20
+
+As clan leader, people were depending on him. Zhilin just hoped it would al=
+l be worth it.
+
+Sent from my iPhone
+--Apple-Mail-C780DC6F-7849-42E5-B97F-6799A28F9C60
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin sat atop the dais, lounging in the chair that had once belonged to his father. He found is slightly uncomfortable, and even after months of sitting on it, he couldn't get used to it.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He had always believed he wasn't suited for a leadership role. His older sister was supposed to have succeeded their father as the Fen clan leader, but she had been forced to marry a man who threatened their clan just for her hand in marriage.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Despite Josemi Mie saying that she had forgiven Kairo Elessai since then, Zhilin did not, and neither did their siblings. It had been traumatizing seeing their older sister, normally strong and courageous, powerless in the face of the domineering Elessai clan. She was supposed to marry someone she loved, or at least, someone who would treat her with respect. Not someone like him, who stormed their clan and threatened their people with war. Josemi Mie had agreed to the marriage with determined eyes, willing to make this sacrifice for her people. However, when Zhilin went to visit her after she was finished getting ready, she looked as if she were trying to hold herself together, forcing herself to smile at her reflection in the glass. It made Zhilin sick.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">No matter how much time had passed, Zhilin had never forgiven Kairo Elessai for taking his sister away.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">When Willow Ozario arrived in their clan shortly after he took over as leader, he did not hesitate to agree to her and Crisanto Ozario's plan. He sent Xen Fen to assist them, as he was the best warrior in the entire clan. Luxian was busy preparing the army for their attack on the north, and Zhilin had sent letters to Meira and Anji who were living in their new respective clans, informing them of the process. They had enlisted the help of their husbands to assist in the battle.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">They would bring down Kairo Elessai. Then, they would bring their sister home.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Lord Fen." The attendant in front of Zhilin bowed. "Xen Fen has arrived."</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin nodded. "Bring him in."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen walked into the room, his steps silent and stealthy. He wore robes that were mostly black, with black bands tied around his waist and arms, allowing for quick and easy movement. A straw hat sat atop his head, and the red ribbons tied to it flowed loosely along with his long black hair. His thin, up-turned eyes were as emotionless and intimidating as ever, but Zhilin had known Xen since he was a young boy. Xen appeared cold and menacing, but he was actually quite sweet, albeit a bit awkward.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Has the plan begun?" Zhilin asked as Xen bowed.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Yes, my lord," he replied. "But the news I bring may change things."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"How so?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I overheard Lord and Lady Ozario speaking to each other of the plan. Their intentions are more extreme than they initially told us."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What do you mean?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"They don't plan to kill the clan leaders. They plan to torture them by killing those closest to them."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin didn't like where this was going.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"That includes Astero Sa and Lady Elessai."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin slammed his fist against the chair's arm rest, red filling his vision. "They wouldn't dare."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'm afraid their hatred may be even greater than yours."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Summon Luxian," Zhilin commanded to the guards by his side. One of them hurriedly left to find him.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"There's more," continued Xen.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin was silent.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Sa has gone to the ground."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">It felt as if his heart had stopped beating.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"No one knows why, but apparently he went there of his own free will."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">When his mother was still alive, she told Zhilin and his siblings horror stories of the ground. It was full of monsters disguised as humans, and whenever someone from the sky was sent down there, they would tear them to pieces, feasting on their flesh.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The air suddenly felt much, much colder.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Does Josemi Mie know?" he asked quietly.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen nodded. "Lady Ozario talked to her."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"And what are they doing about it?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"They're using him against her. They sent someone down there to find him in exchange for her help."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin gripped the arm rests of his chair, taking deep, calming breaths.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Why could Astero have gone down there?&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"And once they find him," Zhilin said quietly, "they will kill him."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Which means we'll have to find him first!"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin looked up to see Luxian strolling into the room, an easygoing smile on his face.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">It was easy to see that Luxian was Xen's role model. They both wore tighter robes, favored the color black, and left their long hair down. Luxian still wore red, but his outer robes were black and made of leather, like armor.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He moved to stand beside Xen, looking up at Zhilin. "Xen can go to the ground," he suggested easily.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen's eyes widened every so slightly, but it looked to be more out of surprise than fear.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">However, Xen was still young and believed nothing would frighten him. "Absolutely not," said Zhilin. "Why would you even suggest that?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Luxian took a step closer. His expression seemed more earnest now. "Sa, Xen is the best warrior in the clan, probably the best in the entire eastern sky. If Astero can survive down there, so can he."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"How do we even know he's still alive?" Zhilin demanded.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"He must have had something to do if he went there willingly. I can't imagine he'd just let himself die. And he wouldn't leave Miemie."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"And how is Xen supposed to get down there?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen raised his hand.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"...Yes, Xen?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I may have given them some paralysis needles to use to descend."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin and Luxian balked.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen shrunk back. "I had to contribute something. They don't know how to recreate it anyway."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"And you didn't think to run this by us first?" Luxian shouted, uncharacteristically mad.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Immediately, Xen dropped to his knees and bowed so low his hat nearly fell off. "I humbly apologize and will accept any punishment you see fit, my lords."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin groaned frustratedly. "Is that how Astero did it?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I believe so," Xen replied.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin stood up from his seat. "Very well. Your punishment will be to go to the ground and find my nephew before the Ozarios do. Do not return until you find him, understand?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen stood up and nodded determinedly. "Yes, Lord Fen."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He didn't want to admit it, but Luxian was right. If Astero, who Zhilin remembered had no talent for martial arts, went to the ground and was most likely still alive, Xen could very well do the same. The Ozarios had sent someone down there as well. Did they have no fear? Would they truly do anything to punish the northern leaders?&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The only one Zhilin saw as an enemy was Kairo Elessai. He didn't know how all of them could have angered Crisanto and Willow Ozario so much.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">But he would not let them kill his sister and her son. Zhilin would use them to get rid of Kairo Elessai, and then, he would get rid of them if he had to.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What shall I do once I find him?" Xen asked.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Bring him here," replied Zhilin. "I'll send word to Mie."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Or I can go to the north and bring her here," suggested Luxian.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zhilin shook his head. "There has always been tension between us and the Elessai, but the others are cautious of us now as well. This always happens when someone new assumes leadership."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"We can't leave her there," Luxian protested.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"When the time comes, we'll protect her," assured Zhilin.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Luxian nodded. "Understood." He turned to Xen. "And you."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen tilted his head in confusion. "Me?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You'll leave immediately."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Yes, Commander Fen."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"And when you come back," said Luxian, stepping closer to Xen, the height difference almost comical, "we will discuss what you did."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen looked down, his hat obscuring his face. "Yes, my lord."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"That means, you <span style="font-style: italic;">will</span> come back, understand?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Yes, my lord."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You will come back in two weeks time, or I will go down there myself."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen knelt to the ground on one knee. "I will not trouble you, my lord. I will bring him back here before two weeks time."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"We know you will," interjected Zhilin. "Take the needles and whatever supplies you need. Luxian, accompany him to the stairway."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The two of them bowed. "Yes, Lord Fen." Then they left immediately, leaving Zhilin alone with his guards in the main room. He sat back down in the chair and rested his head in his hand, closing his eyes exasperatedly.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Was he doing the right thing, sending Xen to the ground, despite knowing how dangerous it was? Xen was only twenty-one and had his whole life ahead of him. If he died down there, Zhilin would never forgive himself.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He had to be careful of every decision he made now. Even agreeing to go to war with the north would have severe consequences, and it was all for revenge.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">As clan leader, people were depending on him. Zhilin just hoped it would all be worth it.</p><br><div dir="ltr">Sent from my iPhone</div></body></html>
+--Apple-Mail-C780DC6F-7849-42E5-B97F-6799A28F9C60--
