@@ -1,1481 +1,285 @@
-Delivered-To: sydney.lin12@gmail.com
-Received: by 2002:a05:6504:b62:b0:235:3e89:1c74 with SMTP id m34csp291730ltt;
-        Sat, 2 Sep 2023 10:29:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFxJ9t14Uf2DxijEMVI9n8XnoExWmxd0+3kWi0T1N8lyreIeY5g4byQhQD+AI4P3KJdBHFm
-X-Received: by 2002:a05:6214:5191:b0:64f:42eb:92f3 with SMTP id kl17-20020a056214519100b0064f42eb92f3mr6969705qvb.45.1693675760036;
-        Sat, 02 Sep 2023 10:29:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1693675760; cv=none;
-        d=google.com; s=arc-20160816;
-        b=IEdCSrKevAHAle5riCLhdPcrsDFRSDr64Y3dKMyMHO8GjX5qRdibNcw0GUohNl2GAu
-         iEDnTfu7nuw5Bv3qfEA3rrSPLvoZxaxg7nWp6MUmFrrNf7c53p5oZKiVT2m/1dHdKsRZ
-         G7ys7OUD4eAfUGTJZvE2Vd+EdZ0gBOlKeK/pyNYTVDelCE6+25HMDYy6Lh/1af7GAF2E
-         dD65aCjbFIQwN9TO/DjUou8GGRhM9fzp2DbZWRcf2Fhr4Xyh5Iifzo4gSohjhYHkzpB3
-         Ucnlc+BbINFn1opTWQiLglHyZhfhIxTN12obUZ4UYGz+4sezNvB5v7qxZjzoMwHRIh65
-         x6+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=references:to:message-id:subject:date:mime-version:from
-         :content-transfer-encoding:dkim-signature;
-        bh=MgymIFfg8yU2EF61GqXQ16IAJX6keNzFguL/y8L1RRk=;
-        fh=BqhaHFpYO8ouDDprpslv03dUtC1/0dnMJt5wvmClC1I=;
-        b=NiJOgyIPnUuzfFvecBtVSzfx8ln+yFASUrppPv319UMmAkYH+xrPbqGd2fagK5CZg1
-         GZTpDNbM8G+FnjyrSOSggEDYmj+b5keAcd9dItMmH6bOPHrQmKNhb3DpimX5TQvzS3KC
-         a1Gqb07Vke1mjc7XjZ4JHlt4L8iRUiIgE2fXVEuJe6vCtV8+kam21ntVVmSwyuzFCfbM
-         ZttU8OF1mYaF/KATg0XBuAF7rSm2ivwl8VMsr3atydv9ZmVFivzTvLAPoB8dZtlKywT1
-         qLM/BXXg/X9OjtFSVcgaNDma/aI6gBuE/o3NGdDv+gH8alQlrUvgWpv+ksxnh9ziwd25
-         8oHA==
-ARC-Authentication-Results: i=1; mx.google.com;
-       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=JMIclwVg;
-       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.146 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
-Return-Path: <carissa71555@yahoo.com>
-Received: from sonic314-20.consmr.mail.ne1.yahoo.com (sonic314-20.consmr.mail.ne1.yahoo.com. [66.163.189.146])
-        by mx.google.com with ESMTPS id ov1-20020a05620a628100b007675309a546si4138250qkn.81.2023.09.02.10.29.19
-        for <sydney.lin12@gmail.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Sep 2023 10:29:20 -0700 (PDT)
-Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.146 as permitted sender) client-ip=66.163.189.146;
-Authentication-Results: mx.google.com;
-       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=JMIclwVg;
-       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.146 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1693675759; bh=MgymIFfg8yU2EF61GqXQ16IAJX6keNzFguL/y8L1RRk=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=JMIclwVg/ijU8yNfCn1gNgBFxIx7Qtb6sw17PFQlpFMszlGLBeZSqhyVndbqIAZ7SGd6Npd7Jf3drIGm0ZPyW0d1b8lmJv8GmleR9+8gUOPhA2JPpiUMZhedhDPB64z9vUOJJOv7LtuEpZInH2LsRTuxxKktdcmYDdTXQ9bZ9xRm5rszE3PjipAqNoNgbqjHlL3obw4dlYeNth+ejN7G0yWiKt8WWi65g8DD5Pey8+d+1E14epVk9iXS2aCs4fnyBxh71cMmlkc2pE3JSSXx4J/MM1F1sqbXLPbN6eOxkk5bXVP+hR1s1oMSDO0WLB49cZ6NGwV7vljqWusYr8U1VA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1693675759; bh=aLECYJd7Jiocr6/b8kbMsK4B1xMwt4zkmh/sPjg1/dq=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=FSKEa3/IUKpQ1dSY/ctV/foJoEJxA430f5lVfXKPv64+Lyf6U9Lqb6qQCgviXdIrrhw2yByWkmQQiuxEp5fzgf2jTKu5wIlmL4EVY0h6lHaqltApPiPvdCSvDgI9PcKS126VIvheTNpbFceyHxDHO2+1RMev4KK/HTi7TdHbXongnBIi7Zto4Q3GGrTXbxP9jWX/1mKDeUHAtcYiJCoC/Qbf9nNoYpYB5h3XttHWGLgcUTA9jjg7xfpMIMHf0LZTH+byYOm2wjC813YInBKOr0OpetQ1sd4q63BjCZ1oGT9t7sbi6iLlCnG/fiCevBJgFfK2qc2jV2/3FVCPK2oh1Q==
-X-YMail-OSG: aA5jsvkVM1kJxTJam5eFVVF3Lda6rkX87jzD7y8u7Zw0PmpjeFguKjrhO1eKFMs TrisYIMGwetCMijyJmkAu7CCstRiiD9UIPB7YfLSY.2KvcQeGV58RfNdp5wRYVP_iQM6nbmAk93S bZNFItjbrr8Q7gXPc2Z2dOv6Skct6bbl3OH.pRB9YOj1PjXPVwFADEPONxSTSdqu8pbZ_Ey6H3Vs bxKGPtnIREyRQc7mmC3Qf3ePnCyRYZBX453Ji8qMY7kMk.d87GlfAOVNmzZsAJJ1KN3TmdY8dc4X mk5fk578.Vngkp5lsqMVV2aRG36BnsZ1Ff8naMYm7z20hIfEfXORXiC2OP.zAbkJbHYwLVl.L77I yWNB23gJaruYsGbe3Wr8fmJfQQ47zQkXHUeAPo_SsG9.sItULgyAP43GumoKCpJ0F3tLwHlZgEnr PKz5ll5PMYDOOJ9IQerqc2GTQdFmUkAFNl2ACrTdfsTeymqUn8o735aPYvZfRxkehKFQf3qrkpiu KqcLrCSBJsX0TVKIRDqQhV2SQn4KNmDMnz_M8ijZOGicP0p3j5_rLoFPPcSkt0TiYjlbMNmKxIth MT87XCdYEEReng72T1GMc96oAMEgFphiX.aRu20naNZBao9Oi1pwJAsVQ17I1ag52K.7jokDhkkW EH2SMFk2MP_vG0QAXm9Xmd7XjiZfuQCsr7EEqG1o1cbx9Zj88bWgpA9ukYvScismO257N4Z1UpbB ZzJK38R.iXNF.t8aBP1tzzbb_xooH7KxpsbRvwAo1A2LWAlXix.cBJ_45RGvV8LGXrBQa6EXrlmT tNvhEYa8mMgFxenMpvzs7.n8Yzb0U2rbD7mBU9.MnvCsG9DiHWvtwEFXsMRRBvSbSu1_We.qCsJD oSS7DUaSdCU6JUbzRZ9N1hEAtzOBU7Aajn4OHKjlImO0Gqb6M0ElCKNYJgS8WoSSSCL3_NnR3sEW Y0BeXhxYMGZvuMjWft9JUFI9bK2DT1khF1982cFizI3MFyoWUOHGZvkJvefTFcdcUVaC0dvYCCSU Fz3mSSuW4LKAr4_VAPph9BrK4ezwseuWchIdnBAKPeVpbHC0zMUkD2qgBwTM2o6tAAeZBS8rVd5W RieLoK9FDN8HjUrH3zdJ9kByTU8JjrfCnpZxgOTeYZlKY_9iNlPP.NlSRkIaEzZtGMqmkN2RMSB. SQ.0TX5L6Ellb5twzCJbH7XSEW2JW0tPMeDxxanjrWq9nhqRYNQjZWU.HDa6mttfF41dOQptbkfB Y9qvgdZTDKKuRaQaoctQuASfnTUB7AlKWu8BDMI7IU8US2Y94SInY.hOL4w3bnDQxCAFjc_KYHCU Ut0TA2OkaVpFLxKHg.4X_56hq3qv.dtCHX2HHhC4RzRBXx3JMExGYiVCR.VksnAy6ttw0D1N1kHe 9kB19evCTcg4AC_SOiV1HpsWOTdoeNRBfje6GTr652IzSYaPZGk5egxEzxN4xUWwacutIAhbiIcP jurwpKMPrAARPNTtmDvRJSdMQ2ZsLhsr2fCaLS_0x3lVSWIemp6hnvLl184RiG2IwYUWAwL2xzcz zgX8KTDxea5QqjsyCOkERFs7FExgMLLy1VYTwHgc9CLTpAU0j0r3eqpPpblY2l_LCA._pUeIoq4T sKAJ0SKW7J828i8xUoK_xzv_yG6zwQtPGhTNIublgnXaFqNRp8MwA3108.M9bH8ABdp1bW9qOxW9 iLuG1Vcnd_05afl5VEvzvejWxqV8fNRDeExKHakqyUvPMGgefO4c_Lq6uIHnBJoMZnSxE..Taiee _M.8pOSb5DtuvjZswQa1BRt2VW.42fibQ.99LadYTPz0uKSkHPnf9ceEOJFrLK2W3H1orUYHj8Yl n57NZVjRS6vcUPV2WWec4d86uNOiDGAjmoYD1KETQNDYDoTaTirW_MKNCoDjHEki1YBgYZZ1oo5e II7MG86Wv56itw3EOudn4BuitUaD0_rBSxv3aAvOokExhc1KVnhK9yU861ZbkY2890XfMFHMI4fD 7WajILTObm1jsGh4XcGEL_XHB__RnHmraVz5jE5GiJnEKXTEi4Ua6arsfV7RLeApT.x8rqCnc93q S2p38UhaB_nemqD2WT.t3tOIGrSZnQyNTr1wTp3itVbFMJ_HIHcRLbShCWe40Zl_D3.SBALxpYJJ qQ7A9JQ8nAFA2ejXXeeZLBgx.RaUhKZuiWuKj7.W92JLTK8R2WCb9DNNCZul.7VS1CQrvgkU1Vr. 30Zi.duTd5gBBZQ76V1QI3VrnmlsUXlCAuM1hcJudUNljPhJaILGWUKIlqQs-
-X-Sonic-MF: <carissa71555@yahoo.com>
-X-Sonic-ID: 49f4ba0e-00d9-4816-a6dc-64d3840efc18
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.ne1.yahoo.com with HTTP; Sat, 2 Sep 2023 17:29:19 +0000
-Received: by hermes--production-ne1-7b767b77cc-6vm8t (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 6c46b5e5687c8ed1cb4168056e2fa497;
-          Sat, 02 Sep 2023 17:29:14 +0000 (UTC)
-Content-Type: multipart/alternative; boundary=Apple-Mail-D41B03BF-C388-48EC-8EE8-9A814F8A6EF3
-Content-Transfer-Encoding: 7bit
-From: Carissa <Carissa71555@yahoo.com>
-Mime-Version: 1.0 (1.0)
-Date: Sat, 2 Sep 2023 10:29:03 -0700
-Subject: Chapter 39
-Message-Id: <F2356AC7-502D-4E5C-966F-D7D551A44292@yahoo.com>
-To: sydney.lin12@gmail.com
-X-Mailer: iPhone Mail (20G75)
-References: <F2356AC7-502D-4E5C-966F-D7D551A44292.ref@yahoo.com>
-Content-Length: 96075
+Another day of traveling, and Astero and Rosella arrived in a northeastern town right by the water. 
 
---Apple-Mail-D41B03BF-C388-48EC-8EE8-9A814F8A6EF3
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-Another day of traveling, and Astero and Rosella arrived in a northeastern =
-town right by the water.=20
 
-He had not seen a lake like this since his most recent trip to the Fen clan=
-. Small wooden boats full of people traversed across the water on the brigh=
-t summer day. Some were fishing boats, others seemed to be for leisure. It =
-reminded him so much of his home, the one his mother loved.=20
+He had not seen a lake like this since his most recent trip to the Fen clan. Small wooden boats full of people traversed across the water on the bright summer day. Some were fishing boats, others seemed to be for leisure. It reminded him so much of his home, the one his mother loved. 
 
-The pair stood on the dock, looking over the sparkling lake. The sun illumi=
-nated Rosella's face as she stared in wonder at the scene, her eyes even br=
-ighter than the lake, and he wondered if she ever visited the Fen clan when=
- she was in the sky.=20
 
-He supposed it would not hurt to ask. She did reveal she was from the sky, =
-after all.
 
-"Do they have lakes like this in the sky?" Astero asked.=20
+The pair stood on the dock, looking over the sparkling lake. The sun illuminated Rosella's face as she stared in wonder at the scene, her eyes even brighter than the lake, and he wondered if she ever visited the Fen clan when she was in the sky. 
 
-Rosella flinched, and Astero thought he should not have brought up the sky,=
- but a second later, she started laughing, a hand over her chest. "I nearly=
- forgot I told you."=20
 
-He needed to tread carefully. "If it's a sensitive topic, I will not bring =
-it up again."=20
 
-She quickly shook her head. "No, no. It's just that in the past, when I wou=
-ld bring up being from the sky, I would be immediately kicked out of the ar=
-ea."=20
+He supposed it would not hurt to ask. She did reveal she was from the sky, after all.
 
-"I would not kick you out," Astero promised earnestly.=20
 
-"I know," Rosella replied, smiling. "I'm sure they do, but I have not seen =
-one. I was from the north. I mostly saw forests and mountains."=20
 
-The lakes in the Fen clan were the most beautiful places Astero had ever se=
-en in the sky. Traversing the waters by boat, the peaceful sounds of the bi=
-rds and insects as he drifted across, gave him comfort. He knew Rosella wou=
-ld love it too.=20
+"Do they have lakes like this in the sky?" Astero asked. 
 
-"Wait here." Before Astero could wait for a response, he hurried to the sha=
-ck in town closest to the dock, where he presumed the dock master resided.=
-=20
 
-He strode up to the small window and came face to face with a man with brig=
-ht blue eyes, light hair, and the warmest smile. "How can I help you, sir?"=
-=20
 
-"Can we ride one of the boats?" Astero asked, pulling out five coins from h=
-is pouch and handing them through the stall window. He did not know how muc=
-h that would cost, but five coins was generally the price of something. Ast=
-ero learned=E2=80=94from his many trips down to the ground=E2=80=94that cur=
-rency in the sky versus currency on the ground did not differ at all, much =
-to his surprise.=20
+Rosella flinched, and Astero thought he should not have brought up the sky, but a second later, she started laughing, a hand over her chest. "I nearly forgot I told you." 
 
-The man nodded, taking all the coins. "Take the boat tied to the west dock,=
-" he said, his voice carrying a peculiar accent. "Before you go, I need som=
-ething as collateral. Nothing unimportant where you can just leave it."=20
 
-Astero reached into his bag, wondering what he had that could be used. Cert=
-ainly not his pouch of money, nor anything else extremely valuable. After r=
-ummaging aimlessly for a minute, Astero's hand landed on a hair clip. It wa=
-s his mother's, and she had given it to him when he decided to let his hair=
- grow as long as hers.=20
 
-He pulled it out and handed it over, slightly reluctant to give up somethin=
-g from the sky. However, it was valuable enough, yet also something he coul=
-d lose.=20
+He needed to tread carefully. "If it's a sensitive topic, I will not bring it up again." 
 
-The man took the pin and looked at it for a moment. A flash of surprised ap=
-peared on his face, but just as quickly as it came, it left, and Astero tho=
-ught he might have imagined it. The man smiled. "Come back in one hour."=20
 
-Astero nodded. "Thank you." He ran back through the town to the docks, wher=
-e Rosella was waiting.=20
 
-She was sitting on the edge, staring out into the distance, watching all th=
-e boats pass by. The sunlight against her face made her look younger, as if=
- she had not aged a day since Astero first met her. The dress she wore=E2=
-=80=94the pink one Astero bought for her=E2=80=94suited her perfectly, as i=
-f she were made to wear it. When Astero was a boy, he thought Rosella was s=
-ome sort of angel, or at least a princess. He was technically right, about =
-the second belief. She looked like one now.
+She quickly shook her head. "No, no. It's just that in the past, when I would bring up being from the sky, I would be immediately kicked out of the area." 
 
-Few things could take Astero's breath away. One of those things was Rosella=
-.=20
 
-He strolled up to her, and she turned around. "Where did you go?" Rosella a=
-sked, pushing herself to a stance.=20
 
-Astero leaned in close, a mischievous smile on his face. He knew she would =
-love this. "Shall we ride a boat?"=20
+"I would not kick you out," Astero promised earnestly. 
 
-There were stars in her eyes. "Really?" she breathed.=20
 
-Astero gestured to the boat tied to the dock right below them. "We have one=
- hour."=20
 
-A wide, almost uncontrollable smile spread across her face, and Astero felt=
- himself doing the same.=20
+"I know," Rosella replied, smiling. "I'm sure they do, but I have not seen one. I was from the north. I mostly saw forests and mountains." 
 
-The boat was unsteady when Astero stepped in, but he had ridden enough to w=
-here he could easily balance himself. To get most anywhere in the Fen clan,=
- boat was the fastest method. The manor itself was surrounded by water.=20
 
-Once he was sure he could keep the boat steady, he held out a hand to Rosel=
-la to help her in. She hesitated, looking unsure at the boat.=20
 
-"Do not worry." Astero tried to reassure her, taking her hand in his. "I wi=
-ll not let you fall."=20
+The lakes in the Fen clan were the most beautiful places Astero had ever seen in the sky. Traversing the waters by boat, the peaceful sounds of the birds and insects as he drifted across, gave him comfort. He knew Rosella would love it too. 
 
-"Are you an experienced boatsman?" Rosella asked, seeming impressed.=20
 
-"Let us pretend I am for now."=20
 
-"If you drop me, I swear..."=20
+"Wait here." Before Astero could wait for a response, he hurried to the shack in town closest to the dock, where he presumed the dock master resided. 
 
-Nevertheless, Rosella allowed him to take her hands and carefully guide her=
- into the rocking boat. It began to shake unsteadily did to the new weight,=
- and Rosella sucked in a breath, clasping Astero's hands tighter while tryi=
-ng to keep her balance.=20
 
-"Do not be afraid." Slowly, Astero lowered the both of them on to the woode=
-n seats. Only once they were comfortably seated did he notice Rosella's bre=
-athing calm.=20
 
-"Is there no possibility at all that this will tip over?" Rosella asked, ho=
-lding on to the edges of the boat for dear life.=20
+He strode up to the small window and came face to face with a man with bright blue eyes, light hair, and the warmest smile. "How can I help you, sir?" 
 
-Grabbing the oars, Astero pushed off the dock, and the boat glided stop the=
- water. "What's the worst that will happen if we tip over? All we will get =
-is a bit soaked, that's all."=20
 
-"And lose all our belongings in the water."=20
+
+"Can we ride one of the boats?" Astero asked, pulling out five coins from his pouch and handing them through the stall window. He did not know how much that would cost, but five coins was generally the price of something. Astero learned—from his many trips down to the ground—that currency in the sky versus currency on the ground did not differ at all, much to his surprise. 
+
+
+
+The man nodded, taking all the coins. "Take the boat tied to the west dock," he said, his voice carrying a peculiar accent. "Before you go, I need something as collateral. Nothing unimportant where you can just leave it." 
+
+
+
+Astero reached into his bag, wondering what he had that could be used. Certainly not his pouch of money, nor anything else extremely valuable. After rummaging aimlessly for a minute, Astero's hand landed on a hair clip. It was his mother's, and she had given it to him when he decided to let his hair grow as long as hers. 
+
+
+
+He pulled it out and handed it over, slightly reluctant to give up something from the sky. However, it was valuable enough, yet also something he could lose. 
+
+
+
+The man took the pin and looked at it for a moment. A flash of surprised appeared on his face, but just as quickly as it came, it left, and Astero thought he might have imagined it. The man smiled. "Come back in one hour." 
+
+
+
+Astero nodded. "Thank you." He ran back through the town to the docks, where Rosella was waiting. 
+
+
+
+She was sitting on the edge, staring out into the distance, watching all the boats pass by. The sunlight against her face made her look younger, as if she had not aged a day since Astero first met her. The dress she wore—the pink one Astero bought for her—suited her perfectly, as if she were made to wear it. When Astero was a boy, he thought Rosella was some sort of angel, or at least a princess. He was technically right, about the second belief. She looked like one now.
+
+
+
+Few things could take Astero's breath away. One of those things was Rosella. 
+
+
+
+He strolled up to her, and she turned around. "Where did you go?" Rosella asked, pushing herself to a stance. 
+
+
+
+Astero leaned in close, a mischievous smile on his face. He knew she would love this. "Shall we ride a boat?" 
+
+
+
+There were stars in her eyes. "Really?" she breathed. 
+
+
+
+Astero gestured to the boat tied to the dock right below them. "We have one hour." 
+
+
+
+A wide, almost uncontrollable smile spread across her face, and Astero felt himself doing the same. 
+
+
+
+The boat was unsteady when Astero stepped in, but he had ridden enough to where he could easily balance himself. To get most anywhere in the Fen clan, boat was the fastest method. The manor itself was surrounded by water. 
+
+
+
+Once he was sure he could keep the boat steady, he held out a hand to Rosella to help her in. She hesitated, looking unsure at the boat. 
+
+
+
+"Do not worry." Astero tried to reassure her, taking her hand in his. "I will not let you fall." 
+
+
+
+"Are you an experienced boatsman?" Rosella asked, seeming impressed. 
+
+
+
+"Let us pretend I am for now." 
+
+
+
+"If you drop me, I swear..." 
+
+
+
+Nevertheless, Rosella allowed him to take her hands and carefully guide her into the rocking boat. It began to shake unsteadily did to the new weight, and Rosella sucked in a breath, clasping Astero's hands tighter while trying to keep her balance. 
+
+
+
+"Do not be afraid." Slowly, Astero lowered the both of them on to the wooden seats. Only once they were comfortably seated did he notice Rosella's breathing calm. 
+
+
+
+"Is there no possibility at all that this will tip over?" Rosella asked, holding on to the edges of the boat for dear life. 
+
+
+
+Grabbing the oars, Astero pushed off the dock, and the boat glided stop the water. "What's the worst that will happen if we tip over? All we will get is a bit soaked, that's all." 
+
+
+
+"And lose all our belongings in the water." 
+
+
 
 Oh. That's right.
 
-"It's okay." Rosella took a deep breath. "I trust you."=20
 
-He smiled as he rowed them away from shore. There was so much scenery to ta=
-ke in. The clear lake, the summer sun, the other townsfolk strolling along =
-the streets or rowing their own boats. He saw the sky reflected in the lake=
-, his home in the clouds.=20
 
-"Have you ever been on a boat?" Astero asked.=20
+"It's okay." Rosella took a deep breath. "I trust you." 
 
-Rosella nodded. "Once. Back in the sky."=20
 
-"Were you traveling somewhere?"=20
 
-"To the south. I lived in the north and needed to travel down there for... =
-an engagement meeting."=20
+He smiled as he rowed them away from shore. There was so much scenery to take in. The clear lake, the summer sun, the other townsfolk strolling along the streets or rowing their own boats. He saw the sky reflected in the lake, his home in the clouds. 
 
-Astero almost dropped the oars. Trying not to seem startled, he cleared his=
- throat. "You were engaged?" he asked, hoping he did not sound as if he wer=
-e prying.=20
 
-"No, no," said Rosella, shaking her head, laughing. "The engagement never w=
-ent through."=20
 
-He knew, from her perspective, that he had no business asking who she was e=
-ngaged to. However, Astero was too curious. "Who were you almost engaged to=
-?"=20
+"Have you ever been on a boat?" Astero asked. 
 
-She tilted her head, confused. "You wouldn't know him."=20
 
-"I..." He could not make her any more suspicious. "I mean... what was he li=
-ke?"=20
 
-Rosella shrugged. "I don't remember him at all. His last name was Istora, b=
-ut I don't remember his first name."=20
+Rosella nodded. "Once. Back in the sky." 
 
-Astero nearly dropped the oars again.=20
 
-As the daughter of a prestigious clan, there were only so many people Rosel=
-la could have been engaged to. They needed to at least be of noble status, =
-and Astero had been educated to have in-depth knowledge of the other clans,=
- their main families, and their noble families. For the Elessai, there was =
-the main family=E2=80=94himself, his mother, and his father. There was Kill=
-ian Elessai=E2=80=94his father's cousin and leader of their army=E2=80=94an=
-d his own family. There was Athena Malanis=E2=80=94also his father's cousin=
-=E2=80=94and her family. And lastly, Cleo Cyndri=E2=80=94the wife of Kairo =
-Elessai's deceased distant cousin=E2=80=94and her daughter. He did have mor=
-e knowledge of the northern clans and their noble families, but the Istora =
-clan always piqued his interest, for to defeat one's enemy, one must know t=
-hem well.=20
 
-As far as Astero was aware, none of the Istora clan's other nobles had that=
- last name except for the main family. Which only left one person.=20
+"Were you traveling somewhere?" 
 
-Rosella had almost been engaged to Helik Istora. He had never met the curre=
-nt leader of the Istora clan. However, like anyone else, he heard the stori=
-es. Helik Istora was quite young, not much older than Astero himself. And y=
-et, just like the previous clan leader, he was already feared by all the sk=
-y.=20
 
-"The engagement... didn't go through?" Astero inquired.=20
 
-Rosella shook her head. "I don't remember why."=20
+"To the south. I lived in the north and needed to travel down there for... an engagement meeting." 
 
-Although her terrible memory disappointed Astero at times like these, he wa=
-s also thankful for it. Without it, she might have remembered him.=20
 
-"So what was your betrothed like?" Rosella asked with a teasing glint in he=
-r eye. "Besides all the negative things you've said, there had to have been=
- something positive, right?"=20
 
-Although prepared for this question after talk of engagements, Astero shudd=
-ered at the reminder of Melody.=20
+Astero almost dropped the oars. Trying not to seem startled, he cleared his throat. "You were engaged?" he asked, hoping he did not sound as if he were prying. 
 
-"I honestly cannot think of a single positive thing about her," he stated h=
-onestly. "Well...at least, for her character." There truly was nothing good=
- about Melody as a person. She treated everyone beneath her poorly, obsesse=
-d over Astero an uncomfortable amount, was spoiled, arrogant, and never exp=
-erienced a hardship in her life. However, while not about her character, th=
-ere was one thing Melody was good at. "She liked to sing. She had a nice vo=
-ice. Hearing her talk irritated me, but hearing her sing was a different st=
-ory."=20
 
-Rosella nodded thoughtfully. "Do you like to sing as well?"=20
 
-"Absolutely not."=20
+"No, no," said Rosella, shaking her head, laughing. "The engagement never went through." 
 
-She laughed, leaning over the edge of the boat to dip her hand in the water=
- as the boat floated across the surface. "Do your parents know you dislike =
-her so much?"=20
 
-"They are well aware," Astero replied, finally having rowed them to the cen=
-ter of the lake. He placed the oars in their rests, wanting to drift along =
-the calm waters for a while. "It does not matter."=20
 
-"Are you ever planning to go back?" Rosella seemed nervous to ask this.=20
+He knew, from her perspective, that he had no business asking who she was engaged to. However, Astero was too curious. "Who were you almost engaged to?" 
 
-Astero glanced down into the water. Although his face had changed, had grow=
-n more chiseled and mature, the eyes of the pathetic little boy he once was=
- stared back at him, remaining the same for fifteen years. Throughout that =
-entire time, Astero had one goal: to find Rosella. He spent countless hours=
- climbing up and down the northern stairway, many days searching on the gro=
-und, asking every person he saw if they knew a girl named Rosella. He paid =
-people large sums of money to gather information on her whereabouts and rep=
-ort back to him. Right when he received information that she was in a north=
-ern town called Onen, Astero packed his things and snuck away before his ma=
-rriage of nightmare could commence. For years, his life revolved around fin=
-ding Rosella. Hardly anything else mattered.=20
 
-Was he planning to go back? Astero did not think that far. He spent years l=
-ooking for her, and now, his goal had been achieved.=20
 
-What now?=20
+She tilted her head, confused. "You wouldn't know him." 
 
-He shrugged. "One day, but not any time soon. Besides, you'd miss me too mu=
-ch." Astero winked, hoping his dilemma did not show on his face.=20
 
-She rolled her eyes but did not deny it.=20
 
-The two spent the rest of the hour sightseeing on the lake. Rosella marvele=
-d at the fish that jumped out of the water, at the water lilies that decora=
-ted the area, and at the people swimming by the shore. The entire time, her=
- eyes were sparkling, their beauty having never faded from when Astero firs=
-t saw her.=20
+"I..." He could not make her any more suspicious. "I mean... what was he like?" 
 
-In his heart, he did have a dream. A dream to bring Rosella back to the sky=
-, to where she belonged.
 
---Apple-Mail-D41B03BF-C388-48EC-8EE8-9A814F8A6EF3
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
-=3Dutf-8"></head><body dir=3D"auto"><p style=3D"margin: 0px; font-style: no=
-rmal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; lin=
-e-height: normal; font-family: Georgia; font-size-adjust: none; font-kernin=
-g: auto; font-variant-alternates: normal; font-variant-ligatures: normal; f=
-ont-variant-numeric: normal; font-variant-east-asian: normal; font-variant-=
-position: normal; font-feature-settings: normal; font-optical-sizing: auto;=
- font-variation-settings: normal; color: rgb(18, 18, 18);">Another day of t=
-raveling, and Astero and Rosella arrived in a northeastern town right by th=
-e water.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">He had not seen a lake like this since his most rece=
-nt trip to the Fen clan. Small wooden boats full of people traversed across=
- the water on the bright summer day. Some were fishing boats, others seemed=
- to be for leisure. It reminded him so much of his home, the one his mother=
- loved.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">The pair stood on the dock, looking over the sparkli=
-ng lake. The sun illuminated Rosella's face as she stared in wonder at the =
-scene, her eyes even brighter than the lake, and he wondered if she ever vi=
-sited the Fen clan when she was in the sky.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">He supposed it would not hurt to ask. She did reveal=
- she was from the sky, after all.</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Do they have lakes like this in the sky?" Astero as=
-ked.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Rosella flinched, and Astero thought he should not h=
-ave brought up the sky, but a second later, she started laughing, a hand ov=
-er her chest. "I nearly forgot I told you."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">He needed to tread carefully. "If it's a sensitive t=
-opic, I will not bring it up again."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">She quickly shook her head. "No, no. It's just that =
-in the past, when I would bring up being from the sky, I would be immediate=
-ly kicked out of the area."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"I would not kick you out," Astero promised earnestl=
-y.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"I know," Rosella replied, smiling. "I'm sure they d=
-o, but I have not seen one. I was from the north. I mostly saw forests and =
-mountains."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">The lakes in the Fen clan were the most beautiful pl=
-aces Astero had ever seen in the sky. Traversing the waters by boat, the pe=
-aceful sounds of the birds and insects as he drifted across, gave him comfo=
-rt. He knew Rosella would love it too.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Wait here." Before Astero could wait for a response=
-, he hurried to the shack in town closest to the dock, where he presumed th=
-e dock master resided.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">He strode up to the small window and came face to fa=
-ce with a man with bright blue eyes, light hair, and the warmest smile. "Ho=
-w can I help you, sir?"&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Can we ride one of the boats?" Astero asked, pullin=
-g out five coins from his pouch and handing them through the stall window. =
-He did not know how much that would cost, but five coins was generally the =
-price of something. Astero learned=E2=80=94from his many trips down to the =
-ground=E2=80=94that currency in the sky versus currency on the ground did n=
-ot differ at all, much to his surprise.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">The man nodded, taking all the coins. "Take the boat=
- tied to the west dock," he said, his voice carrying a peculiar accent. "Be=
-fore you go, I need something as collateral. Nothing unimportant where you =
-can just leave it."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Astero reached into his bag, wondering what he had t=
-hat could be used. Certainly not his pouch of money, nor anything else extr=
-emely valuable. After rummaging aimlessly for a minute, Astero's hand lande=
-d on a hair clip. It was his mother's, and she had given it to him when he =
-decided to let his hair grow as long as hers.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">He pulled it out and handed it over, slightly reluct=
-ant to give up something from the sky. However, it was valuable enough, yet=
- also something he could lose.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">The man took the pin and looked at it for a moment. =
-A flash of surprised appeared on his face, but just as quickly as it came, =
-it left, and Astero thought he might have imagined it. The man smiled. "Com=
-e back in one hour."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Astero nodded. "Thank you." He ran back through the =
-town to the docks, where Rosella was waiting.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">She was sitting on the edge, staring out into the di=
-stance, watching all the boats pass by. The sunlight against her face made =
-her look younger, as if she had not aged a day since Astero first met her. =
-The dress she wore=E2=80=94the pink one Astero bought for her=E2=80=94suite=
-d her perfectly, as if she were made to wear it. When Astero was a boy, he =
-thought Rosella was some sort of angel, or at least a princess. He was tech=
-nically right, about the second belief. She looked like one now.</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Few things could take Astero's breath away. One of t=
-hose things was Rosella.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">He strolled up to her, and she turned around. "Where=
- did you go?" Rosella asked, pushing herself to a stance.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Astero leaned in close, a mischievous smile on his f=
-ace. He knew she would love this. "Shall we ride a boat?"&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">There were stars in her eyes. "Really?" she breathed=
-.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Astero gestured to the boat tied to the dock right b=
-elow them. "We have one hour."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">A wide, almost uncontrollable smile spread across he=
-r face, and Astero felt himself doing the same.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">The boat was unsteady when Astero stepped in, but he=
- had ridden enough to where he could easily balance himself. To get most an=
-ywhere in the Fen clan, boat was the fastest method. The manor itself was s=
-urrounded by water.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Once he was sure he could keep the boat steady, he h=
-eld out a hand to Rosella to help her in. She hesitated, looking unsure at =
-the boat.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Do not worry." Astero tried to reassure her, taking=
- her hand in his. "I will not let you fall."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Are you an experienced boatsman?" Rosella asked, se=
-eming impressed.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Let us pretend I am for now."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"If you drop me, I swear..."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Nevertheless, Rosella allowed him to take her hands =
-and carefully guide her into the rocking boat. It began to shake unsteadily=
- did to the new weight, and Rosella sucked in a breath, clasping Astero's h=
-ands tighter while trying to keep her balance.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Do not be afraid." Slowly, Astero lowered the both =
-of them on to the wooden seats. Only once they were comfortably seated did =
-he notice Rosella's breathing calm.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Is there no possibility at all that this will tip o=
-ver?" Rosella asked, holding on to the edges of the boat for dear life.&nbs=
-p;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Grabbing the oars, Astero pushed off the dock, and t=
-he boat glided stop the water. "What's the worst that will happen if we tip=
- over? All we will get is a bit soaked, that's all."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"And lose all our belongings in the water."&nbsp;</p=
->
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Oh. That's right=
-.</span></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"It's okay." Rosella took a deep breath. "I trust yo=
-u."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">He smiled as he rowed them away from shore. There wa=
-s so much scenery to take in. The clear lake, the summer sun, the other tow=
-nsfolk strolling along the streets or rowing their own boats. He saw the sk=
-y reflected in the lake, his home in the clouds.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Have you ever been on a boat?" Astero asked.&nbsp;<=
-/p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Rosella nodded. "Once. Back in the sky."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Were you traveling somewhere?"&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"To the south. I lived in the north and needed to tr=
-avel down there for... an engagement meeting."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Astero almost dropped the oars. Trying not to seem s=
-tartled, he cleared his throat. "You were engaged?" he asked, hoping he did=
- not sound as if he were prying.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"No, no," said Rosella, shaking her head, laughing. =
-"The engagement never went through."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">He knew, from her perspective, that he had no busine=
-ss asking who she was engaged to. However, Astero was too curious. "Who wer=
-e you almost engaged to?"&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">She tilted her head, confused. "You wouldn't know hi=
-m."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"I..." He could not make her any more suspicious. "I=
- mean... what was he like?"&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Rosella shrugged. "I don't remember him at all. His =
-last name was Istora, but I don't remember his first name."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Astero nearly dropped the oars again.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">As the daughter of a prestigious clan, there were on=
-ly so many people Rosella could have been engaged to. They needed to at lea=
-st be of noble status, and Astero had been educated to have in-depth knowle=
-dge of the other clans, their main families, and their noble families. For =
-the Elessai, there was the main family=E2=80=94himself, his mother, and his=
- father. There was Killian Elessai=E2=80=94his father's cousin and leader o=
-f their army=E2=80=94and his own family. There was Athena Malanis=E2=80=94a=
-lso his father's cousin=E2=80=94and her family. And lastly, Cleo Cyndri=E2=
-=80=94the wife of Kairo Elessai's deceased distant cousin=E2=80=94and her d=
-aughter. He did have more knowledge of the northern clans and their noble f=
-amilies, but the Istora clan always piqued his interest, for to defeat one'=
-s enemy, one must know them well.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">As far as Astero was aware, none of the Istora clan'=
-s other nobles had that last name except for the main family. Which only le=
-ft one person.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Rosella had almost been engaged to Helik Istora. He =
-had never met the current leader of the Istora clan. However, like anyone e=
-lse, he heard the stories. Helik Istora was quite young, not much older tha=
-n Astero himself. And yet, just like the previous clan leader, he was alrea=
-dy feared by all the sky.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"The engagement... didn't go through?" Astero inquir=
-ed.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Rosella shook her head. "I don't remember why."&nbsp=
-;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Although her terrible memory disappointed Astero at =
-times like these, he was also thankful for it. Without it, she might have r=
-emembered him.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"So what was your betrothed like?" Rosella asked wit=
-h a teasing glint in her eye. "Besides all the negative things you've said,=
- there had to have been something positive, right?"&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Although prepared for this question after talk of en=
-gagements, Astero shuddered at the reminder of Melody.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"I honestly cannot think of a single positive thing =
-about her," he stated honestly. "Well...at least, for her character." There=
- truly was nothing good about Melody as a person. She treated everyone bene=
-ath her poorly, obsessed over Astero an uncomfortable amount, was spoiled, =
-arrogant, and never experienced a hardship in her life. However, while not =
-about her character, there was one thing Melody was good at. "She liked to =
-sing. She had a nice voice. Hearing her talk irritated me, but hearing her =
-sing was a different story."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Rosella nodded thoughtfully. "Do you like to sing as=
- well?"&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Absolutely not."&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">She laughed, leaning over the edge of the boat to di=
-p her hand in the water as the boat floated across the surface. "Do your pa=
-rents know you dislike her so much?"&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"They are well aware," Astero replied, finally havin=
-g rowed them to the center of the lake. He placed the oars in their rests, =
-wanting to drift along the calm waters for a while. "It does not matter."&n=
-bsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">"Are you ever planning to go back?" Rosella seemed n=
-ervous to ask this.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Astero glanced down into the water. Although his fac=
-e had changed, had grown more chiseled and mature, the eyes of the pathetic=
- little boy he once was stared back at him, remaining the same for fifteen =
-years. Throughout that entire time, Astero had one goal: to find Rosella. H=
-e spent countless hours climbing up and down the northern stairway, many da=
-ys searching on the ground, asking every person he saw if they knew a girl =
-named Rosella. He paid people large sums of money to gather information on =
-her whereabouts and report back to him. Right when he received information =
-that she was in a northern town called Onen, Astero packed his things and s=
-nuck away before his marriage of nightmare could commence. For years, his l=
-ife revolved around finding Rosella. Hardly anything else mattered.&nbsp;</=
-p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">Was he planning to go back? Astero did not think tha=
-t far. He spent years looking for her, and now, his goal had been achieved.=
-&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">What now?&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">He shrugged. "One day, but not any time soon. Beside=
-s, you'd miss me too much." Astero winked, hoping his dilemma did not show =
-on his face.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">She rolled her eyes but did not deny it.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">The two spent the rest of the hour sightseeing on th=
-e lake. Rosella marveled at the fish that jumped out of the water, at the w=
-ater lilies that decorated the area, and at the people swimming by the shor=
-e. The entire time, her eyes were sparkling, their beauty having never fade=
-d from when Astero first saw her.&nbsp;</p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
-<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
-t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
-ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
-rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
-riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
-ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
-lor: rgb(18, 18, 18);">In his heart, he did have a dream. A dream to bring =
-Rosella back to the sky, to where she belonged.</p><div dir=3D"ltr"></div><=
-/body></html>
---Apple-Mail-D41B03BF-C388-48EC-8EE8-9A814F8A6EF3--
+Rosella shrugged. "I don't remember him at all. His last name was Istora, but I don't remember his first name." 
+
+
+
+Astero nearly dropped the oars again. 
+
+
+
+As the daughter of a prestigious clan, there were only so many people Rosella could have been engaged to. They needed to at least be of noble status, and Astero had been educated to have in-depth knowledge of the other clans, their main families, and their noble families. For the Elessai, there was the main family—himself, his mother, and his father. There was Killian Elessai—his father's cousin and leader of their army—and his own family. There was Athena Malanis—also his father's cousin—and her family. And lastly, Cleo Cyndri—the wife of Kairo Elessai's deceased distant cousin—and her daughter. He did have more knowledge of the northern clans and their noble families, but the Istora clan always piqued his interest, for to defeat one's enemy, one must know them well. 
+
+
+
+As far as Astero was aware, none of the Istora clan's other nobles had that last name except for the main family. Which only left one person. 
+
+
+
+Rosella had almost been engaged to Helik Istora. He had never met the current leader of the Istora clan. However, like anyone else, he heard the stories. Helik Istora was quite young, not much older than Astero himself. And yet, just like the previous clan leader, he was already feared by all the sky. 
+
+
+
+"The engagement... didn't go through?" Astero inquired. 
+
+
+
+Rosella shook her head. "I don't remember why." 
+
+
+
+Although her terrible memory disappointed Astero at times like these, he was also thankful for it. Without it, she might have remembered him. 
+
+
+
+"So what was your betrothed like?" Rosella asked with a teasing glint in her eye. "Besides all the negative things you've said, there had to have been something positive, right?" 
+
+
+
+Although prepared for this question after talk of engagements, Astero shuddered at the reminder of Melody. 
+
+
+
+"I honestly cannot think of a single positive thing about her," he stated honestly. "Well...at least, for her character." There truly was nothing good about Melody as a person. She treated everyone beneath her poorly, obsessed over Astero an uncomfortable amount, was spoiled, arrogant, and never experienced a hardship in her life. However, while not about her character, there was one thing Melody was good at. "She liked to sing. She had a nice voice. Hearing her talk irritated me, but hearing her sing was a different story." 
+
+
+
+Rosella nodded thoughtfully. "Do you like to sing as well?" 
+
+
+
+"Absolutely not." 
+
+
+
+She laughed, leaning over the edge of the boat to dip her hand in the water as the boat floated across the surface. "Do your parents know you dislike her so much?" 
+
+
+
+"They are well aware," Astero replied, finally having rowed them to the center of the lake. He placed the oars in their rests, wanting to drift along the calm waters for a while. "It does not matter." 
+
+
+
+"Are you ever planning to go back?" Rosella seemed nervous to ask this. 
+
+
+
+Astero glanced down into the water. Although his face had changed, had grown more chiseled and mature, the eyes of the pathetic little boy he once was stared back at him, remaining the same for fifteen years. Throughout that entire time, Astero had one goal: to find Rosella. He spent countless hours climbing up and down the northern stairway, many days searching on the ground, asking every person he saw if they knew a girl named Rosella. He paid people large sums of money to gather information on her whereabouts and report back to him. Right when he received information that she was in a northern town called Onen, Astero packed his things and snuck away before his marriage of nightmare could commence. For years, his life revolved around finding Rosella. Hardly anything else mattered. 
+
+
+
+Was he planning to go back? Astero did not think that far. He spent years looking for her, and now, his goal had been achieved. 
+
+
+
+What now? 
+
+
+
+He shrugged. "One day, but not any time soon. Besides, you'd miss me too much." Astero winked, hoping his dilemma did not show on his face. 
+
+
+
+She rolled her eyes but did not deny it. 
+
+
+
+The two spent the rest of the hour sightseeing on the lake. Rosella marveled at the fish that jumped out of the water, at the water lilies that decorated the area, and at the people swimming by the shore. The entire time, her eyes were sparkling, their beauty having never faded from when Astero first saw her. 
+
+
+
+In his heart, he did have a dream. A dream to bring Rosella back to the sky, to where she belonged.

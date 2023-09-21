@@ -11,6 +11,9 @@ const chapterNumber = parseInt(params.get('chapter'));
  * Paste the content you copied into <chapterNum>.txt
  * 
  * This will parse out the unwanted email filler and preserve the email's HTML format
+ * 
+ * Some of the formatting is inconsistent(see 39 vs. 40)
+ * and the affected emails have a "content=3D"
  */
 const getAndLoadChapterData = async () => {
 	const fileName = `${chapterNumber}.txt`;
@@ -20,11 +23,22 @@ const getAndLoadChapterData = async () => {
 	title.innerHTML = `Chapter ${chapterNumber} | The Sky Full of Flowers`;
 	header.innerHTML = `Chapter ${chapterNumber}`;
 
-	// Trim the string and only add html tags
-
-	const trimmedString = data.match(/<html>([\s\S]*?)<\/html>/)[0];
-	console.log(trimmedString);
-	content.innerHTML = trimmedString;
+	let trimmed;
+	if (data.includes('<html>')) {
+		trimmed = data.match(/<html>([\s\S]*?)<\/html>/)[0];
+	} else {
+		trimmed = data;
+	}
+	content.innerHTML = trimmed;
 };
+
+const trimBetweenStrings = (str, startStr, endStr) => {
+	var startIndex = str.indexOf(startStr);
+	var endIndex = str.indexOf(endStr, startIndex);
+	if (startIndex === -1 || endIndex === -1 || startIndex >= endIndex) {
+		return "";
+	}
+	return "<p>" + str.substring(startIndex + startStr.length, endIndex) + "</p>";
+}
 
 getAndLoadChapterData();
