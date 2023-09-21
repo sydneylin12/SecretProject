@@ -1,0 +1,744 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:7110:42a:b0:1b8:60b7:7157 with SMTP id 10csp35372geq;
+        Tue, 31 Jan 2023 07:11:54 -0800 (PST)
+X-Google-Smtp-Source: AK7set+AzMzy1jw2a+H9yI3sAAip7Dy187ZS9upsRA/uWF955klR/ksyuD6xQREDTDoGsku+S4CK
+X-Received: by 2002:ac8:590a:0:b0:3b0:2fa:8a90 with SMTP id 10-20020ac8590a000000b003b002fa8a90mr23215053qty.8.1675177913884;
+        Tue, 31 Jan 2023 07:11:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1675177913; cv=none;
+        d=google.com; s=arc-20160816;
+        b=G866A8YpxNbnF/Tj3lXMoLLlv6P1xyRxGtQZ9CDrIZpOi0wIS4kpBgOT1xUF4h+RL1
+         oDHvVc4MTN/E/YsK915vislrc1yRI+4GPQ7Co53mIlvTbFOGXLb79wKYrhbp8Njc76qD
+         n1HrZo1C1sJJw//DlwlfBvi8aabL2kvDiQNL7AGapDLPmiKuBcDLaImUM061JAoWtohk
+         vn2PWX1jJQhtOwYb4Sg9RMc6ITUeHR4rqPLD5G4T0UVKIsdk7dn/6aah0Uq2nzp2lgR+
+         B36RJGjf9sm9R75lr34+4WHytoXkM2KHQ31QXG5ACYelxqgXsRr/pWQZ/XT/MQfwsxCX
+         B5dQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=NsoIXGz6eUIEHHrNN29hPRgn8bbRbW0ORscM2ngDQgE=;
+        b=R7ON0784MvArIc5nhT+fkV0FHJmlwELzMiI/lBu82Ih+dMl4+wH/epqg9EMIRAmeqB
+         XGN2tYLHDLsqvUKozDvZSy5OFlReFkOm04LW0lTwNrUm8zta/PB4alp12czeYCxCRQCS
+         zTvPQ8xzb4ncea5AnccnwvGMTo20S89CtJ/zj+g7/tIWsCs4v+fbCOHxKSw8DlkI/Ata
+         b20ELBVr+36Q+9qIHrS7m/+/WDPg5AmaUKIksbY4QXwQcfk8QelGpIcLLUwwBZ1RSVHi
+         eWeM+YVH7hKxo4ggQgppirTK8fjpnrAEmqZRHpdTI3ZKHO8DKxUaUlBgXNnk0pdyn6b8
+         ayTg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="kGoX6n/3";
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic308-9.consmr.mail.ne1.yahoo.com (sonic308-9.consmr.mail.ne1.yahoo.com. [66.163.187.32])
+        by mx.google.com with ESMTPS id t21-20020ac85895000000b003b68be2791bsi8548140qta.209.2023.01.31.07.11.53
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 07:11:53 -0800 (PST)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) client-ip=66.163.187.32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="kGoX6n/3";
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1675177913; bh=NsoIXGz6eUIEHHrNN29hPRgn8bbRbW0ORscM2ngDQgE=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=kGoX6n/35BdYA4cXnbPDwj61iNV7DISYIKyfQNoXBRmM4s0I1BvVWUsufDVrMSnY1jW5Y6K3PxaeeWD8/2sCQIUT1xGAjKrtHA/Poucb+ObZ1kTDBUwOBs95hlR50tR99xqMUZuaEje2t48egyh3U+9749uUIuLGpBlPIOTqUssnUCcj8bDbb+BygdpMzewjke4PJc/7MID34Kug0I6/nCgyH6GBP1lbiGqLbKpEPc7EhQzHDPs4LkTyQEzKcj5Q26WI/mU6M1pUPsk2wlznh/C9QP3qGi6t0VSHt1m1VUx+YK5phs197g80thRPzaKMEZ0IxxIXN0tEyDNZ+KFNpg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1675177913; bh=z2X75KNTmdwTQwbCHvw6Pp4XKVH4UOh08oGpBQy+X3W=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=Iy2h6Ph/RRNAaOpo7W3aBsUEE2kiaEAbeMNbSymmiIdU7VvawfzkI/gjPzF2H4XuAQgkpgusGTwAE8+J9Oqf3QUte5T2JRMmiA/8hGK+9uJR842arF5406ICXBw2PJSX0cyOSoSj4SzAo8cthMqi0Jymum+fEXIg72Km5dEI0wDFXiOAUdrMlXO2IQaEm2z8kEjWwGvYwPd9lQyt8ruF8nzkRLEavFeDzCNkCSAuZT80gM92pOx2ThLDlI2s4LdYoVLtdJz/BxvOo0uL3hnPKCI0yU1qy6rRJ08I/bmqf1RaFfd+B3dfwpZqfBoBILvoS9UKWfRG9rGeiExPUDHhfg==
+X-YMail-OSG: AuUaStMVM1nUeOUa80yoam.8AHnnTk3bl4ZxQBpbmA_GaiRqz57mKNVmBgF8WY5 UhG1Fp8eEvwtOUaS93rbDGcL.saeeTBxEsV8d1r59fGZbPQCc_AhM2nQzaJeAGHIcgFyjOvozxaK alC4oPhklUCdRezqznWewnYlfPD_SNnJeP1tE82PJoBZFcTRufA4nRUr8tTe0i6LbaRxemd8E2vW FkfI5G23XQpK4badzamp4.ExS12fCvT.GZ.aA7KYmjuJfj62W0YGKqQ2C43yWCDLDtPp6zcXT_.9 gZ3mdPwOKToPpPB5t6L1Nsa2RrslposIe.tp5P4xASvBAJhfWYyO5nvMvut9lddYQr0ZwYKB29NS 8K6lweu2nc2NdbNxMoAncEWtxwuuVCr1z5HK7Dd0L3tddPtmE4Ifr_30qyb7wRLDXKspctLEMyvF hzQDjvQRkY21Mqt1gB.81ljt41U8dDnJ1j8jbnnY2ZhYlZ3OCF0DZDrvAY.mSG8nDAh4GQlen5FV aDk63MYQUdv2f.jpe_CGK1w6P3DRzWg00JYg0Hp2_Dx77bRIL5_CXzH9IFN9S_LV21BN0gRstcCo lDFy5RYDhk4jrocPTfa8P6b16LdWzUsi8NuUB3wAhnRKv3wmY_V6htoDxCHWqWeu.ag8Nqy2_OpF myaRGrR4Scq_dEX222d0dMqQAjuyvvmxvs.Yx9nY0aViN1lqgPlinaUAs.n71d3cAdj9SBshhCK3 uxawcRjNyofFA_p_dEFOJAu976kPTcPqMfcrkvuG5cG8PJftrpd9L9gFmEzleKmo96MX4MGSp5BU AuS3lIvm30D6t6VySdJI6ZMK0pgzCfhEVj0nUqxpL56JsGcM2fx3DehXmtXyUeaw1FPj474lZ3Ot 9TR4mWzJobP5RTvBa62xuVkZAW2i.tQxgFmQOB5hcbpLpNYmYMmts4an.g734ygJvYUsb1tpwkEY tjLQwM7lI8Lb.yspYf9CVxBB_ds5mRG_kpnyEMSDx6IBe1zI5RJKrAsKrTyq1CJZNnhKgffU22NC CY_ahofH7zxCLnqec3kmHhUK37upvGkZbbojv3tyr47UG0_elX.sIexF3kjkXTDkLlLZbYP6iJjl 8VwommeR9L688VSc9Ad78P7AozfLivoW7ryTI5HHI5dlKyW_yZE95nZCx_FNdqvoARJ10pQLcAMU XlGrXtLVK9BCdAmLDt89aQ2ywYuMzwO2m5H7E5Ge4zdrjxrMq10zvjynKBqQrdWvJbCMsJYqW3in ZvYxYdzy.ToCGiUtPzSBFYvyauUDMTlTof0VU0oC8XFt6V5nmT8dxt3edZUza8xxMSLHXYvMaA1b 242HLHP0NK0VD5nAXdaZ8_gskdN7yomwCH6jsQ34Spp_zQaLXseRShQ6omYmKVL2kOOv8IMTWkI2 ziklUukJb0_n85Dipg1WXObJ4.slWuIn9UcxqOfCmkTdN2nls0arukLfJyWuSLohr91ITiLePyCL 6AhE.yvTZ1Ek_nJ3FPNJQVmZsiZwikt2zCxQHpKP2wDz4RielJl3h71hIlLbBAbgleAZ7_cyTw18 K1heCfGTxodbVCC.KBOTVjwum_HqFV7yzdPoc46xfaCTz7ZIrWG81lWvCiqv5yx9hgczZOVmq7Co 1EHoAxvEUPYbtpvT7WP7J4YAA90dqBGpP4sUAseUEjLyZFIph9qott0rUyPhX0C1c_aoHpQhZT1. Gj7f8TJM.ZtCU9dhWs5JnZeO_kFUiQZLjuuI8VdAlzjvZH6LBRsmLTzNjV1ZKn4PAhY5XEwje5Be pI3hdWNZ0ABb6KpIjx4aXEc27hm6e8TvZ9X5o6HH5d.61N5RChZ4q9lu08aTVVR1aZYb5LORdt1X dEOZYaX3jOZnhDWUjsHXMU75TRAqm3RHsH53_YRuDzGj.KSWJ46zW_wA7L4D3Xl42lCft8ftrGbc fIggRPzp_tgzhCUlA6Fk1myDdMRtla61WHfRykDTr3B5cZqiaFCkpYT4pS9R76rZG.7mSa3uhyNi 9dGfC8Vekt2csUaN_Qa.Ki2SYpurcalNdjSmfqMh9E_4ACxdtFCUBJ9bTq.Y4EC22hshqoHS9QLR c.z_CRl7EZBdWlhZK0DaO6Vz6kfRE92J9bsux40hyEuCuRrPKgz5lqEhlbxvyUW8QT_.gBD1rnnM vrGuv7ExRNx440J4ccFufA_yS85rSTIuMOBO6VjbUWgYqa4V9o2KuPoAwSiPztRA8dQxDCU9bSlo Gy_RpAna7KPW6EdWr1V34Tl5Pyx_s3HCkRIcEK9vXAEgczBsCFdVr5C11
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.ne1.yahoo.com with HTTP; Tue, 31 Jan 2023 15:11:53 +0000
+Received: by hermes--production-gq1-655ddccc9-4ln2x (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 39dda284a071170022308cf710b88c6d;
+          Tue, 31 Jan 2023 15:11:45 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-E52F2132-EF3C-48F9-B897-0E0B49215E47
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 31 Jan 2023 07:11:34 -0800
+Subject: Chapter 33
+Message-Id: <5C6E2567-B4E2-42B3-9CF2-A19F998CB06B@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20C65)
+References: <5C6E2567-B4E2-42B3-9CF2-A19F998CB06B.ref@yahoo.com>
+Content-Length: 38987
+
+--Apple-Mail-E52F2132-EF3C-48F9-B897-0E0B49215E47
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Willow thought the little girl was a wounded dog licking its wounds. She sa=
+w the blood first, followed by the pungent odor. Stepping around the corner=
+, she came face to face with a creature covered in filth, with arms and leg=
+s as thin as bone. It wasn't until Willow saw her eyes, thin and dark and b=
+lazing with suspicion, that she realized it was a human girl.=20
+
+Homeless orphans were not uncommon in the Sanu clan. They were, however, tr=
+eated far worse compared to other clans. The few orphanages that existed we=
+re run-down and poorly managed, and neither the Sanu family nor the other n=
+obles were interested in doing anything about it.=20
+
+The Sanu clan had an abundance of wealth, spent mostly on warfare and riche=
+s for the noble families. The Sanu clan manor was beautiful. It was entirel=
+y one-story, but the area it covered spanned over a great distance. Surroun=
+ded by a botanical garden, with gorgeous stone pathways, bonsai trees, and =
+little streams filled with koi fish, Willow was certain it was the most bea=
+utiful manor she had seen. Because the nobles lived in such luxury, this le=
+ft most of the citizens to rot. The lower towns were in terrible shape. Cri=
+me and poverty overtook those areas, and since the Sanu were at war with th=
+e Fen, the towns were occasionally soaked with blood.=20
+
+She had stayed in the Sanu clan for just a few months, visiting every town =
+she could. This town was in a particularly bad spot, being the most eastern=
+ spot in the western clan. Whenever the Fen attacked, this town was the fir=
+st one to go through. However, this girl seemed to be in the worst shape ou=
+t of everyone Willow had seen there.=20
+
+The girl's arms and legs were a mix of brown and red, as dirt and dried blo=
+od coated her body. A mess of shredded fabric covered her torso. Her face w=
+as barely visible amidst the soot, and only her eyes could be clearly seen.=
+ They were hooded and sharp and stared at Willow.=20
+
+Staring in horror, Willow could not even give a comforting smile. "What hap=
+pened to you?"
+
+The girl said nothing. She gazed back at Willow, who started to feel uncomf=
+ortable.=20
+
+"Here, let me help," said Willow, stepping closer.=20
+
+The girl flinched back and whipped out a sharp blade, pointing it directly =
+at Willow.=20
+
+Willow had learned how to fight by studying Fen clan warriors. She knew how=
+ to recognize an attack and how to react quickly. However, this girl had no=
+ intention of attacking and would only seem to use the blade in self-defens=
+e.=20
+
+So she said softly, "I just want to help you."=20
+
+Her eyes only blazed with more suspicion.=20
+
+This made Willow frustrated, so she said more firmly, "If you don't get hel=
+p, you'll bleed out and die."=20
+
+The knife wavered ever so slightly.=20
+
+"Can you stand?"=20
+
+Willow saw the girl hesitate, but after a moment, she slowly nodded. Pushin=
+g herself up to stand on her frighteningly thin legs, Willow was almost afr=
+aid the girl would topple over, but she made no attempts to help. That woul=
+d likely only scare her.=20
+
+Once she was fully standing, Willow said, "My house is not far from here. I=
+ have medical supplies I can treat you with." She started walking, and afte=
+r hearing the tiny footsteps following behind her, she breathed a sigh of r=
+elief.=20
+
+Willow's home in the Sanu clan was a small shack in the village that she bo=
+ught for less than the normal price of a dress in any other clan. She rarel=
+y stated there, spending most of her time traveling throughout the clan's m=
+any towns and villages. However, it was perfect for times like this.=20
+
+The little girl followed her through the dreary village, and Willow walked =
+slow enough to allow her to keep up. Every now and then, Willow glanced ove=
+r her shoulder, and the girl was always staring right at her, eyes full of =
+suspicion with a hint of curiosity.=20
+
+"Do you speak?" Willow asked.=20
+
+"Yes," the girl replied, so quiet Willow almost missed it. Her voice sounde=
+d rough, as if it hadn't been used in a while.=20
+
+"What's your name?"=20
+
+"Kona."=20
+
+"Where are your parents?"=20
+
+She shrugged.=20
+
+"Where do you live?"=20
+
+"Where you found me."=20
+
+Willow shook her head in disbelief. "Don't they have an orphanage you can s=
+tay in?"=20
+
+When Willow glanced back, Kona rolled her eyes. "It's worse in the orphanag=
+e."=20
+
+Before Willow could reply, someone shouted, "Stop that girl!" and came hurt=
+ling towards them from the marketplace street.=20
+
+Willow turned to Kona, but the girl had already taken off running.=20
+
+"Stop her!" The man stopped by Willow, panting, pure rage on his face. "Go =
+on, get her!"=20
+
+And she did, not because she took orders from anyone, but because the girl =
+was hurt and alone, and either she went after Kona or the man would. Willow=
+ sprinted in the direction Kona took off running, passing by curious onlook=
+ers.=20
+
+It wasn't hard catching up to Kona. The girl was fast, but compared to Will=
+ow, there was hardly competition. Willow ran in front of Kona and stopped, =
+forcing the girl to stop in her tracks as well.=20
+
+Panic filled Kona's eyes, and she glanced in all directions around her for =
+an escape route. Realizing that in front was Willow, behind her was the man=
+, and to her sides were throngs of villagers standing by.=20
+
+Kona moved to one side and took out her knife, and when the man finally cau=
+ght up to them, she waved it between him and Willow, baring her teeth like =
+a rabid animal.=20
+
+The man stomped towards her angrily, his arms outstretched as if to grab he=
+r. Willow heard Kona suck in a breath, and the fierce stare the girl had ea=
+rlier turned into fear.=20
+
+In a split second, Willow was in between them, shielding Kona protectively.=
+ "What do you think you're doing?" she demanded.=20
+
+"This girl stole from me!" he yelled, spitting as he spoke.=20
+
+Willow craned her neck to face Kona, who looked up at her with guilty eyes.=
+ She gave her a reassuring smile before turning to face the man, scrutinizi=
+ng him. "What did she steal?"=20
+
+"The clothes she's wearing!" he replied, fuming. "Stole it right from my ca=
+rt!"=20
+
+Kona had been wearing a shirt that appeared to just be torn fabric loosely =
+worn on her body. "It's already ripped apart," noted Willow.=20
+
+"Did that myself." The man seemed quite proud of himself. "I'll finish her =
+off. Step aside."=20
+
+Willow did not know where this bout of rage came from, but suddenly, red ap=
+peared in her vision, and she pulled out a blade from a strap on her leg th=
+at had been hidden by a cloak. Pointing it directly at the man, she said th=
+rough gritted teeth, "Do not touch her."=20
+
+The man scoffed, stepping closer. Willow felt a tug at her cloak, but she d=
+id not let her eyes leave the enemy in front of her. "Take another step, an=
+d you're a dead man."=20
+
+His eyes blazed with anger. "She's a thief!"=20
+
+"She's a child."=20
+
+"Child or not, criminals need to pay for their crimes." The man took anothe=
+r step.=20
+
+Willow brought up the knife, and in one swift arc, she cut open the man's t=
+hroat. His eyes widened in horror, at the realization that death was upon h=
+im, and he fell to the ground face-first, blood spooling out from his wound=
+.=20
+
+Being away from home for nine years, Willow had met all kinds of people. As=
+ a young woman traveling the sky alone, she had to learn how to be ruthless=
+, or anyone could easily take advantage of her. She learned how to numb the=
+ painful feeling when killing someone, how to silence the part of her mind =
+that called her a monster.=20
+
+For a moment, the village was shocked into silence. Then, as if they were u=
+sed to such things happening, they all turned away and went about their bus=
+iness like nothing had happened.=20
+
+The tug at her cloak came again, and Willow turned to face the girl.=20
+
+Kona gazed at her curiously. "Why did you save me?"=20
+
+Willow bent down. She wasn't much taller than Kona. Soon, the girl would gr=
+ow to tower over her, and the thought made Willow smile. "I decided I quite=
+ like you."=20
+
+"But =E2=80=94 " Kona shook her head. "He was telling the truth. I stole fr=
+om him."=20
+
+"And?"=20
+
+Kona looked bewildered. "You're not going to punish me?"=20
+
+"I will fix your wounds first." Willow held out a hand. "Then I will scold =
+you and get you new clothes."=20
+
+Kona stared at Willow's hand. After a moment, she placed her own small hand=
+ into it.=20
+
+"Are you my guardian angel?" Kona whispered in amazement.=20
+
+Laughter bubbled up inside Willow, and the girl's previously suspicious and=
+ curious eyes seemed to sparkle. "I'm Willow. From now on, I'll take care o=
+f you."
+
+--Apple-Mail-E52F2132-EF3C-48F9-B897-0E0B49215E47
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
+=3Dutf-8"></head><body dir=3D"auto"><p style=3D"margin: 0px; font-stretch: =
+normal; font-size: 18px; line-height: normal; font-family: Georgia; color: =
+rgb(18, 18, 18);"><span style=3D"font-style: italic;">Willow thought the li=
+ttle girl was a wounded dog licking its wounds. She saw the blood first, fo=
+llowed by the pungent odor. Stepping around the corner, she came face to fa=
+ce with a creature covered in filth, with arms and legs as thin as bone. It=
+ wasn't until Willow saw her eyes, thin and dark and blazing with suspicion=
+, that she realized it was a human girl.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Homeless orphans were not uncommon in the Sanu clan. They=
+ were, however, treated far worse compared to other clans. The few orphanag=
+es that existed were run-down and poorly managed, and neither the Sanu fami=
+ly nor the other nobles were interested in doing anything about it.&nbsp;</=
+span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The Sanu clan had an abundance of wealth, spent mostly on=
+ warfare and riches for the noble families. The Sanu clan manor was beautif=
+ul. It was entirely one-story, but the area it covered spanned over a great=
+ distance. Surrounded by a botanical garden, with gorgeous stone pathways, =
+bonsai trees, and little streams filled with koi fish, Willow was certain i=
+t was the most beautiful manor she had seen. Because the nobles lived in su=
+ch luxury, this left most of the citizens to rot. The lower towns were in t=
+errible shape. Crime and poverty overtook those areas, and since the Sanu w=
+ere at war with the Fen, the towns were occasionally soaked with blood.&nbs=
+p;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">She had stayed in the Sanu clan for just a few months, vi=
+siting every town she could. This town was in a particularly bad spot, bein=
+g the most eastern spot in the western clan. Whenever the Fen attacked, thi=
+s town was the first one to go through. However, this girl seemed to be in =
+the worst shape out of everyone Willow had seen there.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The girl's arms and legs were a mix of brown and red, as =
+dirt and dried blood coated her body. A mess of shredded fabric covered her=
+ torso. Her face was barely visible amidst the soot, and only her eyes coul=
+d be clearly seen. They were hooded and sharp and stared at Willow.&nbsp;</=
+span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Staring in horror, Willow could not even give a comfortin=
+g smile. "What happened to you?"</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The girl said nothing. She gazed back at Willow, who star=
+ted to feel uncomfortable.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Here, let me help," said Willow, stepping closer.&nbsp;<=
+/span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The girl flinched back and whipped out a sharp blade, poi=
+nting it directly at Willow.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Willow had learned how to fight by studying Fen clan warr=
+iors. She knew how to recognize an attack and how to react quickly. However=
+, this girl had no intention of attacking and would only seem to use the bl=
+ade in self-defense.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">So she said softly, "I just want to help you."&nbsp;</spa=
+n></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Her eyes only blazed with more suspicion.&nbsp;</span></p=
+>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">This made Willow frustrated, so she said more firmly, "If=
+ you don't get help, you'll bleed out and die."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The knife wavered ever so slightly.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Can you stand?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Willow saw the girl hesitate, but after a moment, she slo=
+wly nodded. Pushing herself up to stand on her frighteningly thin legs, Wil=
+low was almost afraid the girl would topple over, but she made no attempts =
+to help. That would likely only scare her.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Once she was fully standing, Willow said, "My house is no=
+t far from here. I have medical supplies I can treat you with." She started=
+ walking, and after hearing the tiny footsteps following behind her, she br=
+eathed a sigh of relief.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Willow's home in the Sanu clan was a small shack in the v=
+illage that she bought for less than the normal price of a dress in any oth=
+er clan. She rarely stated there, spending most of her time traveling throu=
+ghout the clan's many towns and villages. However, it was perfect for times=
+ like this.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The little girl followed her through the dreary village, =
+and Willow walked slow enough to allow her to keep up. Every now and then, =
+Willow glanced over her shoulder, and the girl was always staring right at =
+her, eyes full of suspicion with a hint of curiosity.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Do you speak?" Willow asked.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Yes," the girl replied, so quiet Willow almost missed it=
+. Her voice sounded rough, as if it hadn't been used in a while.&nbsp;</spa=
+n></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"What's your name?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Kona."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Where are your parents?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">She shrugged.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Where do you live?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Where you found me."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Willow shook her head in disbelief. "Don't they have an o=
+rphanage you can stay in?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">When Willow glanced back, Kona rolled her eyes. "It's wor=
+se in the orphanage."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Before Willow could reply, someone shouted, "Stop that gi=
+rl!" and came hurtling towards them from the marketplace street.&nbsp;</spa=
+n></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Willow turned to Kona, but the girl had already taken off=
+ running.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Stop her!" The man stopped by Willow, panting, pure rage=
+ on his face. "Go on, get her!"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">And she did, not because she took orders from anyone, but=
+ because the girl was hurt and alone, and either she went after Kona or the=
+ man would. Willow sprinted in the direction Kona took off running, passing=
+ by curious onlookers.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">It wasn't hard catching up to Kona. The girl was fast, bu=
+t compared to Willow, there was hardly competition. Willow ran in front of =
+Kona and stopped, forcing the girl to stop in her tracks as well.&nbsp;</sp=
+an></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Panic filled Kona's eyes, and she glanced in all directio=
+ns around her for an escape route. Realizing that in front was Willow, behi=
+nd her was the man, and to her sides were throngs of villagers standing by.=
+&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Kona moved to one side and took out her knife, and when t=
+he man finally caught up to them, she waved it between him and Willow, bari=
+ng her teeth like a rabid animal.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The man stomped towards her angrily, his arms outstretche=
+d as if to grab her. Willow heard Kona suck in a breath, and the fierce sta=
+re the girl had earlier turned into fear.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">In a split second, Willow was in between them, shielding =
+Kona protectively. "What do you think you're doing?" she demanded.&nbsp;</s=
+pan></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"This girl stole from me!" he yelled, spitting as he spok=
+e.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Willow craned her neck to face Kona, who looked up at her=
+ with guilty eyes. She gave her a reassuring smile before turning to face t=
+he man, scrutinizing him. "What did she steal?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"The clothes she's wearing!" he replied, fuming. "Stole i=
+t right from my cart!"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Kona had been wearing a shirt that appeared to just be to=
+rn fabric loosely worn on her body. "It's already ripped apart," noted Will=
+ow.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Did that myself." The man seemed quite proud of himself.=
+ "I'll finish her off. Step aside."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Willow did not know where this bout of rage came from, bu=
+t suddenly, red appeared in her vision, and she pulled out a blade from a s=
+trap on her leg that had been hidden by a cloak. Pointing it directly at th=
+e man, she said through gritted teeth, "Do not touch her."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The man scoffed, stepping closer. Willow felt a tug at he=
+r cloak, but she did not let her eyes leave the enemy in front of her. "Tak=
+e another step, and you're a dead man."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">His eyes blazed with anger. "She's a thief!"&nbsp;</span>=
+</p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"She's a child."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Child or not, criminals need to pay for their crimes." T=
+he man took another step.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Willow brought up the knife, and in one swift arc, she cu=
+t open the man's throat. His eyes widened in horror, at the realization tha=
+t death was upon him, and he fell to the ground face-first, blood spooling =
+out from his wound.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Being away from home for nine years, Willow had met all k=
+inds of people. As a young woman traveling the sky alone, she had to learn =
+how to be ruthless, or anyone could easily take advantage of her. She learn=
+ed how to numb the painful feeling when killing someone, how to silence the=
+ part of her mind that called her a monster.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">For a moment, the village was shocked into silence. Then,=
+ as if they were used to such things happening, they all turned away and we=
+nt about their business like nothing had happened.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">The tug at her cloak came again, and Willow turned to fac=
+e the girl.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Kona gazed at her curiously. "Why did you save me?"&nbsp;=
+</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Willow bent down. She wasn't much taller than Kona. Soon,=
+ the girl would grow to tower over her, and the thought made Willow smile. =
+"I decided I quite like you."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"But =E2=80=94 " Kona shook her head. "He was telling the=
+ truth. I stole from him."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"And?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Kona looked bewildered. "You're not going to punish me?"&=
+nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"I will fix your wounds first." Willow held out a hand. "=
+Then I will scold you and get you new clothes."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Kona stared at Willow's hand. After a moment, she placed =
+her own small hand into it.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">"Are you my guardian angel?" Kona whispered in amazement.=
+&nbsp;</span></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
+"><br></p>
+<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
+: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
+t-style: italic;">Laughter bubbled up inside Willow, and the girl's previou=
+sly suspicious and curious eyes seemed to sparkle. "I'm Willow. From now on=
+, I'll take care of you."</span></p><div dir=3D"ltr"></div></body></html>
+--Apple-Mail-E52F2132-EF3C-48F9-B897-0E0B49215E47--

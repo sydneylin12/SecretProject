@@ -1,0 +1,2077 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:ab3:5719:0:b0:235:3e89:1c74 with SMTP id x25csp1442846ltb;
+        Sat, 29 Jul 2023 15:36:56 -0700 (PDT)
+X-Google-Smtp-Source: APBJJlEH9nuMNh2z3hTZdcXqXar11oBAPY36XK2Eq2zHc6KZ8Iq5xfbaWZDCKz0+R3pcZFCZS5Wa
+X-Received: by 2002:ac8:5952:0:b0:408:392e:2aa5 with SMTP id 18-20020ac85952000000b00408392e2aa5mr7112216qtz.20.1690670216097;
+        Sat, 29 Jul 2023 15:36:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1690670216; cv=none;
+        d=google.com; s=arc-20160816;
+        b=AWJa4sLJNg3AouGbgQYg7PSvLRnk03c+GuWmK2ATvoKb+yi95EJQR1kM3+V8o/xso6
+         G9ylBKizrlSN0goN60fyYzefFv6aItYnuSiWtnK4Pp3QwMnxrKxV+VK47ECaeZsXIZgX
+         ZeC5XFdglbHbZ3oG9Q3W3OqX1TCGAN07eXuz+uxnDYE/0PiI5yBPtAvvNgUsbJ6JzgEv
+         uS33cTNfpgoAK39yXr2dK59sS0W3lUsDyiQ702zX4Cl3gX217Ydu2IKt0kAR5zae7M8t
+         tK7lI6kzuEAHHNUR6fmysjdlyzI5y8YnmBLHWzCpsIPjdzDzN/o0jIoCzKVIeOM76NTg
+         oF/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=vAYPY7fVG++/tL4jJu43au4eUf5bHpiiKia5oU3rTPc=;
+        fh=Hi3YeoHU4ojK/bSP2CZ/QrQT9jK/dN8OCcnqCxDhCJk=;
+        b=AS3NNbinNG/aAgnzvGSs3Q5mdS7LrGemK992nY5ab2rDYf1S/5KDFPIj/O5Wj154Xo
+         6+mfHl/s0BOm2NlAVKicbGlO561PlnCoOQ6z4IstsTWkZx/jEBwehSquUNw2B4hIw6hj
+         PAUTBza/y7Sl4ZaMjXY6GsJxhGKiWTFFlnAXYGsrvnBy05c7BWYgzn2Ft+96lxZBCmAM
+         Ho3PNbta3cCnw/VpPBndohRoMvTGpLvov5ITP830gJGyXpG0IutVb4rhNpmjVH0vv9FW
+         R+RG+wq4E/2ENEN1AI54nnCvn01uSAq8NLHBKgW1L+9+vIVIVgqmASgB7hT7h4aY1zB1
+         Lrmw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=IB+p4DlP;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic308-9.consmr.mail.ne1.yahoo.com (sonic308-9.consmr.mail.ne1.yahoo.com. [66.163.187.32])
+        by mx.google.com with ESMTPS id dt38-20020a05620a47a600b0076c938944e5si2088959qkb.611.2023.07.29.15.36.55
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Jul 2023 15:36:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) client-ip=66.163.187.32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=IB+p4DlP;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1690670215; bh=vAYPY7fVG++/tL4jJu43au4eUf5bHpiiKia5oU3rTPc=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=IB+p4DlPx0oZYFyJad0EXNxd25zuIDqbfzShsHUOm4AMx/25By17tw0bon34/2HyN5BfYI53NGZt54kMyiB/9NIGiVXdpHge/gEaJh6bziR7HFSJ7A3Xdx2t7BIHJQPRmJcXs3yXYfv1llDa+UWVzlM5sDUSzcG8r1FZa1UgKIMFYWcZJLclsyxMJyH6CC2SVdBZNMMq0A/YBHR6YAMQYgCnWWfkmPYLXn6exI8cwRxt4jzgugg7HZDuTlyJsR81p5swuyFxjjQNgHotOVpZJaDJPMVO4lzZIEsnnjt2PJigjGmpCT0gbOvKmEI5HBe4QItprYgRUi5+SdFruJavrA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1690670215; bh=elkvNNP4eLiwYZTDcmo9VxryKiXTKrKFZgZ0cWW9Xx1=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=edVHPlo73toaepdWrNdtQm6kgjQCEQz+AjOLCflkKL869JmGNrFPsDounbkbTjldsI4+llaezcwMUxtf/vzb/MViaiaO52lYfvECZqzgS/dIH1PrWXpi+9Uea0LJ7da4AlJY3pzGj5CsDDEJflpvxuGSN3U3ImRA9gP6Dy10n2OI3wNgFQAy+cnXsdilaly+xDNHat7C9P1lYCU7zbMvlv0UhgjKPOdrxU/F/nfzCg1DWzHxpq4Mfz7ibpULH46d5Mq0iYtC79EfRirjEmmb+7Hf3JaPl5YNDaJtt/PL1JAg9w9j73egThXalagu/0J5GSR/jXVpWGnhiEomuCWEng==
+X-YMail-OSG: YFZxjyMVM1krg5fL85dy0kwiMbGRl8b5W1Sj2TH5ZdI9W1HiOTci_aBqBRjz5vj pJLyMSpMqBK3aWU9Rwc4AULJwLMcgpMUtcL.GlfXpj2g4UQ3ziXBWP5lUll9ZEGp05ApMKeWAwJL sY_kP8746.c3ZA8d9aPeFgxo12muOrulqUJo9dd2oMcn1EpSV4oHNjR2YH4w_kMJoAwMgeKOXI2a GxO2Ttoogoxxkfdjk3i.dVhq92rWzVWL9GTMGdHM08zYpNzPUimceBuLhHN8uhrH8gE7JelGaNv2 LmIgEUSrW.nFXn3hM0A.EeuMieQ6jzs2K_KPZcuN0xMcql7kdOyVYHULuDJxVV9IKoA005UrwCmS pGjfAv5.rnZP62_79xUPnqCw2PFbHQvtLzaIpWOpizRBY8_2J7r7uAy9sLFdtVfHTlgJ9VzFBzd8 4KWD8vglV3Jk1NUZjaw1zJEtkBs40lqBvUfui6qZbzvZVIum67c9W44aRjWW1OyN0.HNxzJq_PSB UlDXC7WOYKtxlelVGisryr395s_dBPTDxzr8vtKWgrZsqyo_Zr3wO9BaFZ6T19U8DNYHEaaVUcti w6J1V6docOCeiLnDdWvzJbMxRw7kw2v699Nhf5vYe2E2sLzwLKxnOWZIbn_vhBb1JntMf4ytvHZ5 dYhl6m_3icA7wiS5lwm9CwSg1jvanQT8LOO4IL11YeKdxjTXpzMh5_I0WZpOm_U69Qt0mzy7xaXi ovIyBmAdUAw787q1pzfGEdKkNEcGc9Eb49ctqiPSeOxV.w.9tvKXS41KK_KqJ0pGu11FwpOjGwod wyWfs8.tbKmz8I7J6WaoW.ncTVCzp0_p58hikjuaci.flSw7YtWWl6wTFJBUOMJkY0lb2xNmB5m7 _1Ce3rcO1J386aHfyH4RBvC9n9npggKxHM5Doeb6JfxuzMu3ay3dFaHqiYU6OkpPiL1wTEtEKpth _1bS3ElGFvayZ4BulGFqvCJZHO_2fHXy.hPdHP0_TlcghWMeZ2KwBm3aHK4qUFGSKyD8VFywqXvh sJUoiwGekOgGghywag3R_qRPPj8yAlmJuos3wAXJHd.wttKvRdfVjxaadAXvtcz7wh.kzlpmL2Nf Mfjg0GL00mcbgvn4.E2OfI5D9L49JE.xRauASVaJQH5CCaqrb8Hb34qeb7F._gUdbO2dqi3pjagX 2FV9x9QJXuTHGFPylwBOcab24Q32p0kTwZ94eKR2eEVkHpcfmE2PnHows4zWOs01lz.4vQLuNdFD L96csElSa7pXCYL4k9l4P12eVfHdXwovmZ7cx7US85m3c2o9J5ducLojG8fHmPL4NTnO29FSkGir N.H6_j7cv23VwzKZb0eQHeIrcumkTeyVWKxvA8WkeIN05szU0a_RfhFcB1L5Lwe09Oh1SpwQVgJe T.ttHnxwPp4JVZN_kyQhwCnnPd8kXrmEnGPDwsunIyiR4wXz8i2xNaN_CQ5hZ.VuNwyyfKyXVJfz 7OgQuKCHb3TQMA.E_81RY6sCk6YI.jeMrX7hR7.8e02p3snsCONakVi_grTxD9eozN5ivHst1.Fu xMFUsqK1NuXHcpAsN832jRBCz.Y2sN6Z5O0f9vMFK3Cw7DH.1A2JgzjWUFElP4j5CdR06oyqjGKZ 36oFnjKdj5z5OEEKmoV21Ns7DoC2eggCwA.mUFYl6wwJqPIKsS.Kmo3O.9PPE4QUvwGCqMfVSXmG yBfW70orit3E82gSYvpTVllNT1Mwd6Gi7ihIB3r_iaRTht84cLHTBIQasgAHxaTWn.a4sEd0xRf0 mHcyHN8zJZCTEvPOXSKwn5x5S4apq6euPbrObAa5G7TV7nkXxzGHnKe1MqDI1pHZWZMWn.U37n8H yrlEUAWNj_x0L_2wFDiGwGyqPrXdvd3JlZiW.ZYLPwzGYoXk1LW4V.REEsImdPvovikLmfX9sYow d.6xna4Wq0vQx9DcOHn1wnc.28n.w.u.rsGkAbANpMVePdBj_1mtFf.nqMGdX1KulGuBrKGpCHF4 lt8IMM9_.fUi5UeK96q61rPSOR63cmGItGKcyMNc1xmrLDLKURBbWsM1xhO1XPTM614GCLbVZbZO jPEwb2GL0vL1J749iGEhUJPVBR5AvYeNU.COLEW4BIKLhpMJNqEMfR.rdF85Cp2RBxmY_JnZtZuH RFzehFpt3Yuf9RDjWoEp8rHFHvHEKVE9Dw6B.fE7X1fSwxO5yvi3rViGEv2r_gH.wv9BwZxXHOAX sbSOriPyXw4dIfk8Q6ylCPYlLVOImBnmwfevY7XY-
+X-Sonic-MF: <carissa71555@yahoo.com>
+X-Sonic-ID: 3fcad7ed-6863-4ad2-961c-3d879a8e6318
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.ne1.yahoo.com with HTTP; Sat, 29 Jul 2023 22:36:55 +0000
+Received: by hermes--production-ne1-549c7f6c44-6w8f9 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 823b0f5e7ebe79f2f001a1bdc050a085;
+          Sat, 29 Jul 2023 22:36:52 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-8B522846-4E0E-46D0-BBB5-18DD8097F2CA
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Sat, 29 Jul 2023 15:36:40 -0700
+Subject: Chapter 38
+Message-Id: <A98937FE-7CE8-4CC1-B6BF-E4C7284C17B9@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20F75)
+References: <A98937FE-7CE8-4CC1-B6BF-E4C7284C17B9.ref@yahoo.com>
+Content-Length: 136974
+
+--Apple-Mail-8B522846-4E0E-46D0-BBB5-18DD8097F2CA
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+"Mother!" Astero ran up to her, tugging her hand urgently. "Look, look!"=20
+
+Josemi looked where he pointed. One of the stands at the marketplace carrie=
+d an assortment of golden hairpins, sunlight reflecting off them, like twin=
+kling stars in the daytime. This stand seemed to have caught her son's eye,=
+ for the excitement in his expression compared to no other.=20
+
+"For you hair," he explained, as if she did not know.=20
+
+Laughter bubbled up inside her, and Josemi could not contain it. She patted=
+ the boy's head gently, his once roughly cut and grimy hair now thoroughly =
+washed and neatly styled. The tattered old clothes Josemi had first seen hi=
+m in were long gone, and now, he wore purple robes of linen, with sandals t=
+hat fit him properly.=20
+
+Astero. Her little purple flower.=20
+
+Josemi accepted that she would never be able to bear children. Countless do=
+ctors were brought into the Elessai clan, and even the best ones from the J=
+ourman clan concluded that she was barren. Growing up with four younger sib=
+lings, Josemi often treated them like her own children, and she dreamed of =
+truly having her own someday. Unfortunately, that dream did not come into f=
+ruition, until just a few weeks ago.
+
+She had no idea where he came from. Josemi assumed he had been living in an=
+ abusive home that never let him outside, as he tended to be surprised abou=
+t many common things. For one, he was always looking up at the sky as if he=
+ had never seen it before. He would ask her if clouds came close enough to =
+touch, and when she replied that sometimes they did, his eyes would sparkle=
+ with amazement. Walking through the marketplace often took hours, for Aste=
+ro would stop at each and every stall, marveling at the trinkets or clothes=
+ or food they would sell. When Josemi took him to the sea for the first tim=
+e, he had been afraid to go near it. Every time the waves crashed against t=
+he shore, he would flinch and grab her wrist, clutching so tightly her hand=
+ turned white. She would hold him close, reassuring him he had nothing to f=
+ear, and his breathing would return to normal as he instead looked to the s=
+ea with curiosity, trusting her words. To have someone rely on her so much,=
+ Josemi wanted to protect him with her life.=20
+
+She allowed him to lead her to the gold hairpins, and together, they looked=
+ over them, Astero pointing out each and every one that he believed Josemi =
+should buy.=20
+
+"They are all so shiny," he marveled.=20
+
+The shopkeeper, a small old woman with soft eyes, smiled. "Young Lord, pick=
+ whichever one you'd like."=20
+
+His eyes lit up. "Really?"
+
+With a nod, the lady gestured to the entire table.=20
+
+Astero's eyebrows scrunched together in thought, carefully examining each a=
+nd every hairpin as if his life depended on it. After a few long minutes, h=
+e picked up one that had a bright red jewel in the center.=20
+
+"Can I have this one?" he asked.=20
+
+Smiling, the lady nodded. "Of course."=20
+
+Bursting with excitement, he handed the hairpin to Josemi. "For you, mother=
+."=20
+
+She could not help it. Josemi crouched down and enveloped him in a hug, pla=
+cing kisses on the top of his head.=20
+
+"You are the sweetest," she crooned, placing the hairpin on the side of her=
+ hair. "What do you think?"=20
+
+Astero smiled brightly, nodding in confirmation.=20
+
+"You look beautiful, Lady Elessai," said the shopkeeper. "No payment necess=
+ary."=20
+
+Josemi shook her head. "Nonsense, I must," she replied, reaching into her c=
+oin purse.=20
+
+"It is Young Lord Elessai's gift to you," said the old woman. "Please accep=
+t it kindly."=20
+
+"It's my gift!" Astero exclaimed happily.=20
+
+Seeming to have no choice in the matter, Josemi accepted the gift, and she =
+and her son continued through the bustling marketplace.=20
+
+It was a lovely day in the summertime. At the edge of the long street lay t=
+he Pearl Sea, the largest body of water in the north. It stretched across t=
+he horizon, sparkling like pearls under the sun. Josemi and Astero walked u=
+ntil they reached the white sand.=20
+
+Astero held her hand tighter. Still skeptical of the water, he tucked close=
+r into his mother's side. "Waves," he mumbled.=20
+
+She nodded. "Do not be afraid." He did not fear the calm lakes around the m=
+anor, nor did he fear the peaceful rivers that streamed throughout the fore=
+st. But he did fear the large waves, saying they were like monsters ready t=
+o swallow him up. "Stay in the shallows, and the waves won't hurt you."=20
+
+"Promise?" he looked up, his glistening dark eyes full of fear, but trust.=
+=20
+
+Josemi crouched beside him, cupping his face in her palm. "Would I ever lie=
+ to you?"=20
+
+He shook his head, and suddenly, the true feeling of being a mother struck =
+her. She always took care of her four younger siblings, as their own mother=
+s met their ends so soon. Their father was the clan leader, and he could no=
+t afford to give them as much time as he would have liked. She would take t=
+hem to the marketplace, make sure they attended their lessons, and played w=
+ith them whenever she could.=20
+
+And yet, Zhilin, Luxian, Meira, and Anji had other people to rely on during=
+ those days. They had the servants, their relatives, their grandparents. Al=
+l the responsibility for their fate never relied on Josemi alone.=20
+
+Astero relied on her. He trusted her entirely. If she said the waves were s=
+afe, they were. If she said to not do something, he would not do it. To hav=
+e someone look up to her like that, as if she had all the answers in the wo=
+rld... it was a responsibility she always wanted.=20
+
+For years, she and Kairo wanted a child. And now that she had one, she woul=
+d protect him with her life.=20
+
+"Go on then," she said, urging him towards the sea. "Do not be afraid."=20
+
+Astero nodded. Slowly, step by step, he made his way to the water, looking =
+back a few times, as if making sure this was okay to do. Josemi gave him en=
+couraging smiles, hoping to show him it would be fun, that he had nothing t=
+o fear. She watched him take a step into the sparkling waves, and he laughe=
+d as they splashed against his tiny legs. Her heart warmed at the sight.=20
+
+A commotion in the marketplace drew Josemi's attention away from the water.=
+ A vendor and a customer were arguing over the price of something, their ye=
+lls gaining attention from everyone. Other people tried to calm the situati=
+on, for the argument seemed to be escalating. Josemi thought of going there=
+ and settling the fight herself.=20
+
+However, another commotion drew her attention back. Screaming, followed by =
+running. People ran past Josemi into the marketplace, away from the shore.=
+=20
+
+"Run!"=20
+
+"Help!"
+
+"Istora!"=20
+
+The blue waves turned red as the shore turned into a slaughterhouse. People=
+ fell one by one, their bodies covering the sand, with more bodies floating=
+ in the water. Josemi counted at least fifteen men, all dressed in gray, ca=
+rrying axes as they slaughtered the townspeople. Axes... a tool for lumber =
+in any area of the sky, but in the south, a weapon.=20
+
+Amidst the chaos and bloodshed, there stood Astero, still in the water, an =
+axe against his neck. One of the men held him, a hand on poor Astero's shou=
+lder. Eyes full of fear, he stared at Josemi, a flood of silent tears stain=
+ing his cheeks.=20
+
+"My lady!" Killian Elessai, Kairo's cousin, as well as the leader of their =
+army, ran to her side, a spear in hand. "Are you all right?"=20
+
+Her eyes never left Astero. "Evacuate the town. And bring Kairo here." The =
+Istora soldiers were not chasing anyone into the marketplace. They seemed t=
+o stay by the shore, killing anyone there, but never leaving their place. P=
+erhaps they wanted to make a quick escape through the water.=20
+
+"Kairo's on his way, my lady." Killian followed her gaze and saw Astero, hi=
+s grip on his spear tightening. "This is an act of war."=20
+
+It had been a long time since a direct attack like this happened. The Eless=
+ai clan was the closest northern clan to the south. To get between regions,=
+ one needed to cross the Pearl Sea, which was at least a two week journey. =
+The Elessai essentially protected the north, and with their new forms of we=
+aponry, hardly anyone dared to attack them outright. Kairo was known for be=
+ing an excellent military strategist, having a brilliant technological mind=
+, and being a protective leader of the clan. He had no weak points.=20
+
+Until now. Word had spread of Astero Elessai's existence.=20
+
+"Lady Elessai!" The Istora soldier holding Astero grinned wickedly. "Would =
+you come closer? I would like the pleasure of viewing your face up close."=
+=20
+
+"How dare you address our lady so disrespectfully!" Killian started towards=
+ him, but Josemi held out an arm to stop him.=20
+
+"He has Astero," she said quietly. "We cannot be hasty." Josemi started tow=
+ards the men and her son, her blood boiling, the sound of the roaring waves=
+ and her heartbeat pounding in her ears. Killian walked beside her, and tog=
+ether, the two made their way to the sea, her sandals taking in sand, but s=
+he paid no mind. Her vision tunneled on Astero, and the only thought in her=
+ head was to get to him as soon as possible.=20
+
+A black ball of fear and dread expanded larger and larger as she made her w=
+ay towards the sea. If it were a fair fight, and Astero was nowhere in sigh=
+t, Josemi was certain she could end him where he stood. However, she had so=
+meone to be afraid for.
+
+At last, she reached the edge of the shore.=20
+
+"Lady Elessai," the man greeted, an easy smile on his face. "How lovely it =
+is to see you. Do you remember me?"=20
+
+"Would I?"=20
+
+He shrugged, the blade of the axe coming dangerously close to Astero's neck=
+. "I suppose it was a forgettable encounter=E2=80=94"
+
+"What do you want?" Josemi snapped.=20
+
+The man tsk'ed disappointedly. "Is that any way to speak to the person who =
+holds your son's life in his hands?"=20
+
+"I asked you what you wanted."=20
+
+"I wanted to have a conversation!" The man's raucous laughter caused the ot=
+hers to join in, and Josemi had the urge to tear his throat out with her ba=
+re hands.=20
+
+"My lady, please do not speak to them until Kairo arrives," Killian murmure=
+d.=20
+
+She ignored him. "Very well. What shall be the topic of our conversation?"=
+=20
+
+"Hmmm." The man pretended to think. He nudged Astero, who was trembling, hi=
+s eyes wide with fear. "What's your name, boy?"=20
+
+Astero looked at Josemi, her heart shattering at how scared he looked. She =
+gave him an encouraging nod.=20
+
+Do not be afraid.
+
+"A - Astero."=20
+
+"How old are you?"=20
+
+"Nine."=20
+
+Astero had said he was eight years old. However, he did not know the exact =
+date of his birth, only that he had been born in the summer. Josemi decided=
+ his birthday would be the day she found him. To her, it was the brightest =
+day of the year.=20
+
+"Old enough to be engaged!" The man patted Astero's head, and Josemi desper=
+ately wished she had her sword in order to cut his hand off. "You could mar=
+ry our Young Lady Istora."
+
+A marriage between the north and south had not happened in decades, centuri=
+es even. Kairo would sooner knowingly drink poison than have a southerner a=
+s his daughter in law.=20
+
+"And what is your name?" Josemi asked, hoping to remember it as she ran a s=
+word through his neck.=20
+
+"Zacharia Indol!" He seemed almost too happy, as if he were glad she asked.=
+ "I have a son=E2=80=94er=E2=80=94a daughter around his age. Little Zonemia=
+. You two could be friends, Astero."=20
+
+"I doubt it," Josemi cut in, her anger getting the best of her. =20
+
+"So hostile." He shook his head. Then his eyes brightened. "Lord Elessai!"
+
+Josemi felt Kairo's domineering presence behind her. At the same time, she =
+noticed the other Istora soldiers heading closer to stand by their leader's=
+ side. Seeing all of them together, a monstrous force surrounding little As=
+tero, made Josemi suck in a harsh breath. She needed to get him out of ther=
+e.=20
+
+"This is a declaration of war." Kairo's deadly voice seemed to silence even=
+ the waves. "The Istora are ready for such a thing?"=20
+
+Zacharia Indol's smiling face shifted, darkening. "The Istora have been rea=
+dy."=20
+
+"An attack like this will not be forgotten. Lady Istora planned this?"=20
+
+"Our lady can be quite ruthless."=20
+
+Josemi could not take it any longer. She did not care for their talks of wa=
+r or politics. She could focus on nothing but Astero. "What do you want?" J=
+osemi asked again, staring daggers at Zacharia Indol. "Why don't you let hi=
+m go and duel me yourself?"=20
+
+The man smiled almost fondly. "Believe it or not, I truly do not want to ki=
+ll him. I have children of my own."=20
+
+"You slaughtered children in this very town today." Kairo raised his voice,=
+ sounding angrier now.=20
+
+"But now I know this one's name." He ruffled Astero's hair. Then, he looked=
+ to Josemi. "And I have immense respect for Lady Elessai." Zacharia Indol t=
+urned to his men. "I'll let this child go."=20
+
+"General Indol!" The other men seemed confused as well.
+
+"Our job was to declare war. We killed enough people here." The axe near As=
+tero's neck lowered, and a wave of relief swept through Josemi. "Besides, t=
+he Fen clan have the best fighters in the sky. The Istora are second only t=
+o them." Letting go of Astero entirely, Zacharia Indol bowed his head. "It =
+would be an honor to fight you, Lady Elessai."=20
+
+Josemi desperately wanted to. She had been in the Elessai clan for so long =
+that she had been itching for a fight. To slay the man who held her son hos=
+tage... that was her life goal as of this moment. "Then let us fight."=20
+
+Zacharia Indol shoved Astero forward into the water face-first. "Go to your=
+ father. I have business with your mother."=20
+
+Astero hurriedly stood and ran. He stopped in front of Josemi, but her eyes=
+ were on Zacharia Indol. She desperately wanted to hold him in her arms and=
+ tell him everything would be all right. She wanted to make sure he wasn't =
+hurt, to wrap him up in her warm embrace to stop his shivering.=20
+
+But Josemi needed her mind to focus. She would end this man's life first.=
+=20
+
+Astero went around Josemi and stayed by Kairo's side.=20
+
+"Killian." Josemi could barely recognize her own voice. The voice of Josemi=
+ Fen. "Bring me a sword."=20
+
+Kairo took her left hand and placed a sword there. It was her sword, the on=
+e she brought from her eastern home. Its bright red scabbard comforted her =
+eyes.=20
+
+Unsheathing her sword, Josemi felt the familiar weight of it, as if it were=
+ merely an extension of her own arm. She had not used this sword in a real =
+battle in years.=20
+
+She handed the scabbard to Killian. "Get out of here. All of you."=20
+
+"No." Kairo would be the only one who dared say that to her. "Killian, take=
+ Astero. Once the town is evacuated, send more guards here."=20
+
+Killian nodded and took Astero's hand. "What about you?"=20
+
+"I'm staying with Josemi."=20
+
+"I will be back as soon as I can with more guards. Forgive me, Young Lord."=
+ Killian bent down and picked up Astero as if he weighed nothing. Then, he =
+sprinted for the marketplace. Josemi heard a faint cry from Astero, but she=
+ did not turn around.=20
+
+Kairo placed a hand on her shoulder. "Be careful."=20
+
+She turned to him, and although his usual eyes were stoic, there was a hint=
+ of worry.=20
+
+"Do not doubt me, Kairo." Josemi looked to the water, where Zacharia Indol =
+rested his axe easily on his shoulder, a wicked grin on his face. "I am not=
+ afraid."
+
+--Apple-Mail-8B522846-4E0E-46D0-BBB5-18DD8097F2CA
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
+=3Dutf-8"></head><body dir=3D"auto"><p style=3D"margin: 0px; font-style: no=
+rmal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; lin=
+e-height: normal; font-family: Georgia; font-size-adjust: none; font-kernin=
+g: auto; font-variant-alternates: normal; font-variant-ligatures: normal; f=
+ont-variant-numeric: normal; font-variant-east-asian: normal; font-variant-=
+position: normal; font-feature-settings: normal; font-optical-sizing: auto;=
+ font-variation-settings: normal; color: rgb(18, 18, 18);"><span style=3D"f=
+ont-style: italic;">"Mother!" Astero ran up to her, tugging her hand urgent=
+ly. "Look, look!"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Josemi looked wh=
+ere he pointed. One of the stands at the marketplace carried an assortment =
+of golden hairpins, sunlight reflecting off them, like twinkling stars in t=
+he daytime. This stand seemed to have caught her son's eye, for the excitem=
+ent in his expression compared to no other.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"For you hair," =
+he explained, as if she did not know.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Laughter bubbled=
+ up inside her, and Josemi could not contain it. She patted the boy's head =
+gently, his once roughly cut and grimy hair now thoroughly washed and neatl=
+y styled. The tattered old clothes Josemi had first seen him in were long g=
+one, and now, he wore purple robes of linen, with sandals that fit him prop=
+erly.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero. Her litt=
+le purple flower.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Josemi accepted =
+that she would never be able to bear children. Countless doctors were broug=
+ht into the Elessai clan, and even the best ones from the Jourman clan conc=
+luded that she was barren. Growing up with four younger siblings, Josemi of=
+ten treated them like her own children, and she dreamed of truly having her=
+ own someday. Unfortunately, that dream did not come into fruition, until j=
+ust a few weeks ago.</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">She had no idea =
+where he came from. Josemi assumed he had been living in an abusive home th=
+at never let him outside, as he tended to be surprised about many common th=
+ings. For one, he was always looking up at the sky as if he had never seen =
+it before. He would ask her if clouds came close enough to touch, and when =
+she replied that sometimes they did, his eyes would sparkle with amazement.=
+ Walking through the marketplace often took hours, for Astero would stop at=
+ each and every stall, marveling at the trinkets or clothes or food they wo=
+uld sell. When Josemi took him to the sea for the first time, he had been a=
+fraid to go near it. Every time the waves crashed against the shore, he wou=
+ld flinch and grab her wrist, clutching so tightly her hand turned white. S=
+he would hold him close, reassuring him he had nothing to fear, and his bre=
+athing would return to normal as he instead looked to the sea with curiosit=
+y, trusting her words. To have someone rely on her so much, Josemi wanted t=
+o protect him with her life.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">She allowed him =
+to lead her to the gold hairpins, and together, they looked over them, Aste=
+ro pointing out each and every one that he believed Josemi should buy.&nbsp=
+;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"They are all so=
+ shiny," he marveled.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">The shopkeeper, =
+a small old woman with soft eyes, smiled. "Young Lord, pick whichever one y=
+ou'd like."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">His eyes lit up.=
+ "Really?"</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">With a nod, the =
+lady gestured to the entire table.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero's eyebrow=
+s scrunched together in thought, carefully examining each and every hairpin=
+ as if his life depended on it. After a few long minutes, he picked up one =
+that had a bright red jewel in the center.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Can I have this=
+ one?" he asked.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Smiling, the lad=
+y nodded. "Of course."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Bursting with ex=
+citement, he handed the hairpin to Josemi. "For you, mother."&nbsp;</span><=
+/p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">She could not he=
+lp it. Josemi crouched down and enveloped him in a hug, placing kisses on t=
+he top of his head.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"You are the swe=
+etest," she crooned, placing the hairpin on the side of her hair. "What do =
+you think?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero smiled br=
+ightly, nodding in confirmation.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"You look beauti=
+ful, Lady Elessai," said the shopkeeper. "No payment necessary."&nbsp;</spa=
+n></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Josemi shook her=
+ head. "Nonsense, I must," she replied, reaching into her coin purse.&nbsp;=
+</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"It is Young Lor=
+d Elessai's gift to you," said the old woman. "Please accept it kindly."&nb=
+sp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"It's my gift!" =
+Astero exclaimed happily.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Seeming to have =
+no choice in the matter, Josemi accepted the gift, and she and her son cont=
+inued through the bustling marketplace.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">It was a lovely =
+day in the summertime. At the edge of the long street lay the Pearl Sea, th=
+e largest body of water in the north. It stretched across the horizon, spar=
+kling like pearls under the sun. Josemi and Astero walked until they reache=
+d the white sand.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero held her =
+hand tighter. Still skeptical of the water, he tucked closer into his mothe=
+r's side. "Waves," he mumbled.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">She nodded. "Do =
+not be afraid." He did not fear the calm lakes around the manor, nor did he=
+ fear the peaceful rivers that streamed throughout the forest. But he did f=
+ear the large waves, saying they were like monsters ready to swallow him up=
+. "Stay in the shallows, and the waves won't hurt you."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Promise?" he lo=
+oked up, his glistening dark eyes full of fear, but trust.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Josemi crouched =
+beside him, cupping his face in her palm. "Would I ever lie to you?"&nbsp;<=
+/span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">He shook his hea=
+d, and suddenly, the true feeling of being a mother struck her. She always =
+took care of her four younger siblings, as their own mothers met their ends=
+ so soon. Their father was the clan leader, and he could not afford to give=
+ them as much time as he would have liked. She would take them to the marke=
+tplace, make sure they attended their lessons, and played with them wheneve=
+r she could.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">And yet, Zhilin,=
+ Luxian, Meira, and Anji had other people to rely on during those days. The=
+y had the servants, their relatives, their grandparents. All the responsibi=
+lity for their fate never relied on Josemi alone.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero relied on=
+ her. He trusted her entirely. If she said the waves were safe, they were. =
+If she said to not do something, he would not do it. To have someone look u=
+p to her like that, as if she had all the answers in the world... it was a =
+responsibility she always wanted.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">For years, she a=
+nd Kairo wanted a child. And now that she had one, she would protect him wi=
+th her life.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Go on then," sh=
+e said, urging him towards the sea. "Do not be afraid."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero nodded. S=
+lowly, step by step, he made his way to the water, looking back a few times=
+, as if making sure this was okay to do. Josemi gave him encouraging smiles=
+, hoping to show him it would be fun, that he had nothing to fear. She watc=
+hed him take a step into the sparkling waves, and he laughed as they splash=
+ed against his tiny legs. Her heart warmed at the sight.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">A commotion in t=
+he marketplace drew Josemi's attention away from the water. A vendor and a =
+customer were arguing over the price of something, their yells gaining atte=
+ntion from everyone. Other people tried to calm the situation, for the argu=
+ment seemed to be escalating. Josemi thought of going there and settling th=
+e fight herself.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">However, another=
+ commotion drew her attention back. Screaming, followed by running. People =
+ran past Josemi into the marketplace, away from the shore.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Run!"&nbsp;</sp=
+an></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Help!"</span></=
+p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Istora!"&nbsp;<=
+/span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">The blue waves t=
+urned red as the shore turned into a slaughterhouse. People fell one by one=
+, their bodies covering the sand, with more bodies floating in the water. J=
+osemi counted at least fifteen men, all dressed in gray, carrying axes as t=
+hey slaughtered the townspeople. Axes... a tool for lumber in any area of t=
+he sky, but in the south, a weapon.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Amidst the chaos=
+ and bloodshed, there stood Astero, still in the water, an axe against his =
+neck. One of the men held him, a hand on poor Astero's shoulder. Eyes full =
+of fear, he stared at Josemi, a flood of silent tears staining his cheeks.&=
+nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"My lady!" Killi=
+an Elessai, Kairo's cousin, as well as the leader of their army, ran to her=
+ side, a spear in hand. "Are you all right?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Her eyes never l=
+eft Astero. "Evacuate the town. And bring Kairo here." The Istora soldiers =
+were not chasing anyone into the marketplace. They seemed to stay by the sh=
+ore, killing anyone there, but never leaving their place. Perhaps they want=
+ed to make a quick escape through the water.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Kairo's on his =
+way, my lady." Killian followed her gaze and saw Astero, his grip on his sp=
+ear tightening. "This is an act of war."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">It had been a lo=
+ng time since a direct attack like this happened. The Elessai clan was the =
+closest northern clan to the south. To get between regions, one needed to c=
+ross the Pearl Sea, which was at least a two week journey. The Elessai esse=
+ntially protected the north, and with their new forms of weaponry, hardly a=
+nyone dared to attack them outright. Kairo was known for being an excellent=
+ military strategist, having a brilliant technological mind, and being a pr=
+otective leader of the clan. He had no weak points.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Until now. Word =
+had spread of Astero Elessai's existence.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Lady Elessai!" =
+The Istora soldier holding Astero grinned wickedly. "Would you come closer?=
+ I would like the pleasure of viewing your face up close."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"How dare you ad=
+dress our lady so disrespectfully!" Killian started towards him, but Josemi=
+ held out an arm to stop him.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"He has Astero,"=
+ she said quietly. "We cannot be hasty." Josemi started towards the men and=
+ her son, her blood boiling, the sound of the roaring waves and her heartbe=
+at pounding in her ears. Killian walked beside her, and together, the two m=
+ade their way to the sea, her sandals taking in sand, but she paid no mind.=
+ Her vision tunneled on Astero, and the only thought in her head was to get=
+ to him as soon as possible.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">A black ball of =
+fear and dread expanded larger and larger as she made her way towards the s=
+ea. If it were a fair fight, and Astero was nowhere in sight, Josemi was ce=
+rtain she could end him where he stood. However, she had someone to be afra=
+id for.</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">At last, she rea=
+ched the edge of the shore.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Lady Elessai," =
+the man greeted, an easy smile on his face. "How lovely it is to see you. D=
+o you remember me?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Would I?"&nbsp;=
+</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">He shrugged, the=
+ blade of the axe coming dangerously close to Astero's neck. "I suppose it =
+was a forgettable encounter=E2=80=94"</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"What do you wan=
+t?" Josemi snapped.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">The man tsk'ed d=
+isappointedly. "Is that any way to speak to the person who holds your son's=
+ life in his hands?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"I asked you wha=
+t you wanted."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"I wanted to hav=
+e a conversation!" The man's raucous laughter caused the others to join in,=
+ and Josemi had the urge to tear his throat out with her bare hands.&nbsp;<=
+/span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"My lady, please=
+ do not speak to them until Kairo arrives," Killian murmured.&nbsp;</span><=
+/p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">She ignored him.=
+ "Very well. What shall be the topic of our conversation?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Hmmm." The man =
+pretended to think. He nudged Astero, who was trembling, his eyes wide with=
+ fear. "What's your name, boy?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero looked at=
+ Josemi, her heart shattering at how scared he looked. She gave him an enco=
+uraging nod.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-variant-caps: normal; font-stretch: normal; f=
+ont-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust=
+: none; font-kerning: auto; font-variant-alternates: normal; font-variant-l=
+igatures: normal; font-variant-numeric: normal; font-variant-east-asian: no=
+rmal; font-variant-position: normal; font-feature-settings: normal; font-op=
+tical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18)=
+;">Do not be afraid.</p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"A - Astero."&nb=
+sp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"How old are you=
+?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Nine."&nbsp;</s=
+pan></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero had said =
+he was eight years old. However, he did not know the exact date of his birt=
+h, only that he had been born in the summer. Josemi decided his birthday wo=
+uld be the day she found him. To her, it was the brightest day of the year.=
+&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Old enough to b=
+e engaged!" The man patted Astero's head, and Josemi desperately wished she=
+ had her sword in order to cut his hand off. "You could marry our Young Lad=
+y Istora."</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">A marriage betwe=
+en the north and south had not happened in decades, centuries even. Kairo w=
+ould sooner knowingly drink poison than have a southerner as his daughter i=
+n law.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"And what is you=
+r name?" Josemi asked, hoping to remember it as she ran a sword through his=
+ neck.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Zacharia Indol!=
+" He seemed almost too happy, as if he were glad she asked. "I have a son=
+=E2=80=94er=E2=80=94a daughter around his age. Little Zonemia. You two coul=
+d be friends, Astero."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"I doubt it," Jo=
+semi cut in, her anger getting the best of her.&nbsp;&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"So hostile." He=
+ shook his head. Then his eyes brightened. "Lord Elessai!"</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Josemi felt Kair=
+o's domineering presence behind her. At the same time, she noticed the othe=
+r Istora soldiers heading closer to stand by their leader's side. Seeing al=
+l of them together, a monstrous force surrounding little Astero, made Josem=
+i suck in a harsh breath. She needed to get him out of there.&nbsp;</span><=
+/p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"This is a decla=
+ration of war." Kairo's deadly voice seemed to silence even the waves. "The=
+ Istora are ready for such a thing?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Zacharia Indol's=
+ smiling face shifted, darkening. "The Istora have been ready."&nbsp;</span=
+></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"An attack like =
+this will not be forgotten. Lady Istora planned this?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Our lady can be=
+ quite ruthless."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Josemi could not=
+ take it any longer. She did not care for their talks of war or politics. S=
+he could focus on nothing but Astero. "What do you want?" Josemi asked agai=
+n, staring daggers at Zacharia Indol. "Why don't you let him go and duel me=
+ yourself?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">The man smiled a=
+lmost fondly. "Believe it or not, I truly do not want to kill him. I have c=
+hildren of my own."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"You slaughtered=
+ children in this very town today." Kairo raised his voice, sounding angrie=
+r now.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"But now I know =
+this one's name." He ruffled Astero's hair. Then, he looked to Josemi. "And=
+ I have immense respect for Lady Elessai." Zacharia Indol turned to his men=
+. "I'll let this child go."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"General Indol!"=
+ The other men seemed confused as well.</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Our job was to =
+declare war. We killed enough people here." The axe near Astero's neck lowe=
+red, and a wave of relief swept through Josemi. "Besides, the Fen clan have=
+ the best fighters in the sky. The Istora are second only to them." Letting=
+ go of Astero entirely, Zacharia Indol bowed his head. "It would be an hono=
+r to fight you, Lady Elessai."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Josemi desperate=
+ly wanted to. She had been in the Elessai clan for so long that she had bee=
+n itching for a fight. To slay the man who held her son hostage... that was=
+ her life goal as of this moment. "Then let us fight."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Zacharia Indol s=
+hoved Astero forward into the water face-first. "Go to your father. I have =
+business with your mother."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero hurriedly=
+ stood and ran. He stopped in front of Josemi, but her eyes were on Zachari=
+a Indol. She desperately wanted to hold him in her arms and tell him everyt=
+hing would be all right. She wanted to make sure he wasn't hurt, to wrap hi=
+m up in her warm embrace to stop his shivering.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">But Josemi neede=
+d her mind to focus. She would end this man's life first.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Astero went arou=
+nd Josemi and stayed by Kairo's side.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Killian." Josem=
+i could barely recognize her own voice. The voice of Josemi Fen. "Bring me =
+a sword."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Kairo took her l=
+eft hand and placed a sword there. It was her sword, the one she brought fr=
+om her eastern home. Its bright red scabbard comforted her eyes.&nbsp;</spa=
+n></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Unsheathing her =
+sword, Josemi felt the familiar weight of it, as if it were merely an exten=
+sion of her own arm. She had not used this sword in a real battle in years.=
+&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">She handed the s=
+cabbard to Killian. "Get out of here. All of you."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"No." Kairo woul=
+d be the only one who dared say that to her. "Killian, take Astero. Once th=
+e town is evacuated, send more guards here."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Killian nodded a=
+nd took Astero's hand. "What about you?"&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"I'm staying wit=
+h Josemi."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"I will be back =
+as soon as I can with more guards. Forgive me, Young Lord." Killian bent do=
+wn and picked up Astero as if he weighed nothing. Then, he sprinted for the=
+ marketplace. Josemi heard a faint cry from Astero, but she did not turn ar=
+ound.&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">Kairo placed a h=
+and on her shoulder. "Be careful."&nbsp;</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">She turned to hi=
+m, and although his usual eyes were stoic, there was a hint of worry.&nbsp;=
+</span></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style=3D"margin: 0px; font-style: normal; font-variant-caps: normal; fon=
+t-stretch: normal; font-size: 18px; line-height: normal; font-family: Georg=
+ia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: no=
+rmal; font-variant-ligatures: normal; font-variant-numeric: normal; font-va=
+riant-east-asian: normal; font-variant-position: normal; font-feature-setti=
+ngs: normal; font-optical-sizing: auto; font-variation-settings: normal; co=
+lor: rgb(18, 18, 18);"><span style=3D"font-style: italic;">"Do not doubt me=
+, Kairo." Josemi looked to the water, where Zacharia Indol rested his axe e=
+asily on his shoulder, a wicked grin on his face. "I am not afraid."</span>=
+</p><div dir=3D"ltr"></div></body></html>
+--Apple-Mail-8B522846-4E0E-46D0-BBB5-18DD8097F2CA--

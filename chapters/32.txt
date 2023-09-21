@@ -1,0 +1,308 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:ac8:4546:0:0:0:0:0 with SMTP id z6csp2972282qtn;
+        Mon, 9 Jan 2023 14:36:51 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXur49lafEKIbp7e2etdLRCl+sq6e/yV6oy1zkPE2hEoqc3XwIyy7G5AleMt75fSMRknnWaP
+X-Received: by 2002:a05:6214:598e:b0:532:d34:5aa6 with SMTP id ll14-20020a056214598e00b005320d345aa6mr31726905qvb.42.1673303811687;
+        Mon, 09 Jan 2023 14:36:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1673303811; cv=none;
+        d=google.com; s=arc-20160816;
+        b=UFOq2UO4MNGwUi4n/F9HksujD+5ETK2/fBSHnjKd/Yh+6G6R8SgJQbq39ZN/nQA6+L
+         eMrsI3fKad3/CJHMXH9ggFyVXo/kOULLoOS5WObvQMir8SCV9nPB7c72Hiusjvwzp2kM
+         j7mhKpB1f2OjgHWLnC/n1/pE+yR/37+ZRWjx5YkChBgEfmDnXwoEu+FC8kbh4ozriFX4
+         XkgNNWIwlrSrafAeZJ7T9yjrJo3PGjHvP+2zfh5pHpfoD5RmVr+y0QsB+UZErQSxb+nC
+         W8rW1ZbGtDBfDLn5/vYRlopYE2PH3ZU4wBkH5rH9wWCfLMbxSilBy/9SyDHXnYd0WwxJ
+         FPAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=5pvcxr1QpBHPLrWglsGeLMzeq4iUZlS8hb6GGLWnV7M=;
+        b=t7VxT35GFUfBCAsqQd+or8xi9vXxA2QrFpNKoWxwU8byl1ytpeWyl3SE1TrAjFytPf
+         Xf+we2qOL9xIZusdnpikzcwimbApek97PsiEh4Pn8pfoiIDhcxjEBOlZr4DQdG/KRNeE
+         fS6HtRBdjYlHUz+S8XwzoX7TBCV74qTT8gCrLPpO9zcjGkPYaZ+EV0WcnKXQTszjGm2d
+         RlUswJTPyVJF27Pw0S/DEajDiiqnkFja9LyurDHN+QbGNZ/LDxoNaIjNQTK2Cag73bmY
+         8Nf8Uj3KlnhVl/vfCKnIpC7QT0af9ckcC2/OmdvqUg9Ovl5OFz16SpMgZo1TnNS2aovo
+         fREg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=b8DNZw5P;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic308-9.consmr.mail.ne1.yahoo.com (sonic308-9.consmr.mail.ne1.yahoo.com. [66.163.187.32])
+        by mx.google.com with ESMTPS id u5-20020a0562141c0500b00531bf7ba94dsi5321431qvc.461.2023.01.09.14.36.51
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 14:36:51 -0800 (PST)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) client-ip=66.163.187.32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=b8DNZw5P;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1673303811; bh=5pvcxr1QpBHPLrWglsGeLMzeq4iUZlS8hb6GGLWnV7M=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=b8DNZw5P7XCWlTu0WnlxfWAZ0Br2z/8goy/bSqRsOSDkom90q9KHMC6KD5+wsEn8SfVSRCVnbL+Q9ukcKq4EMIjHVJqdIEmW81s6GvQ4uZjVjJ6XcTD23CRXRwKxwCuPfjjD2iH4SjR4IePZhQ64m1G6sD6zEfdowNZk+YTQgi/Dw4l7R/oKrir9f+SrNdUn7wKWzsLA2eIKNgTrNv56fQjTGue73P4AmHk7AgCmRB7yi1KUl14AVcnOJOdScylN0ya9D81Bf2la1rL0YtIgRO9kAJNtZz5cKLgwWw874j3yz1AujneCyAuJNi+fCJKvkz9njCz/YHRIOpK/qSmu6w==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1673303811; bh=Uat1ELthwITquJu4Bdyqz5eR6CtdnCsQoIb/ntXk2vy=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=Rrg6KDV49NOTHRtv/sx4PNp0y3A8wq1600VxjNxmNOy2WaIhzCZmtDZy3IErB3ATYNS0g2CeStgeXM2+ankO85Nlkw2MGKWeXFdY92tOvMZ9FFr1IMgJSF1/ZQ/n6uGajq/5PHloy+9pGQVArPPsX6ZplKj5Uh8YqUrBDU9ndRuMpK7e9gBmn1Im6x3CZtm9LBunbtgWJMRORXaGQVkGj/KLz5WFnurY+GVRJ/U9buea0eJ8LfdcJS14T+eWyeZAdQcFm3Q6J0TS7CGe0yV/Xz3Dd+eb3jLmAKFG/TongYKjxRNF92QnD+KkW4KHit+xM/MTlMeINLK6FNLPpRzXTg==
+X-YMail-OSG: BgeLcpsVM1krSQwasYcW_ixY9Iq7v3fCG1xIHf45qjv0qFwONbnO3kTiNusDach dmhy.dUgkFelXA8tw3aNgoxDvNTOu6pTHlBIiieu.DPAtkX_50FoqsaXHeZU0e5rjdRRMOzCJ8sA ef5LZt0QgBg47D9LC9HeDS5K6u.XgM.2fRiA2FHEgBF02eocQZC0LAI9cZollPh107x5xORBVlag IyQH2rmSoOOr1B4YVBrN0eTEaccBakLwrUJp2c3qWsHM_09tOSd703tWfNJ2d7c41red_87bAsF0 RwMfBrglpmXc1Zs.U2Ks_YWKXDGSU1_ME_2PSJF_Zc3W9wud.YLup5QypNpwXFEPIvoMWm5mQIrS sHJAy7nBKiLwFhuzbwXXuEjtj3Y9TkWKaqpXSzJYtbzLgfd3RwGo0clbXDIVmRcqcGp5gsXIwY1J rxwLfrpF3nao67hgljWCA0X1aItO3MvZVGiIh5n8cdTnuSahBMgzPukrHbtpsWAhb.fLXOFyAN8m 7hd79ydhCgWHGsYHoHDmOq1MEWXfjD.SsrHas9AFSVLUFCzduJ96tcONX1yQjGzAXX5mVCBnncwu cm0.FpdMyxiEQH_xCy_cf1V6VL8nMc8a1UCEyDMK80LjLuZVGx7YGF5JyeTxysAq0t_cjIRQEYoz QEGRVmgWaSoYn.VxsKZL8FmJedOJY8sm9Im0CEJoAODzoEHECYS8vy6okwBmCC2lDpAfTxq02wZj F0__YvetCrJQZSfgQ0BmkPPno5McHJ0CFKC2_XiGPACHrg8Tdrpwq7P4lffwTw9CQ5l6QollTn0P zQADiohBhWTTjOtLL2317X48kDrAgfkYfHeHMB.bcwxLExER3f9TBHVd069TrPWoin6oizrkIFsy uIQrrs5sXH.jEOzfVdAAMs38mfAw5U.SteFTInEKXSB41xYkLAfZek5gMEitUmLaduhanR8zd4pk yH5HyVw2Fz2l7QzMiY97nGBym15B4iBSCsOjOFkgDZCNrQB7.pPHFcPqeXXJ_o9pR8quZUoKGnXw o96CumWSWDBjw1czcOo7IEFbw1wsObGSNX940gmOkmFNpI2WVVXA0yEl8y6NxCLgSIAHUn5nqKP8 .Qd9V4JU1XOcefBZ8S2tGheBPRMi4F0KDkUr9ZKomhIlGVuqTPaGjS96rnMg7iuqRIMcixFR_sT9 xnHXXDjKTn3o1VR6qlMtkkeWexW8rMN4Oq9O5VSI0jIqwdy_yqgtRjDPn7s1qSaSOFgWhv3MvnAE ae.2YElc_KfL9Ko2U_898OuVNL8GMZqyOsi8bUxK71YNdgvdJtf.6NgUv.6jRrD4Nhl6LlfB4CFX w.YBYR7wbL_.AAOIUJe8HH2CrDAuyQoIIF0mYm7Jh1GIHhPeuqaVp1EfjUkcLz2I4VIkgDHd3hc3 N8fKfLDwvYBovfxNP0mG6GQ8F2ubM.imaeD9feefHIZkj4P5Uq0_E79aedP9ZTFhXdlfwhQ4b9pg aLejX1PjExkZT4CzFLl91uuSvj8VTPJjdTy4PFebsNgu3A23aD9_SwhNGcOe0OhG8BwDkL8aY2cQ BAVpk7szbxHdvLEQkCJHSQpjOPhZ2i29gxVEyhAdJYDIWeb62kiUUuEACCx72sozC4KWsvPRZ7FD ePHFXKbcHfDejSLpB9zD9jJXia9OVcSDUa9b2ZqXXuSKmv6bA9NXRihVDe55nWeA.BiYl.xvy1eE ihUCqRS58JrQgeWZZnSlZe0.c8SCoB6YAloF7OyMj5WN5bf4RTY8rsAwKRocCOULKjAHIvYfQ27x YiFfhknARFYLxo2uKbppDxK1dKeduBPbWJp4KiLjLm6tvG3eNSuQQp4UgbadIvm7Vi8dfXvd9oDj CvKxUsbrfs3OETenDN9gftF9fRAObjhDlPCt1tCGScbWWtUkZIFYmhCUicyxamQy40n_V6U.Qw6H 6g1XJo0F1kq1a7mwQYOCqd5id1G9oG4nI4iwHPyMZVZzZVAH0_2z272i6GkEuVwv8fLZh0FZWXls VYR9GgnJv0ABLZgMOG6bI6T42sS9Fe1tZQ3AWwQ8VTAnDByGDO1yaf6ehCHMqqvpZLzj3G2gggkO sOiWxDwBNzQKuRz0O6EH.ncjKCisCpJVElzSXKkteugs4Fxuwsi2.V_ifJ9JljlykYh1rqRrT3Xs Wg3T9tkybecn0LuTkWaXcsAyEDtqj4HEOH9dqBHhp8b4aBT.7_9huEf2Nu2SgaYRqVDVrh9uL1b6 SzQVdHNwxvbpWy10ESkRQ6tMMEUqwMy7FlAj6bT6VAIwi
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.ne1.yahoo.com with HTTP; Mon, 9 Jan 2023 22:36:51 +0000
+Received: by hermes--production-gq1-d898c4779-4ndbh (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 9eb610240f34fbcf761a21faeda8977c;
+          Mon, 09 Jan 2023 22:36:47 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-46E020F6-82A9-47F2-9DFF-FEA651FA24E3
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Mon, 9 Jan 2023 14:36:34 -0800
+Subject: Chapter 32
+Message-Id: <71A79F84-3897-41D3-95BA-D76C906F689C@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20C65)
+References: <71A79F84-3897-41D3-95BA-D76C906F689C.ref@yahoo.com>
+Content-Length: 29975
+
+--Apple-Mail-46E020F6-82A9-47F2-9DFF-FEA651FA24E3
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+With a pail full of water in hand, Willow strolled through the garden of th=
+e Ozario clan manor. Crisanto was usually the one who watered the flowers, =
+along with the gardeners that worked at the manor. However, Willow had acco=
+mpanied Kona to the northern stairway and decided to stay home for a bit lo=
+nger. Being in the Dorina clan made her sick.=20
+
+Crisanto asked her to help water the flowers while she was here. Although a=
+mong everyone in the Ozario clan, Willow was probably the least knowledgeab=
+le about gardening, she was still an Ozario, and she would not let the gard=
+en go unmaintained.=20
+
+There were only a few gardeners with her in the mornings for the past two w=
+eeks. The clan no longer had the money to pay the amount of workers they ha=
+d before, and many of the flowers had died already.=20
+
+"Lady Ozario!" One of the workers in the manor scurried up to her, bowing h=
+er head. "Breakfast is ready for you."=20
+
+Willow nodded, setting down the pail on the thick paving stones that surrou=
+nded the rose bed. She started down the path leading back to the manor, her=
+ bright pink dress swirling around her ankles, her heeled boots clacking do=
+wn the stone pathway. The gardeners bowed as she walked past, and Willow pa=
+id them no mind. It was strange being at the manor alone without Crisanto, =
+to know that she was the one in charge at the moment. One word from her, an=
+d the whole clan could throw a party tonight for no other reason than Willo=
+w wanting it.=20
+
+Still, the life of a clan leader was bound by the clan, and Willow would ne=
+ver want that responsibility, or anything remotely close to it. Crisanto wa=
+s much more suited for that sort of thing.=20
+
+While she did miss him only slightly, Willow quite liked having the place t=
+o herself, which is why she decided to stay for two whole weeks. She lived =
+alone most of her life, except for the times she lived with Kona.=20
+
+They decided to give Kona two months to find Astero Elessai and report back=
+ to them on his whereabouts. While she had faith in Kona's abilities, it al=
+so felt like sending her own child into a blazing fire.=20
+
+Walking up to the main entrance of the manor, Willow gazed at the large whi=
+te doors, wide open for her, and suddenly, an ache erupted in her chest. Wh=
+en she first left home about seventeen years ago, her parents did not try h=
+ard to stop her. They might have known too well what kind of person she was=
+.=20
+
+Ever since she was a child, Willow had a dream to see the world.=20
+
+The thought of staying in her clan forever filled her with dread. The thoug=
+ht of marrying into another clan disgusted her. Being controlled by others =
+was not something she could tolerate.=20
+
+When she was sixteen years old, Willow overheard her parents discussing a p=
+otential marriage between herself and Jerino Dalen, a noble who worked clos=
+ely with the Ozario clan. Not only would she be marrying someone, she would=
+ also be marrying within the clan, and that meant staying there forever.=20
+
+So Willow packed her belongings, said goodbye to her parents tearfully the =
+next morning, and left, destination unknown.=20
+
+She did not even say goodbye to Rosella, whom she would never see again.=20
+
+Her parents always said their doors would be open for whenever Willow decid=
+ed to return. She did not return until she was twenty-eight years old, and =
+their minds were already too far gone to truly welcome her back.=20
+
+She would send them letters, of how she was doing and where she was. For th=
+e first two years she was gone, they reciprocated those letters. They would=
+ tell her that Rosella said hello, or that Crisanto had gotten married.=20
+
+But after, the letters ceased entirely, and she only found out years later =
+that Crisanto had simply refused to send any to her out of anger and spite =
+for leaving.=20
+
+Still, most of the blame was on Willow. She should have gone home after the=
+ letters stopped. While her parents were in pain and agony, while her broth=
+er and his wife had to care for them, while her little sister was gone fore=
+ver, she was in the east viewing the wondrous architecture of the Elmary cl=
+an, in the south buying all sorts of clothes and jewelry in the massive Aka=
+lla clan market, or in the west marveling at the vast forests and worshippi=
+ng the trees with the Wonali clan.=20
+
+She went wherever her heart desired to go with no worries or responsibiliti=
+es, except for Kona. Willow would go back to the Sanu clan every so often j=
+ust to see her and make sure she was okay. The only time she finally decide=
+d to take Kona with her was when Kona had been arrested for an assassinatio=
+n attempt on a Sanu noble. She could no longer stay in that place, and Will=
+ow had grown too attached to just leave her for dead.=20
+
+Willow often wondered why she cared for Kona so much, going back to the San=
+u clan to see her but not to the Ozario clan to see her family. But she soo=
+n realized that Kona needed her. Kona looked up to her, learned from her, a=
+nd relied on her. On the other hand, the Ozario family did not need her. Th=
+ey had Crisanto, born just minutes before Willow, who would take over the c=
+lan, taking on all its responsibilities, and would eventually produce heirs=
+ for the clan to continue. They had Rosella, the youngest, their little ang=
+el who was doted on more than Willow ever was.=20
+
+She understood how selfish her thought process was, but traveling the sky g=
+ave her so much joy throughout the years that she did not even regret it.=
+=20
+
+Coming back home after a long twelve years for the first time, she had not =
+been welcomed with open arms. Crisanto had shut the doors in her face and o=
+nly decided to let her in when Anessia talked him into it.=20
+
+When she saw her parents, what she saw were two husks of the people that us=
+ed to be her parents. Their eyes were either empty, shifting, or filled wit=
+h tears. They were skin and bones, never touching the food on their plate u=
+ntil the servants had to force-feed them, and if they did eat, it would all=
+ come back up. Their cheeks were gaunt, they couldn't walk without help, an=
+d they barely spoke a word. They hardly acknowledged her when she came back=
+ home, and although she knew why, it hurt more than anything.=20
+
+It took a while before Crisanto started speaking to her. In the meantime, s=
+he had grown closer to Anessia, who tried reassuring her that he was just u=
+pset, and that he still cared for her like any sibling would. Anessia had l=
+ost her older brother not too long ago, so seeing the two of them fighting =
+hurt her as well.=20
+
+Their parents passed just a few months later. Crisanto's gut-wrenching scre=
+am woke her from her slumber, and she rushed out of her room to see him on =
+his knees, gazing upwards at their parents hanging from the ceiling. His wh=
+ole body was shaking uncontrollably, and Willow had never seen her brother =
+sob so much in her life. She had no idea what to do but stare at her parent=
+s, feeling her own tears fall. There had been no strength in her legs to mo=
+ve, and soon, Anessia came into the room, gathered Crisanto up into her arm=
+s, and cried with him while Willow stood by the doorway.
+
+The funeral had been long, as most Ozario funerals were. Nearly everyone st=
+ill left in the clan attended, as Darius and Maeryn Ozario were loved by ma=
+ny. It was an opportunity to see people Willow hadn't seen in so long, such=
+ as the her aunts and uncles, her cousins, her family friends. Still, for a=
+n Ozario funeral, the attendance level was quite low. The entire time, she =
+kept watching Crisanto, who greeted everyone politely with a forced smile o=
+n his face, keeping up the pretense of a strong clan leader. She noticed th=
+e tension in his jaw, the harsh breaths he inhaled, the way his eyes wander=
+ed to the sky when he tried not to cry. Willow realized that the burden on =
+him throughout the past ten years had been far too much for him, and she le=
+ft him all alone with that burden.=20
+
+The two siblings stood side by side as their parents were lowered into the =
+ground, and at that moment, it finally hit her that she would never see the=
+ir faces ever again. A pain so strong flooded her heart, and Willow sobbed =
+quietly in her place as the soil slowly covered their coffin. Feeling so lo=
+st and helpless and miserable, in that moment, she felt Crisanto take her h=
+and, subtly reassurance her that he was there. Willow had then thrown herse=
+lf into his arms, sobbing into her brother's nice white shirt, and she coul=
+d feel him doing the same, holding her tightly.=20
+
+From then on, they only had each other. As their grief turned into anger, t=
+hey confided in each other with a plan for revenge. Throughout the five yea=
+rs of planning, it was Willow's job to travel to other clans and discuss th=
+e plan with them. The Silvora clan had been eager, as they always had dispu=
+tes with the Dorina. The Fen clan had a deep hatred for Kairo Elessai. And =
+the Istora clan had been planning to attack the north for years now. Willow=
+ talked to the clan leaders, convincing them it was in their best interest =
+to help.=20
+
+Willow had a purpose now. She wanted vengeance for her family, for the ones=
+ she failed to protect. And for her brother, who struggled so much while sh=
+e was off on an adventure.=20
+
+She would not fail them again.=20
+
+Willow walked through the manor doors, hearing the echo of her shoes in the=
+ vacant corridor. She made her way to the dining hall, where her breakfast =
+waited for her at the end of the long table. The pink table cloth and pink =
+dining chairs gave her comfort as she sat down and ate her breakfast alone.=
+ After eating, she would head back to the Dorina clan, where the plan for a=
+ sky-wide search for Astero Elessai was being conducted.=20
+
+Although the Ozario clan was religious, believing in one god that watched o=
+ver them all, Willow had not been a devoted follower of their faith for a l=
+ong time. But she thought of Kona searching for the missing Elessai heir an=
+d decided she needed all the help she could get. So Willow prayed to the go=
+d her family believed in. She prayed for Kona's safe return from hell.
+
+Sent from my iPhone
+--Apple-Mail-46E020F6-82A9-47F2-9DFF-FEA651FA24E3
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">With a pail full of water in hand, Willow strolled through the garden of the Ozario clan manor. Crisanto was usually the one who watered the flowers, along with the gardeners that worked at the manor. However, Willow had accompanied Kona to the northern stairway and decided to stay home for a bit longer. Being in the Dorina clan made her sick.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Crisanto asked her to help water the flowers while she was here. Although among everyone in the Ozario clan, Willow was probably the least knowledgeable about gardening, she was still an Ozario, and she would not let the garden go unmaintained.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">There were only a few gardeners with her in the mornings for the past two weeks. The clan no longer had the money to pay the amount of workers they had before, and many of the flowers had died already.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Lady Ozario!" One of the workers in the manor scurried up to her, bowing her head. "Breakfast is ready for you."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Willow nodded, setting down the pail on the thick paving stones that surrounded the rose bed. She started down the path leading back to the manor, her bright pink dress swirling around her ankles, her heeled boots clacking down the stone pathway. The gardeners bowed as she walked past, and Willow paid them no mind. It was strange being at the manor alone without Crisanto, to know that she was the one in charge at the moment. One word from her, and the whole clan could throw a party tonight for no other reason than Willow wanting it.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Still, the life of a clan leader was bound by the clan, and Willow would never want that responsibility, or anything remotely close to it. Crisanto was much more suited for that sort of thing.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">While she did miss him only slightly, Willow quite liked having the place to herself, which is why she decided to stay for two whole weeks. She lived alone most of her life, except for the times she lived with Kona.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">They decided to give Kona two months to find Astero Elessai and report back to them on his whereabouts. While she had faith in Kona's abilities, it also felt like sending her own child into a blazing fire.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Walking up to the main entrance of the manor, Willow gazed at the large white doors, wide open for her, and suddenly, an ache erupted in her chest. When she first left home about seventeen years ago, her parents did not try hard to stop her. They might have known too well what kind of person she was.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Ever since she was a child, Willow had a dream to see the world.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The thought of staying in her clan forever filled her with dread. The thought of marrying into another clan disgusted her. Being controlled by others was not something she could tolerate.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">When she was sixteen years old, Willow overheard her parents discussing a potential marriage between herself and Jerino Dalen, a noble who worked closely with the Ozario clan. Not only would she be marrying someone, she would also be marrying within the clan, and that meant staying there forever.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">So Willow packed her belongings, said goodbye to her parents tearfully the next morning, and left, destination unknown.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She did not even say goodbye to Rosella, whom she would never see again.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her parents always said their doors would be open for whenever Willow decided to return. She did not return until she was twenty-eight years old, and their minds were already too far gone to truly welcome her back.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She would send them letters, of how she was doing and where she was. For the first two years she was gone, they reciprocated those letters. They would tell her that Rosella said hello, or that Crisanto had gotten married.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">But after, the letters ceased entirely, and she only found out years later that Crisanto had simply refused to send any to her out of anger and spite for leaving.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Still, most of the blame was on Willow. She should have gone home after the letters stopped. While her parents were in pain and agony, while her brother and his wife had to care for them, while her little sister was gone forever, she was in the east viewing the wondrous architecture of the Elmary clan, in the south buying all sorts of clothes and jewelry in the massive Akalla clan market, or in the west marveling at the vast forests and worshipping the trees with the Wonali clan.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She went wherever her heart desired to go with no worries or responsibilities, except for Kona. Willow would go back to the Sanu clan every so often just to see her and make sure she was okay. The only time she finally decided to take Kona with her was when Kona had been arrested for an assassination attempt on a Sanu noble. She could no longer stay in that place, and Willow had grown too attached to just leave her for dead.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Willow often wondered why she cared for Kona so much, going back to the Sanu clan to see her but not to the Ozario clan to see her family. But she soon realized that Kona needed her. Kona looked up to her, learned from her, and relied on her. On the other hand, the Ozario family did not need her. They had Crisanto, born just minutes before Willow, who would take over the clan, taking on all its responsibilities, and would eventually produce heirs for the clan to continue. They had Rosella, the youngest, their little angel who was doted on more than Willow ever was.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She understood how selfish her thought process was, but traveling the sky gave her so much joy throughout the years that she did not even regret it.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Coming back home after a long twelve years for the first time, she had not been welcomed with open arms. Crisanto had shut the doors in her face and only decided to let her in when Anessia talked him into it.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">When she saw her parents, what she saw were two husks of the people that used to be her parents. Their eyes were either empty, shifting, or filled with tears. They were skin and bones, never touching the food on their plate until the servants had to force-feed them, and if they did eat, it would all come back up. Their cheeks were gaunt, they couldn't walk without help, and they barely spoke a word. They hardly acknowledged her when she came back home, and although she knew why, it hurt more than anything.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">It took a while before Crisanto started speaking to her. In the meantime, she had grown closer to Anessia, who tried reassuring her that he was just upset, and that he still cared for her like any sibling would. Anessia had lost her older brother not too long ago, so seeing the two of them fighting hurt her as well.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Their parents passed just a few months later. Crisanto's gut-wrenching scream woke her from her slumber, and she rushed out of her room to see him on his knees, gazing upwards at their parents hanging from the ceiling. His whole body was shaking uncontrollably, and Willow had never seen her brother sob so much in her life. She had no idea what to do but stare at her parents, feeling her own tears fall. There had been no strength in her legs to move, and soon, Anessia came into the room, gathered Crisanto up into her arms, and cried with him while Willow stood by the doorway.</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The funeral had been long, as most Ozario funerals were. Nearly everyone still left in the clan attended, as Darius and Maeryn Ozario were loved by many. It was an opportunity to see people Willow hadn't seen in so long, such as the her aunts and uncles, her cousins, her family friends. Still, for an Ozario funeral, the attendance level was quite low. The entire time, she kept watching Crisanto, who greeted everyone politely with a forced smile on his face, keeping up the pretense of a strong clan leader. She noticed the tension in his jaw, the harsh breaths he inhaled, the way his eyes wandered to the sky when he tried not to cry. Willow realized that the burden on him throughout the past ten years had been far too much for him, and she left him all alone with that burden.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The two siblings stood side by side as their parents were lowered into the ground, and at that moment, it finally hit her that she would never see their faces ever again. A pain so strong flooded her heart, and Willow sobbed quietly in her place as the soil slowly covered their coffin. Feeling so lost and helpless and miserable, in that moment, she felt Crisanto take her hand, subtly reassurance her that he was there. Willow had then thrown herself into his arms, sobbing into her brother's nice white shirt, and she could feel him doing the same, holding her tightly.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">From then on, they only had each other. As their grief turned into anger, they confided in each other with a plan for revenge. Throughout the five years of planning, it was Willow's job to travel to other clans and discuss the plan with them. The Silvora clan had been eager, as they always had disputes with the Dorina. The Fen clan had a deep hatred for Kairo Elessai. And the Istora clan had been planning to attack the north for years now. Willow talked to the clan leaders, convincing them it was in their best interest to help.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Willow had a purpose now. She wanted vengeance for her family, for the ones she failed to protect. And for her brother, who struggled so much while she was off on an adventure.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She would not fail them again.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Willow walked through the manor doors, hearing the echo of her shoes in the vacant corridor. She made her way to the dining hall, where her breakfast waited for her at the end of the long table. The pink table cloth and pink dining chairs gave her comfort as she sat down and ate her breakfast alone. After eating, she would head back to the Dorina clan, where the plan for a sky-wide search for Astero Elessai was being conducted.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Although the Ozario clan was religious, believing in one god that watched over them all, Willow had not been a devoted follower of their faith for a long time. But she thought of Kona searching for the missing Elessai heir and decided she needed all the help she could get. So Willow prayed to the god her family believed in. She prayed for Kona's safe return from hell.</p><br><div dir="ltr">Sent from my iPhone</div></body></html>
+--Apple-Mail-46E020F6-82A9-47F2-9DFF-FEA651FA24E3--

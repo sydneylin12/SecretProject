@@ -1,0 +1,513 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:6504:1481:b0:228:cc3d:d7a5 with SMTP id m1csp374415lto;
+        Tue, 2 May 2023 21:04:05 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7aq9GGEm1UWUJP4LUv8Smh6Jq8OrUrRqa30jdR6E3O4ovpd+paV2bpexFkIMUUgIEUgbdd
+X-Received: by 2002:a05:6214:d04:b0:56e:aeaa:95b2 with SMTP id 4-20020a0562140d0400b0056eaeaa95b2mr7838007qvh.9.1683086645593;
+        Tue, 02 May 2023 21:04:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1683086645; cv=none;
+        d=google.com; s=arc-20160816;
+        b=rhMZxY6L6kUKc6NAYT4+vV7Z9t13fzMtTOOlEc8jveptm59BjqN8F8LOelaq+/bgq0
+         R9+hGtv/0Aw3uPx2kA4yHpVeCyv3Z/fO8GRyS9SNj3xuwJ6qvB++1EhTgQeDC68rzBlk
+         LKG0GmlCrjKckiYyJappXXeh7QSYylBW2hA4qSDECBi2bfbJmAcq8bv0iqlkYKxs2Zjk
+         oRrRlE89jVSq9LMu/riWCIU2A/4LAUo7dhaKHLAJA6nMgu1WQKBVNml3vSkLcatMNwZZ
+         kSl0gyD0+RbVrzsHR71p38HIePsb3PzqBrHu4Nbh+U/RUTZu1xCXmtMEh575NYoKQ8Hp
+         cjgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=kzraIy+bJTbheU1KDuR72ywMFajlb2ZPgSibpG5RSxQ=;
+        b=mpCO2+l2l/mvAeFtflLUTEpMNbXzXxShr1XK00HVKJRASAL7lb/QxlxHFYkTOPBMkN
+         87NOanjQ6VeY+VCnO24BVQNopy2hUw1jH3djBhWTHSdb9BdBvH6NXnh6KbWIhtMt+Zxu
+         McEnj5OsGQqb3pIheV7M6wMejGCrLPSSTz+6mtBoLfEaocrjEKpR7G+Hr7r0yod9eM+f
+         1jMWCim/Uzc7UHREsKpNfSYlrm7aq9iDEV8XJfONP5sbNELO3KtWQvo9nblQOoYAOWr2
+         Z3inB8b7jF+s1inapqht80RsJZ5yJyKVI3Qc9YklOQgxBPI0IuDJwIL3UMirbdUzsRm2
+         OoQg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=DlKa00Fa;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.184.44 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic317-33.consmr.mail.ne1.yahoo.com (sonic317-33.consmr.mail.ne1.yahoo.com. [66.163.184.44])
+        by mx.google.com with ESMTPS id ed6-20020ad44ea6000000b0060383305b81si17024386qvb.22.2023.05.02.21.04.05
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 May 2023 21:04:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.184.44 as permitted sender) client-ip=66.163.184.44;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=DlKa00Fa;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.184.44 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1683086645; bh=kzraIy+bJTbheU1KDuR72ywMFajlb2ZPgSibpG5RSxQ=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=DlKa00FaRBXjSYlOgxgCXiKW1tCYF0Eoz847s5nRMnT4hg50G8T1IPtd8vlM6kEO1t2O0q3t6R5nszYMHXKuXP4vHnN5viNRIbyDY987yRYBHtzM2iG0mzVuEK9AI2N+IbNpxM/EvtXJpiaRNAbzAm5UsTN0rl6uXkEl8R05fPGLz/XNduDWDVtxOobXug5t1Zb4rXO7joCW05F4sCmohNNqpV5d8hYzQ536hJnx4yYwuRvIrutcKBdNkjyH4kC+pl8k9xTJFdHC3ouKSvI/1gm9zGa9Hx+F8fTRAZtbBZ0/GWnsygWWXSXfQfuKLUy3SIGn8R8rZIX73Xgm2FUl4Q==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1683086645; bh=KQUovX0gFNNfgC8bUuswwJtuOtspOwqHUbX8bskR8aG=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=C+6Z6BPNJCy/8aS5EJhK9VwUbSAuBxDpKegf14lnosYhVZjZZKRk2ltGOJAOxQf5lpL6IiRvRWfCNGFUFBXpH89yna29Wo8mVLxLAMkOIjhjd9eL7UjD/bT/QlOyzG/prlgJ8Lmt5K6+PVVUc77gwQwd+QKI9Sa/uuOdNYgnULb0hCqEMRItpx4iFpkobkk+12setDZKC9t2TjsEJftvTl3/xoh1rDFjflrScDoP0nrbBC6fSDYl1oCFPdQNYmSqljj05FTQ6p0i98FWGzP6r3jpgVrvG0j3dPwyoy5qkYraJLXEJvfI8Y/x2OXge2XntagZ0chTsXcjSvBj3sOPHQ==
+X-YMail-OSG: t4W_X8YVM1kBIFiQ97hCAib_qHpAOjH2nHvCVlKSMUZFlnJwBqoEboxXznlVQst pwbtPsL0VUZGTZWeShjoqELVi95Yrx7dBJEQ6aaAv9ehB4TVbg_yl3nqwMAw5wTx1zEdgJX_KBgu cRlQ9EJixrtXysHspX2vBRDPELS3SeMbq0HIT8.VPzMSUTOHiKTt0Xsvv1prHGLEknifR8l0AgsN kNjROwiJzAV03RexQed.MOKuWe8J3_X147h9uJm_KpWoMUu1tFNsy58ZPjCfZTPPlapeWQKqwgUG i1jYJUua6qu.RtesctX85VDH5h7gbonSoYURRKKkQHnE0ZA6bWeJcGDzfLahinX.y0dY7lhewfan oHsA1eR60hKSnEir9w9JKfYHJ_10_H9p7Ee_FdrRnco32mD3nMpKy8Qerqi45zzgc4DfgpKny8W8 TWY0vuA7PwyRtHGR8s4ukbHpV5LenccfDHu_3_aVqtwtlME02.m8CEGzhihCuNwNyvmQaKOS_fMt ZR2p4wbt9fnDXH6z7IRCAXm5_81cDkVJLmF7ItI8zCOoIY6RvFLnHKwPUlijJFHwRnRXs8TtwFnw BjaSMbR9UFE1YvjJroZAvLtRdJAMAz_vTIwKsHRQcAaBjrPhpEWrNTgEfh8pVRMBrE7JF0a6cJO8 EdsKI.gyYdliiJ3gJBAH2CX3eq6yVI1KXhu672XT3FIZmefz9B5yx4yQe0HX8niGhvZTI2pZjIwx 1JIeOolrZS15SQzIjDicS8p.dqbAlkZHdM.DQ12z6vWGUuxd62NZNjThCOTMFrRCgUlllF3MkP_H 6jc9gxDw4mq0Wz1RvNZAjGRi9UT265X_Vg3RYXAjYmx0PRKsDnjhukRnaK1.P2VOe7HOP2py0TK7 Fz7ulrPX.XenHmLIiLFWmAxfKZALRDR7ExaBVSyAaqDQ4jDO8bs59ILqPb9N9MH7E79.iXFgyESJ y2VDtl2lx7huyZA4Fzss2CpD2a12kXl2NlsnMBE.8_FKudbsE_ZkvLb_TeYeqh4k0dH9kOfsT406 Yak5fTA3m_aQWbYDHbxy02ub1eAyMlxHdFo3J3bKFW4IGXqQA8PeY2XcYRtz8RszWKXguaO9RC35 K_gTjEjy16jZFo4QPcDWVPLikGYPPkdswRsdFtLj97FIIovnHHD7lh8_dhtPxs8USEjD9.iED29k 2tgsE1HPjhE6hGw7I1A_VopvDYNiwKAnOqvwSrytBn93_6KvimJ7627WIGHwfVqm_kUQH3Ngo4fP npKXoyI9M5B5qI5GUyEAxUd4sQJ78zzoszWqpTvXuxdgMaJfo8pSQVa8CkxE.wvjtA8yXteHBpgB D8Pf3qPp1ie5j.lM3ywBXw0B9UXqC.JnafrcTYBJIpAHNJ_P7GDvydzvmd7rn.TiWlPZBB9aJ7oD rDoKfxbgxLb5YH7Ehjdc.jzxd1DhOvaXMD8y3NvcsXUu5qR6oyTI_wcRxeZPBMgdqPL5Fo4.J_s5 UbL8cpxwRfGzlLorR8dGOn7vl6dJFvcQJxH2xxJsM5NnnyuLYKgAY4kZtnpxyLIcw6S5WA9xeGBr rWeW.1qD9Hz9OtsTQTsRkZLy69n59v5hRNUte2e5PQH0SJ6Zq1w6D1bbxvwBc0IG4fhn3Ya_PAYQ r8NSm98N0GXCYcordMJsK3JRHa4ehv2E92JFcuENl1o_1Tx8M2c6UH85WU06OZZOsIDHE6snT.1s sbwJloV42_1VkTPNNTED5E1RIn_C6nExsSy8H.HvDCFfN.8Fj5B7UVowHEvlMDN9z4qNh9iVluwG naCSFk8S2nX_p6TmMyw1LpzgvHveQmhe5TYDm2nCAhoy9gIoK0hKVCbRsbKgraj9xiRUiYyIxpUc jVYTxayY0vXcx0._ZT0khho34KY4CeG7rljJJw4lhJObZic8JqV0tB8Fyzz88TpRytI09Maj1u5t ZxBt1L4H.HTHKBlLJ5tNbPh_AOdm5jZ4V_KpJDVaaIIB6EGjxq7fiRjQDD_X45EcNDzR2JHx3o0D KH1zervvbuahW2my7KenUsYTUhaUp5t2GvYFO79zSLThFTgkPBqVJWbfQR7VM8.SX0Jvs_JZiQjg bMMhwdSK6RYUTdzBdz72n1CLm1iRDUVi_xPEOKg5ulseLmrOh.k5qoSCaK1Mz1geH0Y.g7.937Zv NELPTOuk40MKTHKCh7N_XmNo.LxbLlAIHRJxW0CUgfZkeInNihtvaCiaHomPj6uZeleInwIb2q1A oII1aUxw4xzrUNchjy70M9ajvd67gouB1OVNeLdIvCtGQ5Cqp.6UNzeMH.k8-
+X-Sonic-MF: <carissa71555@yahoo.com>
+X-Sonic-ID: 59e3409e-90cb-4d59-bbd6-1325f8ca4d70
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic317.consmr.mail.ne1.yahoo.com with HTTP; Wed, 3 May 2023 04:04:05 +0000
+Received: by hermes--production-ne1-7dbd98dd99-qthmr (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID cebef1578c43d741b955d35cd7999da1;
+          Wed, 03 May 2023 04:04:00 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-B7ACDCCF-ABAC-49A3-806A-F9F1CC2E84BE
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 2 May 2023 21:03:48 -0700
+Subject: Chapter 36
+Message-Id: <A73875FA-206A-4D04-A2D2-63B4D43328C5@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20D67)
+References: <A73875FA-206A-4D04-A2D2-63B4D43328C5.ref@yahoo.com>
+Content-Length: 50360
+
+--Apple-Mail-B7ACDCCF-ABAC-49A3-806A-F9F1CC2E84BE
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+"Well?" Kairo demanded.=20
+
+The messenger shook his head in sorrow. "Nothing."=20
+
+"Keep looking," he insisted, pacing back and forth with an angry stride. "E=
+lessai spies will remain in the south until Astero is found."=20
+
+"Yes, my lord." The messenger bowed his head and left the room quickly, per=
+haps eager to escape Kairo's wrath.=20
+
+Josemi sat in the blue cushioned chair by the window, watching her husband =
+pacing, growing even more concerned.=20
+
+"It has been two weeks." Kairo finally pulled out the chair from the vanity=
+ and sat, slumped over. "Where is that stupid son of ours?"=20
+
+Having been surrounded by endless blue for two weeks, Josemi desperately wi=
+shed to go home. She rubbed the fabric of her purple dress, ingraining the =
+texture into her fingers. The color gave a sense of comfort, as the last th=
+ing she had seen Astero wear were his purple robes, along with the purple r=
+ibbon she had given to him long ago to wear in his hair when he decided to =
+grow it out. Josemi clung to the memory.=20
+
+"If Astero is found in the south, there will be war," announced Kairo. His =
+eyes met Josemi's, and there was a questioning look in his gaze. "Why are y=
+ou so quiet?"=20
+
+Arranged marriages were natural among clan nobles. And yet, she had no idea=
+ the marriage with Melody would cause Astero so much grief as to run away. =
+Kairo was mostly to blame, for he had arranged the whole affair with Lady D=
+orina, but Josemi chastised herself for not seeing how troubled Astero beca=
+me. She felt as if she had failed her own son.=20
+
+"I..." Josemi took a deep breath. "I think we should call the marriage off.=
+"=20
+
+Kairo scoffed, his eyes turning darker, glaring at Josemi with an intensity=
+ that made her shrink back. "Do you now."=20
+
+The way he spoke those words made Josemi's blood boil. She narrowed her eye=
+s. "Yes, I do."=20
+
+Kairo's jaw tightened. "This marriage was agreed upon years ago. We are not=
+ calling it off now."=20
+
+Josemi shook her head in disbelief. "You argued with Astero the day before =
+the wedding, didn't you? What did he say to you?"=20
+
+The sudden screech of the chair legs against the floor made Josemi flinch. =
+Kairo stood up in a flash and made his way over to her, towering over Josem=
+i like a monster. Unconsciously, she shrunk back into the chair cushions, c=
+lutching the purple fabric of her dress until her knuckles turned white.=20
+
+He glared at her, a fire in his gaze so fierce, so unlike the Kairo she use=
+d to know. "Josemi." She did not like the way he said her name. "Astero is =
+not our child."=20
+
+All Josemi could hear was the blood rushing in her ears. She looked up at h=
+im through hooded eyes. "What did you say?" she asked, her voice scarily qu=
+iet.=20
+
+Kairo seemed taken aback, but after a short moment, he regained the anger h=
+e had before. "Astero is not our child," he snarled.=20
+
+"How dare you such a thing," Josemi bit out, rising from her chair. She was=
+ much shorter than Kairo, but she was not afraid of her husband. "Where is =
+this coming from?"=20
+
+"He was an orphan that you found!" he shouted, a sudden burst of rage. "Kal=
+wen was generous enough to let Melody marry him. Do you understand that no =
+other clan leader wanted to let him marry into their clan?"=20
+
+"He is your heir. He will lead the Elessai, blood-related or not."=20
+
+"But that does not matter if he cannot continue the Elessai line!"=20
+
+Josemi stared at her husband incredulously. "Do you not care for him at all=
+?"=20
+
+Kairo's voice quieted, yet the sounded roared in Josemi's ears. "If he trul=
+y did run away, he is dead to me." Kairo turned on his heels and quickly st=
+rode out of the room, slamming the door behind him.=20
+
+Josemi slumped back into her chair, breathing a heavy sigh. Perhaps the yea=
+rs did change him, but Josemi knew it was not entirely his fault. As much a=
+s they loved Astero, not many clans were willing to allow their members to =
+wed him. It was common knowledge that the Elessai heir was not blood-relate=
+d to either Kairo or Josemi, which was certainly a rare case. However, Jose=
+mi could not bear children, and both of them knew there would be no other o=
+ption. At first, Kairo might have been optimistic that other clans would be=
+ open to Astero. However, he grew to realize that was not the case. Yet, Ka=
+lwen Dorina accepted the marriage, and Melody clearly adored him. So why di=
+d the relationship between Astero and Kairo grow so strained?=20
+
+The vial of the mystery liquid Willow gave her was kept hidden among all th=
+e other vials on her vanity, blending in perfectly. However, Josemi could n=
+ever mistake it for anything else. It haunted her dreams, almost as if it w=
+ere a poison meant for her.=20
+
+Poisoning Kairo in exchange for her son. Perhaps he didn't run away. Perhap=
+s Willow lied, and the Ozarios had kidnapped him. Yet, there would have bee=
+n no reason for her to lie. Josemi would have cooperated either way. Anythi=
+ng to get her son back.=20
+
+Unlike Kairo, Josemi never thought of Astero as just an orphan she took in.=
+ She always believed meeting that boy was fate. The universe failed her, ta=
+king away her ability to conceive a child, but in return, it sent Astero he=
+r way. Kairo was forced into her life, taking her away from her family and =
+culture, forcing her to become his wife. Astero was someone she chose to be=
+ in her life, someone she wanted, someone who needed a home as much as she =
+needed a true home in the Elessai clan.=20
+
+She would not lose that home.=20
+
+Josemi stood abruptly, gliding across the room to the door. She needed to f=
+ind out who Willow truly was, what Lord Ozario's connection was to her, and=
+ why they wanted to take down all the northern leaders.=20
+
+Wrenching open the door, Josemi quickly made her way through the halls, tha=
+nkful she wore flat sandals rather than heeled shoes. The only sound that r=
+esonated in her ears was the rush of the air.=20
+
+The main room of the Dorina clan was a church. Rows and rows of chairs line=
+d both sides of the room, with a walkway in the middle leading up to the al=
+tar. Kaleidoscopes of stained glass decorated the sides, illuminating the e=
+ntire room in iridescence when the sunlight shined through. Tapestries of r=
+eligious figures adorned the walls, and blue carpet lined the entire space,=
+ giving the room a burst of bright color that made Josemi pause in awe when=
+ever she stepped in here.=20
+
+The room was big enough to fit at least a hundred people, yet there was onl=
+y one person in there. Kalwen Dorina stood a few paces before the altar, he=
+r head bowed and hands clasped together in prayer. Her blue dress blended i=
+n with the floor, and Josemi might not have seen her if it weren't for her =
+long, stark white hair.=20
+
+Although Josemi was not religious, she knew it would have been rude to inte=
+rrupt someone during prayer. She remained silent until Lady Dorina lifted h=
+er head and made a gesture with her hands that perhaps signified the end of=
+ her prayer session. Lady Dorina looked over her shoulder at Josemi, a grim=
+ smile on her face.=20
+
+"What can I do for you, Lady Elessai?" she asked, slowly walking towards Jo=
+semi.=20
+
+Josemi bowed her head slightly. Kalwen Dorina was the eldest clan leader in=
+ the north, and in the Fen clan, age was important in determining hierarchy=
+. Although technically, the two of them were equal in status, Josemi regard=
+ed Lady Dorina with the utmost respect. "I apologize for interrupting."=20
+
+"I was just about finished," Lady Dorina reassured. "Is something the matte=
+r?"=20
+
+Too many things. "What do you know about the Ozarios?"=20
+
+Something in Kalwen Dorina's expression changed. Her eyes seemed to darken,=
+ her jaw tightening. She was on guard. "What do you mean?"=20
+
+Josemi gave a fake smile, laughing slightly to ease the tension. "I am afra=
+id I do not know much about Lord Ozario. He hasn't attended meetings for ye=
+ars."=20
+
+"He was in mourning," replied Lady Dorina swiftly. "The passing of Darius a=
+nd Maeryn Ozario was hard on the entire clan."=20
+
+"I recall receiving an invitation to their funeral, but Kairo and I were in=
+ the Elmary clan at that time and missed it." Josemi's heart ached for the =
+kindhearted Ozarios who ended their own lives. "Were you able to attend, La=
+dy Dorina?"=20
+
+She stiffened. "I... could not, unfortunately." Kalwen Dorina took a step t=
+o the side, turning her entire body away from Josemi, clearly indicating th=
+e conversation was over. "I'm sorry, but you'll have to excuse me, Lady Ele=
+ssai. I must check on my granddaughter; she needs me at the moment."=20
+
+"Of course." Josemi stepped aside to let her pass.=20
+
+The moment Kalwen Dorina left the church, the smile on Josemi's face droppe=
+d, and her suspicions rose. She turned and gazed at the tapestries on the w=
+all, wondering if lying was permitted in Dorina beliefs.=20
+
+"I did not take you as a religious woman, Lady Elessai," commented a snarky=
+ voice.=20
+
+Josemi closed her eyes, already feeling exhausted. "Lady Lem, what a pleasa=
+nt surprise."=20
+
+Yanni Lem was almost as old as Kalwen Dorina. However, Josemi did not respe=
+ct her nearly as much.=20
+
+"Kalwen walked out of here looking like she had seen the devil himself," La=
+dy Lem mused. "What did you do?"=20
+
+Josemi sighed, reluctantly turning around to face the former leader of the =
+Lem clan who wore an irritating smirk on her face. Josemi's initial instinc=
+t was to make up some excuse like Lady Dorina and leave the situation entir=
+ely. But then it occurred to her that if she wanted answers, who would be m=
+ore willing to share the latest gossip and rumors than Lady Lem, who thrive=
+d on that sort of thing. "Lord Ozario. What do you know about him?"=20
+
+Yanni Lem gave a surprised laugh. "You asked Kalwen about him? No wonder sh=
+e looked so haunted."
+
+"What did she do to him?"
+
+"She did nothing to him, really." Yanni Lem strolled past Josemi, glancing =
+at the surroundings of the church. "Ever since Darius and Maeryn Ozario die=
+d, the Ozario clan fell apart and is now reduced to almost nothing." She sa=
+id these words so nonchalantly, as if the fall of a clan wasn't a big deal.=
+=20
+
+"That doesn't explain much," replied Josemi.=20
+
+Lady Lem spun around and quite obviously rolled her eyes. "It all started w=
+hen their little girl was sent to the ground."=20
+
+That, Josemi did remember.=20
+
+"Clans send criminals down to the ground. But a clan having to send their o=
+wn daughter down there?" Yanni Lem laughed incredulously. "Can you imagine =
+the shame?"=20
+
+"Is that why they...?" Josemi could not even get the words out. "I... I hea=
+rd that they had been ill."=20
+
+"Would you not become ill if your son was sent to the ground?"=20
+
+She suddenly remembered that Astero was indeed on the ground, and Josemi gr=
+ew very cold at the grim reminder.=20
+
+"I needed to speak with Kalwen, but I suppose she is busy." Lady Lem sighed=
+, and Josemi was irked at how carefree she seemed. "Well, I shall leave you=
+ to your prayer, Lady Elessai." She smiled in a way that made Josemi want t=
+o strangle her, but before she could act on any impulsive thoughts, the for=
+mer leader of the Lem clan left the way she came, the green skirts of her t=
+raditional Lem robes swirling like a puddle around her feet.=20
+
+The pieces of the puzzle slowly began to come together in Josemi's mind. Cr=
+isanto Ozario had a plan, and Josemi did not know enough about him to truly=
+ be aware of what that plan entailed.=20
+
+She needed to find him.=20
+
+Josemi hurried out of the church and stepped foot outside. She had no idea =
+where Lord Ozario's room was located, but he had to be somewhere in the man=
+or. Workers milled about, cleaning the walls of the manor, watering the pla=
+nts, bringing trays of food and dishes across sections of the whole place. =
+Some decorations from the wedding remained, and Josemi felt for the poor se=
+rvants who put up the streamers and decorations only to take them down.=20
+
+A flash of yellow appeared in the corner of her vision. Safiro Jourman, dre=
+ssed head to toe in extravagant yellow garments, strode up to Josemi with a=
+ kind smile. Of all the northern leaders, Josemi liked him the most. She bo=
+wed her head. "Lord Jourman."=20
+
+He did the same. Amidst the bright sunlight, his yellow clothes, and the sm=
+ile he always wore, Safiro Jourman glowed. "Lady Elessai."=20
+
+"May I ask you something?" Josemi inquired.=20
+
+"Of course."=20
+
+"Where is Lord Ozario staying?"=20
+
+Unlike Kalwen Dorina, who stiffened at the mention of that man, and unlike =
+Yanni Lem, who laughed and did not take the issue seriously, Safiro Jourman=
+ frowned sadly. It struck Josemi how rarely he displayed anything on his fa=
+ce but a smile, and she grew more curious.=20
+
+"I believe he is in the east wing of the manor," said Lord Jourman carefull=
+y, seeming very cautious of his words. "Did you need to see him?"=20
+
+Josemi nodded. "I have matters to discuss with him." She supposed it wouldn=
+'t hurt to ask Lord Jourman either. "Have you known Lord Ozario long?"=20
+
+He shook his head, looking off to the side towards the garden, where flower=
+s were in bloom. "I knew his father well. Darius was my greatest friend."=
+=20
+
+Josemi debated whether or not to ask, but she could not help it. "Did you a=
+gree to send his daughter to the ground?"=20
+
+Lord Jourman flinched, his eyes looking haunted. "Of course not. But Lord E=
+lessai, Lady Lem, and Lady Dorina had voted in favor of that. There was not=
+hing I could do."
+
+It all became so clear.=20
+
+"When I first met Crisanto Ozario, I saw the look in his eyes. Pure hatred.=
+" Lord Jourman looked to Josemi, his gaze staring into her soul. "I would n=
+ot blame him if he despised us all."
+
+--Apple-Mail-B7ACDCCF-ABAC-49A3-806A-F9F1CC2E84BE
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Well?" Kairo demanded.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The messenger shook his head in sorrow. "Nothing."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Keep looking," he insisted, pacing back and forth with an angry stride. "Elessai spies will remain in the south until Astero is found."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Yes, my lord." The messenger bowed his head and left the room quickly, perhaps eager to escape Kairo's wrath.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi sat in the blue cushioned chair by the window, watching her husband pacing, growing even more concerned.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It has been two weeks." Kairo finally pulled out the chair from the vanity and sat, slumped over. "Where is that stupid son of ours?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Having been surrounded by endless blue for two weeks, Josemi desperately wished to go home. She rubbed the fabric of her purple dress, ingraining the texture into her fingers. The color gave a sense of comfort, as the last thing she had seen Astero wear were his purple robes, along with the purple ribbon she had given to him long ago to wear in his hair when he decided to grow it out. Josemi clung to the memory.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"If Astero is found in the south, there will be war," announced Kairo. His eyes met Josemi's, and there was a questioning look in his gaze. "Why are you so quiet?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Arranged marriages were natural among clan nobles. And yet, she had no idea the marriage with Melody would cause Astero so much grief as to run away. Kairo was mostly to blame, for he had arranged the whole affair with Lady Dorina, but Josemi chastised herself for not seeing how troubled Astero became. She felt as if she had failed her own son.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I..." Josemi took a deep breath. "I think we should call the marriage off."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kairo scoffed, his eyes turning darker, glaring at Josemi with an intensity that made her shrink back. "Do you now."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The way he spoke those words made Josemi's blood boil. She narrowed her eyes. "Yes, I do."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kairo's jaw tightened. "This marriage was agreed upon years ago. We are not calling it off now."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi shook her head in disbelief. "You argued with Astero the day before the wedding, didn't you? What did he say to you?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The sudden screech of the chair legs against the floor made Josemi flinch. Kairo stood up in a flash and made his way over to her, towering over Josemi like a monster. Unconsciously, she shrunk back into the chair cushions, clutching the purple fabric of her dress until her knuckles turned white.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He glared at her, a fire in his gaze so fierce, so unlike the Kairo she used to know. "Josemi." She did not like the way he said her name. "Astero is not our child."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">All Josemi could hear was the blood rushing in her ears. She looked up at him through hooded eyes. "What did you say?" she asked, her voice scarily quiet.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kairo seemed taken aback, but after a short moment, he regained the anger he had before. "Astero is <span style="font-style: italic;">not our child</span>," he snarled.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"How <span style="font-style: italic;">dare</span> you such a thing," Josemi bit out, rising from her chair. She was much shorter than Kairo, but she was not afraid of her husband. "Where is this coming from?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"He was an orphan that you found!" he shouted, a sudden burst of rage. "Kalwen was generous enough to let Melody marry him. Do you understand that no other clan leader wanted to let him marry into their clan?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"He is your heir. He will lead the Elessai, blood-related or not."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"But that does not matter if he cannot continue the Elessai line!"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi stared at her husband incredulously. "Do you not care for him at all?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kairo's voice quieted, yet the sounded roared in Josemi's ears. "If he truly did run away, he is dead to me." Kairo turned on his heels and quickly strode out of the room, slamming the door behind him.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi slumped back into her chair, breathing a heavy sigh. Perhaps the years did change him, but Josemi knew it was not entirely his fault. As much as they loved Astero, not many clans were willing to allow their members to wed him. It was common knowledge that the Elessai heir was not blood-related to either Kairo or Josemi, which was certainly a rare case. However, Josemi could not bear children, and both of them knew there would be no other option. At first, Kairo might have been optimistic that other clans would be open to Astero. However, he grew to realize that was not the case. Yet, Kalwen Dorina accepted the marriage, and Melody clearly adored him. So why did the relationship between Astero and Kairo grow so strained?&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The vial of the mystery liquid Willow gave her was kept hidden among all the other vials on her vanity, blending in perfectly. However, Josemi could never mistake it for anything else. It haunted her dreams, almost as if it were a poison meant for her.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Poisoning Kairo in exchange for her son. Perhaps he didn't run away. Perhaps Willow lied, and the Ozarios had kidnapped him. Yet, there would have been no reason for her to lie. Josemi would have cooperated either way. Anything to get her son back.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Unlike Kairo, Josemi never thought of Astero as just an orphan she took in. She always believed meeting that boy was fate. The universe failed her, taking away her ability to conceive a child, but in return, it sent Astero her way. Kairo was forced into her life, taking her away from her family and culture, forcing her to become his wife. Astero was someone she chose to be in her life, someone she wanted, someone who needed a home as much as she needed a true home in the Elessai clan.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She would not lose that home.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi stood abruptly, gliding across the room to the door. She needed to find out who Willow truly was, what Lord Ozario's connection was to her, and why they wanted to take down all the northern leaders.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Wrenching open the door, Josemi quickly made her way through the halls, thankful she wore flat sandals rather than heeled shoes. The only sound that resonated in her ears was the rush of the air.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The main room of the Dorina clan was a church. Rows and rows of chairs lined both sides of the room, with a walkway in the middle leading up to the altar. Kaleidoscopes of stained glass decorated the sides, illuminating the entire room in iridescence when the sunlight shined through. Tapestries of religious figures adorned the walls, and blue carpet lined the entire space, giving the room a burst of bright color that made Josemi pause in awe whenever she stepped in here.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The room was big enough to fit at least a hundred people, yet there was only one person in there. Kalwen Dorina stood a few paces before the altar, her head bowed and hands clasped together in prayer. Her blue dress blended in with the floor, and Josemi might not have seen her if it weren't for her long, stark white hair.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Although Josemi was not religious, she knew it would have been rude to interrupt someone during prayer. She remained silent until Lady Dorina lifted her head and made a gesture with her hands that perhaps signified the end of her prayer session. Lady Dorina looked over her shoulder at Josemi, a grim smile on her face.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What can I do for you, Lady Elessai?" she asked, slowly walking towards Josemi.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi bowed her head slightly. Kalwen Dorina was the eldest clan leader in the north, and in the Fen clan, age was important in determining hierarchy. Although technically, the two of them were equal in status, Josemi regarded Lady Dorina with the utmost respect. "I apologize for interrupting."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I was just about finished," Lady Dorina reassured. "Is something the matter?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Too many things</span>. "What do you know about the Ozarios?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Something in Kalwen Dorina's expression changed. Her eyes seemed to darken, her jaw tightening. She was on guard. "What do you mean?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi gave a fake smile, laughing slightly to ease the tension. "I am afraid I do not know much about Lord Ozario. He hasn't attended meetings for years."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"He was in mourning," replied Lady Dorina swiftly. "The passing of Darius and Maeryn Ozario was hard on the entire clan."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I recall receiving an invitation to their funeral, but Kairo and I were in the Elmary clan at that time and missed it." Josemi's heart ached for the kindhearted Ozarios who ended their own lives. "Were you able to attend, Lady Dorina?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She stiffened. "I... could not, unfortunately." Kalwen Dorina took a step to the side, turning her entire body away from Josemi, clearly indicating the conversation was over. "I'm sorry, but you'll have to excuse me, Lady Elessai. I must check on my granddaughter; she needs me at the moment."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Of course." Josemi stepped aside to let her pass.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The moment Kalwen Dorina left the church, the smile on Josemi's face dropped, and her suspicions rose. She turned and gazed at the tapestries on the wall, wondering if lying was permitted in Dorina beliefs.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I did not take you as a religious woman, Lady Elessai," commented a snarky voice.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi closed her eyes, already feeling exhausted. "Lady Lem, what a pleasant surprise."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Yanni Lem was almost as old as Kalwen Dorina. However, Josemi did not respect her nearly as much.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kalwen walked out of here looking like she had seen the devil himself," Lady Lem mused. "What did you do?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi sighed, reluctantly turning around to face the former leader of the Lem clan who wore an irritating smirk on her face. Josemi's initial instinct was to make up some excuse like Lady Dorina and leave the situation entirely. But then it occurred to her that if she wanted answers, who would be more willing to share the latest gossip and rumors than Lady Lem, who thrived on that sort of thing. "Lord Ozario. What do you know about him?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Yanni Lem gave a surprised laugh. "You asked Kalwen about him? No wonder she looked so haunted."</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What did she do to him?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She did nothing to him, really." Yanni Lem strolled past Josemi, glancing at the surroundings of the church. "Ever since Darius and Maeryn Ozario died, the Ozario clan fell apart and is now reduced to almost nothing." She said these words so nonchalantly, as if the fall of a clan wasn't a big deal.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"That doesn't explain much," replied Josemi.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Lem spun around and quite obviously rolled her eyes. "It all started when their little girl was sent to the ground."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">That, Josemi did remember.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Clans send criminals down to the ground. But a clan having to send their own daughter down there?" Yanni Lem laughed incredulously. "Can you imagine the shame?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Is that why they...?" Josemi could not even get the words out. "I... I heard that they had been ill."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Would you not become ill if your son was sent to the ground?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She suddenly remembered that Astero was indeed on the ground, and Josemi grew very cold at the grim reminder.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I needed to speak with Kalwen, but I suppose she is busy." Lady Lem sighed, and Josemi was irked at how carefree she seemed. "Well, I shall leave you to your prayer, Lady Elessai." She smiled in a way that made Josemi want to strangle her, but before she could act on any impulsive thoughts, the former leader of the Lem clan left the way she came, the green skirts of her traditional Lem robes swirling like a puddle around her feet.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The pieces of the puzzle slowly began to come together in Josemi's mind. Crisanto Ozario had a plan, and Josemi did not know enough about him to truly be aware of what that plan entailed.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She needed to find him.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi hurried out of the church and stepped foot outside. She had no idea where Lord Ozario's room was located, but he had to be somewhere in the manor. Workers milled about, cleaning the walls of the manor, watering the plants, bringing trays of food and dishes across sections of the whole place. Some decorations from the wedding remained, and Josemi felt for the poor servants who put up the streamers and decorations only to take them down.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">A flash of yellow appeared in the corner of her vision. Safiro Jourman, dressed head to toe in extravagant yellow garments, strode up to Josemi with a kind smile. Of all the northern leaders, Josemi liked him the most. She bowed her head. "Lord Jourman."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He did the same. Amidst the bright sunlight, his yellow clothes, and the smile he always wore, Safiro Jourman glowed. "Lady Elessai."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"May I ask you something?" Josemi inquired.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Of course."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Where is Lord Ozario staying?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Unlike Kalwen Dorina, who stiffened at the mention of that man, and unlike Yanni Lem, who laughed and did not take the issue seriously, Safiro Jourman frowned sadly. It struck Josemi how rarely he displayed anything on his face but a smile, and she grew more curious.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I believe he is in the east wing of the manor," said Lord Jourman carefully, seeming very cautious of his words. "Did you need to see him?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi nodded. "I have matters to discuss with him." She supposed it wouldn't hurt to ask Lord Jourman either. "Have you known Lord Ozario long?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He shook his head, looking off to the side towards the garden, where flowers were in bloom. "I knew his father well. Darius was my greatest friend."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi debated whether or not to ask, but she could not help it. "Did you agree to send his daughter to the ground?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lord Jourman flinched, his eyes looking haunted. "Of course not. But Lord Elessai, Lady Lem, and Lady Dorina had voted in favor of that. There was nothing I could do."</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">It all became so clear.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"When I first met Crisanto Ozario, I saw the look in his eyes. Pure hatred." Lord Jourman looked to Josemi, his gaze staring into her soul. "I would not blame him if he despised us all."</p><div dir="ltr"></div></body></html>
+--Apple-Mail-B7ACDCCF-ABAC-49A3-806A-F9F1CC2E84BE--

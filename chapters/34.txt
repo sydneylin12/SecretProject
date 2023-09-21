@@ -1,0 +1,364 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:7110:42a:b0:1b8:60b7:7157 with SMTP id 10csp36282geq;
+        Tue, 31 Jan 2023 07:12:58 -0800 (PST)
+X-Google-Smtp-Source: AK7set8b0h7MFqAqcUAJFmbPkRXtdkAdfk6+K6bGrG0lkjDsJHlih0sBYslojnORVi3EuP6oIdya
+X-Received: by 2002:a67:6dc6:0:b0:3fa:5334:55a9 with SMTP id i189-20020a676dc6000000b003fa533455a9mr3099560vsc.32.1675177978786;
+        Tue, 31 Jan 2023 07:12:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1675177978; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LkJ/gyfswawxnLGgzfxYt5psRdgXiOCzNv0R72Rf8SCwXEMuvvsiXnOfX8kfGTcu9e
+         Xi6UTgkwuGKlEw8k28mEQW6pSdcInFLMqNhi0jeia03igCQvcaH9VMBaVyR4C/K+knkM
+         BtONo2bcRliPjcst5iAsdOqRu8Fn49HLjuk5XKXGzoQu185HX7oCiOIH6W6g2u+Q0EOA
+         JiMEJpJT1D/z5hRYgMj1S5LaZVakPjhNcDPEOzk1uY+0XudQyPsIui8g3Ox4uiHlnL15
+         14nywLchhGcylB5wG57NWROPwH8mKWx293101HStQI/1/W8USFOBDSeH2DEe04B3LDgO
+         IhJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=iqCS/B8pm5p2rGkF1NF47TRASpNDSiPscTumra5fqJ0=;
+        b=R7Jwuq/45RTZvJixlrpNC14FWDVUcTjKNppOC3ipjDjiQAH0vTZqCLd4jA2FJfWYyz
+         nvjut5QexVqr4eVc8G8wnrJgCG7IHJHOxw52DkjFFZ5EzXK0QNnoRrNAaUZwQ5qv/uSV
+         26gssKAy9Mr3y15hRmfnadSolFggtMqgaZtiTT8LUPWkxJrh3TekRGOtq9uaE11G2Kqn
+         YAfYllCgM9zGkjErkoz1sXhsKrTL7GwbTPLW+IjmWoDn4GW7weO4geFgcaKZQ14w9oIK
+         4RglfsyCfJ16dzyrLxW9KG/xYOI/LUaJHA3NuJA10lNV39qaUrJi3yxlI6WtbX8ylmza
+         Zriw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ka1n9vSL;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.146 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic316-20.consmr.mail.ne1.yahoo.com (sonic316-20.consmr.mail.ne1.yahoo.com. [66.163.187.146])
+        by mx.google.com with ESMTPS id m189-20020a6771c6000000b003eec1378627si3746457vsc.585.2023.01.31.07.12.58
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Jan 2023 07:12:58 -0800 (PST)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.146 as permitted sender) client-ip=66.163.187.146;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ka1n9vSL;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.146 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1675177978; bh=iqCS/B8pm5p2rGkF1NF47TRASpNDSiPscTumra5fqJ0=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=ka1n9vSLp28pv+7CvvP2hzbh7SDZSmu7WSTCGjnINpxOJgvaSXNEOqE/sj6cy0pQeVS9TxH2ESS3uDaPMapoQQkkv7pRAd08q4S5/M0wfoiSW6/TVaQfCelxm7nFkRNd2SIrv/4ZxsSTeMkcKDnWghpY5kPRjQODWUHn2mtDK4vGejh7PpDTn3iYqAkgJEHgcQTkFBHmg1aVUHx8dv7RbDh3QQhzTLRD5TdSdR5Bd71nHCVmWOA3cqqPheOiGJTXpRWjOQ68gRo2cAAZP5dS2FvdH1m/dcLu7qoX4UuYuQHkYghgJxwWd1YVIwEJdtm3bvrMZRloISOaKnszq7RoCw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1675177978; bh=UHUsYe2uz3uGAkLgl/diVqw+DrGy892PMRdoGqQ5ZCS=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=qx0cDLDfX70nlHfnU0ah+c5hMiI5UjM8fm7OdK4iDknSLoMfX2GI7WY0B6TfXqM6cVYbKS+5QApXZFtH/8AdbCfqdjPT59TxOE7Rj1ZIHxPBljKc9ABDCLd/avRz/o5rnea93mD6NKPwUx88gNKXdb3+XeB6hsrl7y9UPcXWT8mrys+q6W0WrIjqHwmHwEDCCnsxpZdeuQdVdsPbmiWX0Xz0UxaKQTrkhJZh7zDFr4Ip7MSDx/Yp9521mTMsHXL1OMurPo8qo/dLmMfgDKWWRvDqDu0NzZUVGJc5bZ/c0l9u5y5d4UJ4LZrzDkWQynpEv+P+1SUFgaLYhqtBLme8qA==
+X-YMail-OSG: Ca6yF7sVM1kPmwNktQbOwltYXWFu19OfIXqxcYLmX8gQovW_2ulxZf9grWcd6VD suvJRPp1w1DLgyRSJFIt1VjRGBYujj8qPhxSAl6Qyz7BCJalT9sQ.kkfE82MDgbh47PyYtN3ttMy TIwdjB6aPBqZ3wU269_LIGoxJp29iRwBR4tz3Nn9pw9_joAdJvrUsoxWXxJkoeJoUxg7X9BxUfaT MPlui6opaDVDcXDi8vaIDfM521w0qGQutqtRlRDb_dBsTJoeWKWHMzrSLPvoJX8cvn3wfDUVpuD8 vKQrbh_Rr0uzU9fyHu7C762fHtFJlZcn4u9izvMN6RpOWZfbcMT7EACyloP0nIHCr5R5qIU47NDd FRFK6f4EHkSuOVQTMRRtILrdaD1HadafGvSB.oQbOZXl0ipzp1fl9ws7_HreSWnpvpz3Dq__sTQ. 1bNvg2HR.KvmtwugGpORJtBCGwkFpCC9zFk68nblWCDS59PIs0W4_2BTDEO0HuMl8QL.oClUgcjY dlfGPWdHoOoSPAGIqfXaibSypPAq09HcGwzxuIw0nLOyQfvly4IwmsrIBGQuIl_TlFCu4_AXHjxD HZdqOBtNSCOCMKFx20w1drdXTODNHQUBgdCPmSz940UkRMKQZog8xIEDW3n_NLYbWJzAw9zhnkFq 64GoFLJJVkyvn8gfDcBb3jfpPCvBJ5l883D592.xmz9zHkdH5xzN4PQ9HpHPDeeNwTlnpPB4KwEO E3Ro7.kMpLAi7WwCia80oCQ.WNMKfqZn84dYoNg0YElGDjW8FRVObs5OtDIaFZrFYBMA19JclQgy Lc90Q3SnAW24DqXZZLe9PF0h1Qy9lYMb7L5Dlgq3bfSA_6Fhsr7HttQnCmiBLSdKFNLtLfHKPmwa Apq4Z_gS3YDt8CWpXYhj6KXTi_zuhZ7AExLETeSU6frd0W28kvCE.EyRAeyRWBEf8acRoh45XPOO ktBtwcR5OghdRRtVeVC6XXN_9hX8Ilg.cA4qyDiW8taoBYK1mfd3voHsp1frfsPeFgbF5Jc0jfm_ IOZYWMXe96PNEipigTtKyeAdBtIgDDui6O_SAliBn608Ra4YZ7O.tutFhv5j6y5SewbEgs4X4x.c ZBqU2Oi23adyrIQ55B.8PAEW9X_g7Ieqh.ZaZB4oBS1Q1UFlT38BOUULnbixHxHmWMkPNpx8uXWg SltqIL2mNDn6EK.vfueHOXwiqAHBAdoHNFj.9cAEMc2eTga0kbO4HIMylePpYO.upLeXWTgdsZoA dbKcW2PHk8VXf.sKwxTXu1O7vpaXv0OoqlCS5k7Z6nCfUntE2kJyBFGhr7chRJ7n2JHNOMTu3igc 4RFBCACoR0ogpX_OUgBb2FJP4sv3fFYQ9lWtw_bwTm79KV3NUXp9AJIE4C72DmbpCI0l93TWtC3d 1Ut5bP.H56wIdtq0ZBtnpWqajbQr8.OngOESXJ3J3BIG5T1kc1oIgKl9_AA3KXfd4K7GTcL9jQiS oL0.VNyKHiHdhPo6fxbx1qBHddTRnRG9VfKotQDgFCY2oJGJxRbEG_jmOx2qeGZZzc19iFbBKsMd 3mTMR0tgHOg9GNwHuUGeLunju9atam8M.GM6Bb3ZdcamlLX.03qwkEr7VhWeWeX4l0ixMqdYFpY9 7vI545UBolM6gap0OulgJTwhv6_g4WFP20xSuAwvOSXDZ0.V8amMbuPuTm2D6nuWtYxQ5APPCkii eNSWNP4070rchcq9UIICNIjacKgHYpiaWTCrj7ZvxS53KH3wNK0XO52cn08MBjXh6CRsEYEDtXg. bYHMnSqd7lsMpW90.yRLq39GI02M7g7m6KiP1k10FB2P3Vz5vUfZkc_WHxpDvQ18Xy.DRgXmsran hDRwyoilI59MxdnVDzpoKXSVC1Ams_H4.pUwnkFae03BtsWnmF3Tv.o0Q0BDyXzbxGyEoTvl5RT9 X3yVf6S2m.xQWWGaCV2Eo4e7GOzAwJpCsKZw7sd_edw0ugjRLt6YBoXlH.5E1LSibw1Vw7W8JXll TE113j5Vu8z_l9G8VgVIv.KVozGwH32gmEYilBQtywjEwpnp17p5xSntwBuNNsiT8vb2N16_GQTp rDrdKdebuGlTNQqKLQH294ra1XCSo9itO9ORz0jQ1hkuYulT9bSo0dmiEvSFoy5c1J55YSkXmfbG YcNTngL.YPQ7ynBvAgz3PqACsgHDu9qKGRGmH6e9_HtWViR43BlVz7itnVY.KfPdOlWlUEN_BzIk dFSY4YYM18HGc.HjmkqbohCxYr0LtbsAkrByQLAqxY19BaU8fSVRyeQhdie3CCOnYEg--
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic316.consmr.mail.ne1.yahoo.com with HTTP; Tue, 31 Jan 2023 15:12:58 +0000
+Received: by hermes--production-ne1-746bc6c6c4-8fvwf (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID ceea43a146eb726ea5dadb66d74f938d;
+          Tue, 31 Jan 2023 15:12:56 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-890F1AB0-FC08-4129-AF3A-1EF72379D9B8
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 31 Jan 2023 07:12:45 -0800
+Subject: Chapter 34
+Message-Id: <A1071B87-DCB7-41D2-8B1E-570B5AE95389@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20C65)
+References: <A1071B87-DCB7-41D2-8B1E-570B5AE95389.ref@yahoo.com>
+Content-Length: 33577
+
+--Apple-Mail-890F1AB0-FC08-4129-AF3A-1EF72379D9B8
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+At the end of the week, Rosella and Astero decided to have a picnic in the =
+meadow by the town, and Rosella's heart was racing, for she had decided to =
+do tell him the truth of her past. If he were to leave, better now than lat=
+er. They were eating sandwiches, surrounded by the grassy plain, a gentle s=
+ummer breeze blowing around them. If this was her last day with him, at lea=
+st it would be peaceful and beautiful. She would remember it always.=20
+
+They met two weeks ago, yet it felt as if they had known each other for lon=
+ger. Astero said they had never met before, yet his eyes, dark and wide and=
+ sparkling, seemed almost familiar, as if they had bewitched her dreams.=20
+
+To prepare for the picnic, Rosella spent all morning in the kitchen, with A=
+stero as her assistant, simply doing whatever she asked of him. They had pu=
+t together sandwiches, an array of fruits, and desserts they bought from th=
+e market. Rosella hadn't spent this much money on food in her life, but she=
+ kept reminding herself that if this were to be her last day with Astero, s=
+he wanted to have no regrets.=20
+
+The day was perfect. Crystal blue sky, not a cloud in sight. A light breeze=
+, but still warm. Just the right amount of sunlight. Perhaps the universe d=
+ecided to let her have this gift of a day.=20
+
+They wore the matching white clothes they bought a week ago on their first =
+day here. Astero looked dashing, as usual, with his neatly combed hair and =
+pearly white teeth.=20
+
+"Do you look like your mother or father?" she asked, curious to know who ga=
+ve him the gene of angelic beauty.=20
+
+"My mother," he replied immediately, smiling breathtakingly as the summer s=
+un beamed down on him. He seemed to light up just speaking about her. "We'r=
+e always told we look alike, except for our eyes."=20
+
+"She must be beautiful," Rosella commented.=20
+
+Astero smirked. "Now who's the one flirting?"=20
+
+Realizing that she indirectly called him beautiful, Rosella flushed.=20
+
+"She is," said Astero before Rosella could say anything. He sighed, his gaz=
+e turning skyward, as if he would find his mother somewhere up there. "I ho=
+pe she's okay."=20
+
+"If you miss her, why don't you visit her?" Rosella asked, taking a bite ou=
+t of her sandwich.=20
+
+"I will," he assured, picking up a strawberry. "Would you come with me?"=20
+
+Rosella swallowed her bite and laughed nervously. "I don't think I should b=
+e back north for a while."=20
+
+"Ah, right." Astero took a bite of the fruit, his lips turning red due to t=
+he amount he had eaten. "Do you want to go back north eventually?"=20
+
+She nodded. There was nothing special about the north compared to anywhere =
+else on the ground, but living there, she felt closer to her family, as if =
+she were seeing them every time she saw the floating land in the sky.=20
+
+Perhaps thinking of her family unconsciously made her face turn sorrowful b=
+ecause Astero's expression became concerned. "T - The east is great, I prom=
+ise!" He grabbed an apple dessert rose from the picnic basket. "They have g=
+reat desserts, too. Even better than the north."=20
+
+Chuckling, Rosella also grabbed one. She appreciated Astero always trying t=
+o make her feel better. "I'm sure it can't possibly beat blackberry pie."=
+=20
+
+"Nothing would," Astero agreed.=20
+
+As they lay underneath the summer sky together, she felt as if all her sorr=
+ows had washed away. Rosella wanted to melt into sunlight with him. She wan=
+ted them to achieve their dreams together, to see the world together. His k=
+ind eyes and warm smile filled her thoughts. His shyness and occasional fli=
+rting made her head spin. He was as sweet as any dessert she had tried, as =
+harmonious as any piece of music she had heard. He was a fresh flower picke=
+d from a garden, grown to perfection.
+
+However, these thoughts also frightened her, for she might have been glorif=
+ying him an unhealthy amount. People in general often disappointed her, and=
+ he was one of the few who hadn't.=20
+
+She had never felt so happy before in such a short amount of time, and this=
+ terrified her. She needed to tell him the truth, and no matter what, Rosel=
+la was thankful for the time she spent with him.=20
+
+"Can I tell you something?" Rosella asked hesitantly, clenching her fists n=
+ervously. "And promise me you won't tell anyone else?"
+
+As he grabbed his sandwich, his head tilted to the side in confusion and cu=
+riosity. "What is it?"=20
+
+Rosella steeled her nerves, taking a deep breath. She already decided to do=
+ this. And if he did not accept her, there would be no reason to continue t=
+raveling with him. It would be for the better, rather than continuing to li=
+e to someone close to her. "I'm from the sky."=20
+
+Astero nearly dropped his sandwich. His mouth opened slightly, clearly in s=
+hock.=20
+
+A chill washed over Rosella. Perhaps this was it. Perhaps he truly would le=
+ave her.=20
+
+"Y - You are?" said Astero after he seemed to compose himself. He was still=
+ obviously in disbelief.=20
+
+Rosella nodded, sighing, a bit relieved he hadn't run away yet. "I came to =
+the ground fifteen years ago. I was banished."=20
+
+"Oh?" Astero questioned, his voice sounding strange. His eyes were on his s=
+andwich, not looking at her, but he seemed a thousand miles away.=20
+
+Rosella explained. "I met a boy from the ground who was trying to sneak in.=
+ I helped him escape, but I was banished in the process."
+
+"Why did you help him?" Astero asked, looking as if he was in pain. He set =
+down the sandwich, placing his hands in his lap. "When you knew what would =
+happen?"
+
+"He was just a child." Rosella couldn't even remember what the boy looked l=
+ike.=20
+
+"So were you," Astero pointed out.=20
+
+"I just... felt responsible for him." She remembered him calling her Anle. =
+"He needed my help. What else was I supposed to do?"
+
+"You could have turned him in." Astero's voice was quiet. He still wasn't l=
+ooking at her.=20
+
+"I promised him that I would keep him safe. I can't even remember what he l=
+ooks like, but I remember his smile when I showed him a field of flowers." =
+Rosella's heart warmed at the memory. "And the way he looked at the stars, =
+like nothing fascinated him more." She shook her head. "I just hope he's sa=
+fe. I hope he's living a good life there."=20
+
+Astero was silent. Then he said, "Do you ever regret it?"
+
+"Helping him?" Rosella thought for a moment.=20
+
+"Is he not the reason you live like this?"=20
+
+"Of course not," Rosella answered immediately, feeling defensive of the boy=
+. "I made the choice."=20
+
+"But do you regret it?"=20
+
+"Why are you asking me that?" Rosella raised her voice, not even really kno=
+wing why. "What's the point of regretting anything?"=20
+
+Astero's eyes held deep sorrow. "So you do."=20
+
+"Why do you think that?" she demanded, fully standing up, unaware where thi=
+s sudden burst of rage had come from.=20
+
+"You would have just said no if you didn't," he said quietly.=20
+
+Rosella sucked in a sharp breath. She gritted her teeth and turned away, an=
+ger filling her whole body. She did not want to lash out at Astero, so Rose=
+lla put one foot in front of the other and walked across the field to the n=
+earby forest, disappearing into the trees, leaving Astero sitting on the bl=
+anket. The whole time, her hands were clenched into fists, trying to keep h=
+erself calm.=20
+
+Rosella was honestly surprised he wasn't more shocked at her story. In the =
+past, when she had told people she was from the sky, they had either run aw=
+ay from her or condemned her. Those on the ground loathed people from the s=
+ky, believing them to be arrogant and full of themselves. No one had ever i=
+nquired deeper. No one ever made her rethink her life choices.
+
+She sat on a tree stump, suddenly feeling as if all the energy had left her=
+. Perhaps it was childish to leave like that, but Rosella didn't want to en=
+tertain the idea that Astero might have been right, that she regretted help=
+ing the boy. Rosella knew she did the right thing, but that didn't mean she=
+ didn't regret it.=20
+
+If she hadn't helped him, mostly likely, she would be up in the sky, living=
+ in the Ozario clan manor. Or, she might have been married by now, living i=
+n another clan, perhaps with children of her own. If Rosella hadn't helped =
+him, she might have had a family.=20
+
+But she liked to think that, because of her help, that little boy found a f=
+amily of his own.=20
+
+The truth was, sometimes, feelings of regret did find its way to Rosella li=
+ke a terrible sickness. It would eat away at her mind, and she would spend =
+time wondering what could have been had she left the boy well enough alone.=
+ However, just like a sickness, it would eventually leave.=20
+
+Because of her, he saw the bright blue sky, with its snow white clouds just=
+ a touch away. She remembered his smile, along with his sparkling innocent =
+eyes, and Rosella knew helping him could not have been a mistake.
+
+--Apple-Mail-890F1AB0-FC08-4129-AF3A-1EF72379D9B8
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">At the end of the week, Rosella and Astero decided to have a picnic in the meadow by the town, and Rosella's heart was racing, for she had decided to do tell him the truth of her past. If he were to leave, better now than later. They were eating sandwiches, surrounded by the grassy plain, a gentle summer breeze blowing around them. If this was her last day with him, at least it would be peaceful and beautiful. She would remember it always.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">They met two weeks ago, yet it felt as if they had known each other for longer. Astero said they had never met before, yet his eyes, dark and wide and sparkling, seemed almost familiar, as if they had bewitched her dreams.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">To prepare for the picnic, Rosella spent all morning in the kitchen, with Astero as her assistant, simply doing whatever she asked of him. They had put together sandwiches, an array of fruits, and desserts they bought from the market. Rosella hadn't spent this much money on food in her life, but she kept reminding herself that if this were to be her last day with Astero, she wanted to have no regrets.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The day was perfect. Crystal blue sky, not a cloud in sight. A light breeze, but still warm. Just the right amount of sunlight. Perhaps the universe decided to let her have this gift of a day.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">They wore the matching white clothes they bought a week ago on their first day here. Astero looked dashing, as usual, with his neatly combed hair and pearly white teeth.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you look like your mother or father?" she asked, curious to know who gave him the gene of angelic beauty.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"My mother," he replied immediately, smiling breathtakingly as the summer sun beamed down on him. He seemed to light up just speaking about her. "We're always told we look alike, except for our eyes."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She must be beautiful," Rosella commented.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero smirked. "Now who's the one flirting?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Realizing that she indirectly called him beautiful, Rosella flushed.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She is," said Astero before Rosella could say anything. He sighed, his gaze turning skyward, as if he would find his mother somewhere up there. "I hope she's okay."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"If you miss her, why don't you visit her?" Rosella asked, taking a bite out of her sandwich.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I will," he assured, picking up a strawberry. "Would you come with me?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella swallowed her bite and laughed nervously. "I don't think I should be back north for a while."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Ah, right." Astero took a bite of the fruit, his lips turning red due to the amount he had eaten. "Do you want to go back north eventually?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She nodded. There was nothing special about the north compared to anywhere else on the ground, but living there, she felt closer to her family, as if she were seeing them every time she saw the floating land in the sky.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Perhaps thinking of her family unconsciously made her face turn sorrowful because Astero's expression became concerned. "T - The east is great, I promise!" He grabbed an apple dessert rose from the picnic basket. "They have great desserts, too. Even better than the north."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Chuckling, Rosella also grabbed one. She appreciated Astero always trying to make her feel better. "I'm sure it can't possibly beat blackberry pie."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Nothing would," Astero agreed.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">As they lay underneath the summer sky together, she felt as if all her sorrows had washed away. Rosella wanted to melt into sunlight with him. She wanted them to achieve their dreams together, to see the world together. His kind eyes and warm smile filled her thoughts. His shyness and occasional flirting made her head spin. He was as sweet as any dessert she had tried, as harmonious as any piece of music she had heard. He was a fresh flower picked from a garden, grown to perfection.</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">However, these thoughts also frightened her, for she might have been glorifying him an unhealthy amount. People in general often disappointed her, and he was one of the few who hadn't.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She had never felt so happy before in such a short amount of time, and this terrified her. She needed to tell him the truth, and no matter what, Rosella was thankful for the time she spent with him.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Can I tell you something?" Rosella asked hesitantly, clenching her fists nervously. "And promise me you won't tell anyone else?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">As he grabbed his sandwich, his head tilted to the side in confusion and curiosity. "What is it?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella steeled her nerves, taking a deep breath. She already decided to do this. And if he did not accept her, there would be no reason to continue traveling with him. It would be for the better, rather than continuing to lie to someone close to her. "I'm from the sky."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero nearly dropped his sandwich. His mouth opened slightly, clearly in shock.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">A chill washed over Rosella. Perhaps this was it. Perhaps he truly would leave her.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Y - You are?" said Astero after he seemed to compose himself. He was still obviously in disbelief.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella nodded, sighing, a bit relieved he hadn't run away yet. "I came to the ground fifteen years ago. I was banished."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Oh?" Astero questioned, his voice sounding strange. His eyes were on his sandwich, not looking at her, but he seemed a thousand miles away.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella explained. "I met a boy from the ground who was trying to sneak in. I helped him escape, but I was banished in the process."</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Why did you help him?" Astero asked, looking as if he was in pain. He set down the sandwich, placing his hands in his lap. "When you knew what would happen?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"He was just a child." Rosella couldn't even remember what the boy looked like.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"So were you," Astero pointed out.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I just... felt responsible for him." She remembered him calling her Anle. "He needed my help. What else was I supposed to do?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You could have turned him in." Astero's voice was quiet. He still wasn't looking at her.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I promised him that I would keep him safe. I can't even remember what he looks like, but I remember his smile when I showed him a field of flowers." Rosella's heart warmed at the memory. "And the way he looked at the stars, like nothing fascinated him more." She shook her head. "I just hope he's safe. I hope he's living a good life there."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero was silent. Then he said, "Do you ever regret it?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Helping him?" Rosella thought for a moment.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Is he not the reason you live like this?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Of course not," Rosella answered immediately, feeling defensive of the boy. "I made the choice."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"But do you regret it?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Why are you asking me that?" Rosella raised her voice, not even really knowing why. "What's the point of regretting anything?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero's eyes held deep sorrow. "So you do."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Why do you think that?" she demanded, fully standing up, unaware where this sudden burst of rage had come from.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You would have just said no if you didn't," he said quietly.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella sucked in a sharp breath. She gritted her teeth and turned away, anger filling her whole body. She did not want to lash out at Astero, so Rosella put one foot in front of the other and walked across the field to the nearby forest, disappearing into the trees, leaving Astero sitting on the blanket. The whole time, her hands were clenched into fists, trying to keep herself calm.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella was honestly surprised he wasn't more shocked at her story. In the past, when she had told people she was from the sky, they had either run away from her or condemned her. Those on the ground loathed people from the sky, believing them to be arrogant and full of themselves. No one had ever inquired deeper. No one ever made her rethink her life choices.</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She sat on a tree stump, suddenly feeling as if all the energy had left her. Perhaps it was childish to leave like that, but Rosella didn't want to entertain the idea that Astero might have been right, that she regretted helping the boy. Rosella knew she did the right thing, but that didn't mean she didn't regret it.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">If she hadn't helped him, mostly likely, she would be up in the sky, living in the Ozario clan manor. Or, she might have been married by now, living in another clan, perhaps with children of her own. If Rosella hadn't helped him, she might have had a family.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">But she liked to think that, because of her help, that little boy found a family of his own.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The truth was, sometimes, feelings of regret did find its way to Rosella like a terrible sickness. It would eat away at her mind, and she would spend time wondering what could have been had she left the boy well enough alone. However, just like a sickness, it would eventually leave.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Because of her, he saw the bright blue sky, with its snow white clouds just a touch away. She remembered his smile, along with his sparkling innocent eyes, and Rosella knew helping him could not have been a mistake.</p><div dir="ltr"></div></body></html>
+--Apple-Mail-890F1AB0-FC08-4129-AF3A-1EF72379D9B8--

@@ -1,0 +1,118 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:6504:b62:b0:235:3e89:1c74 with SMTP id m34csp493249ltt;
+        Sat, 2 Sep 2023 20:25:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE1htP2H+4fQXoEqYKrYTHbOJWsXBEj4PDY3W1nw8ecQy/OUWgFmvBC8qavgfCTfseqzA0c
+X-Received: by 2002:a6b:6f15:0:b0:792:7f26:dc95 with SMTP id k21-20020a6b6f15000000b007927f26dc95mr7505404ioc.14.1693711546775;
+        Sat, 02 Sep 2023 20:25:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1693711546; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Ao2wInBe2NFGl+AKS14K/Qk+UHxlzk6G24bA/QTdcZi05b43SqVEtaoR+VlJMjsv7J
+         orL0Hr7tkVCM6RuVdbiK7iQj1IbyG8LLxIucRA0jNwfwyly0vWsEDHHPxS+/6DY9/gEz
+         UebMrTHnOtbGvWG6APgnQHj/XB5HTHvkUgkO5bnba4wCR5M32WCQVgMHmYlkqQ98fVa5
+         B/j6c+nUJUF5Hg7mdfcYmkD6ZiQLX6fOYD/fdjwSymVmz23rxn2wBYWHnjMpmf5+AiTo
+         2XXUTusiaR5vxngZNI7BQcXf4gb1K+u7gXhUh6GZf+sFVpoPt2nM32hao/7TBGH2nt/l
+         VuXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=EomlPR6WB57XAr161x5kUrYEQx9nMnxuIrTpKHS38WY=;
+        fh=BqhaHFpYO8ouDDprpslv03dUtC1/0dnMJt5wvmClC1I=;
+        b=qJFFhAUag5372/XOObsYrvu0ABxaQQE2tIsFoUxXdw7979NgitvURCL8oW2Z+4Cg4C
+         3RNVmcOHSSgSvoALjyBj0bswcVXm17713wr7mc1j7GcI9DC3W7dZElyaZ2wM/VrdEMn4
+         SWrm2V2GiXw5Vo3UjiRN1vUT5JLuibaBC1jlVB6NJ5fiJtN757xNLJ88tN72VMyt95t+
+         RDLE46yr4/6JPidBmxCNJLwwPb3tbHY2Fd3EE166fbZkZ0nhwbcFrS7AGzl4MANC93a+
+         hQgVi1+MDae3THuof5vDW3JiObAHo9L5pe8iMPPUC2p47rf4YXsWfbOUh2vz9gSjWhFv
+         Jqrw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=LITb68FQ;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.190.33 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic307-10.consmr.mail.ne1.yahoo.com (sonic307-10.consmr.mail.ne1.yahoo.com. [66.163.190.33])
+        by mx.google.com with ESMTPS id t19-20020a5d8493000000b0079182078abbsi2679897iom.34.2023.09.02.20.25.46
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Sep 2023 20:25:46 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.190.33 as permitted sender) client-ip=66.163.190.33;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=LITb68FQ;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.190.33 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1693711546; bh=EomlPR6WB57XAr161x5kUrYEQx9nMnxuIrTpKHS38WY=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=LITb68FQIg9q/b0MSBqEih0d+5nm/NgXa7fBFIAiLyQjxutAgy2dOhwAfoHXCD+WN9063Od52JsBmqA4UVxIWzfZprjOjjME1CxE4fLitIBWjeBgwOn2SVIYAT/47mckrhYbfqUTNnnAVwSON+KxOh8595ny+p5pASDs0DmFhvTZBUCalCL9UbNJZER87MVgX2mmxP6kiQaJ74oY5B23SEcns2WPKKmMUqwixjNWRxzQq1K/mb3bZv9dVjXcwOZEOi5+/opAb4qXpA1tUT46k2A23Gm7E2OimqJ46jyYNHDppE5AEHJ99oAC3dtVeJMts7SHir5BziF7Rw4U2DEbyA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1693711546; bh=86oGIcct/c/qGZx7AUHLK3r96E7Rul9hI965x70tiTn=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=n1tkZnuqZkawZBXyS+HRAij1nxoofrr8Bg6jj8zlaWTCGN02yvtK1LzRmRpaQOW35g6Z7vVQoINchldHarZjeDKxV/TpM25gBGZ2BkUSyrOIGsbFLyO3GFlz1p6mNYmUvK+RLaoy8KZ66YX7O0Y3RG8mcQ9oe21B5n7gv6PxQcS0/0yrfLD/sVX2h5fq9JLHme/kpgvq/jTAm4Xi0VZW2WCCPDqOFgtgQBcwQHOikonc5M0FUCMmwC75kSEEcGPAKsQGrIPdQy1GIGMbTO13QzLdhu5WCTKfODUFVW9drO3SclLMj3YNdfKpm05NkZiIj/W+P76TaNpX3eVRW3TmaQ==
+X-YMail-OSG: wlMzKxkVM1lAXTL3b1o_.a1hw8L.L3ycKGEkI2s4_Cabhf3mqOIIG2f.ZXyYftW 6wVpbS3vGrqaNWf6ZKXEP6vw41epMA.Xml9LYRBw.XJtPl4Ekc6Cxipfm4nzPi1dFXgVTWLBIi2j q9PMf31Y0KCycIZj0Oaji1AiFBA21IPA0MCMUMt7TlarmzF6IJpQb5zojajTTG9LdSTzuYQMy5G3 JVB2QOTJOXOj6mLxqc6.SkrzKLIorSY5yVcGyzp6zpYgB_mIRxOETPKxt.BWNdkNAZ6J.zBWzaE3 qlEGWLTG.HgeAqJLRBrjUsoUaNcMA9JIotTfu5bqJUQB19PIFPxJXLFwG5crJXWjPGiOyMVSCYQ0 KDQ5OBUNowgatD0Ik.u7tP7pzIxywhK2Kvi456kp6TVcgbnZ3QS_bx56iOfs6rMY5YuBAzaq_.GB mcOLpZndiAb4ItviZHTse8PaJBMaV7xJwUSMEGVbxvnAGJGXkeHcrH4RnQVcHmmsTRuxeiS.Mjyx rIsIMkZqTTvnwenGY87NO7ble8uGlqV0.QTyeO5JqqpT5TnAM3yGNJ7B7tpK6sMhES3LFG.ZrEUm nu8rnPCizVv4_xSr3hZ8sYsch0R_xbapyDpSCP_f5znwlkv9vD.83pmPx8mgBG5s9zVydQ9Ov5kZ Y5j1yfBjB3VMcLWzz.0ObiXr27.jzjtgjJQhoyH4utttm7ESeflf.Wv9s5nIfZf4BjHckHDDvf0O oXRnDClrSuCWj.UhOFdgrbCPnrwN8STHumqr3Gy8UOoy1B5vGw0Fzy9md4qD3O0atp6c9hhrd6In sJYlL3QO66VBZdsc8L9OxzbNz9oWnv9ZldUcGL_dztFgHaGX9gyPUpYWVFVOvsC_VFR7SXbuOBtv 8l.KhdLYn.cTHCycoIorO3irRfTNPrwkwYG5d7glwtfEXJyXYpzFzRiMOlVpYTA0DTI.xZm11Fca nAvZu_U6w4K_RGvG372sBJksYqPJvInaWHcSOtYUKIW0FJ6kUscCbkMhfZwNyXAWYHvSqTVnw2o1 oFWOvKYylDD_lH43MdAPThf_zsGGQljya8tEOyJEmO451HJFMptkD7Rc1WG.hjxanGP2ssy6qFhb QDD8S6iHTHgWdVX.3zdTDGgp8sLSohw_ElN4lRkbbRo5NeOhHa4i2EaB0sQ345W60LFzAZJChrFm woDXocIBHE2G85ppbKk7qutGIx464mkazW0TQsb6ASlFFTeP8xm.hoM38jvh.OhVMgIrxe7Zd09d J66yj7aQ5bIWjbOaxdWNL6xvhv9FiNtCNFTDokcq7Cq8A2DJtttfLo.y63gr6OzPGrT24iNfW9gK NbfC0_9Eb39IQ6AOEVPSGF3wJazL39An097_QFGSL4VMLana3xrIVhszBxroBkTcJvmQzcFhTxw. TInGIb90yflclQmoYbldzya5PLirgVAZsduIYhARJNdAMQIbS0Z6qOqoYib7sjuLC7oMpY9wDfuC eUelZw9BAy3u3YEAQfpPP7or2xpm6GiV12sHQx54WJ_QbDBjSwoslQNnXhX9hkJFYB7L28lIU4L0 g96z0ko8OBeVrWhTyFG3RkAGkPdB8aC8Y44EXlVgnaG4saUnlIv_uv6Cp3lgqRn_yHEUDkpeaEmL Uo8g.UoGWaAf0__pzaP0kvgMy0prG.EBo6dSIMnD6BCHtHL9XLoErxLT6C5tA2_pf6K8W5NyysMa CZJUpZ7.n3z8Lf.ZCguSM6BCe0wOizPqqT_GSYeVEvqVIuNFlUTLrl89Em368_ZBQhs6gI_I9U6I QGrim4Ah1E46Tw9Hyf_XZXB7LV9aRJ.wkL_ZF3bPNbjPtCAhG460eWstdrd8aWj3Ep702UVIZqKi ZZDfoRTQXMTRXkwr5jp_57kizBbPjZnzrSeKOV9DL2Dde0YyVhW_5LLxqyCWjQQvu24JgiGG9ABw 7fnw8G_qCZMnBjIbIAwhIW_d3us33.R0WtukcrnQbCG3ADwSLJOrsKP4_Cr0rnlUtuV5VVet2Ayq oGG3aM843zm4kvC_zDNaYuzAW7J.QsnZoJDb82WXtcb1Thz5bIWH_ntW9WPNKBP_SpXU0twY8lxJ 9HDP1ySJPFUuY8QZ5w_26XRx_i0.TB.v8tbJQyG1wJHVc98Jt.Y9XVjJix6LDesoCto.qNJOl1Bh AngB9gNMuvqw7MDynZ7D0aZMtxBzmiAEAqtAESKv_7YUHbbJPzTmUw4bpqU31NC_u.Mzt3eP3p1o 7J25SzhLPqqvVoiwRq47Eh2T5ho.sd..Uxzo8j1xdpWwfZrsE
+X-Sonic-MF: <carissa71555@yahoo.com>
+X-Sonic-ID: cc81e007-e6b8-4fb8-9c66-b5062398462d
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ne1.yahoo.com with HTTP; Sun, 3 Sep 2023 03:25:46 +0000
+Received: by hermes--production-gq1-6b7c87dcf5-wlch2 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID c446143a1ec70087ce17b984ff121a11;
+          Sun, 03 Sep 2023 03:25:41 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-F9F2E2B7-87A5-4C83-B7F1-E9CD736EBBF4
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Sat, 2 Sep 2023 20:25:27 -0700
+Subject: Chapter 40
+Message-Id: <5CF696C1-1BF2-413B-9620-72E397FBBC79@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20G75)
+References: <5CF696C1-1BF2-413B-9620-72E397FBBC79.ref@yahoo.com>
+Content-Length: 13318
+
+--Apple-Mail-F9F2E2B7-87A5-4C83-B7F1-E9CD736EBBF4
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+"The Other Side"
+
+
+Fly through the wind, find your way to the ground
+The other world where the one I love is bound
+I try to dream but my eyes will not close=20
+I wonder if you had found the world below=20
+
+The lonely petal of rose=20
+The scent of flowers
+I'll send you to the one who is gone=20
+Maybe dust from the stars will reach the angel who fell=20
+But I will never know if you did=20
+
+Survive the endless of nights
+Survive the winter
+Survive until you find who is lost=20
+I open my eyes but all I see is the past=20
+Time went by so fast=20
+
+
+
+From Efflorescent Poetry
+By: Astero Elessai
+
+--Apple-Mail-F9F2E2B7-87A5-4C83-B7F1-E9CD736EBBF4
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);"><span style="font-weight: bold;">"The Other Side"</span></p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">Fly through the wind, find your way to the ground</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">The other world where the one I love is bound</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">I try to dream but my eyes will not close&nbsp;</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">I wonder if you had found the world below&nbsp;</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">The lonely petal of rose&nbsp;</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">The scent of flowers</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">I'll send you to the one who is gone&nbsp;</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">Maybe dust from the stars will reach the angel who fell&nbsp;</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">But I will never know if you did&nbsp;</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">Survive the endless of nights</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">Survive the winter</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">Survive until you find who is lost&nbsp;</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">I open my eyes but all I see is the past&nbsp;</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">Time went by so fast&nbsp;</p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">From <span style="font-style: italic;">Efflorescent Poetry</span></p>
+<p style="margin: 0px; font-style: normal; font-variant-caps: normal; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; font-size-adjust: none; font-kerning: auto; font-variant-alternates: normal; font-variant-ligatures: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-position: normal; font-feature-settings: normal; font-optical-sizing: auto; font-variation-settings: normal; color: rgb(18, 18, 18);">By: Astero Elessai</p><div dir="ltr"></div></body></html>
+--Apple-Mail-F9F2E2B7-87A5-4C83-B7F1-E9CD736EBBF4--

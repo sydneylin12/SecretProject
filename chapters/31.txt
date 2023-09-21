@@ -1,0 +1,303 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:ac8:4546:0:0:0:0:0 with SMTP id z6csp2962916qtn;
+        Mon, 9 Jan 2023 14:16:34 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXsElTjPUXytQ5LwcmBV5FrosO79kQWq4RK5YG2yDuekBQ9+VAzXdos5m/PbnXjIZ3lHepK1
+X-Received: by 2002:a25:13c8:0:b0:6f6:4703:b29d with SMTP id 191-20020a2513c8000000b006f64703b29dmr58909956ybt.48.1673302594286;
+        Mon, 09 Jan 2023 14:16:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1673302594; cv=none;
+        d=google.com; s=arc-20160816;
+        b=QFXqTUKPFYVi0F6hQ6YPtsLE/VFncB+ovaa/O4OY906SS8GEiXA9PMxP7iIk1zBdiV
+         RaLpQ+A+CntBdPcYSnGw5uIwEsi3HmlkgWt4+5xwLqgUewSZIauks+dzx2ZFuHkrFt86
+         TC4c7CLw7fs/iupLs4RoXhseqOvrVFmtzR1/33/+rAPvUF5eD0e9+HSmhGAxIGBBalUB
+         g5wuG+J8Rk+SIa+PB8CH7ux77Zd/9Eu5uXhCGZG8E14C4EGKzVMQL4l8Hv54V18A5GuO
+         qgabb9mJMj4vc1cs8a+1AYLdPQ0DHE4tFQ/OIsVgVasskRT8bbzOzRIiUVB0p+bGAi6j
+         ALoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=UUKInzfRX6/w1Fdt7namxWAdzLpQIO3RjRbozZhbuZM=;
+        b=g6oY9lNYXBGil4NQ8ez+6PM7uxyYij9bZEqfksxcQpEkycaMZlAu+GSeR/rm2XeORa
+         lB7kEMpQD8PY4a8Cb8OgRnQ45MvUSdrW5qUbCsBmrnxYNfQQDxD1D/NOk6aiJPnrDjGQ
+         Sfsa+gW0jSO+2Uq3yw+0b4t91VE4i/1j141xNMwFHsZCop1kLgmodonLX4ivz3qA1Fzj
+         y2OOnPlulNhd4gRIcDpUl5eKQWZb0pmiXGGaCrd7FGAbyr35neh7RKArmmfwJPYa1Cgc
+         WqdHOTnMB8AkpvmdEAyqVDSJHMK9jyJUoGUfpnET5F1F4KHEO3igF05AnDJwFBX8bc3i
+         +wKw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=lcJ134ch;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.184.147 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic309-21.consmr.mail.ne1.yahoo.com (sonic309-21.consmr.mail.ne1.yahoo.com. [66.163.184.147])
+        by mx.google.com with ESMTPS id 64-20020a250d43000000b007b8b001f787si9119074ybn.575.2023.01.09.14.16.33
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jan 2023 14:16:34 -0800 (PST)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.184.147 as permitted sender) client-ip=66.163.184.147;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=lcJ134ch;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.184.147 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1673302593; bh=UUKInzfRX6/w1Fdt7namxWAdzLpQIO3RjRbozZhbuZM=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=lcJ134chakGwXzipe5HoLgW8yZP/bN/MHEIVaW1j++YRvx5by7D3mkdg/QacH9X9q0h4Q/gMXVV38Di7ctrJD9dFEAR4FovsvLzO7jbYSKUMbAUxe170rSeovv0CSLwN8U6YQLVy4PlT1mLhh6HGrlyCDn0k63oVBLvxJb/meyRJ/sAQt240ccwlDn8gQ+GM2nEGDLsZIv9tYmpyO3yi8tpaIKm6fZGMFopokCfX/NQi7/DMDOQP4p45MOTIEaw1FHOYUI/JHy4fnfNyC+PKs1EnCCzT1CX8GDLcQy5DSv56ekM4xvO6p8Kmb2XFALF0hGeQBawiz7GddJB3skL6mg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1673302593; bh=i8tmtmvz7odkl0h8PXdDlFKLoFboHTYFnEj51bBZq96=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=iuvzW54vxW5oz7MME6hNYAB1c2Chl4I82ildSaawXOvgVp5sK3NJLyvpnE4TpI9RaZEMjvGcApHnqSG7N5kUCMNqlOdgxka+f4p/bKdcEtT+MXQbWZTJFSq6EyJOitrLjHPzsbJtVpsdeFXlJSYY/SArBctRyApwffyiQqp7gitBQpm0D96S5BmeL3g5HMbik26AwD+CUgYDuBVWzQRFhtTAEPy+6i/ksTnloCqJkUU1rhjnLY6NhCEIJUbZmKtieMWauxwX8UH0m4zDb1Fp7nKgLA4Z3nSyvhuD7WlFDNDHPQWohozP7ZCPfXNLIv/LlhbUFpanvmoKs69oNeYv/g==
+X-YMail-OSG: gLWgz3MVM1nNz0Y38GerL.5OeBHHoHAf.peT1D4Fiqg4VMEk_F4mGxQ1MWEVcZY xsslEUfcGK9ZHijw4TzNJbC.dsfQkjR6E3ZZKlIWj4yMI97cKGJnWxoK3.6QqJhCj8nwploR416e e_2i8iUlNBvljt.5tFPjZto5h_86wQDGNvt2A2rFEwdm2ZMGLLZqS1gCxZGXH0IN9OSFcKF0gBQE 5zKJfundgTMxcAc.mwoH_XSirpxsIsGUENZ4wl1HFjeRs0RjBpb5QzVXUBAH8qA9mOSpps3l9rMZ xETxO76LeNbwpCHknMqqPD3dXYB635jKzqVZm4LBTkNSH3PfZlEE_I9JMkqstAbSxFv3JXdqziBe Q4duzetiSGNfqvVVyvRJNlbw0YUl2MWL7AtDsqbtP41awpRLuLNaTq.4hoX55.ta8VrfdKdYEikT ENnItZ2TMZdKXn7U31.kZeNFy0D3hnVGZYI_0V75KC.LYaBc_xNjzvyOGkneChBv1GDwEinNjk0b y3TIoWEkEdNDZnUVTeMh6MOEjVRYP7HLHxZnXxoOE6NEzAPc6XXp6viwzyu7CihCvJBr1EAwDOjP hOACUodGzIXYeirmQl1fDRvL9G5zq8s1BofGMbcf0FlmAj9RASs_XUgvxRSR3HEI5CXHgvZkmvy3 xt__z7AeKSp8qy_Vn_JO0xcafLQIEAFpPHoOZ6hdIvpzHjr8OalIlwinC175QsOrRp0DXai_D0iN gsQoLBk4HVwqtzrCgD4QJotv35hZa6JWnu.ICzEzXpzV2.pUnwRLc2ucFsO1msNO3Y2_Fz3QDces 0kVrQLkd_hEyEMXv4qmaZMXTs_IYgHJTUDYdVU.FUkXOYKTZKyM9H2PT4S2EFqudNrKScd7SutiD HIGJqo5sKbLORPgLrZGz422iUyOSo6jBBgDL1k4pV2zwHM5FFq0Ow7m3rAMBkmUKXFw6WzdT5UFZ oiNYMeLYJdQoJYWdmyhp3atB_PwxCNRzIvEoFeXtNGWAuZ2sjM3VVJHKwTmZATGMihbLfTBlgB3X xiI13O65F5cbfXUqUHVACmri440eiaV47IzTmErjdlJkLy_2IJU2DAHn6BBeJvNENJcknpPJOJop h1L9AsmUWInvKunwNlgLaXQ9r5zHxVpgIvLOvwQb1BNI8WQy_LqQBiK4YHv0LQ85fWNr.khXhVaG Bl1mQWqlZyGZf9ZpXe1ITCv5K5xLY5C.4DcXdK1PsTVa3WnZ.8YxAlCf7WMTGi6K3u.kAFcsx_pQ gtGqb0Wtzs_9tKthtwo7GaQBJ8B.MDJ8MhLejlizLG2biIP04RV2VcoBl25CWXS5yJPjqQYZJkCe Xg8ePp3CbS.s7Uow5QmJJoUB1Kswd8LJ0RtXFQ415ww.LbsDXbPvz2hdDOKmWYfo2T9073XZS0LW q.VWdOvLOW7PObkBl0_.Kz3HkwBiRuUfLydGut5PshIPZioSGi5rFaxSe3KinsxNt_U776gNhosu Ccm2FvJ24BTNFMQ_3lov.UzbN1TAc2DgUQxwmugXhic8jNjFvM3GRHDy9Simr3T3KTiLJ6TX6Tm5 uk_iAUBOuesafvyx5LmhTWLUyvEhfZ_2aFLE6ao02WtSFwS5HjXr4gDpdsnPRu_VSob5PnkQ3drT xsqBqo0028RsO95xDxnEkzm1Li9rv8oPcnrNcmbDXwvtDYdyFGT3y.B1zAeI0k1fPuEoJnkWAl2W 99eFhbv4uajFLtlInwwqAxOzh7Jckk1ZdrQqv6I3TP8MXUHErdwsUYZ2tOZbVZIjlvAC0vdMyL3H U.02jU7mJoAHdTSyTfMgfKLB2RK86S5AmyAMInUKf3dIb_JEdyEdUWvFegL3o09tWcrVGpRt0BJ. goXTeNdrYyczcBIu.R3PEu_BCniWQosWZpgUEOvUCnwiy3yai0FvtAb0YDglM9LIZIXqQlfFWnC2 aLmSt2B6utOWGnREHzYVQMQAH.keHZ4qgTRaJpW8zaJSpNB26MDftzH89cSfHrz0A_iHCbaoY8za 8VOXX6uv12DP21WtVKxhdS159JfaH1rbwfO0SJzcbyTA.vJt64u1JcTqQWrDN9hGFzT8soDdXBwh GALPR.f6bCu.KSdaaEeiThhn4wmmkJ0Lm.0SvUtEjVpjy3Kn74VSF40pBqi6JhEYjnFl80ukemEK Ltx0FYLS1BhjokYVksMxpA_B.a_Mk_krqhj9aPgkBLl1YYgbaAwLe719zLumIlR.7qYCzf_EBmZa uxblJPyevo_7aW7V5Wd4ZqYyCbRwt1T34Ds4QuZn0
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.ne1.yahoo.com with HTTP; Mon, 9 Jan 2023 22:16:33 +0000
+Received: by hermes--production-ne1-7b69748c4d-474lb (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID db65c628e5d9a96bc30a02d02a12dac3;
+          Mon, 09 Jan 2023 22:16:32 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-7BF02A41-72EF-4824-BB17-4209D70AC7E5
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Mon, 9 Jan 2023 14:16:20 -0800
+Subject: Chapter 31
+Message-Id: <C22274CD-A00D-41C9-B805-C780CAE8DA0E@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20C65)
+References: <C22274CD-A00D-41C9-B805-C780CAE8DA0E.ref@yahoo.com>
+Content-Length: 26259
+
+--Apple-Mail-7BF02A41-72EF-4824-BB17-4209D70AC7E5
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Ever since talking to Kisani in the village, Kona hadn't seen her for the r=
+est of the day. She roamed around, asking about Astero Elessai and coming u=
+p with nothing. Afterwards, she went back to the hospital and asked around =
+for Kisani. Celeste said she had just gone home for the night and would be =
+back in the morning.=20
+
+Feeling a bit more relieved by Celeste's reassurance, Kona laid in her bed =
+that night, hopeful to talk more with Kisani the next day.
+
+However, in the middle of the night, Kona heard footsteps outside the door =
+to her room in the hospital. She leapt from her bed, grabbed the knife unde=
+r her pillow, and ducked behind the bed, waiting anxiously for an intruder,=
+ her heart thudding rapidly.=20
+
+The door opened, and in walked Celeste, a gentle smile on her face.
+
+"Stay away," Kona demanded, holding up the knife.=20
+
+Celeste sighed, her eyes turning sad. "Please relax, Kona. You have an untr=
+eated cut."=20
+
+Celeste had treated her before, out of the generosity of her heart. Kona di=
+d nothing in return for the treatment, and Celeste asked for nothing.=20
+
+Kona lowered the knife, completely forgetting about the strange time of day=
+, Celeste's strange melancholic eyes, and the way her hands shifted nervous=
+ly at her sides.=20
+
+She chose to trust Celeste.
+
+So Kona nodded. Celeste stepped closer, and closer, stepped around the bed,=
+ until she stood in front of Kona, her warm expression filling the Sanu ass=
+assin with warmth. During her time on the ground, Kona realized that while =
+Lady Willow felt like a stern older sister who did her best to condition Ko=
+na into a strong person who could never be beaten, Celeste felt more like a=
+ mother who would care for Kona no matter what. When they first met, Kona h=
+ad asked why she would care for her. And Celeste had said that Kona was a p=
+erson, and she deserved care just like anyone else.=20
+
+Kona trusted her. Looking into those soft, ancient eyes, she felt the needl=
+e prick her arm. Then everything went black.=20
+
+When she finally came to, Kona could not move a single inch of her body.=20
+
+Opening her eyes groggily, she observed her surroundings. Darkness enclosed=
+ her, the only light being from the flame of a candle from outside the cell=
+. The metal bars of a prison cell filled her vision, and stone walls surrou=
+nded her on either side. It was cold and silent.=20
+
+Kona had been in a situation like this before. When she made an assassinati=
+on attempt on one of the Sanu clan's nobles, they captured and imprisoned h=
+er for days. They were actually talking of sending her to the ground, but L=
+ady Willow helped her escape just in time. The two of them then left the Sa=
+nu clan and traveled throughout the sky together.=20
+
+But now, Lady Willow was too far away to help her.=20
+
+Kona told herself to stop being idiotic. She shouldn't have trusted Celeste=
+. She shouldn't have trusted Kisani. She should've known that people from t=
+he sky would be treated differently. But Kona really thought that maybe eve=
+ryone was wrong about the ground, that there were good people here.=20
+
+An aching sadness built up inside of her. This was it. This was reality. An=
+d this was the price she had to pay for believing it could be otherwise.=20
+
+Long chains extended from the walls and wrapped around her wrists, securing=
+ her in place. They were extremely tight, a death-like grip on Kona. There =
+was no way out of this.=20
+
+Kona did not cry, nor did she feel scared. She was orphan from the streets =
+of the Sanu clan. She became a killer to get the things she wanted. She bec=
+ame an assassin when she needed the money. Normally, Kona would never have =
+offered to do something so kind for Kisani.=20
+
+In just two weeks, this place changed her, and not for the better. Her dign=
+ity and pride as a feared name washed away with pretty words and plastic sm=
+iles. Perhaps eating with her friends and walking with them through the hos=
+pital grounds and lying with Kisani underneath the sky were all illusions K=
+ona conjured inside her own head.=20
+
+Perhaps the people on the ground were not monsters, as the stories have alw=
+ays told. However, it was true that they hated those from the sky, and a me=
+asly friendship would not change centuries of animosity.=20
+
+Besides, that friendship may have been a sham. There was only one person Ko=
+na spoke to about the sky.=20
+
+A noise sounded from outside, presumably a door being opened. Footsteps. Mu=
+ltiple.=20
+
+Three people walked and stood in front of Kona. Two she didn't recognize. T=
+he other was the girl who Kona thought was as beautiful as sunlight. She st=
+ood in the darkness, a shameful expression on her face.=20
+
+"I assume this is your doing." Kona's voice came out empty, sounding a mill=
+ion miles away from her own ears.=20
+
+Kisani shook her head in disbelief. "I didn't want to."=20
+
+"What did I ever do to you?" Kona genuinely wanted to know.=20
+
+Kisani looked away.=20
+
+"I tried to help you."=20
+
+"I know."=20
+
+"This is because I'm from the sky?"=20
+
+"Do you not understand?" Kisani hissed, stepping closer. Kona could clearly=
+ see her eyes now. They were shining with tears. "I lost everything because=
+ of my father."=20
+
+Kona scoffed. "Am I your father?"=20
+
+Kisani glared. "You're the same kind. You send anyone you don't want down h=
+ere, and no one can go up. My father said it was like paradise up there, an=
+d down here, it's hell."=20
+
+"I was taught that anyone who lived on the ground were demons."=20
+
+"What are you trying to say?"=20
+
+Kona shrugged, not saying a word.=20
+
+"You will be kept here for a long time, Kona." Strangely, Kisani seemed rel=
+uctant to say these words. "We can't just send you to the sky, unfortunatel=
+y. It's not that easy for us."=20
+
+"A long time?" Kona gave her a bitter smile. "That's good. I'll outlive you=
+."=20
+
+Kisani sucked in a shaky breath, but before she could do anything, the guar=
+ds told her that her time was up, and she needed to leave. Kona watched her=
+ walk away, feeling a single moment of pride.=20
+
+Then, the reality of her situation came crashing down, and her breaths bega=
+n to quicken. Kona tried to breathe, to gain control of herself. The only w=
+ay she could do that was with the sight of blood, preferably her own. But h=
+er hands were tied, and Kona could do nothing.=20
+
+Kona shut her eyes, as if the world would wash away.=20
+
+In her mind, she saw the woman who saved her eight years ago. The woman who=
+ could not save her now.
+
+Lady Willow. I'm sorry.
+
+Sent from my iPhone
+--Apple-Mail-7BF02A41-72EF-4824-BB17-4209D70AC7E5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Ever since talking to Kisani in the village, Kona hadn't seen her for the rest of the day. She roamed around, asking about Astero Elessai and coming up with nothing. Afterwards, she went back to the hospital and asked around for Kisani. Celeste said she had just gone home for the night and would be back in the morning.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Feeling a bit more relieved by Celeste's reassurance, Kona laid in her bed that night, hopeful to talk more with Kisani the next day.</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">However, in the middle of the night, Kona heard footsteps outside the door to her room in the hospital. She leapt from her bed, grabbed the knife under her pillow, and ducked behind the bed, waiting anxiously for an intruder, her heart thudding rapidly.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The door opened, and in walked Celeste, a gentle smile on her face.</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Stay away," Kona demanded, holding up the knife.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Celeste sighed, her eyes turning sad. "Please relax, Kona. You have an untreated cut."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Celeste had treated her before, out of the generosity of her heart. Kona did nothing in return for the treatment, and Celeste asked for nothing.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona lowered the knife, completely forgetting about the strange time of day, Celeste's strange melancholic eyes, and the way her hands shifted nervously at her sides.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She chose to trust Celeste.</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">So Kona nodded. Celeste stepped closer, and closer, stepped around the bed, until she stood in front of Kona, her warm expression filling the Sanu assassin with warmth. During her time on the ground, Kona realized that while Lady Willow felt like a stern older sister who did her best to condition Kona into a strong person who could never be beaten, Celeste felt more like a mother who would care for Kona no matter what. When they first met, Kona had asked why she would care for her. And Celeste had said that Kona was a person, and she deserved care just like anyone else.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona trusted her. Looking into those soft, ancient eyes, she felt the needle prick her arm. Then everything went black.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">When she finally came to, Kona could not move a single inch of her body.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Opening her eyes groggily, she observed her surroundings. Darkness enclosed her, the only light being from the flame of a candle from outside the cell. The metal bars of a prison cell filled her vision, and stone walls surrounded her on either side. It was cold and silent.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona had been in a situation like this before. When she made an assassination attempt on one of the Sanu clan's nobles, they captured and imprisoned her for days. They were actually talking of sending her to the ground, but Lady Willow helped her escape just in time. The two of them then left the Sanu clan and traveled throughout the sky together.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">But now, Lady Willow was too far away to help her.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona told herself to stop being idiotic. She shouldn't have trusted Celeste. She shouldn't have trusted Kisani. She should've known that people from the sky would be treated differently. But Kona really thought that maybe everyone was wrong about the ground, that there were good people here.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">An aching sadness built up inside of her. This was it. This was reality. And this was the price she had to pay for believing it could be otherwise.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Long chains extended from the walls and wrapped around her wrists, securing her in place. They were extremely tight, a death-like grip on Kona. There was no way out of this.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona did not cry, nor did she feel scared. She was orphan from the streets of the Sanu clan. She became a killer to get the things she wanted. She became an assassin when she needed the money. Normally, Kona would never have offered to do something so kind for Kisani.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">In just two weeks, this place changed her, and not for the better. Her dignity and pride as a feared name washed away with pretty words and plastic smiles. Perhaps eating with her friends and walking with them through the hospital grounds and lying with Kisani underneath the sky were all illusions Kona conjured inside her own head.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Perhaps the people on the ground were not monsters, as the stories have always told. However, it was true that they hated those from the sky, and a measly friendship would not change centuries of animosity.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Besides, that friendship may have been a sham. There was only one person Kona spoke to about the sky.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">A noise sounded from outside, presumably a door being opened. Footsteps. Multiple.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Three people walked and stood in front of Kona. Two she didn't recognize. The other was the girl who Kona thought was as beautiful as sunlight. She stood in the darkness, a shameful expression on her face.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I assume this is your doing." Kona's voice came out empty, sounding a million miles away from her own ears.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani shook her head in disbelief. "I didn't want to."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What did I ever do to you?" Kona genuinely wanted to know.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani looked away.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I tried to help you."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I know."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"This is because I'm from the sky?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you not understand?" Kisani hissed, stepping closer. Kona could clearly see her eyes now. They were shining with tears. "I lost everything because of my father."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona scoffed. "Am I your father?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani glared. "You're the same kind. You send anyone you don't want down here, and no one can go up. My father said it was like paradise up there, and down here, it's hell."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I was taught that anyone who lived on the ground were demons."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What are you trying to say?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona shrugged, not saying a word.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You will be kept here for a long time, Kona." Strangely, Kisani seemed reluctant to say these words. "We can't just send you to the sky, unfortunately. It's not that easy for us."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"A long time?" Kona gave her a bitter smile. "That's good. I'll outlive you."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kisani sucked in a shaky breath, but before she could do anything, the guards told her that her time was up, and she needed to leave. Kona watched her walk away, feeling a single moment of pride.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Then, the reality of her situation came crashing down, and her breaths began to quicken. Kona tried to breathe, to gain control of herself. The only way she could do that was with the sight of blood, preferably her own. But her hands were tied, and Kona could do nothing.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona shut her eyes, as if the world would wash away.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">In her mind, she saw the woman who saved her eight years ago. The woman who could not save her now.</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Lady Willow. I'm sorry.</span></p><br><div dir="ltr">Sent from my iPhone</div></body></html>
+--Apple-Mail-7BF02A41-72EF-4824-BB17-4209D70AC7E5--
