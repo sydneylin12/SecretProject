@@ -19,11 +19,11 @@ music.addEventListener('click', () => {
 	window.location.href = WangXian;
 });
 
-
+// Make data request to public github repo
 const getData = async () => {
-	const jsonName = 'sky-full-of-flowers.json';
-	const response = await fetch(`https://raw.githubusercontent.com/sydneylin12/SecretProject/main/${jsonName}`);
-	const data = await response.json();
+	const chapterName = '1.html';
+	const response = await fetch(`https://raw.githubusercontent.com/sydneylin12/SecretProject/main/chapters/${chapterName}`);
+	const data = await response.text();
 	console.log(data);
 };
 
