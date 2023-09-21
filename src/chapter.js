@@ -12,7 +12,12 @@ const getAndLoadChapterData = async () => {
 
 	title.innerHTML = `Chapter ${chapterNumber} | The Sky Full of Flowers`;
 	header.innerHTML = `Chapter ${chapterNumber}`;
-	content.innerHTML = data;
+
+	// Trim the string and only add html tags
+
+	const trimmedString = data.match(/<html>([\s\S]*?)<\/html>/)[0];
+	console.log(trimmedString);
+	content.innerHTML = trimmedString;
 };
 
 getAndLoadChapterData();

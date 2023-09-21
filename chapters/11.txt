@@ -1,0 +1,414 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:6638:3788:0:0:0:0 with SMTP id w8csp1117044jal;
+        Thu, 26 May 2022 16:09:48 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz5YXMK4bY9+H44hanOl7sAwbx45uht7sQHjGrY3yg+ucE3VMMat24jr9YBMoqAXvwp/w2u
+X-Received: by 2002:a05:6214:1c8f:b0:443:8505:14b3 with SMTP id ib15-20020a0562141c8f00b00443850514b3mr33429682qvb.7.1653606588080;
+        Thu, 26 May 2022 16:09:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1653606588; cv=none;
+        d=google.com; s=arc-20160816;
+        b=is7YUSmlQWtSWSo0pk+woEWX4eRbREj0jdPHAdQtteg+AwUtu19IUarzI80l01RXRK
+         3iPErHyidqk5qSP+zQm6J+DFn3N8+r8J4A07DCvxtvAXXEjruVqIV42ftDXgf7nnXtHV
+         F553U7M4rtbajxg9owRHnssOLozOJHpabK9yFlUrCtS1/n8dqBaEpbtToWnazHEtjlTy
+         tJUMf7AS94Snl+rdZGXfx4sPAgPS1VnEkKJwsyUBiykeYacN0gsrP9srwBU+AiK/WIm1
+         HmNN+2UCx7/9LsTHI9O3VAKYOOnea3Egs23XCELDX07XS8dokoGIqI6Nj5oU+x+4y/JK
+         AYLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=PqxZKQVpJMJ3dt1ZEWjHzXuCvHr0wMD/SJAyyopqga0=;
+        b=jT3z+T8JK2nMxbgoqskGWEzhb67mIPxwm28DUQ3Lc/uU8S+sCogVpV1IVxAKweyoMh
+         c/WnkGPjfz3yFCNdmqHPJLmUhLpfFNls41RuRIG2l8wgFHo1cmggpXYB66ZzHjbNKySh
+         LUnKJgWZ5/PFWuWy7HmQXIwtc+wZSbCt4H4ewB6p5YhhzOVtb+ZDo8oFFjB3XGfcqNKR
+         ufSzqll8eaC0QsOCJmJzB6dEAdPkt2SS1F8wWjSa+UeY6bjf3LtGcsH1CEI2d4cAA5or
+         PeQGIEq4xXf8zQ7UPoDSof4wMS3MRFlD1+SFSc7DjjjzmoNfTUimmFqLXlAG9HraMqyE
+         4+Tg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=mTYV7gJq;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.147 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic314-21.consmr.mail.ne1.yahoo.com (sonic314-21.consmr.mail.ne1.yahoo.com. [66.163.189.147])
+        by mx.google.com with ESMTPS id j11-20020a05620a146b00b006a3718d3f01si1659713qkl.490.2022.05.26.16.09.47
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 May 2022 16:09:48 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.147 as permitted sender) client-ip=66.163.189.147;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=mTYV7gJq;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.147 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1653606587; bh=PqxZKQVpJMJ3dt1ZEWjHzXuCvHr0wMD/SJAyyopqga0=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=mTYV7gJq6Qm5u3zzMqmxGwsrzeLl8MDHV87dtULAp2XcsEdhoZHnJ7vu/AYiOqgMpS+NCHw5c/PlfSCNWUtPPZuqqKQ9+ZJjyUsCqW1bCoaWrCJxziUiio7QZXO+zw/MSKPtQqp42lZQD7QDY5KtKQa/1dhOkdmjVtiYwaCx0MSf+BawgMUPzzK+S5p4PmmoXG5A0rsA9aVCnmMqeEbZESvas6PaM+S7tAy0fw9ZZs4mhdwe0yk2n07Juq1TPeskVyAxMOiuR0rMUDEdTk9R05cGL9nbtuk+8EAidijG84z1TkjuG7c/+OQXA5zJqMw7JHirTABWQJSxqbR1H3bV6Q==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1653606587; bh=lDW7ngpJ2Njmhj6heD/jifF9AeNe8jxlQLfBf1Pii9X=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=UuR0dv+5DUZ34PxYCHT2OFkXXib8ErR3Yclmt2Q8NvisPBfPBCESpKYZE9gXHxiSSdt2xB5poLrdekMv29jHvKVg1pJp3xLuUx6SYcV2utIMYsgm55YITVc89fnK9vgYfRQW9u30FUbfjuuw/kejxiOiYrWbIl/p8MX1I/rX5ottr3l16G8jIF1ujOTCJrdfvo4eMgXnRZwl5oquYjPpgcsMIioTsRda8eXvWYIOY/22JaeDKvkiaIQXhYTY8EvzMN+D8HgmbJbOpCZxgCy5nD7d63+2vVhAXH8CFFXCTstVksDNXuDQCSv4Wyg2Q922kn14fv2wRVXRgva3S//F5Q==
+X-YMail-OSG: k45xFvIVM1nw5SmmhMdeaIsXdnu1yUmedaaWMED8CdgxDnQqFq1i1WBDLkZIWa9 7KTHpaZycwBu42RKrDLDXnDoMlL71cjlmhCHv5jzfW53hjYlJ9K0K3N0hcyoDSf8QxCNwmLONP73 dc.VvjdVZl9YJBFoH4S0Q_wMP6MK_orDnVhWfG8uyMJO0SSBCx_bmvP3p7SuSmd1ssV6WjwVtLUj dCiVps8nPLiVbs5QFLsbuLJl5k0KsZmSYLZrTLDAKXPuWuQl4gH19yur_EaFTLrk0MJrJR1DkMTV puSLcd9HBAZpEEAguM999vBRrpC4wE26rFyUqwCzUvWNlLonM2EeT2GpjQoAi_wMjdl3tY7wmpjr 0piERkW8c4fdM0JXsMQ4AfuNPSku0sStR346zTBKjxf.AnQVtirXmMVMM6RK5hP5f1W4Ytrfm3Vf he.1yby5NtiS5ihfcdG2zx84B5HDi0mHiwDUa_0QckBXNHRqZ_RutoLy.A_ndhn3EMWju.gdvIJa 55kw289mScnsebZnVUKU9hgf3Rs.5AO.t2V0dHZzScTYnlOK8txZlkkTBsAdpxEDLb9wMnLDs91j ZX7gJqOuY.SRnSnvrtR53dVF2hwzH_F5JllYorgC4yd44DEyGZpYL84wQp.m6XgQ9CetuPIh5tNe _GQKo6ZLR7SO8ODgWtwkzBHRAIy0yZd1wXZNcCgpDjmSu6FZ2cVf8LQpdkFsN.4iX7_8jtOobqSf EdKetG.5lmYf_jTi6.CArvV7RJ4CQG_MkTx925GoZDLxFi8GYvElSH8Z.g4jZ9NxsOc_jw8nrtFz 9UshugGIebT6LwkxCWJVNz7cAf7pu0kdcq51N5lluO0_VqUuLq9vMQ60zTCIsfwVmpRlIyUejijd k.M02ofxKzSlRNDfZDaAgv3bC34aqnq6Cob6G0xlXd2E024TdJ9lMQkOYYsw0id3J7qWo2D55umV Sqy2PdAV9qrQdZ0P8ROD1h8R77Ho5ppSKhP78ZJ7Iag9rCMBX1iruar5ljH4kVdasRN09uXVDfAu 2mblGG73aN8.2aG9VSgMbU.SQ12jq.nSNu8rDxObUSFCHOodAnoKR0.9Qxl8HEy8AXrBuGfO.RWk oOVIiyvIYFrblgB3aFKQaxchA3J64dxc_MMROmjgc.KX_9w5VBm55ov0GicNNMdWBRHtGmDuvsWV zKapCXUC689c9UjxZolx6rUbQUTmImlbiN4n4si186xbAwzMnVjMNRjZKdGT0qPB5lFySUKM_JzZ pslfxtsf5sSbDZ_D6O2jr6BgQ8RBDt_OFQkORffDCB6J55ED3U5FrPdgh9cQ6r3x8BSkqoX9peCM oSRd_YuvEUhQS30GE_E4bip7HhDRKkzJW_U8FtPjIJWwnHlmJjcJB2I_N5SLeRnmmH0t4R0T.miM W0jxhCzjWcfxnIbN2OTDLWYiKtgJmBg7vG1K6a8H0E59WVGEgh0ymApqsYaOpiiKpPVW5vo8slAB r6SP8hZb4r3d9g1TkW.L93VbTOjK05uz4NEIAYo2Z74leiUQ_gsC8YhRvb9K2k_7hI9NZSrlN6bt 2fU.tHzdE_4GSZ1TtPpGvPJxKJ7CxrIjqp5gWoEMcdBSDrzoVoCorwhXOMTAc8shPBmup6egtUHY oYDfVk.poHb.aHhyDx1lDNzzngHaFpy4px7h2Pxe9fMVCSpicvhCir13l5Xgj5gWd6LWMw2Re76J D4ov5wr3w335edGEbYnf2CW1EkZd7q.u9hsuycMbaMBaf8Nt77IUedac52q63AaNW1520LXVjy7q kfGVKzT9iviHzrP80KCSV6Uc.EvUxtdiUkiujDg9b0ZLdL_b2lzTjSFi2_YyRmsuFlZcr3jg3gqG _E3N8xOGcAxxRDjnQOjGsojD223N2LZGNLZEwUdS6TWaKTyVWMP8XaGYBX7hW6EF9oAuXpdpONkq BNXzYlUFYnDa0HJO.NIFjJUfSPuT8xd6NnnGumMINubOW0r.jPIU8Iz2idBQTS6fUxk44ZbTjA4Q 3g0.m3Cyw8_HUUhMNUiMaCnMmOgJ85YFz9hDDhchGNh6.PwpqfRNT9uAw2duyMre4E9amiZxJNWI V6KfshWSVZzDG1AaKFzDYEzv6HAeMX_FiD2SLlw2RWFvPESfpCJGDds7gG9.XQQm_D4hIgVmTkFI AoOJLAiJajYmXM18CqMqamHbkMlK_TDpJa2ujDIoDJbPv..qw_DmT6_40bm4CsLEGMHTrfgVz6z0 T1zdasP4K8qmIuyhOOSFL02OJszqGe70CzfI9hVPnrjjUbxesBak7ScuegQef0lET3DyICNxO
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.ne1.yahoo.com with HTTP; Thu, 26 May 2022 23:09:47 +0000
+Received: by hermes--canary-production-gq1-54945cc758-znvmc (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 7e615a896dd7a053129dc3f631da283d;
+          Thu, 26 May 2022 23:09:41 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-CB677845-8A9A-4DAF-B1FA-A482EE08D00C
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 26 May 2022 16:09:40 -0700
+Subject: Chapter 11
+Message-Id: <763CCB7B-1B36-4A41-990F-582370CA514F@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (19E258)
+References: <763CCB7B-1B36-4A41-990F-582370CA514F.ref@yahoo.com>
+Content-Length: 41399
+
+--Apple-Mail-CB677845-8A9A-4DAF-B1FA-A482EE08D00C
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+"This will be your room," said the woman who was now his mother, opening a =
+pair of double doors into what was the biggest room the boy had ever seen. =
+Granted, their house was also the biggest house he had ever seen. There wer=
+e large white columns at the entrance, and many windows spanned the long wi=
+dth of the manor. As he walked through the halls, there were statues that h=
+is mother explained were the gods worshipped by the Elessai clan. Purple ba=
+nners lined the walls, the signature color of their clan. He would be weari=
+ng that color from now on.=20
+
+The room he would be staying in had a bed much too big for him, with purple=
+ sheets and fluffy pillows. A painting of a golden arch spanned the wall at=
+ the head of the bed, displaying a summer scenery of clear blue skies and l=
+ooming palm trees. Tiny people were drawn at the foot of the arch, marvelin=
+g at its beauty. The boy took a wider look around the room and saw glass do=
+ors leading to a balcony overlooking the back of the manor, where where in =
+the distance beyond a long flight of stairs, people milled about in the mar=
+ketplace. And just beyond that, he could see a crystal blue sea.=20
+
+"Do you like it, Astero?" his mother asked.=20
+
+He nodded. It was strange finally being called a name, but he liked the sou=
+nd of it.=20
+
+"I will have clothes brought for you." His mother placed a hand on his shou=
+lder and he gazed in wonder around the room. "You may bathe in there," she =
+said, pointing to a door right across the bed. "I'll have the servants assi=
+st you."=20
+
+His mother left, and Astero waited until the servants arrived, ushering him=
+ into the washroom. It was made entirely of exquisite white marble, with an=
+ enormous square bathtub. Flowers stood on pedestals, filling the room with=
+ a sweet aroma. There were roses of all colors, and Astero felt a tug at hi=
+s heart. He wondered where his Anle was.=20
+
+The servants filled the bath with water, and steam filled the air. He marve=
+led at the view. The only water he used to bathe in was from the ice cold w=
+ell in Ludha.=20
+
+Astero took off his clothes and stepped carefully into the water. It was wa=
+rm, and he smiled in delight as he immersed his whole body in it.=20
+
+He leaned against the side as a servant washed his hair, closing his eyes a=
+s his scalp was massaged. Being taken care of like this was a foreign conce=
+pt to him. First, his Anle had saved his life, and now, he would be living =
+in the biggest house he had ever seen, with servants catering to his needs =
+and a mother who loved him.=20
+
+He would tell his mother tomorrow that he was from the ground. Astero was s=
+ure she would accept him anyway, just like his Anle.=20
+
+Astero finished bathing, and the servants helped him get dressed into brown=
+ pants and dark purple robes that nearly touched the floor. He had never wo=
+rn clothes this nice before. They gently brushed his hair which had been cu=
+t short just earlier that day.=20
+
+As soon as he left the bathroom, Astero ran over to the balcony. There were=
+ more people in this part of the town than in his entire village, and peopl=
+e looked much happier here. Just beyond the town's edge was a glittering se=
+a, and he desperately wanted to take a dive in it.=20
+
+He stayed outside for the longest time, watching the sun set below the hori=
+zon, illuminating the town in breathtaking orange light. It would be nicer =
+if he could see it with Anle. Perhaps she was watching the sunset too.=20
+
+Tomorrow, he would ask his mother if he could see her. He knew her name was=
+ Rosella, and although she did not give him a last name, he believed people=
+ would know her. She seemed like a highborn lady, with all the poise and gr=
+ace of a noble woman. She looked like a princess in his eyes.=20
+
+When darkness set in, Astero fell asleep in the bed much too large for him.=
+ He had never experienced such comfort before, having slept on floors or ou=
+tdoors most of his life. There was so much luxury in the sky, where grand m=
+anors and flower fields existed directly under the sun. Not for one moment =
+did he ever regret climbing the stairway.=20
+
+The next day, the servants woke him up to escort him to breakfast in the di=
+ning pavilion outside, where his mother sat waiting for him.=20
+
+"Good morning, Astero," she greeted as he sat down across from her.=20
+
+"Good morning, mother," he said, sitting down next to her.=20
+
+She smiled. "Here, eat," said his mother, shoveling food onto his plate.=20
+
+His eyes widened. "All this?"=20
+
+"All this," she confirmed with a nod.=20
+
+The food was exquisite, served in delicate presentations. Food he had never=
+ seen before covered the entire table. Astero was used to scraps and leftov=
+ers and digging through other people's thrown-out remains. He finally reali=
+zed this was what he'd have every day, living as a sky person.=20
+
+So he ate plate after plate until he felt the need to throw up. His mother =
+continued to fill his plate whenever he wanted, not caring how impolite his=
+ style of eating was. She looked happy just seeing him enjoy himself.=20
+
+After reaching a point where his stomach began to build up, Astero begrudgi=
+ngly pushed his most recent plate away from him. "I'm full."=20
+
+His mother laughed, and he looked up at this woman he had met yesterday. Sh=
+e wore a golden band around her head, giving her the appearance of an angel=
+. Her long purple robes matched the color of Astero's own. They were family=
+ now, he realized, and she didn't seem like she would make him do chores or=
+ make him steal from others in the marketplace. He didn't even need to wash=
+ his own hair or find his own food. Was it going to be like this forever?=
+=20
+
+"Lady Elessai," said a servant approaching the table. He bowed his head low=
+ before speaking, and Astero wondered if they would do that for him too. "L=
+ord Elessai has just arrived."=20
+
+She nodded in acknowledgment, although she seemed more tense.
+
+Just a moment later, a man marched into the pavilion. His stern face and fl=
+owing purple robes made him seem extremely intimidating, and Astero unconsc=
+iously sunk back into his chair.=20
+
+His mother looked up at the man. "How did it go?" she asked.=20
+
+He sighed, seating himself across from her. "The Ozario girl was sent to th=
+e ground."=20
+
+Astero looked at his mother who suddenly looked very sad. "Was there no oth=
+er way?"=20
+
+"I'm afraid not," he replied sternly, filling up his plate with food. Then,=
+ his eyes turned to Astero. "Who's this?"=20
+
+"His name is Astero," said his mother, a determined expression on her face.=
+ "I am adopting him as my son."=20
+
+"Was he sent from the Fen clan?"=20
+
+She shook her head. "I met him at an orphanage in the town. He seemed to ha=
+ve strayed here from the east."=20
+
+Astero was confused as to why she was lying, but he said nothing.=20
+
+The man's gaze fixated on Astero, scrutinizing. Astero wondered if the man =
+was going to yell at him or kick him out of his home. However, his expressi=
+on didn't seem loathing or malicious like the other people who brought Aste=
+ro into their homes. Truthfully, Astero couldn't tell what this man was thi=
+nking at all.=20
+
+"Astero, was it?" he said.=20
+
+The boy nodded.=20
+
+"How old are you?" he asked, his deep voice resonating within the pavilion.=
+=20
+
+"Eight," he replied quietly.=20
+
+The man sighed. "Well, if Josemi wants you to stay, I must let you."=20
+
+"Kairo," she said sternly, glaring at him.=20
+
+He gave a small smile, and Astero instantly relaxed. "It will be nice to ha=
+ve a son," he said warmly, and Astero's mother gave a firm nod.=20
+
+"Will you be my father?" Astero asked.=20
+
+"I will," he said, standing up to ruffle Astero's hair. "And you will be th=
+e clan heir. From now on, your name is Astero Elessai."=20
+
+"Elessai," he repeated, testing the name. He had never had a name, and now =
+he had two.=20
+
+His mother smiled, engulfing him in a hug. She felt so comforting, like a b=
+lanket he could embrace and instantly feel safe. For the first time in his =
+life, he had a mother who cared for him like this, who wanted him to stay. =
+And now, he even had a father who would make him the clan heir.=20
+
+And yet, there was something bothering him. "Who was sent to the ground?" A=
+stero asked.=20
+
+His father looked surprised he even asked, but he answered. "Rosella, the y=
+oungest daughter from the Ozario clan. She had helped a child from the grou=
+nd into the sky, and so she was punished for it."=20
+
+"You all voted to banish her?" His mother sighed. "The poor girl."=20
+
+"People from the ground are criminals and savages." His words sent daggers =
+into Astero's heart.=20
+
+"I know," agreed his mother, and the boy nearly forgot how to breathe. "But=
+ she's just a child. The one from the ground should be punished, not her."=
+=20
+
+"Children should know better. We couldn't find the one from the ground, so =
+she had to be punished instead."=20
+
+They were talking about him, he realized, panic flooding into his mind. His=
+ Anle had been sent to the ground because of him. Because they couldn't fin=
+d him.=20
+
+Astero's whole body was shaking, and his mother looked at him with concern.=
+ "Are you cold?"=20
+
+He nodded absentmindedly.=20
+
+"It is much colder in the north," said his father. "Come, let's go inside."=
+ He held out a hand for Astero to take.=20
+
+Astero stared at it and faced a dilemma. If he took his father's hand, he w=
+ould go into his new house and live his new life. He would be a clan heir, =
+whatever that meant. He would be Astero Elessai. But in doing so, he'd leav=
+e behind his Anle. The girl who protected him and cared for him and showed =
+him the stars. The girl who gave him her shoes when his feet bled, who prom=
+ised to make him blackberry pie. She was on the ground, all alone. And he w=
+as in the sky, surrounded by a new family.=20
+
+She risked her life for him, and she went against everything her people bel=
+ieved in for him.=20
+
+If he just told them who he was, he would be punished instead. Maybe they w=
+ould spare her then, and let her come back to her life in the sky. All Aste=
+ro had to do was tell them.=20
+
+But he didn't. Instead, he took his father's hand and headed inside his new=
+ home.
+
+Sent from my iPhone
+--Apple-Mail-CB677845-8A9A-4DAF-B1FA-A482EE08D00C
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"This will be your room," said the woman who was now his mother, opening a pair of double doors into what was the biggest room the boy had ever seen. Granted, their house was also the biggest house he had ever seen. There were large white columns at the entrance, and many windows spanned the long width of the manor. As he walked through the halls, there were statues that his mother explained were the gods worshipped by the Elessai clan. Purple banners lined the walls, the signature color of their clan. He would be wearing that color from now on.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The room he would be staying in had a bed much too big for him, with purple sheets and fluffy pillows. A painting of a golden arch spanned the wall at the head of the bed, displaying a summer scenery of clear blue skies and looming palm trees. Tiny people were drawn at the foot of the arch, marveling at its beauty. The boy took a wider look around the room and saw glass doors leading to a balcony overlooking the back of the manor, where where in the distance beyond a long flight of stairs, people milled about in the marketplace. And just beyond that, he could see a crystal blue sea.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Do you like it, Astero?" his mother asked.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He nodded. It was strange finally being called a name, but he liked the sound of it.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"I will have clothes brought for you." His mother placed a hand on his shoulder and he gazed in wonder around the room. "You may bathe in there," she said, pointing to a door right across the bed. "I'll have the servants assist you."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother left, and Astero waited until the servants arrived, ushering him into the washroom. It was made entirely of exquisite white marble, with an enormous square bathtub. Flowers stood on pedestals, filling the room with a sweet aroma. There were roses of all colors, and Astero felt a tug at his heart. He wondered where his Anle was.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The servants filled the bath with water, and steam filled the air. He marveled at the view. The only water he used to bathe in was from the ice cold well in Ludha.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero took off his clothes and stepped carefully into the water. It was warm, and he smiled in delight as he immersed his whole body in it.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He leaned against the side as a servant washed his hair, closing his eyes as his scalp was massaged. Being taken care of like this was a foreign concept to him. First, his Anle had saved his life, and now, he would be living in the biggest house he had ever seen, with servants catering to his needs and a mother who loved him.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He would tell his mother tomorrow that he was from the ground. Astero was sure she would accept him anyway, just like his Anle.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero finished bathing, and the servants helped him get dressed into brown pants and dark purple robes that nearly touched the floor. He had never worn clothes this nice before. They gently brushed his hair which had been cut short just earlier that day.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">As soon as he left the bathroom, Astero ran over to the balcony. There were more people in this part of the town than in his entire village, and people looked much happier here. Just beyond the town's edge was a glittering sea, and he desperately wanted to take a dive in it.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He stayed outside for the longest time, watching the sun set below the horizon, illuminating the town in breathtaking orange light. It would be nicer if he could see it with Anle. Perhaps she was watching the sunset too.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Tomorrow, he would ask his mother if he could see her. He knew her name was Rosella, and although she did not give him a last name, he believed people would know her. She seemed like a highborn lady, with all the poise and grace of a noble woman. She looked like a princess in his eyes.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">When darkness set in, Astero fell asleep in the bed much too large for him. He had never experienced such comfort before, having slept on floors or outdoors most of his life. There was so much luxury in the sky, where grand manors and flower fields existed directly under the sun. Not for one moment did he ever regret climbing the stairway.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The next day, the servants woke him up to escort him to breakfast in the dining pavilion outside, where his mother sat waiting for him.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Good morning, Astero," she greeted as he sat down across from her.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Good morning, mother," he said, sitting down next to her.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She smiled. "Here, eat," said his mother, shoveling food onto his plate.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His eyes widened. "All this?"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"All this," she confirmed with a nod.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The food was exquisite, served in delicate presentations. Food he had never seen before covered the entire table. Astero was used to scraps and leftovers and digging through other people's thrown-out remains. He finally realized this was what he'd have every day, living as a sky person.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">So he ate plate after plate until he felt the need to throw up. His mother continued to fill his plate whenever he wanted, not caring how impolite his style of eating was. She looked happy just seeing him enjoy himself.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">After reaching a point where his stomach began to build up, Astero begrudgingly pushed his most recent plate away from him. "I'm full."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother laughed, and he looked up at this woman he had met yesterday. She wore a golden band around her head, giving her the appearance of an angel. Her long purple robes matched the color of Astero's own. They were family now, he realized, and she didn't seem like she would make him do chores or make him steal from others in the marketplace. He didn't even need to wash his own hair or find his own food. Was it going to be like this forever?&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Lady Elessai," said a servant approaching the table. He bowed his head low before speaking, and Astero wondered if they would do that for him too. "Lord Elessai has just arrived."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She nodded in acknowledgment, although she seemed more tense.</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Just a moment later, a man marched into the pavilion. His stern face and flowing purple robes made him seem extremely intimidating, and Astero unconsciously sunk back into his chair.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother looked up at the man. "How did it go?" she asked.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He sighed, seating himself across from her. "The Ozario girl was sent to the ground."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero looked at his mother who suddenly looked very sad. "Was there no other way?"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"I'm afraid not," he replied sternly, filling up his plate with food. Then, his eyes turned to Astero. "Who's this?"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"His name is Astero," said his mother, a determined expression on her face. "I am adopting him as my son."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Was he sent from the Fen clan?"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She shook her head. "I met him at an orphanage in the town. He seemed to have strayed here from the east."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero was confused as to why she was lying, but he said nothing.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The man's gaze fixated on Astero, scrutinizing. Astero wondered if the man was going to yell at him or kick him out of his home. However, his expression didn't seem loathing or malicious like the other people who brought Astero into their homes. Truthfully, Astero couldn't tell what this man was thinking at all.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Astero, was it?" he said.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The boy nodded.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"How old are you?" he asked, his deep voice resonating within the pavilion.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Eight," he replied quietly.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The man sighed. "Well, if Josemi wants you to stay, I must let you."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Kairo," she said sternly, glaring at him.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He gave a small smile, and Astero instantly relaxed. "It will be nice to have a son," he said warmly, and Astero's mother gave a firm nod.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Will you be my father?" Astero asked.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"I will," he said, standing up to ruffle Astero's hair. "And you will be the clan heir. From now on, your name is Astero Elessai."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Elessai," he repeated, testing the name. He had never had a name, and now he had two.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother smiled, engulfing him in a hug. She felt so comforting, like a blanket he could embrace and instantly feel safe. For the first time in his life, he had a mother who cared for him like this, who wanted him to stay. And now, he even had a father who would make him the clan heir.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">And yet, there was something bothering him. "Who was sent to the ground?" Astero asked.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His father looked surprised he even asked, but he answered. "Rosella, the youngest daughter from the Ozario clan. She had helped a child from the ground into the sky, and so she was punished for it."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"You all voted to banish her?" His mother sighed. "The poor girl."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"People from the ground are criminals and savages." His words sent daggers into Astero's heart.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"I know," agreed his mother, and the boy nearly forgot how to breathe. "But she's just a child. The one from the ground should be punished, not her."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Children should know better. We couldn't find the one from the ground, so she had to be punished instead."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">They were talking about him, he realized, panic flooding into his mind. His Anle had been sent to the ground because of him. Because they couldn't find him.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero's whole body was shaking, and his mother looked at him with concern. "Are you cold?"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He nodded absentmindedly.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"It is much colder in the north," said his father. "Come, let's go inside." He held out a hand for Astero to take.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero stared at it and faced a dilemma. If he took his father's hand, he would go into his new house and live his new life. He would be a clan heir, whatever that meant. He would be Astero Elessai. But in doing so, he'd leave behind his Anle. The girl who protected him and cared for him and showed him the stars. The girl who gave him her shoes when his feet bled, who promised to make him blackberry pie. She was on the ground, all alone. And he was in the sky, surrounded by a new family.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She risked her life for him, and she went against everything her people believed in for him.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">If he just told them who he was, he would be punished instead. Maybe they would spare her then, and let her come back to her life in the sky. All Astero had to do was tell them.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">But he didn't. Instead, he took his father's hand and headed inside his new home.</span></p><br><div dir="ltr">Sent from my iPhone</div></body></html>
+--Apple-Mail-CB677845-8A9A-4DAF-B1FA-A482EE08D00C--
