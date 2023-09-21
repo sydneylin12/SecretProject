@@ -3,7 +3,19 @@ const header = document.getElementById('header');
 const content = document.getElementById('content');
 
 const params = new URLSearchParams(location.search);
-const chapterNumber = parseInt(params.get('chapter'));
+let chapterNumber = parseInt(params.get('chapter'));
+
+// Switch pages on arrow up and down
+document.addEventListener("keydown", function (event) {
+	if (event.key === "ArrowUp") {
+		chapterNumber -= 1;
+		chapterNumber = Math.max(chapterNumber, 1);
+	} else if (event.key === "ArrowDown") {
+		chapterNumber += 1;
+		chapterNumber = Math.min(chapterNumber, 41);
+	}
+	window.location.href = `chapter.html?chapter=${chapterNumber}`;
+});
 
 /**
  * Usage:

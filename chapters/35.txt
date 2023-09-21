@@ -1,646 +1,193 @@
-Delivered-To: sydney.lin12@gmail.com
-Received: by 2002:a05:7110:6704:b0:1bd:a35e:2fa3 with SMTP id bi4csp176289geb;
-        Wed, 15 Feb 2023 21:09:43 -0800 (PST)
-X-Google-Smtp-Source: AK7set8fUvopZQ1UTB0f6Q80NgJXrcwudIQr3eT7wlr0mEKpxngdlSUd8zSGNh8p9l2fPS73D5+c
-X-Received: by 2002:a25:2942:0:b0:7b4:b28e:6449 with SMTP id p63-20020a252942000000b007b4b28e6449mr3751409ybp.63.1676524183430;
-        Wed, 15 Feb 2023 21:09:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1676524183; cv=none;
-        d=google.com; s=arc-20160816;
-        b=tn+mWbza8RbCM0ueqi4apXfwJ08CsweVvN3G2QKS+LlXOyfiFawKOgO3fgJJVG2BJk
-         XTPXGCJux6L3hCZzVej8jXPXc9GraBWAiHfB99UAx/TrbTpZ5Tdb/jkbFJWSTjZYefrX
-         1A3wLoZer/vIvWUSJs3ZJdygc5sdPj3LIxyTyrZGoymEi8s7b1rx5kZ1pueHxvD00NgL
-         QDstLGszRokzNNh/O3PuHRP6Jp6iCUevdz9yvcWvRiQVvs11wi0oPuvpICY+k8n5CPjs
-         QcIkZLS4esmnQxl9ShdCh1hUbHS8yhhpUlife3y5vaAbCdwCZNGSF9TMgo4343lIgbQ6
-         qnYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=references:to:message-id:subject:date:mime-version:from
-         :content-transfer-encoding:dkim-signature;
-        bh=YxHiEMUXDSIg7gl7bglYyPMgeUJnL9yu6kKWpJChhFc=;
-        b=Flc/Ikf67GnAL31tvpaABHpJAhKFfxJtF7h+xKnwqlW4H9coZK8K0lXn84OaJEG/IB
-         UOwZnlhiHqDULbhBeghAR/bjRR4oJ5Tvme4x/RGsjcUftmIcvu/lpP5wQINyw2tZb7FE
-         oVybAck1Yl6QN3c4ZHdw5t86UOZw3i9VIttozkF2Qsc88sP1ZcPvXtDkLLJaUxJxy3MR
-         vSnKisPj92WrE5IvK7ZQJwNGwuvRbxDW6HO19eYZxCT7KzaMktsZ30TF2oNs1D1GqtSF
-         rgSXL+NqysN3YiNUir9P3Mtl12IC/l3DSCVEIIPnCQBCGyqn3GF1v2/du7uYcFgCGkV+
-         EgSQ==
-ARC-Authentication-Results: i=1; mx.google.com;
-       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Xybtj1Qy;
-       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.148 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
-Return-Path: <carissa71555@yahoo.com>
-Received: from sonic314-22.consmr.mail.ne1.yahoo.com (sonic314-22.consmr.mail.ne1.yahoo.com. [66.163.189.148])
-        by mx.google.com with ESMTPS id d2-20020a5b00c2000000b008327e8e3013si1015264ybp.32.2023.02.15.21.09.42
-        for <sydney.lin12@gmail.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Feb 2023 21:09:43 -0800 (PST)
-Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.148 as permitted sender) client-ip=66.163.189.148;
-Authentication-Results: mx.google.com;
-       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Xybtj1Qy;
-       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.148 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1676524182; bh=YxHiEMUXDSIg7gl7bglYyPMgeUJnL9yu6kKWpJChhFc=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=Xybtj1QyKBLdaR+tIwNKDRPRGn2RbFA9ccwQONUIHS+ln45ByOeoC0uJA6HBRMWfP6ZiFetTd3xanOtpl8u/36bPgum9RkJyY0Ap/1kfXIt00z0Bn2yVLJ/KvM7kz3RQob+Bh2rVQFyu8Pmzqahd2nGhRd5PVyuNggXZmKMKrbxer1M9WiY0K7ykBYP0etJeplQHQy22Dz/mV+tDBRVqkj7G/Kao/CCM/W3J+cWj0FMPbTfATC7Qa9mwk02hRAI/H/kZ0ViJmRsJfQS/8gIzy/hLMPBz9T2hdSq0zBAonErmO4mBdBUajzwhwN5a9mqhHgNlRtZdHNn+TQA7dumLcQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1676524182; bh=brsbu8iuy/zegvwuSz55qhNDqwMaUaNgSxO/Eijle67=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=WK58t1fu0kJDUYRH6dHoHrwRzTP1FgofLbBUMETXGPeZMmfWjp/fIFnZfNBaKBjiLYr8NzktoZvAphDjPdZsGBCM7dCOwgD27/ljf5veK0kaWGSyQlDHE9/tRzHUb9YAR0GXFfZ0t5Pw6WK4yZoUFoKS68J+YEARozUBeBebA+huSSYtz30gmj/52X13Kk+NR9B7cWamejhx//YgDnK2fGXSppzCXf6FavmHvb9llLC23mefWjCEjDZ6U8Z9Hf6LV2a9deMTrfLSz5INyAXTiinvZpwug0cL5224fgDl6ZNbuw4LOFdDxaEszDxLdwaAdBdSzQon/4V3toDyV+EPsw==
-X-YMail-OSG: 73ATCmYVM1kdjmbDYttWapb8P.MtMV79uAR4jQFYXEjH5bAEDGTwvSdpVbM0zld jXCr403C4dCF8ZDf8GGYzmkBZ0m1hut84j33_vKNUA6LV2y7z1Tflmmg9gz.BgQs2.gEeXv.MQf2 QQ68nRTprFGlyG6LGqVLYaltqec4tjuInwPiGVc9wjMOqOx88aKh0ep4zjq2jMUZwNy5w9h_O9AC qcWCeW7BFycJfod8Czt5mYLnVstUKgY1NOOHaXAMJWPM2NZkl7LK8s_Rpx2tOtGiEk6sUhnPLybp IpIsEHXFnKyWSTL1wEfX.fDqXW7Bjio5jvn9TvM_Rncet7UOTW1MxAc.yHbFXm.GvtG39SxwfBsW 66Pl7Ij63.OtCNWNnNeD0bhaJqxjjqna2T1ajDozLEJSflfBqZSNJngqb8mxQiDOGBF8lX7EZRBO Lb7U6jYxlgyFEQsemKwgdt6P2GjxsckT9ByeD8T4c5k3lVSXns2muJEoPonnlJmO0U5mr6CtMd.4 tWfyKb3eifQfFKrheS0Jn6sEKYSjXUhbHQJ238Ksr73oLhwd_ckyU2ln.VwZ8lTzspC_gBDo6Vbb sZUCOXQIusa0rxK44T3M.3p3xuMpO_qS_1PMOPQTbG7ujv3pPq5IQYXfZQocNTRXntHHW8vD9NbG R7kJKpUN6a_4.gpHSej65Qu6X3vZ.HJ25k26TfHUkDYw.8bBefVOkTJq4BIQDlFi2JQYZKu_Jz2G uvYJduTjyodO_JbM4y66BmHRQZTPptUV.ir2QsTuKxLhsKmzZGUj1VR0TrkwvQRt3w5gvZGmeu5w zQStsVwLwqA5s87cMmlIXXo8IdR3O6PKhSabY.auFmx3wGUOCTB9wL_NRXWh3qjDL8mYJ.ldFBQ_ PUUF1XjSoI_cAisQmyy4rMYK18DdrtoJXTysJq_3.fHpF9.LPPzUAMYtUahXF2nldg27CJm4CSDB V.WDnW60mqizQvR.R1r2I0GrX78PjF8F5tUFitsyJFhVWoa0IJVdxLU7RSk41YLp792B_wG3gP3R w9pdXIZQpc5zqhEzghtAMIa5e5b21AS0TvvcUH4dnGuFTzSRBO6nNoPS5.US797nV9oftdtFKDj5 UhprFI0C5O7YsmH9TfiPbHq_fupwjFkNVkV6Yv2AxmmObhvMdlRKhVh2REX6e3HQZ2xjspHCqXjH YZoCQLf.Nn8KicbFfa6OzkXVfDyph2j1i0dbH4tEJveVPB8BPBti2PF5dfsIZRc_Q.1sk8CVqzOz JY6I1N0.7IhuJMdrVGr0zA5gWSsr1DjwaNgTs1rIGcXTl9HjIQnQ0BxM_hAOWmf4PvwuEzd9cJ23 CByYQRpVXBYsBCoADlvTG2BxDeVc7Kx.lURs6CWteMJqhW0kgdYmDi3Qc9VzW3Ykg3p6saM5fZAg XXkul3UCVKyA9O8_Ob2.32qMY2plbXADxGnr_oFelcwP0kq4LjyZtXodWpbPbEGHB3GSM7JxgXC1 QcESr6hscGgNS790b38JcMoaxtqNgIIihRWuaG6RIKwWVlE.XHLMxa0ygC2A4tdGd0h7jD3ECpwi eyOW0EVbT5lRYeOuGO4qpyBX5ORhkfS_c5N5Z48frznKhQztE5c6YoILxRre.1apr3E0EaJsFPvn ftP.5vdIWekFhBlv2whCLXuDxTpyRF5QGAHye2X1herLpH1y347N7Eg8EZTGe7OsbbQMn9yc_tK2 CfWopFbhyIXjoTN3Ndo0IdsWypL3BkdTBASVbejBRWDfnTnApNsL87CnI2wEVyo_44mdXroPHiTk oAHdfV1yXM3lat71qPdoWDjYWTi1wby54fKgpfGPbMX_FVHQSItHgK5CnzOoWeehQ3AiCfSHbPBZ ssmwJCXTHAcGK1LrWbl_SsX8WBGGrYLv_LpvNo9U9GLp1CxphqAJweeW5V7SgPmsXDEtOXLQW5XT uZjIpvKMX8QFjhb4eMjRZXOFXb4eQ3SEpCqsMcEJP_cEwg0u_ikf3LIjpW0hmUIY2X4vMKqqcUpY Dc6Ns8qwbk0ERzpZXgEifrbPZJmxLjA04F0yjXKWBikMvSjyu7vG_DKZBj.9oukyP191J65k1o43 YXWVTICwsDn2BP_lbzGfgPvVbxJeUfxhDBzG4b_jxGQqMXX9HqlWPMIBL6K0H7J14y3jJupj8YQF S69Q9GucOQ8eZe99KU8OxLHIG4IjxZn7dI7OaLS5mel5F.GxM_qZfCcG48YuPy3_lGaVl0b52cCe RO7O6DYsoMIiCne5Ry.Lok3X9dEB7WcrS5m2E9WgN6uMt_63UCWhb3YK_
-X-Sonic-MF: <carissa71555@yahoo.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.ne1.yahoo.com with HTTP; Thu, 16 Feb 2023 05:09:42 +0000
-Received: by hermes--production-gq1-655ddccc9-mpbsd (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 9e6b779a4161b33868c1f0b8eb87e320;
-          Thu, 16 Feb 2023 05:09:37 +0000 (UTC)
-Content-Type: multipart/alternative; boundary=Apple-Mail-4F7E0357-5650-4AB7-AD2F-DD65C990D1D3
-Content-Transfer-Encoding: 7bit
-From: Carissa <Carissa71555@yahoo.com>
-Mime-Version: 1.0 (1.0)
-Date: Wed, 15 Feb 2023 21:09:26 -0800
-Subject: Chapter 35
-Message-Id: <1371EF94-9D1F-4279-A940-2A97026ADE3A@yahoo.com>
-To: sydney.lin12@gmail.com
-X-Mailer: iPhone Mail (20C65)
-References: <1371EF94-9D1F-4279-A940-2A97026ADE3A.ref@yahoo.com>
-Content-Length: 34205
+The moment Rosella walked away, Astero wanted to disappear into thin air. The last thing he ever wanted to do in this world was make Rosella upset. And yet, he did exactly that. 
 
---Apple-Mail-4F7E0357-5650-4AB7-AD2F-DD65C990D1D3
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-The moment Rosella walked away, Astero wanted to disappear into thin air. T=
-he last thing he ever wanted to do in this world was make Rosella upset. An=
-d yet, he did exactly that.=20
 
-Still, he prodded for answers, and he got them. Astero only had himself to =
-blame. Now he knew that a part of Rosella regretted helping him, and she wa=
-s just too kind to admit it.=20
+Still, he prodded for answers, and he got them. Astero only had himself to blame. Now he knew that a part of Rosella regretted helping him, and she was just too kind to admit it. 
 
-He sighed, resting his head on his hand. Perhaps he should just go back to =
-the sky and stop making her life miserable. Even she were on the ground, sh=
-e would be away from him. And he would be up there, married to Melody, heir=
- of the Elessai clan, continuing to live a life of lies and deceit.=20
 
-Yet, that still wouldn't be fair. He had a mother and father, a fianc=C3=A9=
-e, aunts and uncles, cousins, a grandfather, friends. He never had to worry=
- about finances or working. He never worried whether or not he'd be able to=
- eat the next day.=20
 
-Astero did not belong up there. He could not exist in the sky without her.=
-=20
+He sighed, resting his head on his hand. Perhaps he should just go back to the sky and stop making her life miserable. Even she were on the ground, she would be away from him. And he would be up there, married to Melody, heir of the Elessai clan, continuing to live a life of lies and deceit. 
 
-He scolded himself for even thinking of going back. There was promise etche=
-d into his heart. A promise to be with the person who saved his life, no ma=
-tter what she was going through, no matter if she hated him. He would repay=
- her with everything he had, even if she despised him.=20
 
-Of course Rosella would regret helping him. A thoughtless, idiotic little b=
-oy who selfishly climbed the stairway. That day fifteen years ago was the d=
-ay Astero should have died.=20
 
-Rosella was the one who gave him a second chance at life. Even if she regre=
-tted it, he could not waste this opportunity to provide for her in the way =
-she did for him.=20
+Yet, that still wouldn't be fair. He had a mother and father, a fiancée, aunts and uncles, cousins, a grandfather, friends. He never had to worry about finances or working. He never worried whether or not he'd be able to eat the next day. 
 
-When Astero reached the top of that stairwell, he had been fully prepared t=
-o die. Despite just being a clueless child on the ground, even he knew what=
- he had done was forbidden. Guards were chasing after him, large spears in =
-hand. He had gazed at the sky, at the sunrise that took his breath away, an=
-d accepted his fate.=20
 
-But at that moment, a gentle hand took his, and his fate changed.=20
 
-His name, his purpose in life, even the poetry he wrote back home... it was=
- all for her. Poetry was the only thing Astero was decent at in the Elessai=
- clan. All it required were strong feelings of a certain kind, and that cam=
-e easily to Astero.=20
+Astero did not belong up there. He could not exist in the sky without her. 
 
-Feelings of guilt. Feelings of regret. Feelings of self-hatred. Feeling tha=
-t he did not belong. Feeling that he took advantage of a kind person. Feeli=
-ng that he had been lying to everyone around him his whole life.=20
 
-Everyone he loved only loved him because of his lies. His mother only took =
-him in because she believed him to be a runaway orphan from the Fen clan. H=
-is mother's side of the family cared for him, but if they knew he was from =
-the ground, they would arrest him in a heartbeat. Xen, his only true friend=
-, did not know, so Astero hesitated to call him a true friend. Even his fat=
-her only seemed to tolerate him nowadays without knowing his origin.=20
 
-He wondered, when Rosella was living up in the sky, what she had thought of=
- people on the ground. She had to have seen the guards coming after him tha=
-t day. Yet, she decided to help him anyway.=20
+He scolded himself for even thinking of going back. There was promise etched into his heart. A promise to be with the person who saved his life, no matter what she was going through, no matter if she hated him. He would repay her with everything he had, even if she despised him. 
 
-That day was ingrained into Astero's memory like a claw that kept holding h=
-im down. Whenever he felt an inkling of happiness, a shred of liberation or=
- worthiness, his crime would pop into his head, and it would all wash away.=
-=20
 
-Many times, Astero genuinely wanted to die.=20
 
-About eight years after that fateful day, after four failed attempts at fin=
-ding Rosella on the ground, Astero heard news that a noble from a western c=
-lan had been sent to the ground. Sending criminals to the ground was a rare=
- occurrence, and news of it spread throughout the whole sky. It shook Aster=
-o to his bones, and he had locked himself in his room the whole day. Out of=
- everyone in the sky, he was the worst criminal of all. He wanted to travel=
- to the edge of the sky, to throw himself to the ground and die from the im=
-pact. But the rocky terrain and stormy mountains made it nearly impossible =
-to reach the edge without dying. Like a coward, Astero did not pursue this =
-death.=20
+Of course Rosella would regret helping him. A thoughtless, idiotic little boy who selfishly climbed the stairway. That day fifteen years ago was the day Astero should have died. 
 
-Ten years after that fateful day, Darius and Maeryn Ozario passed away. And=
-, having witnessed no one from his clan =E2=80=94 nor any northern clan =E2=
-=80=94 planning to attend their funeral, Astero made an effort to sneak out=
- himself. He had just come back from a "poetry inspiration excursion" to th=
-e ground, so he could not use that excuse. However, guards brought him back=
- to the manor, and his father scolded him for attempting to attend the fune=
-ral. When he asked his father what was so wrong with attending, he said tha=
-t the Ozarios have done nothing for the north lately, and they did not dese=
-rve the north's grief.=20
 
-After finding out how they died, that night, Astero tried to hang himself t=
-he same way. Before the deed could be done, he stopped. And he realized tha=
-t death was an easier fate than what he put Rosella through. Than what he p=
-ut the entire Ozario clan through.=20
 
-He imagined the ghosts of the late Lord and Lady Ozario watching him, and t=
-he claw held him down more painfully. He had never seen them in person, so =
-their faceless ghosts haunted his dreams, whispering Rosella's name.=20
+Rosella was the one who gave him a second chance at life. Even if she regretted it, he could not waste this opportunity to provide for her in the way she did for him. 
 
-Astero also often dreamt of Rosella pushing him off the edge of the sky. Th=
-ose were the best dreams he had.=20
 
-Looking to the sky, the sunlight began to dim slightly. He wondered how muc=
-h time had passed since Rosella left. Astero gazed at the trees she had dis=
-appeared into. That forest led to nowhere, and suddenly, he feared for her =
-safety. What if she had been attacked? What if she were lost?=20
 
-Astero stood up quickly and sprinted for the trees, leaving all their food =
-behind. If anything happened to her... He could not even bear the thought. =
-His pace accelerated, not a rational thought going through his mind. All As=
-tero could think about was finding her.=20
+When Astero reached the top of that stairwell, he had been fully prepared to die. Despite just being a clueless child on the ground, even he knew what he had done was forbidden. Guards were chasing after him, large spears in hand. He had gazed at the sky, at the sunrise that took his breath away, and accepted his fate. 
 
-When he reached the forest, a flash of white came hurtling towards him. It =
-crashed into his chest and fell to the ground with a thud.=20
 
-The person dressed in white looked up at him, and Astero breathed a sigh of=
- relief.=20
 
-"Oh thank the gods," he groaned, nearly collapsing to the ground next to he=
-r, closing his eyes in exasperation.=20
+But at that moment, a gentle hand took his, and his fate changed. 
 
-"Why were you running?" Rosella demanded, fussing over her white dress that=
- now donned stains from the soil.=20
 
-"Are you all right?" he asked, boosting himself into a standing position. H=
-e held out a hand to her.=20
 
-Rosella stared at his hand for a moment, and Astero's heart nearly stopped =
-in fear that she truly hated him now, so much that she would not even touch=
- him.=20
+His name, his purpose in life, even the poetry he wrote back home... it was all for her. Poetry was the only thing Astero was decent at in the Elessai clan. All it required were strong feelings of a certain kind, and that came easily to Astero. 
 
-Her eyes cast down to the forest floor. She looked smaller than ever. "I'm =
-sorry."=20
 
-Astero was taken aback. "For what?"=20
 
-"I snapped at you and ran off like a child."=20
+Feelings of guilt. Feelings of regret. Feelings of self-hatred. Feeling that he did not belong. Feeling that he took advantage of a kind person. Feeling that he had been lying to everyone around him his whole life. 
 
-Immediately, Astero knelt down beside her. Taking her hands into his own, h=
-e felt the rough calluses on her fingers, the dry skin from hours of workin=
-g. He held them gently, as if they were as delicate as a flower petal. "You=
- could never do me any wrong, Rosella."=20
 
-"Of course I can," she stressed, looking exasperated.=20
 
-He shook his head. Of course, she did not understand. "I'm the one who shou=
-ld apologize. I brought up bad memories for you."=20
+Everyone he loved only loved him because of his lies. His mother only took him in because she believed him to be a runaway orphan from the Fen clan. His mother's side of the family cared for him, but if they knew he was from the ground, they would arrest him in a heartbeat. Xen, his only true friend, did not know, so Astero hesitated to call him a true friend. Even his father only seemed to tolerate him nowadays without knowing his origin. 
 
-Rosella shrugged. "There is nothing I can do about it now, even if I wanted=
- to."=20
 
-The two were silent for a moment. A question burned in Astero's throat, and=
- although he dreaded hearing the answer, at the same time, he desperately w=
-ant to. "If you could see that boy again, what would you do?"=20
 
-"What do you mean?"=20
+He wondered, when Rosella was living up in the sky, what she had thought of people on the ground. She had to have seen the guards coming after him that day. Yet, she decided to help him anyway. 
 
-"Would you be upset with him?"=20
 
-"Astero, I don't know." Rosella pushed herself up to stand. Dusting off her=
- now stained dress, she glanced down at him, still crouched on the forest f=
-loor. "It was so long ago. I don't remember what he looked like. I don't re=
-member his name."=20
+
+That day was ingrained into Astero's memory like a claw that kept holding him down. Whenever he felt an inkling of happiness, a shred of liberation or worthiness, his crime would pop into his head, and it would all wash away. 
+
+
+
+Many times, Astero genuinely wanted to die. 
+
+
+
+About eight years after that fateful day, after four failed attempts at finding Rosella on the ground, Astero heard news that a noble from a western clan had been sent to the ground. Sending criminals to the ground was a rare occurrence, and news of it spread throughout the whole sky. It shook Astero to his bones, and he had locked himself in his room the whole day. Out of everyone in the sky, he was the worst criminal of all. He wanted to travel to the edge of the sky, to throw himself to the ground and die from the impact. But the rocky terrain and stormy mountains made it nearly impossible to reach the edge without dying. Like a coward, Astero did not pursue this death. 
+
+
+
+Ten years after that fateful day, Darius and Maeryn Ozario passed away. And, having witnessed no one from his clan — nor any northern clan — planning to attend their funeral, Astero made an effort to sneak out himself. He had just come back from a "poetry inspiration excursion" to the ground, so he could not use that excuse. However, guards brought him back to the manor, and his father scolded him for attempting to attend the funeral. When he asked his father what was so wrong with attending, he said that the Ozarios have done nothing for the north lately, and they did not deserve the north's grief. 
+
+
+
+After finding out how they died, that night, Astero tried to hang himself the same way. Before the deed could be done, he stopped. And he realized that death was an easier fate than what he put Rosella through. Than what he put the entire Ozario clan through. 
+
+
+
+He imagined the ghosts of the late Lord and Lady Ozario watching him, and the claw held him down more painfully. He had never seen them in person, so their faceless ghosts haunted his dreams, whispering Rosella's name. 
+
+
+
+Astero also often dreamt of Rosella pushing him off the edge of the sky. Those were the best dreams he had. 
+
+
+
+Looking to the sky, the sunlight began to dim slightly. He wondered how much time had passed since Rosella left. Astero gazed at the trees she had disappeared into. That forest led to nowhere, and suddenly, he feared for her safety. What if she had been attacked? What if she were lost? 
+
+
+
+Astero stood up quickly and sprinted for the trees, leaving all their food behind. If anything happened to her... He could not even bear the thought. His pace accelerated, not a rational thought going through his mind. All Astero could think about was finding her. 
+
+
+
+When he reached the forest, a flash of white came hurtling towards him. It crashed into his chest and fell to the ground with a thud. 
+
+
+
+The person dressed in white looked up at him, and Astero breathed a sigh of relief. 
+
+
+
+"Oh thank the gods," he groaned, nearly collapsing to the ground next to her, closing his eyes in exasperation. 
+
+
+
+"Why were you running?" Rosella demanded, fussing over her white dress that now donned stains from the soil. 
+
+
+
+"Are you all right?" he asked, boosting himself into a standing position. He held out a hand to her. 
+
+
+
+Rosella stared at his hand for a moment, and Astero's heart nearly stopped in fear that she truly hated him now, so much that she would not even touch him. 
+
+
+
+Her eyes cast down to the forest floor. She looked smaller than ever. "I'm sorry." 
+
+
+
+Astero was taken aback. "For what?" 
+
+
+
+"I snapped at you and ran off like a child." 
+
+
+
+Immediately, Astero knelt down beside her. Taking her hands into his own, he felt the rough calluses on her fingers, the dry skin from hours of working. He held them gently, as if they were as delicate as a flower petal. "You could never do me any wrong, Rosella." 
+
+
+
+"Of course I can," she stressed, looking exasperated. 
+
+
+
+He shook his head. Of course, she did not understand. "I'm the one who should apologize. I brought up bad memories for you." 
+
+
+
+Rosella shrugged. "There is nothing I can do about it now, even if I wanted to." 
+
+
+
+The two were silent for a moment. A question burned in Astero's throat, and although he dreaded hearing the answer, at the same time, he desperately want to. "If you could see that boy again, what would you do?" 
+
+
+
+"What do you mean?" 
+
+
+
+"Would you be upset with him?" 
+
+
+
+"Astero, I don't know." Rosella pushed herself up to stand. Dusting off her now stained dress, she glanced down at him, still crouched on the forest floor. "It was so long ago. I don't remember what he looked like. I don't remember his name." 
+
+
 
 There was no name to remember.
 
-"I barely remember my own family's faces, let alone some child I knew for a=
- day."=20
+
+
+"I barely remember my own family's faces, let alone some child I knew for a day." 
+
+
 
 Two days.
 
-"It doesn't matter, anyway. I'm here now. The past is the past." She gave h=
-im a soft smile. "Besides, I would not have met you had I not been sent to =
-the ground." Rosella grabbed his arms and hoisted him up. Looking into his =
-eyes, she said sincerely, "If everything I had been through led me to you, =
-it must be worth it."=20
 
-Astero quickly looked away and hastily wiped the tears that threatened to f=
-all. "Let's head back."=20
 
-Rosella nodded. "I am still hungry."=20
+"It doesn't matter, anyway. I'm here now. The past is the past." She gave him a soft smile. "Besides, I would not have met you had I not been sent to the ground." Rosella grabbed his arms and hoisted him up. Looking into his eyes, she said sincerely, "If everything I had been through led me to you, it must be worth it." 
 
-The two of them walked back to their picnic blanket, the sky already darken=
-ing. They finished all the food, talked until the stars came out, and even =
-then, they did not go back to the inn until much, much later. Rosella told =
-him about her life in the sky, how she used to be part of the Ozario family=
-. She had lived in the Ozario manor which had the biggest, most beautiful g=
-arden in all the sky. Astero asked her questions and acted surprised, as if=
- he hadn't already known all these things.=20
 
-He told her how much fun it must have been up there, how lovely it would be=
- to see the sky so clearly. He did not tell her what he was really thinking=
-.=20
+
+Astero quickly looked away and hastily wiped the tears that threatened to fall. "Let's head back." 
+
+
+
+Rosella nodded. "I am still hungry." 
+
+
+
+The two of them walked back to their picnic blanket, the sky already darkening. They finished all the food, talked until the stars came out, and even then, they did not go back to the inn until much, much later. Rosella told him about her life in the sky, how she used to be part of the Ozario family. She had lived in the Ozario manor which had the biggest, most beautiful garden in all the sky. Astero asked her questions and acted surprised, as if he hadn't already known all these things. 
+
+
+
+He told her how much fun it must have been up there, how lovely it would be to see the sky so clearly. He did not tell her what he was really thinking. 
+
+
 
 You would have been so much happier had you never met me.
-
-Sent from my iPhone
---Apple-Mail-4F7E0357-5650-4AB7-AD2F-DD65C990D1D3
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
-=3Dutf-8"></head><body dir=3D"auto"><p style=3D"margin: 0px; font-stretch: =
-normal; font-size: 18px; line-height: normal; font-family: Georgia; color: =
-rgb(18, 18, 18);">The moment Rosella walked away, Astero wanted to disappea=
-r into thin air. The last thing he ever wanted to do in this world was make=
- Rosella upset. And yet, he did exactly that.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Still, he prodded =
-for answers, and he got them. Astero only had himself to blame. Now he knew=
- that a part of Rosella regretted helping him, and she was just too kind to=
- admit it.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He sighed, resting=
- his head on his hand. Perhaps he should just go back to the sky and stop m=
-aking her life miserable. Even she were on the ground, she would be away fr=
-om him. And he would be up there, married to Melody, heir of the Elessai cl=
-an, continuing to live a life of lies and deceit.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Yet, that still wo=
-uldn't be fair. He had a mother and father, a fianc=C3=A9e, aunts and uncle=
-s, cousins, a grandfather, friends. He never had to worry about finances or=
- working. He never worried whether or not he'd be able to eat the next day.=
-&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero did not bel=
-ong up there. He could not exist in the sky without her.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He scolded himself=
- for even thinking of going back. There was promise etched into his heart. =
-A promise to be with the person who saved his life, no matter what she was =
-going through, no matter if she hated him. He would repay her with everythi=
-ng he had, even if she despised him.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Of course Rosella =
-would regret helping him. A thoughtless, idiotic little boy who selfishly c=
-limbed the stairway. That day fifteen years ago was the day Astero should h=
-ave died.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella was the on=
-e who gave him a second chance at life. Even if she regretted it, he could =
-not waste this opportunity to provide for her in the way she did for him.&n=
-bsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">When Astero reache=
-d the top of that stairwell, he had been fully prepared to die. Despite jus=
-t being a clueless child on the ground, even he knew what he had done was f=
-orbidden. Guards were chasing after him, large spears in hand. He had gazed=
- at the sky, at the sunrise that took his breath away, and accepted his fat=
-e.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">But at that moment=
-, a gentle hand took his, and his fate changed.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">His name, his purp=
-ose in life, even the poetry he wrote back home... it was all for her. Poet=
-ry was the only thing Astero was decent at in the Elessai clan. All it requ=
-ired were strong feelings of a certain kind, and that came easily to Astero=
-.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Feelings of guilt.=
- Feelings of regret. Feelings of self-hatred. Feeling that he did not belon=
-g. Feeling that he took advantage of a kind person. Feeling that he had bee=
-n lying to everyone around him his whole life.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Everyone he loved =
-only loved him because of his lies. His mother only took him in because she=
- believed him to be a runaway orphan from the Fen clan. His mother's side o=
-f the family cared for him, but if they knew he was from the ground, they w=
-ould arrest him in a heartbeat. Xen, his only true friend, did not know, so=
- Astero hesitated to call him a true friend. Even his father only seemed to=
- tolerate him nowadays without knowing his origin.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He wondered, when =
-Rosella was living up in the sky, what she had thought of people on the gro=
-und. She had to have seen the guards coming after him that day. Yet, she de=
-cided to help him anyway.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">That day was ingra=
-ined into Astero's memory like a claw that kept holding him down. Whenever =
-he felt an inkling of happiness, a shred of liberation or worthiness, his c=
-rime would pop into his head, and it would all wash away.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Many times, Astero=
- genuinely wanted to die.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">About eight years =
-after that fateful day, after four failed attempts at finding Rosella on th=
-e ground, Astero heard news that a noble from a western clan had been sent =
-to the ground. Sending criminals to the ground was a rare occurrence, and n=
-ews of it spread throughout the whole sky. It shook Astero to his bones, an=
-d he had locked himself in his room the whole day. Out of everyone in the s=
-ky, he was the worst criminal of all. He wanted to travel to the edge of th=
-e sky, to throw himself to the ground and die from the impact. But the rock=
-y terrain and stormy mountains made it nearly impossible to reach the edge =
-without dying. Like a coward, Astero did not pursue this death.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Ten years after th=
-at fateful day, Darius and Maeryn Ozario passed away. And, having witnessed=
- no one from his clan =E2=80=94 nor any northern clan =E2=80=94 planning to=
- attend their funeral, Astero made an effort to sneak out himself. He had j=
-ust come back from a "poetry inspiration excursion" to the ground, so he co=
-uld not use that excuse. However, guards brought him back to the manor, and=
- his father scolded him for attempting to attend the funeral. When he asked=
- his father what was so wrong with attending, he said that the Ozarios have=
- done nothing for the north lately, and they did not deserve the north's gr=
-ief.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">After finding out =
-how they died, that night, Astero tried to hang himself the same way. Befor=
-e the deed could be done, he stopped. And he realized that death was an eas=
-ier fate than what he put Rosella through. Than what he put the entire Ozar=
-io clan through.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He imagined the gh=
-osts of the late Lord and Lady Ozario watching him, and the claw held him d=
-own more painfully. He had never seen them in person, so their faceless gho=
-sts haunted his dreams, whispering Rosella's name.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero also often =
-dreamt of Rosella pushing him off the edge of the sky. Those were the best =
-dreams he had.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Looking to the sky=
-, the sunlight began to dim slightly. He wondered how much time had passed =
-since Rosella left. Astero gazed at the trees she had disappeared into. Tha=
-t forest led to nowhere, and suddenly, he feared for her safety. What if sh=
-e had been attacked? What if she were lost?&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero stood up qu=
-ickly and sprinted for the trees, leaving all their food behind. If anythin=
-g happened to her... He could not even bear the thought. His pace accelerat=
-ed, not a rational thought going through his mind. All Astero could think a=
-bout was finding her.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">When he reached th=
-e forest, a flash of white came hurtling towards him. It crashed into his c=
-hest and fell to the ground with a thud.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">The person dressed=
- in white looked up at him, and Astero breathed a sigh of relief.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Oh thank the gods=
-," he groaned, nearly collapsing to the ground next to her, closing his eye=
-s in exasperation.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Why were you runn=
-ing?" Rosella demanded, fussing over her white dress that now donned stains=
- from the soil.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Are you all right=
-?" he asked, boosting himself into a standing position. He held out a hand =
-to her.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella stared at =
-his hand for a moment, and Astero's heart nearly stopped in fear that she t=
-ruly hated him now, so much that she would not even touch him.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her eyes cast down=
- to the forest floor. She looked smaller than ever. "I'm sorry."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero was taken a=
-back. "For what?"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I snapped at you =
-and ran off like a child."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Immediately, Aster=
-o knelt down beside her. Taking her hands into his own, he felt the rough c=
-alluses on her fingers, the dry skin from hours of working. He held them ge=
-ntly, as if they were as delicate as a flower petal. "You could never do me=
- any wrong, Rosella."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Of course I can,"=
- she stressed, looking exasperated.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He shook his head.=
- Of course, she did not understand. "I'm the one who should apologize. I br=
-ought up bad memories for you."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella shrugged. =
-"There is nothing I can do about it now, even if I wanted to."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">The two were silen=
-t for a moment. A question burned in Astero's throat, and although he dread=
-ed hearing the answer, at the same time, he desperately want to. "If you co=
-uld see that boy again, what would you do?"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What do you mean?=
-"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Would you be upse=
-t with him?"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Astero, I don't k=
-now." Rosella pushed herself up to stand. Dusting off her now stained dress=
-, she glanced down at him, still crouched on the forest floor. "It was so l=
-ong ago. I don't remember what he looked like. I don't remember his name."&=
-nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
-t-style: italic;">There was no name to remember.</span></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I barely remember=
- my own family's faces, let alone some child I knew for a day."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
-t-style: italic;">Two days.</span></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It doesn't matter=
-, anyway. I'm here now. The past is the past." She gave him a soft smile. "=
-Besides, I would not have met you had I not been sent to the ground." Rosel=
-la grabbed his arms and hoisted him up. Looking into his eyes, she said sin=
-cerely, "If everything I had been through led me to you, it must be worth i=
-t."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero quickly loo=
-ked away and hastily wiped the tears that threatened to fall. "Let's head b=
-ack."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella nodded. "I=
- am still hungry."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">The two of them wa=
-lked back to their picnic blanket, the sky already darkening. They finished=
- all the food, talked until the stars came out, and even then, they did not=
- go back to the inn until much, much later. Rosella told him about her life=
- in the sky, how she used to be part of the Ozario family. She had lived in=
- the Ozario manor which had the biggest, most beautiful garden in all the s=
-ky. Astero asked her questions and acted surprised, as if he hadn't already=
- known all these things.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He told her how mu=
-ch fun it must have been up there, how lovely it would be to see the sky so=
- clearly. He did not tell her what he was really thinking.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
-t-style: italic;">You would have been so much happier had you never met me.=
-</span></p><br><div dir=3D"ltr">Sent from my iPhone</div></body></html>
---Apple-Mail-4F7E0357-5650-4AB7-AD2F-DD65C990D1D3--

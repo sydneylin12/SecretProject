@@ -1,868 +1,269 @@
-Delivered-To: sydney.lin12@gmail.com
-Received: by 2002:a05:7110:413c:b0:196:97c1:3ca2 with SMTP id w28csp137561gea;
-        Fri, 16 Sep 2022 22:56:33 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM4i0KHpvs3BDnxG2tdK2Id6qs4wXu66X89hGkEnvSD4yKALsdNAPD1V2JQWh80DUUWB7rVy
-X-Received: by 2002:a05:620a:2688:b0:6bc:3a9f:42e9 with SMTP id c8-20020a05620a268800b006bc3a9f42e9mr6366143qkp.200.1663394193075;
-        Fri, 16 Sep 2022 22:56:33 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1663394193; cv=none;
-        d=google.com; s=arc-20160816;
-        b=ziyzg1tMgYnK6kniVaX4rfR/n7KncXZCkUm6IImltaxW5dQVjPh7DSSaGS0Ycn1gaH
-         IsSavi7n8OC2/XC95jiltvAMN++Q5GoMYauTkZYpP4jvz1zHA8uLbuiYfX5UoENMJ6re
-         FyybPZ2g1Chop4h4WgPpckVzOcWgfoXPSbWimj9a5hmwI1mzdTtTyiOoGvxcMz4eZX51
-         Lu24BpUOukHU11VThYh3xrNnugAJx+ZUluSVhlb6+WY+EHrmuJWgaR3FhahcJcebc+ec
-         gJIjV6MwmPGLKCB64jgsGEnbF0h21gOxJdm3BPxc3DiFelQnGh1JABYf8K/hhhfyihKX
-         J/Sg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
-        h=references:to:message-id:subject:date:mime-version:from
-         :content-transfer-encoding:dkim-signature;
-        bh=nk440You/u+moWrFCXiHftQjD4+Xj/wk2P6KOwpOkLw=;
-        b=MbuMzY0Tz4DWyXVgVvdablhrWwHIRwz84u/csFX+j25rTyKC+OmGy4nSqwr0UVHG7Y
-         P5MdECbfPC7paX9tJ/laFm6E6ST2bVtT/7YwkRdIvconmRTsXxTBFzigoTDj/Y5qX7XR
-         kj7d0vCynTGLUvnBRmbcJqBRzaNsY4QZAy2mJH1AmcWwc7rvaPPQBB4zsCZrrlFn0NPY
-         xFXlgXRUMGYMWHrRq1j5PgZq2sV0C2rFkA5Ot4w7cUErMjjeDGbIzIlyjQ3UVaAIycjC
-         6wbt3oRjXE0ALvJouMvjxrgF+9Sukex01hOgopbArIPnwR3LZ5JWJi2eW7fJt25Ds5Pi
-         QA9w==
-ARC-Authentication-Results: i=1; mx.google.com;
-       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="QYUA/Of8";
-       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.33 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
-Return-Path: <carissa71555@yahoo.com>
-Received: from sonic308-10.consmr.mail.ne1.yahoo.com (sonic308-10.consmr.mail.ne1.yahoo.com. [66.163.187.33])
-        by mx.google.com with ESMTPS id gi13-20020a056214248d00b004aab21f63f9si6706622qvb.508.2022.09.16.22.56.32
-        for <sydney.lin12@gmail.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Sep 2022 22:56:33 -0700 (PDT)
-Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.33 as permitted sender) client-ip=66.163.187.33;
-Authentication-Results: mx.google.com;
-       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="QYUA/Of8";
-       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.33 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
-       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1663394192; bh=nk440You/u+moWrFCXiHftQjD4+Xj/wk2P6KOwpOkLw=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=QYUA/Of8+dZVEJWZrS8v4pM9Y0pgnj5YwcVCFR0UNT0J/YoPw4xenRDZHHoZxx4T7NBZ+xrjDQ/iFj22jeC+euKH5JPpoba0gu/KRgjSsKzlHWcDhlbytiovLMXrw1COkUvebeRF8GAk6K/+7Rlh/8ecEI+nk3s1jppnLzYAYKVqhlEr3ODMV+ajtnT0oTyt4/j9BElhgjiCUMaCAcUaTeJ0IjGUduan7esS6B59j0tmeBCbxoIarrnA/TRnjrk9xi/ZXpRtqw+2/VS9ksKmeamI699BtFQfhjf7APnwB4G2sMGiIcpkzJN1SOiXHtsZ+ZaaE3vF6gv1C/vfRk5+Kw==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1663394192; bh=35ztIKcfF6LGV8SrhrMygwrd59kYqfrEJBBlqFsflFD=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=kvLCUos2mO6vnaXTTEbhOMvmbH4BqCXoEgpQnHBNqCudK8nOJgViuzK0cT5RoMlPrkQBB+rF2krROucVv8T9zRmXMtdhkTbBh+dcjFsYs2smwQOXx3muRwwjGc52WA0ZSZfbhBR38AM7Tk8v/o6s0aRPtK/xKTnRIfM58Tww0BloOFFfn5MUUh0POt+WgvLabHNw4Wn4zcWkdGJJKyJ/QQrEwo/3fIyp7M8Y9OC26z24yeyz3P+aYNgaJUuoDHhsdNAgnWdVtKjsePCuqXT50gMs/9OHgesjV40xUasJ5Neo9bs6i1+4Y5Xev+OrDeDfHK10dKNhMhHnInfXe39ypA==
-X-YMail-OSG: yRJBuGIVM1m1hYNZX8gcD.4AD7u0jMreOGiAHE8tvf6uGp.Q4Hh6V32EDeeQ05k F2pSFtSWMNukUPwJRgrZJSEyXz9S2fhIqF4OqnP_KNHOkFCxcDqd.TM7ySwfy0WR4BgiLZaOdhtL zGfJjxYTbbJWp4XqPm7psQIM0k6RhS1qRYk0QXiDSxmwfwiwCpj1aq8Ij7V0AHaxbkd2b.R.fgwm ydse4gDIQifp2ka8J6y.jsUIEc7CldB8gNxzZ5PjPPlMOegpHFke3awj1R79ZP9C_STwSl5O4.SX gxQzAOAvgOGSMAUtBP8iCbxhXwORhJ8smsscQTp1oqLmpxmnwgbulkaeeRGAeuCi7EtDOAvJrKwU z3G1ZdC76C2iH9J.hda_ANLL4Wh0yxGDsOhbv2X99AvIyD081PuMgO67yHvA84xy4J4s84botQwF IXtmKwUOKOfv0cS1LiNa3t95_wpimtD7VXbRVTeXEQqSptVtlYQdRjye2JOg9oRpYhp9o8S7GiKu 0Tnh0Z0SoFS6m7hA4pSUTExdWO0QkWlJTomZiZAlJ_z3TK_526.HYHWn2AvIgvU5lyl3BjjtLAs2 98ZEWbwRd6eKmspbGYisGfSE69FrQHhZ626WRHBtbkqe_uujRheXdwcvC.A_WZ6LkNq3KApYkRP5 g4Sk4dzoiJNrzJvgdB_hYTQQzTfTVIaDZXzhiKmy_i.8QtQN1jXE.W8KS87JL1Solg8DiP_qm.55 kNfv1ggfwewZJoD4HDoxPh3ooKOPk2mQ2vYeAm_WLzLjQaeWJGUBEWwQqD0gnDzkG2KttEmKmJz4 i814feBWTj98K.gZBnAIJH0i0dArKiRjDOPS0h1NomwEVsiNIirllk80o1ZWhKjj_XLohz7oumKL Po6IsiOXUukOnplEfbiP_vdRaQOsrb13w60mMcy9dy7PYX8eU.JdxKQwq78cihpaMLFLC4YjTw0T AxWQpUs_pPCsI_Z9z_oOLBBfUduv76o_u3bfnJEFYdB4nM6lYvt8OeLoAdcr3Cphsd9uKeSO9ZC3 qiYBFrGxwLtaJ4qxIYl392s7IzfEeJFZEa_dEArJTWvHDcLXkuvtphMW.1JsO3LI2GFJLk2Uum4I 1dBP0JQ6gC7aiu_4aOJMr68dYLQaOaS6nKMYTwDr9tR1G3cXj4j9HiRbpBtE0BxBGEUqyb_t7YJ_ aBCaEdBOnmRYGHawCp_ah2eNBZ9VnjnrHxdfHSSxKpgpekT5RALYNVNcaQQDgD8miacNB._pxMgW 5Zm5eMpjj681x5FeJtLuAJGWmYa1Vyu5J.CkNAmEBpEEcRHWH5.otq.KiTieUtzhqrvFb9uTK4x2 H.mOM61PYGLW.rEOUZykXBMJqtMMcSSS_dK_13Sqo7WvwBD6JgvXvizP2NCWhIGr3pHeMR3usgOf 4NBnQ1c2zRpqZ_vA8b.itGH9QWClhLv6CyTrCVPRPtEe.RHJxFNyoeDwpBPDdU.ZTbe3WElDyqYQ J7gZeebw1UNdL.BJYmR1fMFWpXA8jRJBDvlEUlL3vW9jdEpO9CrCcH3tvdgKgy7.hF2fA87Ew5nF 50rWArTp0ixY.GGpl9kGUSIYcAJ5XkLFC_bMRBgOZrIp3e_JpLcaCnPBeO6GEe32BRRB.nryIeMz HTm6iY0OmUG48.3X2nUawtFN6C2nsXGgbgKhINjUZIC2wWapnzY8feDmfWkkdMo8Nsbpy.Ml.r4c QxufO2HqhUTjBZs.QQYgXSsVy72NfytMLS.nfQd91wdPFUkWNPEH.AbQC8blw0MvmparmMJ6oqVn KXsfLytQydf._6q4JPqUEMMx_52oDMH38xRciGWS5G5DABsgv2AiInZtyv3I1jnVBfXY4MrIOl4B Wlwacfl1tQKZ1t1Wdloi2Zgc1oKKDY97ua9kkF52WXLQqS4qmawtk4Ney.qM3DFkHaapW63sKq9Z SGvSRVtjAJe9F0EuzJ2a.n5sNVvACfpKp63zyxxPMonjvSKKtM2uNg8T_1wNmCSYUErMNpqNk5VO 1mQ2guRJP82Hzyu8x3xK5BCVNoTPCW8pJ0vBMyS2SXmAOWpXvcWvxCmTNf1K5S1Sr12c8HW7Tq6k 41vXMLbGzZ9pxUrsmkR1ALpXP2PTNzo7utzlB5GrwJ_Sr.a5RBeYSfz3UrX.0XTYwv4rx.ISk58. SA5M9HecAFFrirDT4daeJVQJvg8MXDo1k6fR1uWqQqjJhmQvP0PO5CTOS2LjEoP0yKiGfc4TXGXZ 1CIyUXfnXay8M6loCzm.sK.SMOJ6JM1unGS1Ne8qsgqkw4Zmzlm.2UpEZ0b4-
-X-Sonic-MF: <carissa71555@yahoo.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.ne1.yahoo.com with HTTP; Sat, 17 Sep 2022 05:56:32 +0000
-Received: by hermes--production-bf1-64b498bbdd-jxpwc (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 3629802424f59bc347e6cf5cb918bcd0;
-          Sat, 17 Sep 2022 05:56:27 +0000 (UTC)
-Content-Type: multipart/alternative; boundary=Apple-Mail-295BA896-0B39-45D2-A6D6-E9CCA02ACF4A
-Content-Transfer-Encoding: 7bit
-From: Carissa <Carissa71555@yahoo.com>
-Mime-Version: 1.0 (1.0)
-Date: Fri, 16 Sep 2022 22:56:25 -0700
-Subject: Chapter 21
-Message-Id: <B32FBE44-3E25-4B74-84E1-58AEAE530F20@yahoo.com>
-To: sydney.lin12@gmail.com
-X-Mailer: iPhone Mail (19G82)
-References: <B32FBE44-3E25-4B74-84E1-58AEAE530F20.ref@yahoo.com>
-Content-Length: 47265
+She had only been attending jobs with Astero for a few days, but leaving for a job on her own for the first time without him made Rosella more uneasy than she cared to admit. She had grown used to him being by her side. Rosella never had many friends on the ground, and if she did, the friendship did not last long. A part of her, the dark and hopeless part of her, anticipated the day he would leave. He had a home, a family, a fiancée, and money. He had no reason to stay by her side. 
 
---Apple-Mail-295BA896-0B39-45D2-A6D6-E9CCA02ACF4A
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-She had only been attending jobs with Astero for a few days, but leaving fo=
-r a job on her own for the first time without him made Rosella more uneasy =
-than she cared to admit. She had grown used to him being by her side. Rosel=
-la never had many friends on the ground, and if she did, the friendship did=
- not last long. A part of her, the dark and hopeless part of her, anticipat=
-ed the day he would leave. He had a home, a family, a fianc=C3=A9e, and mon=
-ey. He had no reason to stay by her side.=20
 
-And yet, she desperately wanted him to. Rosella couldn't remember the last =
-time she felt so happy.=20
+And yet, she desperately wanted him to. Rosella couldn't remember the last time she felt so happy. 
 
-The walk to the banquet hall wasn't long, but the heat did start to get to =
-her. Because it was a formal event, Rosella had to wear a dress that covere=
-d her arms and went down to her ankles, and sweat began to build on her ski=
-n. She made sure to wear the hat Astero had bought her, which gave her some=
- degree of comfort in his absence.=20
 
-Rosella greeted people she knew as she walked past, which wasn't many. Howe=
-ver, she was quite well-known in the village for being willing to take up a=
-ny job, no matter what it may be. She was also known for being easy to push=
- around, which was true. Rosella valued money, and she would do whatever it=
- took to acquire it, no matter how little the amount, and no matter the cos=
-t to her pride. She learned to throw away useless things like pride a long =
-time ago. If her family saw her now, what would they think of her?=20
 
-It had been fifteen years since she had last seen her parents, sixteen year=
-s since she had last seen her brother, and probably over twenty years since=
- she had last seen her sister. If she ran into her siblings now, Rosella li=
-kely would not be able to recognize them. She could remember her parents fa=
-irly well, but Soro Crisanto's face would likely have changed. And it had b=
-een too long since Anle Willow's face crossed her memory. But she remembere=
-d their smiles and their warmth, which kept her company throughout the year=
-s. She imagined them living happily in the Ozario manor, her father still c=
-lan leader, Soro Crisanto as the heir, and his wife at his side. Anle Willo=
-w would probably still be traveling, but Rosella liked to imagine her retur=
-ning home every few months. It gave her comfort thinking they were happy wi=
-thout her. She didn't want to be the reason for any unhappiness in their fa=
-mily.
+The walk to the banquet hall wasn't long, but the heat did start to get to her. Because it was a formal event, Rosella had to wear a dress that covered her arms and went down to her ankles, and sweat began to build on her skin. She made sure to wear the hat Astero had bought her, which gave her some degree of comfort in his absence. 
 
-It was all right that she be the only one suffering, as long as they were h=
-appy.=20
 
-"Rosella!" a man, who she recognized as one of her previous employers, call=
-ed out to her. "Going to a job?"=20
 
-She smiled and nodded. "The renovations meeting!"=20
+Rosella greeted people she knew as she walked past, which wasn't many. However, she was quite well-known in the village for being willing to take up any job, no matter what it may be. She was also known for being easy to push around, which was true. Rosella valued money, and she would do whatever it took to acquire it, no matter how little the amount, and no matter the cost to her pride. She learned to throw away useless things like pride a long time ago. If her family saw her now, what would they think of her? 
 
-"Next week, I need you to watch my daughter for a day!"=20
 
-"How much will you pay me?"=20
 
-"Does it matter?"=20
+It had been fifteen years since she had last seen her parents, sixteen years since she had last seen her brother, and probably over twenty years since she had last seen her sister. If she ran into her siblings now, Rosella likely would not be able to recognize them. She could remember her parents fairly well, but Soro Crisanto's face would likely have changed. And it had been too long since Anle Willow's face crossed her memory. But she remembered their smiles and their warmth, which kept her company throughout the years. She imagined them living happily in the Ozario manor, her father still clan leader, Soro Crisanto as the heir, and his wife at his side. Anle Willow would probably still be traveling, but Rosella liked to imagine her returning home every few months. It gave her comfort thinking they were happy without her. She didn't want to be the reason for any unhappiness in their family.
 
-Rosella laughed sadly. "I suppose not." She proceeded to walk a bit faster =
-to reach her destination.
 
-The banquet hall was quite close to Mr. Hestyn's house. It was the largest =
-building in the village, and Rosella has been there many times before to cl=
-ean. She hadn't served in a formal event in a long time, and thinking about=
- making a fool of herself in front of respected town leaders made her body =
-tingle with nerves. Rosella wished she had Astero's arm to hold on to.=20
 
-Steeling herself, Rosella headed inside the building. The entire banquet ha=
-ll covered the first floor, and two marble staircases led up to the second =
-floor, where the private rooms and washrooms were located. People milled ab=
-out, setting up tables and chairs for the meeting. It was an extremely impo=
-rtant event for Onen, a village that hadn't seen proper renovations in a lo=
-ng time.=20
+It was all right that she be the only one suffering, as long as they were happy. 
 
-"Workers, to the kitchens!" called a voice, and Rosella hurried along with =
-the others. "The town leaders will be here in five minutes!"=20
 
-Once inside the kitchen, Rosella put on a white apron over her gray dress, =
-took as many plates as she could carry, and scuttled into the banquet hall =
-along with the rest of the workers, placing the plates of freshly cooked fo=
-od at a seat at each table. Her years of work and serving gave her plenty o=
-f experience with balancing multiple plates along her arms, and she noticed=
- the stares of horror and fascination from the others.=20
 
-"As expected," praised one of the women passing by her.=20
+"Rosella!" a man, who she recognized as one of her previous employers, called out to her. "Going to a job?" 
 
-Rosella smiled in response. She prided herself on the quality and efficienc=
-y of her work, and it often earned her bonus pay, which was the real goal. =
-She noticed the people in charge eyeing her with amazement, and that gave h=
-er encouragement.=20
 
-After all the tables were set, the multitude of workers took their places a=
-t the sides of the room, and the leaders from the town made their entrance.=
-=20
 
-Most of them were men in fancy tunics, and some even wore cravats just to s=
-how that they could. The clothing was nothing compared to the wardrobe worn=
- by clan members up in the sky, but they were some of the nicest she had se=
-en on the ground thus far.=20
+She smiled and nodded. "The renovations meeting!" 
 
-The men strode into the room, and the air immediately grew quiet, allowing =
-more room for the size of their presence. This village saw them as saviors =
-who would finally build better houses, import quality food, and provide mor=
-e money for entertainment.=20
 
-Rosella didn't particularly care. Her mind was focused on becoming the best=
- server, hopefully obtaining a bonus reward, and hopefully seeking more job=
- opportunities, perhaps from one of these rich men.=20
 
-They all took their seats at the various tables and conversed with one anot=
-her while eating. Rosella took deep, steady breaths, trying not to pass out=
- from the heat, and she noticed a lot of the other servants wiping sweat of=
-f their foreheads or swaying on their feet. She could not afford to pass ou=
-t. The payment for this job was worth more than her life.=20
+"Next week, I need you to watch my daughter for a day!" 
 
-Although, she said that about every job.=20
 
-Suddenly, her eyes locked on to a water glass belonging to one of the men t=
-hat was nearing empty. Before any of the other servants could take action, =
-Rosella immediately headed to the refreshments table, picked up one of the =
-jugs of water, and glided over to that table.=20
 
-She approached the man from behind. "More water, sir?" Rosella asked, plast=
-ering a smile on her face.=20
+"How much will you pay me?" 
 
-He turned around in his chair to look at her, and his previously neutral fa=
-ce turned wide-eyed with shock. "You," he breathed.=20
 
-Rosella was taken aback. "I'm =E2=80=94 I'm sorry?"=20
 
-He continued to stare at her.=20
+"Does it matter?" 
 
-She racked her brain for where and when she could have possibly met this ma=
-n before. He didn't look at all familiar to her. He looked twice her age, a=
-nd he was clearly rich. They obviously didn't run in the same circles. Perh=
-aps he had mistaken her for someone else.
 
-Deciding to ignore the awkward turn of events, Rosella reached around him a=
-nd filled up his water glass. All his staring made her uncomfortable, and s=
-he wanted to leave as soon as possible.=20
 
-"Mine too, miss," said another man at the table, and Rosella immediately hu=
-rried over to him. However, she could feel the man's eyes tracking her ever=
-y move, and despite the heat, it made her blood run cold.=20
+Rosella laughed sadly. "I suppose not." She proceeded to walk a bit faster to reach her destination.
 
-Rosella quickly returned to the refreshments table and set the water jug do=
-wn. Then, she took her place by the wall once again, ignoring the intense p=
-ounding of her heart. The way the man looked at her made her more nervous t=
-han she cared to admit.=20
 
-Where could they have possibly met? Rosella's memory truly wasn't the best,=
- and she had met many people over the years. Most faces made no impression =
-on her. But apparently, she was important enough for him to remember.=20
 
-She couldn't get the nervous feeling out of her head, and for the rest of t=
-he banquet meeting, Rosella did not refresh anyone else's beverage or pick =
-up any empty plates. She stayed by the wall as the time passed by, having g=
-iven up on getting any sort of bonus money. All Rosella wanted was to leave=
- as soon as possible.
+The banquet hall was quite close to Mr. Hestyn's house. It was the largest building in the village, and Rosella has been there many times before to clean. She hadn't served in a formal event in a long time, and thinking about making a fool of herself in front of respected town leaders made her body tingle with nerves. Rosella wished she had Astero's arm to hold on to. 
 
-When the meeting finally ended after an hour, Rosella quickly headed into t=
-he kitchen to remove her apron. Then, she went upstairs to the washroom, sp=
-lashing water on her face. She needed to calm down. Rosella closed her eyes=
- and took deep breaths. Her skin was heating up, and she felt sick. Rosella=
- nearly laughed at the image of her and Astero lying sick on the floor of h=
-is bedroom while Jayda complained about having to cook dinner herself.=20
 
-However, when another person entered the washroom, Rosella felt nothing but=
- horror.=20
 
-It was him.=20
+Steeling herself, Rosella headed inside the building. The entire banquet hall covered the first floor, and two marble staircases led up to the second floor, where the private rooms and washrooms were located. People milled about, setting up tables and chairs for the meeting. It was an extremely important event for Onen, a village that hadn't seen proper renovations in a long time. 
 
-"It is you, isn't it." His voice seemed almost giddy, and a horrifying smil=
-e spread across his face.=20
 
-Rosella was rooted in place. She felt paralyzed.=20
 
-"What was your name again?" he asked, stepping closer.=20
+"Workers, to the kitchens!" called a voice, and Rosella hurried along with the others. "The town leaders will be here in five minutes!" 
 
-She shook her head frantically. "I don't think we've met before."=20
 
-His expression immediately darkened. "You don't remember me?"=20
 
-"You must be mistaken =E2=80=94 "
+Once inside the kitchen, Rosella put on a white apron over her gray dress, took as many plates as she could carry, and scuttled into the banquet hall along with the rest of the workers, placing the plates of freshly cooked food at a seat at each table. Her years of work and serving gave her plenty of experience with balancing multiple plates along her arms, and she noticed the stares of horror and fascination from the others. 
 
-"After all the money I gave you?" His dark blue eyes turned murderous. "Aft=
-er everything we did together?"=20
 
-Her breaths came out quicker, and she squeezed her hands together to stop t=
-hem from trembling. "I'm sorry," she whispered, looking down at his feet. H=
-is face terrified her. "I don't remember you."=20
 
-He stepped closer, close enough that his chest was nearly pressed up agains=
-t her face, and suddenly, a memory came to her mind. A room. A bed. Hands o=
-n her wrists. Her face obscured by a man's chest, so close she could barely=
- breathe.=20
+"As expected," praised one of the women passing by her. 
 
-She did know him. Just a few years ago, Rosella had sold her body to a man =
-willing to pay her large sums every night she spent with him. She had done =
-it before and hardly ran into problems. Most of the men were lonely, in nee=
-d of companionship, and she gave it to them in exchange for money. Some wer=
-e rough with her, but they had never gone too far. However, there was one m=
-an who refused to listen to her. No matter how much she said she didn't lik=
-e something, he would never stop. Rosella let this happen, for she believed=
- the money was worth it.=20
 
-Until the night he snapped her wrist and still didn't stop, no matter how m=
-uch she cried.=20
 
-Rosella left that town with the most money she had ever made, as well as a =
-broken wrist. And since then, she refused to do that kind of work again.=20
+Rosella smiled in response. She prided herself on the quality and efficiency of her work, and it often earned her bonus pay, which was the real goal. She noticed the people in charge eyeing her with amazement, and that gave her encouragement. 
 
-The man in front of her forcibly grabbed her chin and tilted her head up so=
- she couldn't look away. He peered down at her, eyes blazing. "Then I will =
-make you remember."=20
 
-Rosella took a step back, but he simply took a step forward.=20
 
-"You left me," he accused angrily. "I had money to give, and you left anywa=
-y!"=20
+After all the tables were set, the multitude of workers took their places at the sides of the room, and the leaders from the town made their entrance. 
 
-She swallowed hard. Rosella glanced at the doorway, and the most obvious so=
-lution finally came to mind. "Help!" she cried. "Help! Help =E2=80=94 !"=20
 
-The man covered her mouth and backed her all the way up against the wall. "=
-Quiet," he hissed. "You'll regret that."=20
+
+Most of them were men in fancy tunics, and some even wore cravats just to show that they could. The clothing was nothing compared to the wardrobe worn by clan members up in the sky, but they were some of the nicest she had seen on the ground thus far. 
+
+
+
+The men strode into the room, and the air immediately grew quiet, allowing more room for the size of their presence. This village saw them as saviors who would finally build better houses, import quality food, and provide more money for entertainment. 
+
+
+
+Rosella didn't particularly care. Her mind was focused on becoming the best server, hopefully obtaining a bonus reward, and hopefully seeking more job opportunities, perhaps from one of these rich men. 
+
+
+
+They all took their seats at the various tables and conversed with one another while eating. Rosella took deep, steady breaths, trying not to pass out from the heat, and she noticed a lot of the other servants wiping sweat off their foreheads or swaying on their feet. She could not afford to pass out. The payment for this job was worth more than her life. 
+
+
+
+Although, she said that about every job. 
+
+
+
+Suddenly, her eyes locked on to a water glass belonging to one of the men that was nearing empty. Before any of the other servants could take action, Rosella immediately headed to the refreshments table, picked up one of the jugs of water, and glided over to that table. 
+
+
+
+She approached the man from behind. "More water, sir?" Rosella asked, plastering a smile on her face. 
+
+
+
+He turned around in his chair to look at her, and his previously neutral face turned wide-eyed with shock. "You," he breathed. 
+
+
+
+Rosella was taken aback. "I'm — I'm sorry?" 
+
+
+
+He continued to stare at her. 
+
+
+
+She racked her brain for where and when she could have possibly met this man before. He didn't look at all familiar to her. He looked twice her age, and he was clearly rich. They obviously didn't run in the same circles. Perhaps he had mistaken her for someone else.
+
+
+
+Deciding to ignore the awkward turn of events, Rosella reached around him and filled up his water glass. All his staring made her uncomfortable, and she wanted to leave as soon as possible. 
+
+
+
+"Mine too, miss," said another man at the table, and Rosella immediately hurried over to him. However, she could feel the man's eyes tracking her every move, and despite the heat, it made her blood run cold. 
+
+
+
+Rosella quickly returned to the refreshments table and set the water jug down. Then, she took her place by the wall once again, ignoring the intense pounding of her heart. The way the man looked at her made her more nervous than she cared to admit. 
+
+
+
+Where could they have possibly met? Rosella's memory truly wasn't the best, and she had met many people over the years. Most faces made no impression on her. But apparently, she was important enough for him to remember. 
+
+
+
+She couldn't get the nervous feeling out of her head, and for the rest of the banquet meeting, Rosella did not refresh anyone else's beverage or pick up any empty plates. She stayed by the wall as the time passed by, having given up on getting any sort of bonus money. All Rosella wanted was to leave as soon as possible.
+
+
+
+When the meeting finally ended after an hour, Rosella quickly headed into the kitchen to remove her apron. Then, she went upstairs to the washroom, splashing water on her face. She needed to calm down. Rosella closed her eyes and took deep breaths. Her skin was heating up, and she felt sick. Rosella nearly laughed at the image of her and Astero lying sick on the floor of his bedroom while Jayda complained about having to cook dinner herself. 
+
+
+
+However, when another person entered the washroom, Rosella felt nothing but horror. 
+
+
+
+It was him. 
+
+
+
+"It is you, isn't it." His voice seemed almost giddy, and a horrifying smile spread across his face. 
+
+
+
+Rosella was rooted in place. She felt paralyzed. 
+
+
+
+"What was your name again?" he asked, stepping closer. 
+
+
+
+She shook her head frantically. "I don't think we've met before." 
+
+
+
+His expression immediately darkened. "You don't remember me?" 
+
+
+
+"You must be mistaken — "
+
+
+
+"After all the money I gave you?" His dark blue eyes turned murderous. "After everything we did together?" 
+
+
+
+Her breaths came out quicker, and she squeezed her hands together to stop them from trembling. "I'm sorry," she whispered, looking down at his feet. His face terrified her. "I don't remember you." 
+
+
+
+He stepped closer, close enough that his chest was nearly pressed up against her face, and suddenly, a memory came to her mind. A room. A bed. Hands on her wrists. Her face obscured by a man's chest, so close she could barely breathe. 
+
+
+
+She did know him. Just a few years ago, Rosella had sold her body to a man willing to pay her large sums every night she spent with him. She had done it before and hardly ran into problems. Most of the men were lonely, in need of companionship, and she gave it to them in exchange for money. Some were rough with her, but they had never gone too far. However, there was one man who refused to listen to her. No matter how much she said she didn't like something, he would never stop. Rosella let this happen, for she believed the money was worth it. 
+
+
+
+Until the night he snapped her wrist and still didn't stop, no matter how much she cried. 
+
+
+
+Rosella left that town with the most money she had ever made, as well as a broken wrist. And since then, she refused to do that kind of work again. 
+
+
+
+The man in front of her forcibly grabbed her chin and tilted her head up so she couldn't look away. He peered down at her, eyes blazing. "Then I will make you remember." 
+
+
+
+Rosella took a step back, but he simply took a step forward. 
+
+
+
+"You left me," he accused angrily. "I had money to give, and you left anyway!" 
+
+
+
+She swallowed hard. Rosella glanced at the doorway, and the most obvious solution finally came to mind. "Help!" she cried. "Help! Help — !" 
+
+
+
+The man covered her mouth and backed her all the way up against the wall. "Quiet," he hissed. "You'll regret that." 
+
+
 
 Think, Rosella. Think.
 
-She tried to calm down by looking around. Wash buckets. Water tubs. Drown h=
-im? She wasn't strong enough to hold him down. Perhaps she could splash wat=
-er in his face, but that would hardly even startle him.=20
+
+
+She tried to calm down by looking around. Wash buckets. Water tubs. Drown him? She wasn't strong enough to hold him down. Perhaps she could splash water in his face, but that would hardly even startle him. 
+
+
 
 Think, Rosella.
 
-Her eyes fixed upon the windowsill. A ceramic vase was placed there, holdin=
-g white orchids and lilies. The sun shown down on them, illuminating their =
-beauty.=20
 
-Rosella turned back to the man. As swiftly as possible, Rosella brought up =
-her knee right between his legs.=20
 
-The man cried out and let her go, falling to the ground like a broken doll.=
-=20
+Her eyes fixed upon the windowsill. A ceramic vase was placed there, holding white orchids and lilies. The sun shown down on them, illuminating their beauty. 
 
-Rosella grabbed the vase and, in one fell swoop, smashed it against his hea=
-d.=20
 
-He slumped over, unconscious.=20
 
-Rosella stepped back with trembling hands. Not a single thought ran through=
- her head.=20
+Rosella turned back to the man. As swiftly as possible, Rosella brought up her knee right between his legs. 
 
-She tried running for the door, but she tripped over his lifeless body, cra=
-shing to the ground next to him. Her own arms braced the fall, but she fell=
- right on top of the vase shards. Covered in cuts with sleeves soaked in bl=
-ood, Rosella picked herself back up and stumbled out the door.=20
 
-Standing just outside were two people. They startled as Rosella opened the =
-door, but she didn't have time to think about them, or what the scene looke=
-d like to bystanders. All she needed to do was leave.=20
 
-Rosella descended the stairs and flew out the main entrance. Not even notic=
-ing the heat, Rosella ran and ran through the village, hugging her bleeding=
- arms close to her chest.=20
+The man cried out and let her go, falling to the ground like a broken doll. 
 
-A wave of tiredness hit her so suddenly she nearly collapsed in the middle =
-of the path. Rosella cut through the middle of two houses and hobbled over =
-to the white wooden fence that cut off the village from the meadow and fore=
-st. It provided some protection from the sun, and she leaned against it, he=
-r legs giving out until she was sitting on the ground. Rosella closed her e=
-yes, and before the darkness took her, she remembered that she had left the=
- hat Astero gave her back at the banquet hall.
 
-Sent from my iPhone
---Apple-Mail-295BA896-0B39-45D2-A6D6-E9CCA02ACF4A
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
-=3Dutf-8"></head><body dir=3D"auto"><p style=3D"margin: 0px; font-stretch: =
-normal; font-size: 18px; line-height: normal; font-family: Georgia; color: =
-rgb(18, 18, 18);">She had only been attending jobs with Astero for a few da=
-ys, but leaving for a job on her own for the first time without him made Ro=
-sella more uneasy than she cared to admit. She had grown used to him being =
-by her side. Rosella never had many friends on the ground, and if she did, =
-the friendship did not last long. A part of her, the dark and hopeless part=
- of her, anticipated the day he would leave. He had a home, a family, a fia=
-nc=C3=A9e, and money. He had no reason to stay by her side.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">And yet, she despe=
-rately wanted him to. Rosella couldn't remember the last time she felt so h=
-appy.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">The walk to the ba=
-nquet hall wasn't long, but the heat did start to get to her. Because it wa=
-s a formal event, Rosella had to wear a dress that covered her arms and wen=
-t down to her ankles, and sweat began to build on her skin. She made sure t=
-o wear the hat Astero had bought her, which gave her some degree of comfort=
- in his absence.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella greeted pe=
-ople she knew as she walked past, which wasn't many. However, she was quite=
- well-known in the village for being willing to take up any job, no matter =
-what it may be. She was also known for being easy to push around, which was=
- true. Rosella valued money, and she would do whatever it took to acquire i=
-t, no matter how little the amount, and no matter the cost to her pride. Sh=
-e learned to throw away useless things like pride a long time ago. If her f=
-amily saw her now, what would they think of her?&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">It had been fiftee=
-n years since she had last seen her parents, sixteen years since she had la=
-st seen her brother, and probably over twenty years since she had last seen=
- her sister. If she ran into her siblings now, Rosella likely would not be =
-able to recognize them. She could remember her parents fairly well, but Sor=
-o Crisanto's face would likely have changed. And it had been too long since=
- Anle Willow's face crossed her memory. But she remembered their smiles and=
- their warmth, which kept her company throughout the years. She imagined th=
-em living happily in the Ozario manor, her father still clan leader, Soro C=
-risanto as the heir, and his wife at his side. Anle Willow would probably s=
-till be traveling, but Rosella liked to imagine her returning home every fe=
-w months. It gave her comfort thinking they were happy without her. She did=
-n't want to be the reason for any unhappiness in their family.</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">It was all right t=
-hat she be the only one suffering, as long as they were happy.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Rosella!" a man, =
-who she recognized as one of her previous employers, called out to her. "Go=
-ing to a job?"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">She smiled and nod=
-ded. "The renovations meeting!"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Next week, I need=
- you to watch my daughter for a day!"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"How much will you=
- pay me?"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Does it matter?"&=
-nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella laughed sa=
-dly. "I suppose not." She proceeded to walk a bit faster to reach her desti=
-nation.</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">The banquet hall w=
-as quite close to Mr. Hestyn's house. It was the largest building in the vi=
-llage, and Rosella has been there many times before to clean. She hadn't se=
-rved in a formal event in a long time, and thinking about making a fool of =
-herself in front of respected town leaders made her body tingle with nerves=
-. Rosella wished she had Astero's arm to hold on to.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Steeling herself, =
-Rosella headed inside the building. The entire banquet hall covered the fir=
-st floor, and two marble staircases led up to the second floor, where the p=
-rivate rooms and washrooms were located. People milled about, setting up ta=
-bles and chairs for the meeting. It was an extremely important event for On=
-en, a village that hadn't seen proper renovations in a long time.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Workers, to the k=
-itchens!" called a voice, and Rosella hurried along with the others. "The t=
-own leaders will be here in five minutes!"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Once inside the ki=
-tchen, Rosella put on a white apron over her gray dress, took as many plate=
-s as she could carry, and scuttled into the banquet hall along with the res=
-t of the workers, placing the plates of freshly cooked food at a seat at ea=
-ch table. Her years of work and serving gave her plenty of experience with =
-balancing multiple plates along her arms, and she noticed the stares of hor=
-ror and fascination from the others.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"As expected," pra=
-ised one of the women passing by her.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella smiled in =
-response. She prided herself on the quality and efficiency of her work, and=
- it often earned her bonus pay, which was the real goal. She noticed the pe=
-ople in charge eyeing her with amazement, and that gave her encouragement.&=
-nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">After all the tabl=
-es were set, the multitude of workers took their places at the sides of the=
- room, and the leaders from the town made their entrance.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Most of them were =
-men in fancy tunics, and some even wore cravats just to show that they coul=
-d. The clothing was nothing compared to the wardrobe worn by clan members u=
-p in the sky, but they were some of the nicest she had seen on the ground t=
-hus far.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">The men strode int=
-o the room, and the air immediately grew quiet, allowing more room for the =
-size of their presence. This village saw them as saviors who would finally =
-build better houses, import quality food, and provide more money for entert=
-ainment.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella didn't par=
-ticularly care. Her mind was focused on becoming the best server, hopefully=
- obtaining a bonus reward, and hopefully seeking more job opportunities, pe=
-rhaps from one of these rich men.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">They all took thei=
-r seats at the various tables and conversed with one another while eating. =
-Rosella took deep, steady breaths, trying not to pass out from the heat, an=
-d she noticed a lot of the other servants wiping sweat off their foreheads =
-or swaying on their feet. She could not afford to pass out. The payment for=
- this job was worth more than her life.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Although, she said=
- that about every job.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Suddenly, her eyes=
- locked on to a water glass belonging to one of the men that was nearing em=
-pty. Before any of the other servants could take action, Rosella immediatel=
-y headed to the refreshments table, picked up one of the jugs of water, and=
- glided over to that table.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">She approached the=
- man from behind. "More water, sir?" Rosella asked, plastering a smile on h=
-er face.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He turned around i=
-n his chair to look at her, and his previously neutral face turned wide-eye=
-d with shock. "You," he breathed.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella was taken =
-aback. "I'm =E2=80=94 I'm sorry?"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He continued to st=
-are at her.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">She racked her bra=
-in for where and when she could have possibly met this man before. He didn'=
-t look at all familiar to her. He looked twice her age, and he was clearly =
-rich. They obviously didn't run in the same circles. Perhaps he had mistake=
-n her for someone else.</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Deciding to ignore=
- the awkward turn of events, Rosella reached around him and filled up his w=
-ater glass. All his staring made her uncomfortable, and she wanted to leave=
- as soon as possible.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Mine too, miss," =
-said another man at the table, and Rosella immediately hurried over to him.=
- However, she could feel the man's eyes tracking her every move, and despit=
-e the heat, it made her blood run cold.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella quickly re=
-turned to the refreshments table and set the water jug down. Then, she took=
- her place by the wall once again, ignoring the intense pounding of her hea=
-rt. The way the man looked at her made her more nervous than she cared to a=
-dmit.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Where could they h=
-ave possibly met? Rosella's memory truly wasn't the best, and she had met m=
-any people over the years. Most faces made no impression on her. But appare=
-ntly, she was important enough for him to remember.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">She couldn't get t=
-he nervous feeling out of her head, and for the rest of the banquet meeting=
-, Rosella did not refresh anyone else's beverage or pick up any empty plate=
-s. She stayed by the wall as the time passed by, having given up on getting=
- any sort of bonus money. All Rosella wanted was to leave as soon as possib=
-le.</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">When the meeting f=
-inally ended after an hour, Rosella quickly headed into the kitchen to remo=
-ve her apron. Then, she went upstairs to the washroom, splashing water on h=
-er face. She needed to calm down. Rosella closed her eyes and took deep bre=
-aths. Her skin was heating up, and she felt sick. Rosella nearly laughed at=
- the image of her and Astero lying sick on the floor of his bedroom while J=
-ayda complained about having to cook dinner herself.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">However, when anot=
-her person entered the washroom, Rosella felt nothing but horror.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">It was him.&nbsp;<=
-/p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It is you, isn't =
-it." His voice seemed almost giddy, and a horrifying smile spread across hi=
-s face.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella was rooted=
- in place. She felt paralyzed.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What was your nam=
-e again?" he asked, stepping closer.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">She shook her head=
- frantically. "I don't think we've met before."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">His expression imm=
-ediately darkened. "You don't remember me?"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You must be mista=
-ken =E2=80=94 "</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"After all the mon=
-ey I gave you?" His dark blue eyes turned murderous. "After everything we d=
-id together?"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her breaths came o=
-ut quicker, and she squeezed her hands together to stop them from trembling=
-. "I'm sorry," she whispered, looking down at his feet. His face terrified =
-her. "I don't remember you."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He stepped closer,=
- close enough that his chest was nearly pressed up against her face, and su=
-ddenly, a memory came to her mind. A room. A bed. Hands on her wrists. Her =
-face obscured by a man's chest, so close she could barely breathe.&nbsp;</p=
->
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">She did know him. =
-Just a few years ago, Rosella had sold her body to a man willing to pay her=
- large sums every night she spent with him. She had done it before and hard=
-ly ran into problems. Most of the men were lonely, in need of companionship=
-, and she gave it to them in exchange for money. Some were rough with her, =
-but they had never gone too far. However, there was one man who refused to =
-listen to her. No matter how much she said she didn't like something, he wo=
-uld never stop. Rosella let this happen, for she believed the money was wor=
-th it.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Until the night he=
- snapped her wrist and still didn't stop, no matter how much she cried.&nbs=
-p;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella left that =
-town with the most money she had ever made, as well as a broken wrist. And =
-since then, she refused to do that kind of work again.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">The man in front o=
-f her forcibly grabbed her chin and tilted her head up so she couldn't look=
- away. He peered down at her, eyes blazing. "Then I will make you remember.=
-"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella took a ste=
-p back, but he simply took a step forward.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You left me," he =
-accused angrily. "I had money to give, and you left anyway!"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">She swallowed hard=
-. Rosella glanced at the doorway, and the most obvious solution finally cam=
-e to mind. "Help!" she cried. "Help! Help =E2=80=94 !"&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">The man covered he=
-r mouth and backed her all the way up against the wall. "<span style=3D"fon=
-t-style: italic;">Quiet</span>," he hissed. "You'll regret that."&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
-t-style: italic;">Think, Rosella. Think.</span></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">She tried to calm =
-down by looking around. Wash buckets. Water tubs. Drown him? She wasn't str=
-ong enough to hold him down. Perhaps she could splash water in his face, bu=
-t that would hardly even startle him.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style=3D"fon=
-t-style: italic;">Think, Rosella.</span></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her eyes fixed upo=
-n the windowsill. A ceramic vase was placed there, holding white orchids an=
-d lilies. The sun shown down on them, illuminating their beauty.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella turned bac=
-k to the man. As swiftly as possible, Rosella brought up her knee right bet=
-ween his legs.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">The man cried out =
-and let her go, falling to the ground like a broken doll.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella grabbed th=
-e vase and, in one fell swoop, smashed it against his head.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">He slumped over, u=
-nconscious.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella stepped ba=
-ck with trembling hands. Not a single thought ran through her head.&nbsp;</=
-p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">She tried running =
-for the door, but she tripped over his lifeless body, crashing to the groun=
-d next to him. Her own arms braced the fall, but she fell right on top of t=
-he vase shards. Covered in cuts with sleeves soaked in blood, Rosella picke=
-d herself back up and stumbled out the door.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Standing just outs=
-ide were two people. They startled as Rosella opened the door, but she didn=
-'t have time to think about them, or what the scene looked like to bystande=
-rs. All she needed to do was leave.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella descended =
-the stairs and flew out the main entrance. Not even noticing the heat, Rose=
-lla ran and ran through the village, hugging her bleeding arms close to her=
- chest.&nbsp;</p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;=
-"><br></p>
-<p style=3D"margin: 0px; font-stretch: normal; font-size: 18px; line-height=
-: normal; font-family: Georgia; color: rgb(18, 18, 18);">A wave of tirednes=
-s hit her so suddenly she nearly collapsed in the middle of the path. Rosel=
-la cut through the middle of two houses and hobbled over to the white woode=
-n fence that cut off the village from the meadow and forest. It provided so=
-me protection from the sun, and she leaned against it, her legs giving out =
-until she was sitting on the ground. Rosella closed her eyes, and before th=
-e darkness took her, she remembered that she had left the hat Astero gave h=
-er back at the banquet hall.</p><br><div dir=3D"ltr">Sent from my iPhone</d=
-iv></body></html>
---Apple-Mail-295BA896-0B39-45D2-A6D6-E9CCA02ACF4A--
+Rosella grabbed the vase and, in one fell swoop, smashed it against his head. 
+
+
+
+He slumped over, unconscious. 
+
+
+
+Rosella stepped back with trembling hands. Not a single thought ran through her head. 
+
+
+
+She tried running for the door, but she tripped over his lifeless body, crashing to the ground next to him. Her own arms braced the fall, but she fell right on top of the vase shards. Covered in cuts with sleeves soaked in blood, Rosella picked herself back up and stumbled out the door. 
+
+
+
+Standing just outside were two people. They startled as Rosella opened the door, but she didn't have time to think about them, or what the scene looked like to bystanders. All she needed to do was leave. 
+
+
+
+Rosella descended the stairs and flew out the main entrance. Not even noticing the heat, Rosella ran and ran through the village, hugging her bleeding arms close to her chest. 
+
+
+
+A wave of tiredness hit her so suddenly she nearly collapsed in the middle of the path. Rosella cut through the middle of two houses and hobbled over to the white wooden fence that cut off the village from the meadow and forest. It provided some protection from the sun, and she leaned against it, her legs giving out until she was sitting on the ground. Rosella closed her eyes, and before the darkness took her, she remembered that she had left the hat Astero gave her back at the banquet hall.
