@@ -13,7 +13,10 @@ const chapterNumber = parseInt(params.get('chapter'));
  * This will parse out the unwanted email filler and preserve the email's HTML format
  * 
  * Some of the formatting is inconsistent(see 39 vs. 40)
- * and the affected emails have a "content=3D"
+ * and the affected emails have a "content=3D".
+ * 
+ * The workaround is to copy just the email text for the affected chapters and rely on our CSS
+ * to format them correctly.
  */
 const getAndLoadChapterData = async () => {
 	const fileName = `${chapterNumber}.txt`;
