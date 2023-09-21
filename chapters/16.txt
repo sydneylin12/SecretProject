@@ -1,0 +1,373 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:7110:5583:b0:193:426e:808a with SMTP id g3csp544138gei;
+        Thu, 1 Sep 2022 13:16:45 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR7S63dtbyUXOh0hSnDt0pydE/EHxhSWCgajX+o3FwZsQxAefC0fb14UpgBE8v8pr5OqSN5M
+X-Received: by 2002:a05:620a:4412:b0:6ba:e53e:3485 with SMTP id v18-20020a05620a441200b006bae53e3485mr20898416qkp.461.1662063405391;
+        Thu, 01 Sep 2022 13:16:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1662063405; cv=none;
+        d=google.com; s=arc-20160816;
+        b=BOFTJTnAeEoinr0VVJaPR/6iZl+2QyU5BqE+qnhmzpq4Nn6BknRKPPFa2oj0DkLzqY
+         OTG2TKywgJVqmuIBKxsM1kpt16DG5zit0CkBtXLNv+9A6rR+hS4yYuYqlMVMJazmDKk1
+         ZyUOpzX0RHijLkMx0TOkDVEFMNlbvPWaA7lJn6wY4oX0ijSJhWekXfChKyPsaComm3e7
+         sCTgfyWeZCPKasaqA672+MNOoulygm3XNrgyQYF6kaEzFEDxD2+ocsWMdCml/KbOOLB0
+         PoECc3673DQW+ir6V0dbO3AK4LcSzCvtOcfAZEqDbGXtoElVRVmBFjihp5gRSdPacG4E
+         k/Zw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=HU0Vxmivr6Px4sn+aS+H7vISD/EfaOY1mwqvXOS+inw=;
+        b=TV1br97rcxWEkovR0DEzA8bWmow5KZKjyQSAktYJ2PTyHN1DoXECOUeUM4tam5SU3U
+         E6ukVAPfqNoUBmy7LkfyJglxXlj4ZLFqBYUVhAxt28LAjMHQN1QTNfOPCNGBA58I1RNf
+         06ro3H//mq3kbRu5w/bpBzCVGSLt8wS80W/fZlOEpsGRoWyfyhvurZJf1A229mH+KvNk
+         +pG0VsDiM3AsPKgIyJLTtiYQjVyEojrkIU6Ld2fzkqijgtWNo61SGiYqYVElHP/a6Y6J
+         KXvALjvi9suvBRldV5OU0mxF8P1Q8Ko0vp1jnKYuzgtHYDUXGxV05LOu7jOmFOFmMq4L
+         IZIA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=pwR6hryf;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.148 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic304-22.consmr.mail.ne1.yahoo.com (sonic304-22.consmr.mail.ne1.yahoo.com. [66.163.191.148])
+        by mx.google.com with ESMTPS id bs43-20020a05620a472b00b006bb46922444si10713123qkb.569.2022.09.01.13.16.45
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Sep 2022 13:16:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.148 as permitted sender) client-ip=66.163.191.148;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=pwR6hryf;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.191.148 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1662063404; bh=HU0Vxmivr6Px4sn+aS+H7vISD/EfaOY1mwqvXOS+inw=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=pwR6hryfmk/OlDbWovWNHyN+RuYTmzvi3nXyR4W3Maz7Nb71gEus9zVTeRqpI+2qYD2Dl3gGMTuo4Rk/CK17+Y/7xx6NzDJAn9+JPfk8Uxmmgw1LuV3VW+6nLACPkEhgWR7iiGkobx4WRwfIdw9ZtsuQ3Ik74mc944VBc1Z2GQWIN1obQ78DRwTGBzyTXvXeEeKE4oZJViMkecp/aSs7LS0SdwKNP5iHGIUZLACUHwgZOvM8P2hFk0yitROQnmWzAOL5D76Y0FCRsqIyql57k8DS646+SVn1Q6IePEO5xxFLWhoY3X4okJ5N4f6JXPpo/8vq3EDQB/oG0vW+gN/F8A==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1662063404; bh=LLPmSfVLVBVuAPJpKb8a4ui2Gm6+4SpefPkmtT6FVLe=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=HSziWyIAMHBU9z+h03V+5WYR8qXOi+Jfv0SqMqwwaBzpdelGhEqp1svXOp3o97QGJU6a30Qp3Q12zitFBxnuJr/S9gLowx23Prt4COaU0PRq7aUEVkIMCGGb4qk6wPjtBv3lyLSLCWa+6yLjVtxQd38XIOdZ0DeOY4gu9pu5sPqQwJcHvGYFLbgqIwZVqDbJhgmlZe+dH7mrr/1YVr2DwUDlTyUYBITthaA6Ul6cJAv+umtf8wIYVlByYO2ksUMuddkNws1AEcUjyIRG69w/G6vOYtQgAT6PDKccWiBPHlru2x5BFdlzC7urMBBskmEAr9LtGYaD3E1p62KoDKfr8w==
+X-YMail-OSG: DxauT8cVM1noh._GHK7Qs8U5GZAWB0VldBUewn6rXk_hQ7HLfqk1sPTGkBPux8M QimuM3JjlZwyW75C1wMaUpo1hgwDAPfxTY8hPP1bu10WiIfps3kH_sphaPeL4imJUzVxHKJITM8w UXZRXy2EhoDpNN4nYSxsqf_SRgSX03AF1ewB4Q2bew7WBr__ne6DXG6vI7qMU.uz1Baj3SSoTjND mrPXY0YVbbGzGFaaporK.5044VM.tv7_0ueIJElCJCaxOumYJj8jBGf3L1P6LPoeKehYf8YdwU79 gGT9GdUchFb1aUgfOqusSLrSuG8ysShZhfBvsKBFC84go4tiGqKHUb70R4GsvpNnU9uu55ZkeVhF AmqO72aO0k2h82MO7ytzsUCAAvXJ1rygiiIIbCGvd6QWxYbDP8war7Bm98Zcs0RUjfvhEaQQLlyQ wuoAbFaulEzuzSw27pDfggyX_Mh5vsIXA3X8SXGQluay0C1gdBnd2jpbckZvyIh_9Ym3yPng_6Tm VFsCJI2LhcEQcne5hnA0Eot9g2blg3N0Tq3AySE3t9m8TmiSX2rpVN8QwWdLlTvHWSKB.FAxhVh1 LoZT2MHg.peZ5uwIaKWeqEX8H9uIVS6_k13q2MTCUIAywv4T3wxLbuE74N9IaYPPGTSb6yFXxYuA MTrGuyg0PV9WCG4P_nW1qY_43Qt6Q7U3hh2lcGHAEn9QeYG0a11FgxeCr3QAq85rTjokF47IIGQ2 nCMw4ocDJcEhNEnLJHVc5WrgX.IqQmdihz2uVxd.HIFlWbzyCdkAxj7SO2xfYpe6ZNFKaKq9FfZw 1ztTQRclgXPdJGB2YmZQ57pn2ZUqKE8sqoyw15gUgaKC1XhoJTJZYbHvi0AmrL61kEcWBXh8Z_me vlf6E0fVq6CLhoxYMUN89WBBgyLWeRTTBZ8J.KknOLimqIr83jX1B5yaHQnli_YM7mT_vCbtjEAo 9l5tkI1u9d8QyFJtiHwUMY0M6TtLHxToTCOeXiHiH5fFNlKlBJ0_6L0RNiY.rF7DYzaGrtc51jLj yNa4urJ.H4_5zCaNsy2jwn.jE.Wpzd_OBu12IzZgd8w9Zl32Ozw_pfLDmN_0.jSryTz2j4XIRqXh 82qkK1dZlKMrKBdsC.lXp88mor5a_1uljp53tRi3BWjbEKBgtm.HK464J0E4mPcX60AXxD8MrrKM x8DJG4URWJxKL3g4SWFNyYu942btD7RC1wcpp.cObsB1VkeOkM3afa8.9BaklrbUtKEL6NuGF4Uu pLEGZAAwmLaJ9qXXmtNbseAoOxv7SvjEA7FUk5Aau5fE_VUTOTt5VC85l8e2saOxzwk.wwuWIQxA S92yB3ZSgBAn2lLOMJWBGoi3rvToqDkj38cG6tjnJfBK_l5LJaa5EcoYE_m8BZTBBPPt2LS17yWi SbnbjXOF1vQSiUzWktea0HyjYWNyKLwQpu62D.dmoVpKF2ScLJhy4I7Z4Y4si9KL.v5NLMfdhzDg mMIFuh_4MczdrPvGgGMqmISkpW0ilHgIAVCmObQdNovLJr.wpbbHX13TqY.uHWstkVLTXFic9CI7 oX7m2f6wl3Rsfa_JWfE20IzP6C2SthwgVxsnmxeU6QzWx2z_zIWn8uQzv61TbWP99AWZaWPT4eD_ vk0a3Jck2wlKaSKF6EmLOWcqL.qFzcdbJFYUgx3kBhmUOh9aSiHzhMz8LsMis0utwdrb0rZ8XtRY HM5YTQvpMxut8H4k3e0NTZ9IaehJdu3GWkt4RIo04YzbWOBTEn3_JQvSKFtGGf_EDjsAZdO8SE9z 4i2PvmKUaboLecT15CNTwweG79Q3NDTf4TfAcm47FnvZ4piJMWmtTwvLswd2pHbJWoTc.wMkF5lr 0urpBI0rbHuKaXlqLgDqKNSBElhghBwi9quSrZ3LNM9XIfQb.20QUKVAztb.cplUpgQY.F.z3vvk t2g02BOIBzZUnjKrsG6E5Y16X1826j8_8yrv1aHhZsI8Gj4Ou9guhzutHzkcCZWZyFgXwjZiszAS _c2pDCaZa8kb9VrHbMOaXGpZHIiUFLJhxxEgrl7FjkBuT4KXDIne8P3wt5VgWsIvxskRs_qRNilU JKK89_To5DdCWAW_OnIC4uieeskW5nAurKYdsDo3FiKPy5LHQ.kKMssa1x2xqihhO53h.IjH_bku ODKHsSnZ5tAG5PPdCcnsXBBCexuu0pcafDj7NMztBtOFifczhzFk9KLo4s4jYCe7lHXvHfQ68OGQ VMt0f.T3DgN8hrmyxLiZ3Tm9UwfoCKeFnrsrZEA2DOG8LdIKftsCGoxoyXH.JTUvWryI-
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic304.consmr.mail.ne1.yahoo.com with HTTP; Thu, 1 Sep 2022 20:16:44 +0000
+Received: by hermes--production-bf1-64b498bbdd-jxpwc (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 7ce24b47d96f564d8d91dd30adcab4e5;
+          Thu, 01 Sep 2022 20:16:42 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-BF62D03B-E12C-4FD1-AD3D-65A52857DFDC
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 1 Sep 2022 13:16:40 -0700
+Subject: Chapter 16
+Message-Id: <A5427742-6ABB-4E04-960D-F896796BD290@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (19G82)
+References: <A5427742-6ABB-4E04-960D-F896796BD290.ref@yahoo.com>
+Content-Length: 33072
+
+--Apple-Mail-BF62D03B-E12C-4FD1-AD3D-65A52857DFDC
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+All throughout breakfast, Crisanto struggled not to reach over the table an=
+d strangle every one of them with his bare hands. It was Safiro Jourman who=
+ almost shattered his resolve, saying that he would help the Ozario clan wh=
+enever they asked. To say something like that after so many years, those wo=
+rds no longer carried any meaning.=20
+
+He couldn't wait to watch them all fall.=20
+
+"Where is that brat?" complained Morriso, crossing his arms and scowling in=
+ a corner of the room.=20
+
+"She'll be here soon," replied Zonem calmly, standing next to him. "Lady Oz=
+ario went to look for her."=20
+
+"We were supposed to arrive right after breakfast," Morriso retorted.=20
+
+"Don't be too hard on her," Crisanto said lightly, sitting at the station. =
+"Kona likes to explore."=20
+
+"You're too easy on her, Lord Ozario," Morriso insisted. "You need to be - =
+"
+
+Suddenly, the door slammed open.=20
+
+"We're here!" announced Willow, dragging Kona into the room.=20
+
+"About time," scolded Crisanto, although he said it fondly. He always had a=
+ soft spot for Kona.=20
+
+"I'm sorry, my lord," said Kona, dropping to one knee in front of him, bowi=
+ng her head. "I was careless and did not track the time."=20
+
+"She ran into the lovely bride to-be," Willow explained, draping herself ov=
+er the bed.=20
+
+Crisanto crouched down in front of Kona, pulling her to her feet. "No need =
+for that. What happened with Melody Dorina?"=20
+
+Kona shook her head. "Nothing of importance. We just had an argument."=20
+
+"You realize this could cause trouble for Lord and Lady Ozario?" Morriso de=
+manded, stomping towards Kona. He towered over her and Crisanto both. "What=
+ were you thinking?"=20
+
+"It's fine, Morriso," Crisanto assured, placing an arm around Kona. "As lon=
+g as you're all right."=20
+
+She nodded, eyes pointed towards the floor. "I'm sorry for the trouble I've=
+ caused."=20
+
+Crisanto patted her head and smiled. "If there are further issues, I will d=
+eal with them. Do not worry."=20
+
+"We should start discussing the plan," interjected Zonem. "Xen, Morriso, an=
+d I must travel quite far."=20
+
+Crisanto looked towards Xen, who had been gazing outside of the window the =
+entire time, his back facing everyone else. He hadn't spoken since he enter=
+ed the room. In general, Xen didn't speak much, and only spoke when asked t=
+o. He was one of the youngest of the group at twenty-one years old, and he =
+was the last to join them. Willow had found him during her travels in the e=
+ast to recruit someone for their plan. He had been part of the Fen clan as =
+a distant relative to the main family. There were stories of Xen spread thr=
+oughout the sky as a great warrior who would lay down his life for his clan=
+. The Fen clan had always hated the north, particularly the Elessai, so he =
+agreed to their plan instantly.=20
+
+Morriso came from the west as a member of the Silvora clan. He had been fri=
+ends with Anessia's older brother, Willem Aewin, who was killed in a disput=
+e between the Dorina and the Silvora clans. Since then, he had vowed to ave=
+nge his friend.=20
+
+Zonem was a friend of Helik Istora, the new and powerful leader of the Isto=
+ra clan in the south. The south had been planning to attack the north for y=
+ears, and Crisanto came to them with the perfect opportunity.=20
+
+And Kona was just a little girl who was found by Willow when she was ten ye=
+ars old. Willow had been excited to bring Kona home, to have her meet Rosel=
+la, to have another little sister. Unfortunately, when she came home, Rosel=
+la had been gone for ten years.=20
+
+Thinking of his sister, tossed to the ground like trash and eaten alive by =
+ruthless barbarians when she was just a child... Crisanto took a deep breat=
+h. Dorina, Lem, Jourman, Elessai. Their time would come.=20
+
+"All right, let's begin," he said, sitting back down in the chair. "Xen, yo=
+u are to go east. Make sure the Fen are prepared. If Kona still hasn't foun=
+d him, you will descend the stairway and search the eastern side of the gro=
+und."=20
+
+Xen nodded, silent.=20
+
+"Morriso, you will travel west and ensure that the Silvora are prepared. Do=
+ well not to alert the Sanu, as the north currently has a strong alliance w=
+ith them. Afterwards, like Xen, if Kona hasn't found Astero Elessai, descen=
+d the stairway and aid in the search."=20
+
+Morriso bent down on one knee and placed a hand over his heart. "I will see=
+ this mission through, Lord Ozario."=20
+
+"That is what I am expecting," replied Crisanto, his voice hard. "And Zonem=
+, you will go south. You have the longest journey out of any of us."=20
+
+Zonem smiled. "It is no trouble, Lord Ozario."=20
+
+"Meet with Helik Istora. Make sure his army is ready. And descend the stair=
+way if Kona has still not succeeded."=20
+
+"Understood."=20
+
+Crisanto turned to face the girl in front of him. He had his reservations a=
+bout sending her to the ground. She was young, just eighteen years old, and=
+ sending another little girl to the ground made him no different than the c=
+lan leaders. However, Kona insisted she could do it, wanting to prove herse=
+lf to Crisanto and Willow.=20
+
+"You're certain?" he asked her.=20
+
+She nodded. "I will not fail."=20
+
+Morriso scoffed. "Doubtful. The three of us will have to come down there fo=
+r sure."=20
+
+Zonem rolled his eyes. "Ignore him, Kona," he said, smiling. "I believe in =
+you."=20
+
+After glaring at Morriso, Kona smiled back at him gratefully. "Thank you, S=
+oro Zonem."=20
+
+Crisanto's heart lurched. He and Willow were the same age, so only Rosella =
+had called him by that honorific. Everyone else referred to him as 'Lord Oz=
+ario.' He longed to hear it again, and the ache in his heart that Rosella's=
+ banishment created continued to torment him.=20
+
+"You don't have to call me that, you know," said Zonem fondly.=20
+
+"Yeah, it should be 'Anle Zonem,'" mocked Morriso.=20
+
+Zonem turned to Morriso, a deadly smile on his face. "Do you want to die?"=
+=20
+
+"Like you could kill me."
+
+"Enough," demanded Crisanto, and they both went silent. "It's time to leave=
+. Xen, Morriso, Zonem. You three will go immediately. Willow and I will acc=
+ompany Kona to the stairway."=20
+
+"Yes, Lord Ozario," they replied in unison.=20
+
+After the three men left the room, only Kona, Willow, and Crisanto remained=
+.=20
+
+Willow had been unusually silent the entire time, and when Crisanto glanced=
+ at her face, it was easy to see why. She feared for Kona, who could potent=
+ially suffer the same fate their little sister did.=20
+
+"Kona," said Crisanto gently, placing a hand on her shoulder. "I'll ask onc=
+e more. Are you sure about this?"=20
+
+Kona did not hesitate. "I am."=20
+
+"Come up immediately if anything happens," said Willow, hopping up from the=
+ bed. She walked over to stand next to Crisanto. "You should have enough pa=
+ralysis needles. If you're in danger - "=20
+
+"Lady Willow, don't worry," assured Kona.=20
+
+"Stupid girl, I'll always worry," Willow snapped, crossing her arms and tur=
+ning away.=20
+
+"I'm sure if you call her 'Anle,' she'll stop bothering you about it," Cris=
+anto put in with a teasing tone.=20
+
+"Don't be ridiculous," muttered Willow, but Crisanto knew her too well. He =
+knew she would likely burst into tears.=20
+
+"I could not possibly," said Kona, bowing her head.=20
+
+"Just be careful," said Crisanto. Kona had always felt she wasn't allowed t=
+o address them in an informal way, even though he and Willow encouraged it.=
+ "You know what you have to do, right?"=20
+
+"Find Astero Elessai and keep track of him until it's time to bring him up,=
+" recited Kona. "Once he's back, hand him over to Lady Elessai."=20
+
+That was the most he had explained to Kona and the others. However, he and =
+Willow agreed that that wasn't enough. The vial of liquid he gave to Lady E=
+lessai would subdue the clan leaders. And then, he and Willow would kill ev=
+eryone they loved right in front of them.
+
+Sent from my iPhone
+--Apple-Mail-BF62D03B-E12C-4FD1-AD3D-65A52857DFDC
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">All throughout breakfast, Crisanto struggled not to reach over the table and strangle every one of them with his bare hands. It was Safiro Jourman who almost shattered his resolve, saying that he would help the Ozario clan whenever they asked. To say something like that after so many years, those words no longer carried any meaning.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He couldn't wait to watch them all fall.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Where is that brat?" complained Morriso, crossing his arms and scowling in a corner of the room.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She'll be here soon," replied Zonem calmly, standing next to him. "Lady Ozario went to look for her."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"We were supposed to arrive right after breakfast," Morriso retorted.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Don't be too hard on her," Crisanto said lightly, sitting at the station. "Kona likes to explore."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You're too easy on her, Lord Ozario," Morriso insisted. "You need to be - "</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Suddenly, the door slammed open.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"We're here!" announced Willow, dragging Kona into the room.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"About time," scolded Crisanto, although he said it fondly. He always had a soft spot for Kona.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'm sorry, my lord," said Kona, dropping to one knee in front of him, bowing her head. "I was careless and did not track the time."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She ran into the lovely bride to-be," Willow explained, draping herself over the bed.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Crisanto crouched down in front of Kona, pulling her to her feet. "No need for that. What happened with Melody Dorina?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona shook her head. "Nothing of importance. We just had an argument."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You realize this could cause trouble for Lord and Lady Ozario?" Morriso demanded, stomping towards Kona. He towered over her and Crisanto both. "What were you thinking?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It's fine, Morriso," Crisanto assured, placing an arm around Kona. "As long as you're all right."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She nodded, eyes pointed towards the floor. "I'm sorry for the trouble I've caused."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Crisanto patted her head and smiled. "If there are further issues, I will deal with them. Do not worry."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"We should start discussing the plan," interjected Zonem. "Xen, Morriso, and I must travel quite far."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Crisanto looked towards Xen, who had been gazing outside of the window the entire time, his back facing everyone else. He hadn't spoken since he entered the room. In general, Xen didn't speak much, and only spoke when asked to. He was one of the youngest of the group at twenty-one years old, and he was the last to join them. Willow had found him during her travels in the east to recruit someone for their plan. He had been part of the Fen clan as a distant relative to the main family. There were stories of Xen spread throughout the sky as a great warrior who would lay down his life for his clan. The Fen clan had always hated the north, particularly the Elessai, so he agreed to their plan instantly.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Morriso came from the west as a member of the Silvora clan. He had been friends with Anessia's older brother, Willem Aewin, who was killed in a dispute between the Dorina and the Silvora clans. Since then, he had vowed to avenge his friend.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zonem was a friend of Helik Istora, the new and powerful leader of the Istora clan in the south. The south had been planning to attack the north for years, and Crisanto came to them with the perfect opportunity.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">And Kona was just a little girl who was found by Willow when she was ten years old. Willow had been excited to bring Kona home, to have her meet Rosella, to have another little sister. Unfortunately, when she came home, Rosella had been gone for ten years.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Thinking of his sister, tossed to the ground like trash and eaten alive by ruthless barbarians when she was just a child... Crisanto took a deep breath. Dorina, Lem, Jourman, Elessai. Their time would come.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"All right, let's begin," he said, sitting back down in the chair. "Xen, you are to go east. Make sure the Fen are prepared. If Kona still hasn't found him, you will descend the stairway and search the eastern side of the ground."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Xen nodded, silent.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Morriso, you will travel west and ensure that the Silvora are prepared. Do well not to alert the Sanu, as the north currently has a strong alliance with them. Afterwards, like Xen, if Kona hasn't found Astero Elessai, descend the stairway and aid in the search."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Morriso bent down on one knee and placed a hand over his heart. "I will see this mission through, Lord Ozario."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"That is what I am expecting," replied Crisanto, his voice hard. "And Zonem, you will go south. You have the longest journey out of any of us."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zonem smiled. "It is no trouble, Lord Ozario."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Meet with Helik Istora. Make sure his army is ready. And descend the stairway if Kona has still not succeeded."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Understood."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Crisanto turned to face the girl in front of him. He had his reservations about sending her to the ground. She was young, just eighteen years old, and sending another little girl to the ground made him no different than the clan leaders. However, Kona insisted she could do it, wanting to prove herself to Crisanto and Willow.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You're certain?" he asked her.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She nodded. "I will not fail."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Morriso scoffed. "Doubtful. The three of us will have to come down there for sure."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zonem rolled his eyes. "Ignore him, Kona," he said, smiling. "I believe in you."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">After glaring at Morriso, Kona smiled back at him gratefully. "Thank you, Soro Zonem."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Crisanto's heart lurched. He and Willow were the same age, so only Rosella had called him by that honorific. Everyone else referred to him as 'Lord Ozario.' He longed to hear it again, and the ache in his heart that Rosella's banishment created continued to torment him.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You don't have to call me that, you know," said Zonem fondly.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Yeah, it should be 'Anle Zonem,'" mocked Morriso.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Zonem turned to Morriso, a deadly smile on his face. "Do you want to die?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Like you could kill me."</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Enough," demanded Crisanto, and they both went silent. "It's time to leave. Xen, Morriso, Zonem. You three will go immediately. Willow and I will accompany Kona to the stairway."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Yes, Lord Ozario," they replied in unison.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">After the three men left the room, only Kona, Willow, and Crisanto remained.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Willow had been unusually silent the entire time, and when Crisanto glanced at her face, it was easy to see why. She feared for Kona, who could potentially suffer the same fate their little sister did.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kona," said Crisanto gently, placing a hand on her shoulder. "I'll ask once more. Are you sure about this?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona did not hesitate. "I am."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Come up immediately if anything happens," said Willow, hopping up from the bed. She walked over to stand next to Crisanto. "You should have enough paralysis needles. If you're in danger - "&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Lady Willow, don't worry," assured Kona.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Stupid girl, I'll always worry," Willow snapped, crossing her arms and turning away.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'm sure if you call her 'Anle,' she'll stop bothering you about it," Crisanto put in with a teasing tone.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Don't be ridiculous," muttered Willow, but Crisanto knew her too well. He knew she would likely burst into tears.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I could not possibly," said Kona, bowing her head.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Just be careful," said Crisanto. Kona had always felt she wasn't allowed to address them in an informal way, even though he and Willow encouraged it. "You know what you have to do, right?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Find Astero Elessai and keep track of him until it's time to bring him up," recited Kona. "Once he's back, hand him over to Lady Elessai."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">That was the most he had explained to Kona and the others. However, he and Willow agreed that that wasn't enough. The vial of liquid he gave to Lady Elessai would subdue the clan leaders. And then, he and Willow would kill everyone they loved right in front of them.</p><br><div dir="ltr">Sent from my iPhone</div></body></html>
+--Apple-Mail-BF62D03B-E12C-4FD1-AD3D-65A52857DFDC--

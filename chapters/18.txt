@@ -1,0 +1,561 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:7110:5583:b0:193:426e:808a with SMTP id g3csp1654721gei;
+        Sat, 3 Sep 2022 06:50:43 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4pJdznp/N8nmYWJg2I6ZV7lD+k0x5h6F93ILfrv1UX+FwMkSuLv8JqLyLW6EiR+Iy32AS0
+X-Received: by 2002:a0d:e942:0:b0:333:b5fb:a39c with SMTP id s63-20020a0de942000000b00333b5fba39cmr32515512ywe.345.1662213043698;
+        Sat, 03 Sep 2022 06:50:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1662213043; cv=none;
+        d=google.com; s=arc-20160816;
+        b=U76sVx8e2ZepH34QMKcwr6SoaUV6wl/FUGhBrbICmKBkX/n6lShC6HmNQrKkTMs5rM
+         W5Ahb8VDoWBkfzYU9kDJDGC+ItyOl08GglAQDiPX8C8cTTxl04HDtR4e3uuWAbYw46e7
+         y4Hsbs/kkk618EiPew8tGvjAr70i/4e1d9PJ/djXnpxxov4zTeFrftBqjVLLBpBkr/j3
+         G6/jX8PXII23YOAiKuoZyAlmrOL01BpPJVGc7kPrP8tJeicQJSJP6/dRlt8QeVRrxQz4
+         z5p3Qbw+ymnXCq3NuucsjeaVhZ+B3qa2mHk6Wqk9RgiZcvy/YZ5nltreemDveMGXT01u
+         ADfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:date:message-id:subject:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=JD/6scEmu7FO0bQSgHefzmmNJFud/MXxEyoG6P+G/mg=;
+        b=i24PlL9P9jji/yf6WwWig6uzJGey1h1R74JONEBZO5chPzP+RQ3Dzk0Ojn6Hhf5URY
+         UPff66jEqife5iumN2xaBKVksh5Kyz9MKpbwdHcmfYFrQa9IR4jp4viYw0PTUHwxB8xK
+         ep4ap9G8LRFd0P2v/vaR0oN1QEHbFUG70PtaUupqVoWV6SkJmJgDdQRYLaeDT2vShs//
+         Eg3u/pvwfgdFk1QwemHoo8vW0ZW611FAWKbSPbfHcLMeKaadm72Sl+vnAv04XWXCsyZY
+         44enwJpyUX1TmmQGUjJuPnjgcy5UUYdC/XPFVVuz1Wgg4+R9Y54jOOyuBQ0+UUD+t0kV
+         +mVg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=r4XD0zQX;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.186.204 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic310-23.consmr.mail.ne1.yahoo.com (sonic310-23.consmr.mail.ne1.yahoo.com. [66.163.186.204])
+        by mx.google.com with ESMTPS id 11-20020a81020b000000b0034085bb29fcsi3563243ywc.14.2022.09.03.06.50.43
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 03 Sep 2022 06:50:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.186.204 as permitted sender) client-ip=66.163.186.204;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=r4XD0zQX;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.186.204 as permitted sender) smtp.mailfrom=carissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1662213043; bh=JD/6scEmu7FO0bQSgHefzmmNJFud/MXxEyoG6P+G/mg=; h=From:Subject:Date:To:References:From:Subject:Reply-To; b=r4XD0zQX+OEx772FaX/+EQF/EtU8WvlJ5yDP+WXNgWzSNtEyUDdNPrUVYuHc4KADOBNTkKRcuwQwcFvI8XEn8XPeq0HkpwZcuWErDjfXpYugmar1WazyAMas8Xf166w+BvECwcwt05yMPigdrkt++NqNO3lszu/yQP604Ch0n+KRVWlVE681WfFva71LU2HOQobquQN8jZ/B6PONn8MLJ2s/B00OgLI10pjraK9Fz3bIJzGS4h2OG/FqQfx7n5dtx1U26OFZ2T6HdGpbVn1Sm2AAMornmBPnzjgileJ3B6vHghgblwl2r/7yGN0TN0NUGhSruMYAEmT/pjoZPTVJwA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1662213043; bh=nnM3tulY5uNW1jxbmBbPVxS+u/KzKxwiKcwOSkU28O1=; h=X-Sonic-MF:From:Subject:Date:To:From:Subject; b=nT51Bmyms7FJ6SqlDRZRiwACTPCPL2MY0FYrapwBhlIZSRHer2a3T2BsgD1cBCOJNKAlm2B4wvP806LZwCjQmgtcGN1Me8MjKRi+RoJXV/Xz1Zavhhleqv4zXhAK90Ete4hmsfDhZaGFeLQDDwzvIXUp++BwgG4WEiDc9WOhi0fCCem8Z5594j7FsrpbUi/DKm/vIL5Ppm+fhHnHKE0XsN+FO/8XUPxIpvqLfns7cpwMuox9m2RDYaOvqlznpkOfMKvm6YE0WrY8gI2wRMPbxDt2poHal62H4B4yXIAMzGLaaWkknYEPpv8l5beLUN/eMgsIJgObNP1oIvuDkzCEEQ==
+X-YMail-OSG: jgBYo_YVM1nuLylzJoUvqDqBDCKRz2A.pNwGIw8yTl4KWZWacPJCAxGrwHsYlQZ DpvzB7vUz4JWX6VaSFEztksbsTszIiTHVPVtp9CoggwsjGATyLyJhrpNRJMOYbZ1NYoCwOECdZdS TGA8xLARiBhggDGYFJlsb27nw65d.osFI53R2oYNMBk7uepG3xEAT07tOK2o16MTiP7iR0aXbFEN lcawn0DbbkqZK6AQrJtUrv8JFr0ufAOxYW9dQ.GpVzHYpDERplKNltFCwXQrUCjnbwSGhTEtdQJa Z_WTZjq91JHq35Peo.RXe80dNiAjhT_Fi7nvI0zt0QelGODAjr.0a9IzQnc.pOLwKvY75Ayx2B13 875mMNjruO1hwC0hL4mOGKsNQbAbwcA9VLVAPCgcULp.4H9DjQrHxz248DthR2hnol_uamywhF56 QgC90hFcUhp0h9sfAVPlhRdgxMrDwO435HfRR30x_Wv3H7tkv5twsK_1S2X57uszCGILocyltdqQ l_4yBJQlQ12LiJzCs.gbmZv_W1YZTJcw_8VUnGjOCv3_aaTNP4euIxLMuSVPqhEUqJOkPaDzdDUf .CwRTj0PQMVyO68vpRYjuFD9n_qhJ6RYobHvcUIdLTprnPncT_weygWT0ql4mzair5VX.OGIMpHM LWVWpDsWXlEXXTGI1KTWEEwP15m1GUO7n2CwplL7h2x3AW_.TCrTxb7xKHqU9.XBervfyPOVsHcT Rs8se0j0VVw3Q_7HvGhA1V7MHYHnYeOw6pnx6hDnlelC4HGV0io0A9cNr20O7ofk7qX0pvWVUgch cdnZ0uTBZmzqsvXI9vl2k6Ey7fT6pBfuaZe8aQWgkhXbUnAneYctO7zRBbZi2vPPl2fpSMrCbMYM Zo53bqCE0pvE44_q7FfOYXtew1.sXRwyVGyNAiUGDq4DiOlhr6sYm68ozCO.fIYSpSOsOjFO7pG7 n33hjOeEmr4bPkpxERXqEz4lHldxXzNCONtf3WG5Cun5m19Bk23EDGgHm3W5G5SWttYhMTz5ulnz kT6NBbBeY1wxz3RVZZUPhEdUn8xQAGvcJOicva2qHMkxeyQNb1cp4E8D1FoIY7hiJrRCvLfVPcdq n8JliJCDDImdBxBvf_GFMII.O2LUhTI9eDRVNSiYKHpiEiNXHW6zPT1JG3uFe0gBuBRFMRVVkyrx BonmPWIMPHftzIoJEPY_9xsDNdUd3pUMf0hyZkrc.k894OoHcgX_qgTarwgMw_U1TYk2p0u5U0R1 mNEQovqQkWjfz.l9Jb48wWZ2JwtnFfcgdrugK3SIp4Yh9yea0K9V3Gi95yWNXRpqyMEOj0iE_..Q ljQIfVRON.EI6DDl.eOWI.crnHGKHi_5IAFGv_nNQtIw2.MbLZb8dprSXxYCxuGHYe61nVehvM5S jUx.LBpKgGdP3FUlThYfFJtRJLC96C.B9VKD4Oij2amGtqtrn_RlVyLcS3JtCUGRGd1uY8kxCjph lNJ4x_aYc6bIpQwEYMmTJY4VyQsCczNfU_egBEdRtpP9MU6s4bgAFRefMPsnEk33vc3KIYE0shQ6 uWgtnvc0wW.uEUJMdkpU8nRFHNprgOrexjKsvtzFe9FvgYb930hg54F4TYy_njSkyrgZ.ibHpFwB IcfkyHbTIwrgcOXs1NzqTiHZkWrZliZr75nKNd1iIuU5iTALblcYtU6c8BoNxX.97I2ahSVHQIyO N4ReYUMhPRYXlBMWV.w2wac1HCQ01iRy_eN6uNzNOUEW1nZGDxW2OUmV1InYX21_FUwaAir2lkxl 6yok_n_xBQWCvqauwujQzxCTKkLCDhyj8HXXkmjHquGyevnx0vFNIoz3TfDLsW7nKnOdwVfC6no0 wVh40Btnraime.BJpbFVO.k8RyGsGi5M81HHhvgg876UMPao.AQfzvvbYsr45_5dhr7BiTnL6CWf lRFit9VSvd0gl3g7rSNikDOrechwpa5DQ0sHpSULMEGaxaUmea0ySNwuwdL7hCW_fSGoDh2TWSJM ZubbfvGCqM72CIlTNMSMheHzplv5K7jb82CcTT7m47.hEO2lsod.H7JT8LOclXN5FyDx3.s7KgIA dY4qmeTr9zXrUXCEwXHfiT._hk4tmit5BCxhi9oL9g1cpLNreuKK9l8so0RckEFWIidnKVIWFTKa mg159lYoTzB6AUceqm8JcNabDvX_dofPXKm4P2hjTucEbiGCfIG.fNsVM7V_XUny_MOQMdsqztSx DIXb7P8Ri1xON9rz5uOauZ9wUo3Hb4u4k6vJtiB5JNf2WU9_wI_2b2SvGeRw87p2SFw15
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.ne1.yahoo.com with HTTP; Sat, 3 Sep 2022 13:50:43 +0000
+Received: by hermes--production-bf1-64b498bbdd-k67v5 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID dd5a8d605ab1ff8c81d76902998939dd;
+          Sat, 03 Sep 2022 13:50:40 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-CA6DFA84-686D-4FEC-AE90-243A2BCDC718
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Subject: Chapter 18
+Message-Id: <7DE18B18-9CB6-435D-9BF8-791D69B82820@yahoo.com>
+Date: Sat, 3 Sep 2022 06:50:38 -0700
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (19G82)
+References: <7DE18B18-9CB6-435D-9BF8-791D69B82820.ref@yahoo.com>
+Content-Length: 59095
+
+--Apple-Mail-CA6DFA84-686D-4FEC-AE90-243A2BCDC718
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+It took Astero several weeks before he could get used to the Elessai clan. =
+The people there were friendly and welcoming, perhaps a bit too much. Respe=
+cted individuals were artists, writers, inventors, and scientists. Conversa=
+tions were mostly about new inventions and the latest artwork. People discu=
+ssed philosophy, chasing meaning in the changing world. When it came to tho=
+se things, Astero often felt quite unintelligent.=20
+
+Astero's father was a skilled warrior, but above all, he was an inventor fo=
+r weapons of war. He sought to find ways to win battles without much effort=
+. His study was full of sketches and trinkets. The Elessai valued innovatio=
+n, and Kairo Elessai was the best of the best.=20
+
+His father would seek his help sometimes, asking him to help build somethin=
+g or assist with the mathematics. Astero learned quite a bit from his lesso=
+ns, but he was no genius.=20
+
+Everyone knew he was not related by blood to Kairo Elessai. The two looked =
+nothing alike, and in addition, Astero had none of his father's capabilitie=
+s. Word spread around the clan. People wondered if Astero could lead the El=
+essai one day. Most believed he would lead them to ruin.=20
+
+And still, he tried. He would study hard and assist his father whenever he =
+could. Astero found comfort in reading and writing poetry, and he gained so=
+me respect in that aspect, as the public seemed to like his work, although =
+he suspected they only pretended to due to his status. The people of the El=
+essai clan, Astero noticed, were hesitant to quarrel with one another. They=
+ valued creativity and accepted all ideas. And Astero, with his lack of ima=
+gination, felt he did not belong.=20
+
+However, it only took him a day in the Fen clan before it started to feel l=
+ike home.=20
+
+Relations between the Elessai and the Fen grew stable to the point where he=
+ and his mother could visit. She had been wanting to show him her old home =
+for years, and finally, Astero's father and Raigo Fen reached a diplomatic =
+agreement, allowing his mother to return for just a few weeks, bringing him=
+ along.=20
+
+"You'll love it there," assured his mother as they traveled by carriage acr=
+oss the north eastern plains, past bridges built across the pieces of land.=
+ Throughout the journey, he gazed out the window, surprised at how similar =
+the sky and the ground really looked. However, the people of the sky looked=
+ happier. Perhaps just having a clear view of the stars at night and the su=
+n in the morning made people friendlier.=20
+
+Astero wore long red robes with intricate golden designs on the low-hanging=
+ sleeves. They were soft and silky, but thick enough to keep him warm durin=
+g the winter season. It felt strange to wear something so similar to an ext=
+ravagant dress, but his mother told him they were traditional Fen clan clot=
+hes. She also wore all red, contrary to Elessai purple. However, she looked=
+ more comfortable in those colors. Even her hair, decorated more lavishly w=
+ith a small golden crown-piece over a top-knot and dangling ornaments hangi=
+ng down the sides of her face, suited her more than her normal look. She us=
+ually kept all her hair tied up, and Astero hadn't realized how long it rea=
+lly was.=20
+
+"Everyone in the Fen clan has long hair," his mother added, glancing at the=
+ hair he always kept short. "You may stand out a bit."=20
+
+"Should I grow it out?" he asked jokingly.=20
+
+"If you'd like to," she replied, entirely serious.=20
+
+He thought about it, then decided against it. It looked to be a pain to was=
+h.=20
+
+"Do they know I'm coming?" he asked.=20
+
+"Your grandfather knows. I don't know if he told my siblings."=20
+
+"Uncle Zhilin, Uncle Luxian, Auntie Meira, and Auntie Anji."=20
+
+She nodded, pleased he remembered all their names. "They're not much older =
+than you, actually. Anji's just three years older."=20
+
+"That's kind of weird."=20
+
+His mother laughed. "Perhaps." She stared outside the window of the carriag=
+e, a longing expression on her face. "I missed them."=20
+
+Astero glanced at his mother's face. She didn't outwardly show it, but he c=
+ould feel how excited she was. One of the reasons why he was so close to hi=
+s mother was because of how isolated the two of them felt in the Elessai cl=
+an.=20
+
+Although, just being in the sky made Astero an outsider, even though no one=
+ knew. The only person who did know was on the ground.=20
+
+Rosella Ozario. Over the years, Astero had learned that the Ozario clan had=
+ been declining. Darius and Maeryn Ozario were said to have gone mad, and m=
+any people had left the clan, all due to the banishment of the youngest dau=
+ghter. He had wanted to visit them, but what would he do? Apologize? Explai=
+n to them that she had saved his life? Astero was too much of a coward. He =
+could not face them. Thankfully, they no longer attended meetings or weddin=
+gs. He felt ashamed at how relieved he was not to see them at the first mee=
+ting he attended, which was the discussion of engagement between himself an=
+d Melody Dorina.=20
+
+"Have you been getting along with Young Lady Dorina?" his mother asked, as =
+if she had read his mind.=20
+
+Astero scowled.=20
+
+She sighed. "I'll take that as a no."=20
+
+"Does it have be her?" Astero looked at his mother with pleading eyes. "I w=
+ould be fine with anyone but her."=20
+
+They had only met in person once, two years ago, to formalize their engagem=
+ent. Since then, she had been sending him letters nonstop, and he had been =
+replying to them, so as not to anger the Dorina clan, but he did so as dryl=
+y as possible. Whenever he thought the conversation had reached an end and =
+did not reply, she would send him more letters. The girl was only eleven ye=
+ars old, and Astero tried to be kind to her, but she was loud and spoiled a=
+nd treated the people around her like dirt.=20
+
+"The Dorina clan are the second wealthiest in the north," said his mother. =
+"The alliance will be quite powerful."=20
+
+"Is there really no one else?" he asked exasperatedly.=20
+
+She smiled sadly. "I'm sorry. If it were up to me, you know I'd let you mar=
+ry whoever you wanted."=20
+
+"But it's up to father," he mumbled, slouching back in his seat and crossin=
+g his arms.=20
+
+"I'm afraid so." She reached over and patted his cheek gently. "Don't worry=
+. You don't have to think about it for a while."=20
+
+Astero sighed. He didn't even want to think about Melody. He wanted to chan=
+ge the subject. "Do I have any cousins there?"=20
+
+His mother nodded. "Your Uncle Zhilin has a daughter who's just a few month=
+s old. And you have many distant relatives."=20
+
+"Any my age?"=20
+
+She thought for a moment, then frowned. "I'm not sure."=20
+
+The two of them would be staying there for a few weeks. Astero desperately =
+hoped he would be able to make friends. In the Elessai clan, he was schoole=
+d alone.=20
+
+Besides, his mother had said that the Fen clan specialized in martial arts.=
+ He found that much more appealing than the Elessai clan specialties. He al=
+so looked more like a Fen than an Elessai. Astero was nervous to visit his =
+mother's home, but more than anything, he was excited.
+
+It took a week of nonstop traveling for them to finally reach the eastern s=
+ky. When the Fen clan territory came into view, the sight took Astero's bre=
+ath away. The place was made up of lake towns, with marketplaces and inns s=
+urrounding the streets. Many bridges were built to cross from one part of t=
+own to the next, and boats rode underneath them, carrying people everywhere=
+. The architecture was so different from the Elessai, with its tall columna=
+r buildings. Fen buildings were layered, with pointed roofs and balconies s=
+panning entire floors. And it was a sea of red; red buildings, red clothing=
+, red everywhere.=20
+
+Astero looked to his mother. She was staring out the window wistfully, a sm=
+ile on her face. He was happy for her to finally be home after so many year=
+s.=20
+
+Suddenly, the carriage stopped. The Elessai guard driving called back to th=
+em, "We'll have to leave the carriage and travel by boat."=20
+
+The other guards traveling with them immediately opened the carriage doors =
+and helped them outside. Stepping out into the streets, Astero marveled at =
+the sights around him. The atmosphere felt similar to the Elessai clan, but=
+ it was also different in a way he couldn't explain.=20
+
+He and his mother were led to a small wooden rowboat, and they set off for =
+the Fen clan manor, their guards trailing behind them. People stopped and s=
+tared as they rode along the water, mostly at his mother.=20
+
+"Do they know you?" he asked her curiously.=20
+
+"Maybe," she replied, looking around. "I visited the town quite often. But =
+I can't imagine they'd still recognize me."=20
+
+He smiled as she waved at them. Astero had never seen her so happy before.=
+=20
+
+Fish of all colors swam beneath the current. Water lilies and lotus flowers=
+ decorated the surface. He had seen fields of flowers, as the Elessai clan =
+had many. But Astero had never seen anything like this.=20
+
+Soon, they reached an area where the town faded away, and trees surrounded =
+the large lake. The Fen clan manor came into view, and it was the most beau=
+tiful place he had ever laid eyes on. The main building contained many stor=
+ies, but it was connected to smaller structures, with pathways and bridges =
+atop the water leading to all of them. Smaller lake houses and pavilions we=
+re scattered all around the area, requiring one to travel by boat to get th=
+ere.=20
+
+As they drew closer and closer to the manor, Astero saw a figure waiting at=
+ the docks. She looked young, wearing long red robes and a headpiece simila=
+r to his mother's, only without the decorative hanging ornaments. Another d=
+ifference was that the sleeves of her robes were tied with a black band aro=
+und her forearms, allowing for freer movement. As she came closer into view=
+, Astero saw that she was waving her arms excitedly.=20
+
+"Mie!" she yelled. "Mie!"=20
+
+Astero was confused for a moment before realizing that 'Mie' was an honorif=
+ic in the Fen clan used to address an older sister.=20
+
+His mother, who was facing away from the manor, could not see the woman Ast=
+ero saw, but her eyes widened, and then, they filled with tears. She choked=
+ back a sob and buried her face in her hands, her shoulders shaking.=20
+
+Astero's heart broke, for his mother rarely cried. When the two of them fou=
+ght, or when she'd get into arguments with his father, she never cried. Jos=
+emi Elessai was known for being unmoved and unwavering.=20
+
+But just hearing the sound of her little sister's voice was enough to tear =
+down all the walls she had built so carefully.=20
+
+Astero reached over and pulled his crying mother into his arms, patting her=
+ back gently. He was taller than her now, and strong enough to care for her=
+ the way she did for him.=20
+
+"Mother, we're arriving," he said softly.=20
+
+She pulled away and hastily wiped her tears, taking deep breaths so as not =
+to cry again.=20
+
+The boat finally reached the dock, and Astero's auntie reached in to help h=
+is mother out of the boat. His mother gazed at her for a moment, as if not =
+quite believing she was real. "Anji?"=20
+
+Anji Fen smiled brightly. She hoisted Astero's mother out of the boat, and =
+the two stood face to face on the dock. Anji Fen was taller than his mother=
+, and she looked much stronger too. However, just looking at them, anyone c=
+ould tell she was the little sister. She lunged toward his mother, holding =
+her tight in her arms.=20
+
+"Welcome back, Mie."=20
+
+"How dare you grow taller than me," replied his mother with a smile.=20
+
+"I'm taller than Meira Mie too!"=20
+
+His mother pulled away, and her hands came up to rest on Anji Fen's cheeks.=
+ "I can't believe I haven't seen you in nine years."=20
+
+"I know, you're so old now!" said Anji Fen, a jokingly worried expression o=
+n her face.=20
+
+"Watch it, you brat," said his mother pointedly. "Besides, you're eighteen =
+now. When are you getting married?"=20
+
+"Father says in two years!" she replied excitedly. "Cy is visiting right no=
+w too, so you can meet him!"
+
+His mother gave a smile, and Astero knew she was relieved their engagement =
+was going well. Her own had been necessary to stop a war, and he was alread=
+y dreading his own.=20
+
+"And you can meet my son." She turned towards the boat, where Astero was st=
+ill sitting, watching their reunion. "Astero, this is your Auntie Anji."=20
+
+He stepped out of the boat onto the dock and heard the boat sail away as he=
+ turned to face them. Anji Fen was barely older than him, but he still bowe=
+d his head, showing her respect. "It's nice to meet you."=20
+
+She squealed and immediately wrapped him up in an unsuspecting hug. "Mie, h=
+e's adorable!"=20
+
+Astero's mother laughed, but before she could say anything, another voice p=
+iped in. "Anji, don't suffocate the child."=20
+
+Astero looked over Auntie Anji's shoulder and saw another woman. She was dr=
+essed in the signature long red robes, only she was dressed more elegantly =
+than Auntie Anji, similar to his mother.=20
+
+The woman's face was stoic, but the expression in her eyes showed that she =
+was trying to hold back tears. "About time, Mie."=20
+
+Two more people showed up behind her, and Astero already knew they were his=
+ mother's little brothers. One was tall, a stern expression on his face. He=
+ wore his hair in a top knot, secured by a golden headpiece. His red robes =
+were even more intricately designed than Astero's, with beautifully stitche=
+d images of dragons. The other was smaller, perhaps the same height as Aste=
+ro. His hair was long and flowed down his back, but he also wore a gold ban=
+d that tied part of it in a top knot. His robes were similar to Auntie Anji=
+'s, with bound sleeves and less elegant patterns.=20
+
+"Astero," said his mother, "this is your Auntie Meira, Uncle Zhilin, and Un=
+cle Luxian."=20
+
+Zhilin Fen was the taller one, and he carried himself with extreme poise an=
+d elegance, as expected of the clan heir. Luxian Fen, on the other hand, ha=
+d a playful smile on his face.=20
+
+"Mie," he said, grinning, "the only one who isn't taller than you now is Me=
+ira."=20
+
+Auntie Meira rolled her eyes.=20
+
+"I believe I had been taller when she left," interjected Uncle Zhilin.=20
+
+"No one cares, Sasa," said Auntie Anji, finally letting go of Astero.
+
+Unexpectedly, the stoic man pouted.=20
+
+His mother smiled warmly and walked over to Uncle Zhilin. She looked up at =
+him and sighed. "How are you, Linlin?=20
+
+As if he couldn't help himself, Uncle Zhilin threw his arms around her. "I =
+missed you, Mie," he breathed.=20
+
+"Group hug!" Uncle Luxian exclaimed, wrapping his arms around the both of t=
+hem.=20
+
+Auntie Meira gazed at them affectionately before joining in.=20
+
+Auntie Anji grinned widely. "Come on," she said to Astero, tugging his arm.=
+ The two of them joined in the hug, and Astero felt awkward hugging anyone =
+but his mother, but seeing the look on her face, he wished this moment woul=
+d never end.
+
+Sent from my iPhone
+--Apple-Mail-CA6DFA84-686D-4FEC-AE90-243A2BCDC718
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><div dir="ltr"><meta http-equiv="content-type" content="text/html; charset=utf-8"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">It took Astero several weeks before he could get used to the Elessai clan. The people there were friendly and welcoming, perhaps a bit too much. Respected individuals were artists, writers, inventors, and scientists. Conversations were mostly about new inventions and the latest artwork. People discussed philosophy, chasing meaning in the changing world. When it came to those things, Astero often felt quite unintelligent.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero's father was a skilled warrior, but above all, he was an inventor for weapons of war. He sought to find ways to win battles without much effort. His study was full of sketches and trinkets. The Elessai valued innovation, and Kairo Elessai was the best of the best.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His father would seek his help sometimes, asking him to help build something or assist with the mathematics. Astero learned quite a bit from his lessons, but he was no genius.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Everyone knew he was not related by blood to Kairo Elessai. The two looked nothing alike, and in addition, Astero had none of his father's capabilities. Word spread around the clan. People wondered if Astero could lead the Elessai one day. Most believed he would lead them to ruin.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">And still, he tried. He would study hard and assist his father whenever he could. Astero found comfort in reading and writing poetry, and he gained some respect in that aspect, as the public seemed to like his work, although he suspected they only pretended to due to his status. The people of the Elessai clan, Astero noticed, were hesitant to quarrel with one another. They valued creativity and accepted all ideas. And Astero, with his lack of imagination, felt he did not belong.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">However, it only took him a day in the Fen clan before it started to feel like home.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Relations between the Elessai and the Fen grew stable to the point where he and his mother could visit. She had been wanting to show him her old home for years, and finally, Astero's father and Raigo Fen reached a diplomatic agreement, allowing his mother to return for just a few weeks, bringing him along.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"You'll love it there," assured his mother as they traveled by carriage across the north eastern plains, past bridges built across the pieces of land. Throughout the journey, he gazed out the window, surprised at how similar the sky and the ground really looked. However, the people of the sky looked happier. Perhaps just having a clear view of the stars at night and the sun in the morning made people friendlier.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero wore long red robes with intricate golden designs on the low-hanging sleeves. They were soft and silky, but thick enough to keep him warm during the winter season. It felt strange to wear something so similar to an extravagant dress, but his mother told him they were traditional Fen clan clothes. She also wore all red, contrary to Elessai purple. However, she looked more comfortable in those colors. Even her hair, decorated more lavishly with a small golden crown-piece over a top-knot and dangling ornaments hanging down the sides of her face, suited her more than her normal look. She usually kept all her hair tied up, and Astero hadn't realized how long it really was.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Everyone in the Fen clan has long hair," his mother added, glancing at the hair he always kept short. "You may stand out a bit."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Should I grow it out?" he asked jokingly.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"If you'd like to," she replied, entirely serious.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He thought about it, then decided against it. It looked to be a pain to wash.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Do they know I'm coming?" he asked.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Your grandfather knows. I don't know if he told my siblings."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Uncle Zhilin, Uncle Luxian, Auntie Meira, and Auntie Anji."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She nodded, pleased he remembered all their names. "They're not much older than you, actually. Anji's just three years older."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"That's kind of weird."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother laughed. "Perhaps." She stared outside the window of the carriage, a longing expression on her face. "I missed them."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero glanced at his mother's face. She didn't outwardly show it, but he could feel how excited she was. One of the reasons why he was so close to his mother was because of how isolated the two of them felt in the Elessai clan.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Although, just being in the sky made Astero an outsider, even though no one knew. The only person who did know was on the ground.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Rosella Ozario. Over the years, Astero had learned that the Ozario clan had been declining. Darius and Maeryn Ozario were said to have gone mad, and many people had left the clan, all due to the banishment of the youngest daughter. He had wanted to visit them, but what would he do? Apologize? Explain to them that she had saved his life? Astero was too much of a coward. He could not face them. Thankfully, they no longer attended meetings or weddings. He felt ashamed at how relieved he was not to see them at the first meeting he attended, which was the discussion of engagement between himself and Melody Dorina.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Have you been getting along with Young Lady Dorina?" his mother asked, as if she had read his mind.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero scowled.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She sighed. "I'll take that as a no."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Does it have be her?" Astero looked at his mother with pleading eyes. "I would be fine with anyone but her."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">They had only met in person once, two years ago, to formalize their engagement. Since then, she had been sending him letters nonstop, and he had been replying to them, so as not to anger the Dorina clan, but he did so as dryly as possible. Whenever he thought the conversation had reached an end and did not reply, she would send him more letters. The girl was only eleven years old, and Astero tried to be kind to her, but she was loud and spoiled and treated the people around her like dirt.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"The Dorina clan are the second wealthiest in the north," said his mother. "The alliance will be quite powerful."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Is there really no one else?" he asked exasperatedly.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She smiled sadly. "I'm sorry. If it were up to me, you know I'd let you marry whoever you wanted."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"But it's up to father," he mumbled, slouching back in his seat and crossing his arms.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"I'm afraid so." She reached over and patted his cheek gently. "Don't worry. You don't have to think about it for a while."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero sighed. He didn't even want to think about Melody. He wanted to change the subject. "Do I have any cousins there?"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother nodded. "Your Uncle Zhilin has a daughter who's just a few months old. And you have many distant relatives."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Any my age?"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She thought for a moment, then frowned. "I'm not sure."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The two of them would be staying there for a few weeks. Astero desperately hoped he would be able to make friends. In the Elessai clan, he was schooled alone.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Besides, his mother had said that the Fen clan specialized in martial arts. He found that much more appealing than the Elessai clan specialties. He also looked more like a Fen than an Elessai. Astero was nervous to visit his mother's home, but more than anything, he was excited.</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">It took a week of nonstop traveling for them to finally reach the eastern sky. When the Fen clan territory came into view, the sight took Astero's breath away. The place was made up of lake towns, with marketplaces and inns surrounding the streets. Many bridges were built to cross from one part of town to the next, and boats rode underneath them, carrying people everywhere. The architecture was so different from the Elessai, with its tall columnar buildings. Fen buildings were layered, with pointed roofs and balconies spanning entire floors. And it was a sea of red; red buildings, red clothing, red everywhere.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero looked to his mother. She was staring out the window wistfully, a smile on her face. He was happy for her to finally be home after so many years.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Suddenly, the carriage stopped. The Elessai guard driving called back to them, "We'll have to leave the carriage and travel by boat."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The other guards traveling with them immediately opened the carriage doors and helped them outside. Stepping out into the streets, Astero marveled at the sights around him. The atmosphere felt similar to the Elessai clan, but it was also different in a way he couldn't explain.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He and his mother were led to a small wooden rowboat, and they set off for the Fen clan manor, their guards trailing behind them. People stopped and stared as they rode along the water, mostly at his mother.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Do they know you?" he asked her curiously.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Maybe," she replied, looking around. "I visited the town quite often. But I can't imagine they'd still recognize me."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He smiled as she waved at them. Astero had never seen her so happy before.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Fish of all colors swam beneath the current. Water lilies and lotus flowers decorated the surface. He had seen fields of flowers, as the Elessai clan had many. But Astero had never seen anything like this.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Soon, they reached an area where the town faded away, and trees surrounded the large lake. The Fen clan manor came into view, and it was the most beautiful place he had ever laid eyes on. The main building contained many stories, but it was connected to smaller structures, with pathways and bridges atop the water leading to all of them. Smaller lake houses and pavilions were scattered all around the area, requiring one to travel by boat to get there.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">As they drew closer and closer to the manor, Astero saw a figure waiting at the docks. She looked young, wearing long red robes and a headpiece similar to his mother's, only without the decorative hanging ornaments. Another difference was that the sleeves of her robes were tied with a black band around her forearms, allowing for freer movement. As she came closer into view, Astero saw that she was waving her arms excitedly.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Mie!" she yelled. "Mie!"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero was confused for a moment before realizing that 'Mie' was an honorific in the Fen clan used to address an older sister.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother, who was facing away from the manor, could not see the woman Astero saw, but her eyes widened, and then, they filled with tears. She choked back a sob and buried her face in her hands, her shoulders shaking.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero's heart broke, for his mother rarely cried. When the two of them fought, or when she'd get into arguments with his father, she never cried. Josemi Elessai was known for being unmoved and unwavering.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">But just hearing the sound of her little sister's voice was enough to tear down all the walls she had built so carefully.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero reached over and pulled his crying mother into his arms, patting her back gently. He was taller than her now, and strong enough to care for her the way she did for him.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Mother, we're arriving," he said softly.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She pulled away and hastily wiped her tears, taking deep breaths so as not to cry again.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The boat finally reached the dock, and Astero's auntie reached in to help his mother out of the boat. His mother gazed at her for a moment, as if not quite believing she was real. "Anji?"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Anji Fen smiled brightly. She hoisted Astero's mother out of the boat, and the two stood face to face on the dock. Anji Fen was taller than his mother, and she looked much stronger too. However, just looking at them, anyone could tell she was the little sister. She lunged toward his mother, holding her tight in her arms.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Welcome back, Mie."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"How dare you grow taller than me," replied his mother with a smile.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"I'm taller than Meira Mie too!"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother pulled away, and her hands came up to rest on Anji Fen's cheeks. "I can't believe I haven't seen you in nine years."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"I know, you're so old now!" said Anji Fen, a jokingly worried expression on her face.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Watch it, you brat," said his mother pointedly. "Besides, you're eighteen now. When are you getting married?"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Father says in two years!" she replied excitedly. "Cy is visiting right now too, so you can meet him!"</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother gave a smile, and Astero knew she was relieved their engagement was going well. Her own had been necessary to stop a war, and he was already dreading his own.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"And you can meet my son." She turned towards the boat, where Astero was still sitting, watching their reunion. "Astero, this is your Auntie Anji."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">He stepped out of the boat onto the dock and heard the boat sail away as he turned to face them. Anji Fen was barely older than him, but he still bowed his head, showing her respect. "It's nice to meet you."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">She squealed and immediately wrapped him up in an unsuspecting hug. "Mie, he's adorable!"&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero's mother laughed, but before she could say anything, another voice piped in. "Anji, don't suffocate the child."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Astero looked over Auntie Anji's shoulder and saw another woman. She was dressed in the signature long red robes, only she was dressed more elegantly than Auntie Anji, similar to his mother.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">The woman's face was stoic, but the expression in her eyes showed that she was trying to hold back tears. "About time, Mie."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Two more people showed up behind her, and Astero already knew they were his mother's little brothers. One was tall, a stern expression on his face. He wore his hair in a top knot, secured by a golden headpiece. His red robes were even more intricately designed than Astero's, with beautifully stitched images of dragons. The other was smaller, perhaps the same height as Astero. His hair was long and flowed down his back, but he also wore a gold band that tied part of it in a top knot. His robes were similar to Auntie Anji's, with bound sleeves and less elegant patterns.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Astero," said his mother, "this is your Auntie Meira, Uncle Zhilin, and Uncle Luxian."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Zhilin Fen was the taller one, and he carried himself with extreme poise and elegance, as expected of the clan heir. Luxian Fen, on the other hand, had a playful smile on his face.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Mie," he said, grinning, "the only one who isn't taller than you now is Meira."&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Auntie Meira rolled her eyes.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"I believe I had been taller when she left," interjected Uncle Zhilin.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"No one cares, Sasa," said Auntie Anji, finally letting go of Astero.</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Unexpectedly, the stoic man pouted.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">His mother smiled warmly and walked over to Uncle Zhilin. She looked up at him and sighed. "How are you, Linlin?&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">As if he couldn't help himself, Uncle Zhilin threw his arms around her. "I missed you, Mie," he breathed.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">"Group hug!" Uncle Luxian exclaimed, wrapping his arms around the both of them.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Auntie Meira gazed at them affectionately before joining in.&nbsp;</span></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);"><span style="font-style: italic;">Auntie Anji grinned widely. "Come on," she said to Astero, tugging his arm. The two of them joined in the hug, and Astero felt awkward hugging anyone but his mother, but seeing the look on her face, he wished this moment would never end.</span></p><br><div dir="ltr">Sent from my iPhone</div></div></body></html>
+--Apple-Mail-CA6DFA84-686D-4FEC-AE90-243A2BCDC718--
