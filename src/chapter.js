@@ -27,8 +27,8 @@ document.addEventListener("keydown", function (event) {
  * Some of the formatting is inconsistent(see 39 vs. 40)
  * and the affected emails have a "content=3D".
  * 
- * The workaround is to copy just the email text for the affected chapters and rely on our CSS
- * to format them correctly.
+ * The workaround is to decode the email here:
+ * https://www.webatic.com/quoted-printable-convertor
  */
 const getAndLoadChapterData = async () => {
 	const fileName = `${chapterNumber}.txt`;
@@ -38,17 +38,11 @@ const getAndLoadChapterData = async () => {
 	title.innerHTML = `Chapter ${chapterNumber} | The Sky Full of Flowers`;
 	header.innerHTML = `Chapter ${chapterNumber}`;
 
-	let trimmed;
-	if (data.includes('<html>')) {
-		trimmed = data.match(/<html>([\s\S]*?)<\/html>/)[0];
-		content.innerHTML = trimmed;
-	} else {
-		const child = document.createElement('p');
-		child.className = 'chapter-paragraph';
-		child.innerHTML = data;
-		content.innerHTML = '';
-		content.appendChild(child);
-	}
+	// Filter out unwanted strings
+	let str;
+	str = data.match(/<html>([\s\S]*?)<\/html>/)[0];
+	str = str.replace('Sent from my iPhone', '');
+	content.innerHTML = str;
 };
 
 const trimBetweenStrings = (str, startStr, endStr) => {

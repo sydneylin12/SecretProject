@@ -1,341 +1,407 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:7110:5583:b0:193:426e:808a with SMTP id g3csp543482gei;
+        Thu, 1 Sep 2022 13:15:37 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR7hr7KdbOwcHaHsOLMqfXfMZdggcJfvpyOJE44ggN0509cSndM0ZGN/iIfxdnxIn+a6Vs73
+X-Received: by 2002:a05:620a:4450:b0:6bb:c19a:c022 with SMTP id w16-20020a05620a445000b006bbc19ac022mr20557371qkp.240.1662063337122;
+        Thu, 01 Sep 2022 13:15:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=62063337; cv=none;
+        d=google.com; s=arc-20160816;
+        b=lzfjE8O20ZbjCU3oUCJ3exvq9gkrHbloQi+zIUwzCafGxo3QC6+JWs1pjLkWRx76dJ
+         xWX6KVtIKN2YI/Et4LRD47Sn9MlI1NIxE8IXNRPxE+khOjouoFV+p19pILUDL/UJ56A5
+         CJWBm0nBG3kpna89XVMK18iQ9T3Ej0jm/HsKXW1VKlRoblZlzKIOnuotMZNKPminNu1n
+         GVUwmcFcHh3uy42rJZJRg5mhKOCIS7IYc0wTdp5TDMUfeyTYGG1MS3+Xn1iRSLLhv0ur
+         hcSd+NzZDdzya2xVVcOiaI1MSyA/ZrhHlv546LSKP5/R53Ez4i8s19g/h2krSr4fWXsK
+         TRSA=ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=IbaMHcu/itvfLhBHIKdeLOMaZjbc1B9alW69DyF05cM=;
+        b=jKZuukKl/KU7xWX03MfDvhvQRwiSW+K0FDb2jhRCQihjyLgKcyqbeqbnP3jtmORT27
+         HqX4fOgMhNDvJoxTZi2sY0fio9S0sg/oWuR4J2YWO2XQAmbwhg6cK6Eq1zovYEKqs/n+
+         IcTQT59iQJK1b9/DiVVFVnWHo1PGzm4dcJbT6Nki6/RWhXP4tPv8HOdBkIHjBs8/nM5P
+         6mHeQ+NL5Bh1DHIcZIeUVVw4TzJ7EUUNzhw62QNW2EYHofVBL+Jnh9TDJgaTS+wxz9vc
+         NUvz3Qgs1w3p90CYCL6B5+Hv6w+4EpwLk90x++Kij3/Jwj/aF3NJJ1M3MFKQQW7DVkXJ
+         01pg=ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=hTrAgSyX;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) smtp.mailfrom�rissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic308-9.consmr.mail.ne1.yahoo.com (sonic308-9.consmr.mail.ne1.yahoo.com. [66.163.187.32])
+        by mx.google.com with ESMTPS id x20-20020a05620a449400b006b5fc817571si11944257qkp.658.2022.09.01.13.15.36
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=8/128);
+        Thu, 01 Sep 2022 13:15:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) client-ipf.163.187.32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=hTrAgSyX;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.187.32 as permitted sender) smtp.mailfrom�rissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=62063335; bh=IbaMHcu/itvfLhBHIKdeLOMaZjbc1B9alW69DyF05cM=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=hTrAgSyXUaM+ux+UqBF3NtF5/Xje9htWggAoQyfvm7l6YAJvShluVyWJsZea8riKCdeBZ5PUqz+M8aeGUe85isJtJ1Mtt6ajtl6mHKMrWG9B+5y3TO9cl+4UpWmRX1zccbAFzRuVtLxvRsV/tLftVpKiOax6qKzdpFtcXUgxnzm7AylMy8BFH7fCYafCzjyD9nfCifs2x/nH8PqS9Q1WHeuTwA2vgxuKXPXGMQWan/1jfr6nugZsYGoAuPhACiWjQOkPvIiSQcbXefB2QVezLyoOkquqql/3qQ3XnUvEbiNLQZCDXSI1viwvMIHImdpkyZ6BXZgsChuZWy99ANz7aA=X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=62063335; bh%2H5CAVO36JCbVEYRNihUl8oKtfM0E3vaSNtr/kTPp=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=I1XiNtJlVpP9gji8zGN8jXqkS+5xRMnGfhJ4XwNoahdYaUFNQ9xE5hriiU0ppNL5iR+UidI+wv1N0R1Y3hmhq/d9b6QUtLFRgr024f292q13w94BnW2h64LJi9t5ch/CpRTL6pOhWsg8nZ0CX6qesKqQaZTZVcRZrGl/Eyd9/CfQ+PnqJdHsv2nplTtl+sckEmhRP4KceblNLRdJ1YsdY+9vJXLSy9B9sTnQLbHU8y/CMiPjI9hLZRwD1asor9wy6hxBdk9woTOJlgwevma4h9QzlwEnfUxDO9bEK1+KbpQcaTgK/KF3WSxZT++WwpQfIgUXQAncW3BMiLM3g5fKvA=X-YMail-OSG: rIr4oS8VM1kWE70C.Q5C7fBpAM.5PsXLpeZJla3jKa_o4VKohQ3qJN3093IXkcC QmsDTVeP8fF21B_B3OWtwlff_rgaJqRvifo1UXiIGq.FQCF7k.sSNY9gN4pOdfDMKUWe5dPFrUH2 F30nZRxcPCY5p5ttKwsT98yb9BWXHFNDMPpp2t8V8YGDxXerHZ1G4UvfJK1.HD8tdKX8EQ4.Go7S LfHeKtsoRcMIO_sE5hX7AYBi8.KqxEED7g68gg8cUkP_sz8OgSToWLjjXuswaQ5lQmfub0KFYLlc wjU1oBbJ0okgnE1TVWHm1jzkUFsTMF.N6.HITIK6ZWB1DFsITSqD.RhsyWLPZKWEp5y6t6mdBw0z SSgehDHtUrAyYqcWa8Buzfiz_4Y.C.ZqBMU8DSaybu.7i0CCfmseNrDupNVVkZhqDvG0nBgyCjMt J8k3VkNVKKEkbQcfsqco8T5JhMVkejsBKd2jHNoOQtJ7LAUTulr86oDMyNtDQcESnYWHEup.dRw. zf4qmRDnKQz6HPsK6WNKXV5gpcz9hGKkSiqz6EAcPJMhDFn1XI3wVRqZjyeP5YpdxqIiTiIloQu3 uUlh04ZaXhytrPVPhOQqLYhepxfKILWPSUCxNLcQjh4qwpbrgdtgjdlZ3YfDp.Te9Su3nKesX5_r up53Skjc7g9H74GJ25stYRNucJsvzYeu6MnL2wDva45HRA4ZGgPcEu69JIRbhsaLF3FbdlTH9DSx zQZ1xm0WLm3rzTbxI0tz6IIJpKEceYvwH9aK50Qwn6xCeCW0rmWN0agIYJ5mE0HdB2RO9i2XF8uK qTIcr_1aMFEsQkWq37EyBGkwTBt.Ulq5cG0BDYo0TorrI2NfDW77k8.Sa2Tj9hdpfH9GLuXu1n6r vTujTNFWkrN1LCN7hkvSIRiW2C7Mm_cPjj3laW9PkHXPgrp1mlgHisAt7ocYhcS2eEw7N7Ns4GSN f21pEt0M0h5PIGuLfsOabFOFfQ_Mc0eu0mN5JcTdpZGuXyyPwzjy3UT16vjcYb.8gGJ8bL0oV6xh t8SaFb.4V.gNZJneZI7YkDkkbGzUCv7Iq61p9Pj6YrbofLeltiTvgqdToOIWXohC9HGy0ZucgiFX 4MaXXj9vYXOkwcKXxfm2EHwKS_MRrUElnTgqgh6tA6IShXS9O4nvL_8HInQJcViSALtQObiotZKQ cMemH9XRBQ4r.1jlHfO7TnvX_G4nxyYMH0GadlKlw2Vuk_yVPUtGLi_IqkTxBEHHfqwsu.LAWBF3 LesVsJzL93Mux5Z.uKYyffn4EJCkMM_x8Gw9CkSx7zxi8RC_ltkZHHO1VHs9IJHLnuNHT4hz8H.a mkokLiH.RdrvBzqYk7bVFCbhf3Tz_FKNMixTULkPQvlp1a5tkMs396tRnu5FKJCy66eSbtFk8RJw Jjk5jSY9_x8uuBjUbPO0pU.G1lbiUbqnFnfVRiwzmyTsszQVct_PM8olidZJZjjRPJ.i69sz45i8 HZrEYa.OiJcSz2BakZsSEVP6xiFL8VPecDa_8yA03iwdljHv2HTaky2DNImHCenB1G8fyonAVmNi K7BJYqFq4GgBkiHNffG58c4Of3xvKjtV2DtIXmzwsFSMNFSj4jiptNOufJ9Dx9SBbbNVu7U0YIcX kZXsX1MDxOBEPjbWo6eSJQww2e5m7BYuOF0dShEeuDq_YtLvTR61CVyXWQDuP39IG9f2ziiDKvkf xNb7ijOz.dxCPX8AiiH.lEMDs3OsqID73kuBCO.MrQORxNXaOIwigqUVK7h_MMXJuJ3qgdAsa8Ut G9YUv2fb9xG_iKsdOI3eeJ6ubxctlS1SpmhHPhzbOr1yIk.Gjw0tCjoFcH2KxeA8jtLVaWlkzzqn tE66CwJvYcCxaKhHzDhZrP6FY8v8g1HfZgcCm_TRt0ASSPQfnFOScdR4VWxz4RzAIzd1so8kYVog wTKshWBrOn5kqkHgY1jw4oTmQMGD3Ze4SCIu4ZdheaX97IQWlJvCHQW.goaoYCJHjnlDtJhIunMA 92nhYNqE3tSUeHdDvIb169Qmylh2D7.I4p8ZO4dZoGwZ6QvagEFby7Ze0ZSfCsMNCSvrMBjpEtdQ TDnIRqBlwknikbfdqtalTY2b1A0tYgohzWtBnZNYWzVosP87aeSvBlhU22NtlI.FF5gTaG7tmIQx PVsMQNkE7cB_Psux7Soam.n3BrapGKEBTePjtEs9ffrJ23VIrmDCDgfBVxKVvhA7OiquHqq9m561 LQ5n9pm_qymhIE3C.v4.5ugIl505O7Bi5bGGETGDYGylNaQqBoM4bo0u4XVsjqvUW3as-
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.ne1.yahoo.com with HTTP; Thu, 1 Sep 2022 20:15:35 +0000
+Received: by hermes--production-ne1-544744cc75-fkh7w (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID dc53c9d70f84a406b70129f94b216eee;
+          Thu, 01 Sep 2022 20:15:32 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-9FA0403B-1C44-4C54-AA0B-9F2061AD61C6
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 1 Sep 2022 13:15:31 -0700
+Subject: Chapter 15
+Message-Id: <43997E1E-CA22-4929-85A8-9FF210A9DCE8@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (19G82)
+References: <43997E1E-CA22-4929-85A8-9FF210A9DCE8.ref@yahoo.com>
+Content-Length: 49359
+
+--Apple-Mail-9FA0403B-1C44-4C54-AA0B-9F2061AD61C6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
 As Kona walked through the town, where festivities were still in order for the wedding that was supposed to happen today, she almost felt bad at seeing all the happy people. No one outside of the main families of the five clans knew Astero Elessai was missing. 
-
-
 
 Kona had been the one to see him escape down the northern stairway. The way he did it — pricking the guards with a paralysis needle from the Fen clan — suggested he had done this before. It would cause no suspicion, as the guards would be standing there the entire time, and once the effects wore off, they wouldn't even know they had been paralyzed. 
 
-
-
 When she reported the news to Lord Ozario, it was the first time she had seen him laugh out loud. He said that Astero Elessai had actually done this before, sneaking into Ozario territory, paralyzing the guards, and climbing down the stairway. Lord Ozario never sent anyone to follow him, as he did not care much for what the Elessai heir was up to, and he would always be back within the day. However, to climb down again the day before his wedding, Lord Ozario wanted to see if Astero Elessai would be back before the day's end, and alas, he was not. He was ecstatic to use this information to acquire the help of Josemi Elessai. 
-
-
 
 Today would be the day Kona set foot on the ground. Her task was to find Astero Elessai and keep track of him until the time came to bring him back to the sky. 
 
-
-
 It was much too crowded in the town, and much too bright. Kona pulled her black hood over her head, trying to remain inconspicuous. 
-
-
 
 Children ran around the streets, chasing one another and laughing. She looked up and saw an old, decrepit wooden building, where an old woman stood, smiling as she watched over the children. 
 
-
-
 This must have been an orphanage, and it actually looked far better than the one Kona had grown up in, far to the west in Sanu clan territory. The Sanu clan had a reputation for spending a minuscule amount of their money on the welfare of their people, despite having so much of it. Kona owed a debt to Lady Willow for rescuing her from that place and taking her to live in the Ozario clan. The only reason she volunteered to be sent to the ground was to help Lady Willow and Lord Ozario get their revenge. She did not hate the other clans as they did, and she did not do it for money. Kona simply wanted to repay their kindness. 
-
-
 
 Suddenly, Kona heard a thud, followed by a yelp from a high-pitched voice. She turned and saw that a child had bumped into a rich-looking woman, who looked to be around the same age as Kona. The child had fallen to the ground and was staring up at the woman in fear. She just glared at him. 
 
-
-
 "Watch it, brat," she snapped. 
-
-
 
 The nanny of the orphanage quickly hobbled over. She did not help the child up, and instead, bowed her head to the woman. "My lady, my most sincere apologies." 
 
-
-
 The woman scoffed. "It will take more than that." 
-
-
 
 "Of course, anything you'd like!" The old nanny's voice was shaky, and Kona saw her hands trembling. 
 
-
-
 "This child must be punished," declared the woman. "That seems fair, doesn't it?" 
-
-
 
 The two maidservants by her side quickly nodded along, agreeing with her. 
 
-
-
 The little boy on the ground instantly burst into tears, his entire body shaking from the racking sobs. However, the woman showed no compassion. 
-
-
 
 "What do you think your punishment should be, hm?" she asked mockingly. 
 
-
-
 Kona felt her blood boil, and she clenched her fists in rage. She needed to remain inconspicuous, but this woman was too cruel for Kona to just sit back and watch. Kona had been just like him, an orphan pushed around by people with power. 
-
-
 
 Steeling herself, Kona walked over there with her head held high. She was stronger now. She did not fear people like her. Not anymore. 
 
-
-
 Kona crouched down and held the boy in her arms. "Are you all right?" she asked. 
-
-
 
 He gazed at her with teary eyes, lips trembling. 
 
-
-
 "Excuse me," interjected the woman, sounding annoyed. "Who are you?" 
-
-
 
 Kona looked up at her. The woman was beautiful, with long brown hair and stormy gray eyes. The sharp angles of her face gave her an intimidating aura. The dark blue dress she wore looked expensive and intricately crafted, giving Kona the impression that this woman was powerful indeed. 
 
-
-
 She stood up and faced her. Kona was shorter, and she cursed her unfortunate genes. "Kona," she answered. "And you?" 
-
-
 
 The woman raised her eyebrows in surprise. "You don't know me?" 
 
-
-
 "Apologies, I'm not from here. I came for the wedding." 
-
-
 
 Strangely enough, at the mention of the wedding, the woman's expression cracked every so slightly. "Ah," she said, laughing awkwardly, "of course. The wedding." 
 
-
-
 "...yes, the wedding." 
-
-
 
 The woman composed herself and regained her ice-cold expression. "It doesn't matter. Out of the way. The boy must be punished." 
 
-
-
 "For what, exactly?"
-
-
 
 "Injuring me." 
 
-
-
 Kona scanned the clearly unhurt woman. "Injured where?"
-
-
 
 "Does it matter?" she snapped. "The point is, he almost did. Isn't that enough?" 
 
-
-
 Kona was flabbergasted. "Are you serious?" 
-
-
 
 "Why wouldn't I be?" replied the woman, equally taken aback. "If I actually had gotten hurt, he would be sent to the ground." 
 
-
-
 "It was an accident. Are you always this heartless?" 
-
-
 
 A flash of rage appeared on the woman's face, and Kona thought for a moment, she would have to physically defend herself. However, the old nanny intercepted. "My lady, please have mercy," she begged, putting her hands together to show sincerity. "The boy will be disciplined, I assure you."
 
-
-
 The woman thought for a moment before saying, "Very well then. Since today is a special day, I will show mercy just this once." 
-
-
 
 "Thank you," cried the old nanny. "I wish you everlasting happiness in your marriage, my lady." 
 
-
-
 The woman smiled tersely and did not reply. 
-
-
 
 The old nanny bent down and ushered the boy to his feet, and the two of them hurried inside the orphanage before any more harm could be done, leaving Kona with the woman who she now realized was Melody Dorina. 
 
-
-
 "Well?" She made a 'shoo' gesture with her hand. "Scram." 
-
-
 
 Kona scowled, but she did step out of Melody Dorina's way. As she and her maidservants walked past, Kona couldn't resist muttering, "I see why the groom ran away." 
 
-
-
 Melody Dorina whirled around so fast, Kona nearly got dizzy herself. "Excuse me?" 
-
-
 
 Kona knew she shouldn't have drawn attention to herself, but the fearful eyes of the little boy — eyes that reminded her so much of herself — kept haunting her mind. 
 
-
-
 "You heard me," she replied, making herself appear fearless and unmovable. 
-
-
 
 Melody Dorina's eyes narrowed. "Are you trying to prove something? Because this is pointless." 
 
-
-
 It most likely was. What was Kona trying to accomplish by angering Young Lady Dorina? She undoubtedly did not regret scaring the poor boy, and Kona knew nothing she said would change her attitude. Dejected, Kona bowed her head and did not say a word. 
-
-
 
 However, Melody Dorina slowly walked closer to her with a scrutinizing gaze. She hissed, "How did you know?" 
 
-
-
 Her striking gray eyes caught Kona off guard, and she almost didn't hear what Melody Dorina said. "Know what?" 
-
-
 
 "That Astero is gone!" 
 
-
-
 Right. No one outside the main families of the clans were supposed to know. Kona scolded herself for being careless, and she replied, "There are rumors, that's all." 
-
-
 
 Melody Dorina glared. "People have been talking behind my back?" 
 
-
-
 "You cannot stop the people from gossiping, Young Lady Dorina." 
-
-
 
 Kona heard her take in a huge breath, as if she were trying to calm herself down. Her hands were clenched into fists at her sides. "Let me tell you something," she said, her voice quiet and deadly. "Astero was kidnapped by the south. If I hear someone say he ran away, I will have them punished. Understood?" 
 
-
-
 "But what if that's the truth?"
-
-
 
 "It's not!" she cried, baring pearly white teeth against red lips. "He wouldn't do that!" 
 
-
-
 "If you say so," replied Kona, shrugging. 
-
-
 
 Melody Dorina gazed at her suspiciously. "What was your name again?" 
 
-
-
 "Kona." 
-
-
 
 "What clan are you from?"
 
-
-
 "Ozario." 
-
-
 
 "I will speak with your leader. I want you punished immediately." 
 
-
-
 "What for?" 
-
-
 
 "Suggesting that my own husband ran away from me!" 
 
-
-
 "He's not your husband." Kona smiled slightly, making her own expression one of pity. "I don't think he wants to be." 
-
-
 
 "How dare you!" she shrieked, stepping closer to Kona, so close she could feel Melody Dorina's breath on her cheeks. "Who are you to assume what Astero wants?" 
 
-
-
 Kona, feeling satisfied that she managed to get under the other girl's skin, said, "I just know that if I were engaged to you, I'd rather go to the ground." 
-
-
 
 "That can be arranged," said Melody Dorina through gritted teeth. 
 
-
-
 "Oh, there you are!" exclaimed a cheerful voice. 
-
-
 
 Both Kona and Melody Dorina turned to see Lady Willow sauntering up to them, smiling brightly. Her sundress was bright pink, with clear jewels that twinkled in the sunlight. She looked amused. 
 
-
-
 Lady Willow stood beside Kona and bowed her head in acknowledgement to Melody Dorina. "Young Lady Dorina, a pleasure." 
-
-
 
 Melody Dorina looked annoyed. "I'm sorry, who are you?" 
 
-
-
 "Kona's guardian," she replied easily. "I apologize for any issues she has caused." 
-
-
 
 "She insulted me!" 
 
-
-
 "She is young," said Lady Willow, smiling insincerely. "I trust you will not let such insults get to you, as merciful and mature as you are." 
-
-
 
 Melody Dorina's face turned red, either with embarrassment or anger, Kona didn't know. 
 
-
-
 "I'm afraid we must take our leave." Lady Willow took a hold of Kona's wrist and quickly left Melody Dorina standing there with her two maidservants, looking stunned. 
-
-
 
 "I'm barely younger than her," muttered Kona. 
 
-
-
 "And equally immature," replied Lady Willow, rolling her eyes. "You're the last one we're waiting on, you know." 
-
-
 
 "I'm sorry, Lady Willow." Kona didn't mean to cause her trouble. 
 
-
-
 Lady Willow sighed. "What's done is done." She glanced at Kona with worry. "I just hope you're ready." 
-
-
 
 Kona nodded with determination. "I won't fail you, nor Lord Ozario." 
 
-
-
 "Be careful." Lady Willow stopped walking and took Kona into her arms, embracing her tightly. "I don't want to lose another little sister." 
-
-
 
 All Kona knew of Rosella Ozario was that she was cruelly sent to the ground fifteen years ago. She did not know why, as Lord Ozario and Lady Willow never spoke of it around her. Kona hugged her back, almost tearing up at the fact that Lady Willow was now shorter than her. 
 
-
-
 "I will be careful," Kona replied. She would do everything in her power to find Astero Elessai. And she would do everything in her power to bring down the other clans. Lady Willow thought of her as a little sister, but to Kona, she was more like a mother. And she would protect her mother no matter what. 
 
-
-
 "Good." Lady Willow pulled away, eyes shining with tears. "Let us meet with the others."
+
+Sent from my iPhone
+--Apple-Mail-9FA0403B-1C44-4C54-AA0B-9F2061AD61C6
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">As Kona walked through the town, where festivities were still in order for the wedding that was supposed to happen today, she almost felt bad at seeing all the happy people. No one outside of the main families of the five clans knew Astero Elessai was missing.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona had been the one to see him escape down the northern stairway. The way he did it — pricking the guards with a paralysis needle from the Fen clan — suggested he had done this before. It would cause no suspicion, as the guards would be standing there the entire time, and once the effects wore off, they wouldn't even know they had been paralyzed.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">When she reported the news to Lord Ozario, it was the first time she had seen him laugh out loud. He said that Astero Elessai had actually done this before, sneaking into Ozario territory, paralyzing the guards, and climbing down the stairway. Lord Ozario never sent anyone to follow him, as he did not care much for what the Elessai heir was up to, and he would always be back within the day. However, to climb down again the day before his wedding, Lord Ozario wanted to see if Astero Elessai would be back before the day's end, and alas, he was not. He was ecstatic to use this information to acquire the help of Josemi Elessai.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Today would be the day Kona set foot on the ground. Her task was to find Astero Elessai and keep track of him until the time came to bring him back to the sky.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">It was much too crowded in the town, and much too bright. Kona pulled her black hood over her head, trying to remain inconspicuous.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Children ran around the streets, chasing one another and laughing. She looked up and saw an old, decrepit wooden building, where an old woman stood, smiling as she watched over the children.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">This must have been an orphanage, and it actually looked far better than the one Kona had grown up in, far to the west in Sanu clan territory. The Sanu clan had a reputation for spending a minuscule amount of their money on the welfare of their people, despite having so much of it. Kona owed a debt to Lady Willow for rescuing her from that place and taking her to live in the Ozario clan. The only reason she volunteered to be sent to the ground was to help Lady Willow and Lord Ozario get their revenge. She did not hate the other clans as they did, and she did not do it for money. Kona simply wanted to repay their kindness.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Suddenly, Kona heard a thud, followed by a yelp from a high-pitched voice. She turned and saw that a child had bumped into a rich-looking woman, who looked to be around the same age as Kona. The child had fallen to the ground and was staring up at the woman in fear. She just glared at him.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Watch it, brat," she snapped.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The nanny of the orphanage quickly hobbled over. She did not help the child up, and instead, bowed her head to the woman. "My lady, my most sincere apologies."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The woman scoffed. "It will take more than that."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Of course, anything you'd like!" The old nanny's voice was shaky, and Kona saw her hands trembling.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"This child must be punished," declared the woman. "That seems fair, doesn't it?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The two maidservants by her side quickly nodded along, agreeing with her.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The little boy on the ground instantly burst into tears, his entire body shaking from the racking sobs. However, the woman showed no compassion.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What do you think your punishment should be, hm?" she asked mockingly.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona felt her blood boil, and she clenched her fists in rage. She needed to remain inconspicuous, but this woman was too cruel for Kona to just sit back and watch. Kona had been just like him, an orphan pushed around by people with power.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Steeling herself, Kona walked over there with her head held high. She was stronger now. She did not fear people like her. Not anymore.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona crouched down and held the boy in her arms. "Are you all right?" she asked.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He gazed at her with teary eyes, lips trembling.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Excuse me," interjected the woman, sounding annoyed. "Who are you?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona looked up at her. The woman was beautiful, with long brown hair and stormy gray eyes. The sharp angles of her face gave her an intimidating aura. The dark blue dress she wore looked expensive and intricately crafted, giving Kona the impression that this woman was powerful indeed.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She stood up and faced her. Kona was shorter, and she cursed her unfortunate genes. "Kona," she answered. "And you?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The woman raised her eyebrows in surprise. "You don't know me?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Apologies, I'm not from here. I came for the wedding."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Strangely enough, at the mention of the wedding, the woman's expression cracked every so slightly. "Ah," she said, laughing awkwardly, "of course. The wedding."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"...yes, the wedding."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The woman composed herself and regained her ice-cold expression. "It doesn't matter. Out of the way. The boy must be punished."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"For what, exactly?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Injuring me."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona scanned the clearly unhurt woman. "Injured where?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Does it matter?" she snapped. "The point is, he almost did. Isn't that enough?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona was flabbergasted. "Are you serious?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Why wouldn't I be?" replied the woman, equally taken aback. "If I actually had gotten hurt, he would be sent to the ground."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It was an accident. Are you always this heartless?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">A flash of rage appeared on the woman's face, and Kona thought for a moment, she would have to physically defend herself. However, the old nanny intercepted. "My lady, please have mercy," she begged, putting her hands together to show sincerity. "The boy will be disciplined, I assure you."</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The woman thought for a moment before saying, "Very well then. Since today is a special day, I will show mercy just this once."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Thank you," cried the old nanny. "I wish you everlasting happiness in your marriage, my lady."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The woman smiled tersely and did not reply.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The old nanny bent down and ushered the boy to his feet, and the two of them hurried inside the orphanage before any more harm could be done, leaving Kona with the woman who she now realized was Melody Dorina.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Well?" She made a 'shoo' gesture with her hand. "Scram."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona scowled, but she did step out of Melody Dorina's way. As she and her maidservants walked past, Kona couldn't resist muttering, "I see why the groom ran away."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Melody Dorina whirled around so fast, Kona nearly got dizzy herself. "<span style="font-style: italic;">Excuse me?</span>"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona knew she shouldn't have drawn attention to herself, but the fearful eyes of the little boy — eyes that reminded her so much of herself — kept haunting her mind.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You heard me," she replied, making herself appear fearless and unmovable.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Melody Dorina's eyes narrowed. "Are you trying to prove something? Because this is pointless."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">It most likely was. What was Kona trying to accomplish by angering Young Lady Dorina? She undoubtedly did not regret scaring the poor boy, and Kona knew nothing she said would change her attitude. Dejected, Kona bowed her head and did not say a word.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">However, Melody Dorina slowly walked closer to her with a scrutinizing gaze. She hissed, "How did you know?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her striking gray eyes caught Kona off guard, and she almost didn't hear what Melody Dorina said. "Know what?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"That Astero is gone!"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Right. No one outside the main families of the clans were supposed to know. Kona scolded herself for being careless, and she replied, "There are rumors, that's all."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Melody Dorina glared. "People have been talking behind my back?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You cannot stop the people from gossiping, Young Lady Dorina."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona heard her take in a huge breath, as if she were trying to calm herself down. Her hands were clenched into fists at her sides. "Let me tell you something," she said, her voice quiet and deadly. "Astero was kidnapped by the south. If I hear someone say he ran away, I will have them punished. Understood?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"But what if that's the truth?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"It's not!" she cried, baring pearly white teeth against red lips. "He wouldn't do that!"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"If you say so," replied Kona, shrugging.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Melody Dorina gazed at her suspiciously. "What was your name again?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kona."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What clan are you from?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Ozario."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I will speak with your leader. I want you punished immediately."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What for?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Suggesting that my own husband ran away from me!"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"He's not your husband." Kona smiled slightly, making her own expression one of pity. "I don't think he wants to be."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"How dare you!" she shrieked, stepping closer to Kona, so close she could feel Melody Dorina's breath on her cheeks. "Who are you to assume what Astero wants?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona, feeling satisfied that she managed to get under the other girl's skin, said, "I just know that if I were engaged to you, I'd rather go to the ground."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"<span style="font-style: italic;">That can be arranged</span>," said Melody Dorina through gritted teeth.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Oh, <span style="font-style: italic;">there</span> you are!" exclaimed a cheerful voice.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Both Kona and Melody Dorina turned to see Lady Willow sauntering up to them, smiling brightly. Her sundress was bright pink, with clear jewels that twinkled in the sunlight. She looked amused.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Willow stood beside Kona and bowed her head in acknowledgement to Melody Dorina. "Young Lady Dorina, a pleasure."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Melody Dorina looked annoyed. "I'm sorry, who are you?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Kona's guardian," she replied easily. "I apologize for any issues she has caused."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She insulted me!"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She is young," said Lady Willow, smiling insincerely. "I trust you will not let such insults get to you, as merciful and mature as you are."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Melody Dorina's face turned red, either with embarrassment or anger, Kona didn't know.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'm afraid we must take our leave." Lady Willow took a hold of Kona's wrist and quickly left Melody Dorina standing there with her two maidservants, looking stunned.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'm barely younger than her," muttered Kona.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"And equally immature," replied Lady Willow, rolling her eyes. "You're the last one we're waiting on, you know."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'm sorry, Lady Willow." Kona didn't mean to cause her trouble.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Willow sighed. "What's done is done." She glanced at Kona with worry. "I just hope you're ready."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Kona nodded with determination. "I won't fail you, nor Lord Ozario."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Be careful." Lady Willow stopped walking and took Kona into her arms, embracing her tightly. "I don't want to lose another little sister."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">All Kona knew of Rosella Ozario was that she was cruelly sent to the ground fifteen years ago. She did not know why, as Lord Ozario and Lady Willow never spoke of it around her. Kona hugged her back, almost tearing up at the fact that Lady Willow was now shorter than her.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I will be careful," Kona replied. She would do everything in her power to find Astero Elessai. And she would do everything in her power to bring down the other clans. Lady Willow thought of her as a little sister, but to Kona, she was more like a mother. And she would protect her mother no matter what.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Good." Lady Willow pulled away, eyes shining with tears. "Let us meet with the others."</p><br><div dir="ltr">Sent from my iPhone</div></body></html>
+--Apple-Mail-9FA0403B-1C44-4C54-AA0B-9F2061AD61C6--

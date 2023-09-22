@@ -1,145 +1,211 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:7110:5583:b0:193:426e:808a with SMTP id g3csp1653111gei;
+        Sat, 3 Sep 2022 06:47:14 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR7WZCzo1wXMY6bOpA/rTrHQRDwMcC8RONP7u3j9BcvaNkOiyn1R++39jOIRU7A5iFlr4IVd
+X-Received: by 2002:ac8:5dcf:0:b0:343:7ded:7b with SMTP id e15-20020ac85dcf000000b003437ded007bmr32187299qtx.492.1662212833936;
+        Sat, 03 Sep 2022 06:47:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=62212833; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xViB51EgF1M4ICkS4iWuvu0Bt+mCyV+RFA5tb/Xa/sn3LLOsZWLxWDTSjgi+3TqtAX
+         udDzmmpqUECAXXYYR7RI6pNiHCC+N574El+fdPiv8+KMk5pfdgk4J5YSRWfl/aQ2TZI2
+         DiplhLjRVqVmrWzCJjKEHJNP+7YurUewJle/qgxA0xMtchPeYPi9mnwMPzVLCZVllbxO
+         O4xnwYOIjmzfot6DHxdAZLx+bvHtRbfMd6D18bs2eymthMBRtD5HgNvSZRHeT8Vjox5K
+         nmcJptyOkmzwCBiail/o0hIoJMIgHOw0B4+qiXaeGKZmJ+cdkobq1omAK9istLfOp/4X
+         8b7w=ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=9IR5llhrsvF1qIUXmDDLDeFATT3RPGD7dZLwBVrddKw=;
+        b=g8woUpZpByjowSrCSDKykForQeq7D1Ed64sqrtiqAPyGDJapzLEolH9C+tCQEbLzIK
+         NBK5Z9pEIWjqkUOPwjxaRN+r37oUjGB0S+UjHTBLXJANakReOP6l47lHECKad9ba1vAg
+         Kcd8YE04EVNBn9tVfv25mKZLLcp9WL7KpYci2XgGBWGFOuDO7e6ksFY4PSWv7AarIE4A
+         zgqYJen0WYS7dNaVtIi7wm3lJNKBOgjW8FTffOGi2YFdh9kImGeYJDK4jK9hg9U84cmi
+         zd01m/dFa/W79SQHlOJRnnl4L66L4JPWhzflI38xa1OhDHLsi7rOdI/3Rzdp1HV5yUiC
+         22AQ=ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Ll2dURTe;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.188.204 as permitted sender) smtp.mailfrom�rissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic311-23.consmr.mail.ne1.yahoo.com (sonic311-23.consmr.mail.ne1.yahoo.com. [66.163.188.204])
+        by mx.google.com with ESMTPS id bz17-20020a05622a1e9100b0034456253e39si2712436qtb.441.2022.09.03.06.47.13
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=8/128);
+        Sat, 03 Sep 2022 06:47:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.188.204 as permitted sender) client-ipf.163.188.204;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Ll2dURTe;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.188.204 as permitted sender) smtp.mailfrom�rissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=62212833; bh=9IR5llhrsvF1qIUXmDDLDeFATT3RPGD7dZLwBVrddKw=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=Ll2dURTeZ9HzOUbRi+bFDOuXMxYr4TjUKPkaSDlM5ZAYDByvf5XKjwPSP8DGwVlhSqnJXD/yFOgjrOTg6An69GAaCqP+QAZEbn8cEcc5cHwU8LYs7bSl3+RzQqr1aGm1yQiXQQBj9RxbzxF5n8arwyhY9uUj1gcyQ4eddQfzLu44kXdCxcJXngg2CZJzaycesuIJAfr1jcEviMFAootPnVSaKR9Z+YoshwO9tZdjs/yVW1rShXURmSvjim0rEet0TGY8WdphfQCj2jb+QMz7NvYJaFUM30TSU/B4B62iaZEz3N6shVmib3Z+ntgpQKfj0mFZU7ErhQoUSpTL+h+XKw=X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=62212833; bh=cLqX0V4cQbRxA3J8skZMM+EwTK8EEvnxXvXJ+m9oXMb=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=ZtwtX1itWT0SxddtgbBrL1vw93tb1PnXryFxf6Uxq3uN7xRjLN8QkNx4LMdKslwSc8XILOrj563UACPsyMIO8owvO/HnqHxQv++oZrRdh6qsRu/UAnSpZsJMTypRu93GeyyubjDfQAWPkMjyzpSctAsJhh0PsCjRDkYA3Joc+EhI3Xu5TAtsmlLXQQ5fXehidCAxkj7LC4Jc7j5j0RTPXTw7YXRKzUsIYaJv+FD7lXyTTPl894zP3gXsjqQqt1ooI9dGG/MT61C2KhfzMCSPiE5GZrIKGdvps6dS0BTbyDiGR3yORmHhqYDl9c41QcWdUhzFE+tpzd7NjEYLk8QhSw=X-YMail-OSG: eH1cstAVM1nzgqsjMghv81jPsB7ArzMab5LJPkd6ZsfmwokGhHtOV.mfwQe4wGz gOPY7IB5cFpKEsedou6lg98VSU3QqON_ErRxj_NU4qISxklId5uyRloA_QD094ocFeWHQmAq261O abqu555P.xJwjpuUwRGe.XvOaxgSzq.dWdktJjB0GfqQYctBsrxcG_CqCtJli9oDV_pM0_TQ99Nn sNzwUtSFvCdCXdQZ1zEGO6b5V1Y_Q3QZ_UlphGebqJ4pcNiulEf9SgLhTS_gnAD1DLmUQlXtJzmO UNxO6lQcnsKyx3ychW0Bs0taPXziWb3jvoQowDoOX1uUwYx9JOl8YKHWct8oHSq7U5COWI4Kqf7X 0t891VWoaolaYbF5sCjXc_vuT32txNNvhGww1WVUlNW1ZKkpdOWD9A0hceuDcdkBAIQ5ouq7LkoY WlZvUcAiBbdS24Ny6mQzpuYV9Ksjjdyjvl2rrG.l53_v3SqaijCsDngjv_hvSfDxnm7s53BDu17D tZeeKa4OLAvBA2OHQDP_NGOLkoBe96NoILoktQl_uLc_rDjXXkwg._EUblSst5VnCU5P3q_Orxow CuyhUVdcmNyCTlwyma3400icl035O8y.idrQyovvejd9fVE9w.UiYOHYT10J4SBdnmIzqAo0AMhD LX8xMRg9GiWYWldqioVO3yYZ0v1JBZFudlONQ92JfjVo3O8dug3fTMjHO_EfOqIZW8ANzGDVpivD f60Uax7Jwd2ZQgJgetwVICUzDxdkm1gEa39TkFfo6BxTDlSGWuCMPPeicplLEZBwX4lTbgcDz7tU 1ApwjPnhdFTcrCm6L931_0n5vI9msu2cAKmlYG0LTTvjvsvHCRxg6VlUssehseLUP9RmF8M4ruF4 xtJr3geCOg.vOyA4Z3dIL_rei9DPTLdwP1rWe3GuICLBQ6JF3ddulq_yCt1g7gmMUP0RrNa_TGxm .AM44QUlBu6C8JirI8WGHhirBvjbPjsLd46vsvtRYMlhqYwC4USWoc1iDdI3ZC5jm_jX2_WpkTvT XRXrjtoEUfE7wOtFFWN.KQdbacKtlIag0l7MqJR3HNnfBKp21IHhtPF0Ca.lSSpLbjNkDr2SaHjV wjI3ZAqg2Ou7uzMFHfBnA1fjqef3yWMyrW5ESROGwNIF1.GoNXdGXoGWecsKdfUQC_1uarMlH0Aq I0aJnJFjU8zjmTWhf1SYEHyuzNW1oBnqLlfoKrGfb6awezS8LSrvFrB_FKASx_ZGljxToGffcgsF YxPj.fqxkX_WeAExPIixOeqgKxgeqchAPfmRHACGaR7EZNHoLxY7C.wdbadRthmQiXuGckvPEEOK 0FKZz_bpjyRfWicdmcFO4yucyV5nINvXictN74QGzC9deA4YwmcIX84mVvY8JpGrRPyfBN_.kb3A 64iXfb5Od6.5jI6aJDKsof5uJHq9LdEKG4PLVTwE_fkwTCoOSkFjGhCat5onWnImeFGJW9X6lSYa 3yZnjT2zecyZW8hm0rux8VO3AvJDEkcsMY8R5EYY7e3iyHoKf5.8xV0IwabyIW5pBRakJQ_nypV4 TB0RJ_gmiuROt_Uayx3WLeiRc7vHqytwthh9PuQ_eRjf0av_NFti9A5kajlWaQ58nxz_t9UwKrJ6 cTk1qMNlbyHtatM3Wqto.L1.f8SK3wWNUiXA12FUBmTelLOuCR_VJfI3xJCJvtvLW.HJLhvaIbdN uO7F_X5S_Fv_.fxuxunIVlo5pY8AzvwgEPLDDF31LsE6HBfGovlbdvDG4aI46nVA0BYJpFstfJM2 HMaoStfAHPSoaQmM1hCS.gdCZ3o8qLhO3PeBAsS_V5Z1wjpkUXamofAvNeNqHkkwqd76ExFIDC_A xgqvhK0ZhcLQOQHNwiIBxJIrOZ205UVv.q98a6_32r0QrhuUTVHRt9Q8BSYlB3_DGporGl15VQxo vtjEXNDDHQGUOkDDdHNAqpHBktsiXrwNqWc8RdI1hC5Ys4EU4JUXOd6eWTNKLF9lz3BU8qrQXCNJ A65WJQBgIbl6.Vqk2cy6KnpGj37b8LneFL3vx_1hUAQfS64dV1M0v1Rsgb3z5bxCRvdwi7hfRQPC bvQZBtekKDwKFoxxa5MRYrNnBDurjbyrMmbKJMRCDv8V2A5oehfMJ.fc62JYMY51e1FzODVuSwzE 5K_7WG1EloF9UoAOp48PGS1sr5iBVLpTmbyRfLgWKvbbPXszyYHekwU90v8gZMJeMS3zSD84g1Tv 43hdIsAyRnbZ1udaYKr_DUSSPAOZFToGFTWp6Fz.XHRXqEaGntLnYdfiuAzfu
+X-Sonic-MF: <carissa71555@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic311.consmr.mail.ne1.yahoo.com with HTTP; Sat, 3 Sep 2022 13:47:13 +0000
+Received: by hermes--production-ne1-544744cc75-b9lqz (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 2356139097b7e3578fc9cf94570c809c;
+          Sat, 03 Sep 2022 13:47:12 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-5383E5B6-30AC-4753-9A4F-E6F3EA85014D
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Sat, 3 Sep 2022 06:47:11 -0700
+Subject: Chapter 17
+Message-Id: <E27FB22A-1559-4F67-B2C0-CDF1CC67D6DB@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (19G82)
+References: <E27FB22A-1559-4F67-B2C0-CDF1CC67D6DB.ref@yahoo.com>
+Content-Length: 26551
+
+--Apple-Mail-5383E5B6-30AC-4753-9A4F-E6F3EA85014D
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
 Several days had passed since Astero and Rosella went on their first job together. Since then, he made sure to accompany her to any job she had, helping her as much as he could. Rosella had insisted on giving him some of the profits, but he always refused, stating that he simply wanted to help. 
-
-
 
 The truth was, Astero was more tired than he had ever been in his whole life. Rosella worked every day, usually from morning until evening. Back home, the servants would prepare his meals, clean his chambers, and wash his clothes, among many other things. All he had to do was attend his lessons on mathematics, literature, music, art, history, and politics for the first part of the day, and then he could do whatever he wanted. Since arriving in the sky, Astero never had to work. That was just another thing he was indebted to Rosella for. 
 
-
-
 It had actually gotten to the point where, this morning, he had woken up with a fever. 
-
-
 
 "Oh, you poor thing," cooed Rosella, wiping his forehead with washcloth. "It must have been all the heat and working out in the sun all day." 
 
-
-
 Astero just lay there, too tired to speak. His own breath rushed in his ears, and his entire body felt plastered in place. How pathetic he was to have to be taken care of like a child. 
-
-
 
 "I'll get you some food," Rosella said softly, standing up to leave. 
 
-
-
 "I'm sorry," he mumbled, shutting his eyes. He hated how utterly helpless he was. 
-
-
 
 Rosella laughed lightly. "Sorry again?" 
 
-
-
 He nodded weakly. 
-
-
 
 She sighed, placing a cooling hand against his forehead. "Don't push yourself. You're not used to exerting yourself this much." 
 
-
-
 Astero only hummed in response. 
-
-
 
 "I'll be back. Just rest." Then Rosella left the room. 
 
-
-
 The two of them were supposed to go on another job today. Some rich men from the next town over were visiting to discuss renovations for the village in the banquet hall, and he and Rosella, along with a few others, were hired to serve them food and attend to their needs. However, at the moment, Astero could barely attend to his own needs, much less the needs of others. 
-
-
 
 He had come down to the ground with the sole purpose of repaying his debt to Rosella. And yet, besides accompanying her on jobs, Astero had done nothing for her. She was still working as much as ever, still cooking and cleaning for Jayda, still looking after him during his useless moments. Perhaps his efforts were futile. 
 
-
-
 Rosella came back in with a bowl of steaming hot soup, and hated himself even more. How dare he trouble her like this. 
-
-
 
 "Why do you look so disgusted?" asked Rosella jokingly. "I promise you, Jayda didn't make it." 
 
-
-
 He shook his head and sighed. "I'm pathetic." 
-
-
 
 "Have you never gotten sick before?" she asked incredulously. 
 
-
-
 "Probably, but it never felt this bad." 
-
-
 
 "Well, when one is sick, it's normal for someone else to take care of them." Rosella kneeled down beside his mat on the floor and set down the bowl. "So stop worrying, please." 
 
-
-
 After a few spoonfuls of soup, fed to him like a child by Rosella, Astero felt himself drift in and out of consciousness. 
-
-
 
 He woke up groggily, unaware of how much time had passed. Astero looked around the room before realizing Rosella was no longer by his bedside. He sat up with a start, panic setting in. How long had he slept? Did she really leave for the job without him? How could he just lay there in bed while she was out working hard and simultaneously caring for him? He might as well just go back to the sky at that point and marry Melody as punishment. 
 
-
-
 The very thought scared him so much he nearly felt sick again. He cursed his own cowardice. 
-
-
 
 The door slowly opened, and Rosella peeked in. Seeing that he was awake, she exclaimed, "Oh, you look better!" 
 
-
-
 Astero sighed with relief. "You're here." 
-
-
 
 "Of course I am." She kneeled by his side and placed the back of her hand against his forehead. "Still a bit warm," Rosella said, concerned. "Are you comfortable?" 
 
-
-
 He hesitated. The truth was, his back ached from discomfort. He had been struggling to sleep at night, and whenever he woke up in the morning, his shoulders and back nearly destroyed him. 
-
-
 
 Rosella must have seen the hesitation in his features because her expression grew increasingly worried. "You aren't." Then, her face suddenly lit up, her eyes sparkling. "You can rest in my bed instead!" 
 
-
-
 That was the last thing he wanted. If he stayed in her bed, she would be the one sleeping on the hard floor, and Astero would rather sleep on the floor forever than have her suffer this way. He shook his head fiercely. "No, I'm fine here." 
-
-
 
 "You're clearly not," she pointed out, unamused. "I'm going out anyway. You need to be in bed all day, so you might as well stay in mine." 
 
-
-
 So she was still going to the job without him. He couldn't just tell her not to go. That was how she had been making a living all these years. Besides, he could barely move at the moment. He was no use to her. 
-
-
 
 However, he still refused to stay in her bed, insisting that he did not want infect her room. She had just rolled her eyes but did not argue. After making sure he had enough food and water by his bedside, Rosella left the house, leaving Astero lying in his bed, feeling worse than ever. 
 
-
-
 Ever since he visited the Fen clan with his mother when he was just fifteen years old, Astero had been using their signature paralysis needles to descend the stairway time and time again. He would tell his parents he was leaving on a trip somewhere, and then he'd go to the ground in search of Rosella. He visited many towns and many villages, wandering around for years and years. He had stumbled upon places Rosella had actually stayed, where the people had known her. Most of them said crude things about her, but Astero paid them no mind. His only goal was to find her, and all his searching had not been futile. A few days before his wedding, Astero had received information that she was living in a village in the north called Onen, quite a ways away from the northern stairway, but not too far that he couldn't reach it within a few hours. The day before his wedding, he decided to set out and find her once and for all. Astero knew it would cause a commotion, but he couldn't find it in himself to care. And when he found her, all he wanted was to repay her for giving him the life he had dreamed of. 
-
-
 
 He had wondered what he would say to her the moment he found her. Astero had been apologizing profusely, and Rosella found it amusing, but she always believed he apologized for the littlest things. She didn't know what he had truly done. No amount of apologizing could be enough. 
 
-
-
 Twenty-three years of living, and most of it was spent in the sky thanks to her. He would probably have forgotten what life was like on the ground if he hadn't been imagining Rosella experiencing it for fifteen years. It haunted his dreams, clawing away at his mind. The guilt weighed on his shoulders, constantly reminding Astero that he was a horrible, horrible person. 
-
-
 
 For now, all he could do was give her anything he had. But if she asked, and if he could, he would give her the world. 
 
-
-
 If anything bad happened to her, he could not help but think that it would be all his fault.
+
+Sent from my iPhone
+--Apple-Mail-5383E5B6-30AC-4753-9A4F-E6F3EA85014D
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Several days had passed since Astero and Rosella went on their first job together. Since then, he made sure to accompany her to any job she had, helping her as much as he could. Rosella had insisted on giving him some of the profits, but he always refused, stating that he simply wanted to help.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The truth was, Astero was more tired than he had ever been in his whole life. Rosella worked every day, usually from morning until evening. Back home, the servants would prepare his meals, clean his chambers, and wash his clothes, among many other things. All he had to do was attend his lessons on mathematics, literature, music, art, history, and politics for the first part of the day, and then he could do whatever he wanted. Since arriving in the sky, Astero never had to work. That was just another thing he was indebted to Rosella for.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">It had actually gotten to the point where, this morning, he had woken up with a fever.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Oh, you poor thing," cooed Rosella, wiping his forehead with washcloth. "It must have been all the heat and working out in the sun all day."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero just lay there, too tired to speak. His own breath rushed in his ears, and his entire body felt plastered in place. How pathetic he was to have to be taken care of like a child.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'll get you some food," Rosella said softly, standing up to leave.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'm sorry," he mumbled, shutting his eyes. He hated how utterly helpless he was.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella laughed lightly. "Sorry again?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He nodded weakly.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She sighed, placing a cooling hand against his forehead. "Don't push yourself. You're not used to exerting yourself this much."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero only hummed in response.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I'll be back. Just rest." Then Rosella left the room.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The two of them were supposed to go on another job today. Some rich men from the next town over were visiting to discuss renovations for the village in the banquet hall, and he and Rosella, along with a few others, were hired to serve them food and attend to their needs. However, at the moment, Astero could barely attend to his own needs, much less the needs of others.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He had come down to the ground with the sole purpose of repaying his debt to Rosella. And yet, besides accompanying her on jobs, Astero had done nothing for her. She was still working as much as ever, still cooking and cleaning for Jayda, still looking after him during his useless moments. Perhaps his efforts were futile.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella came back in with a bowl of steaming hot soup, and hated himself even more. How dare he trouble her like this.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Why do you look so disgusted?" asked Rosella jokingly. "I promise you, Jayda didn't make it."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He shook his head and sighed. "I'm pathetic."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Have you never gotten sick before?" she asked incredulously.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Probably, but it never felt this bad."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Well, when one is sick, it's normal for someone else to take care of them." Rosella kneeled down beside his mat on the floor and set down the bowl. "So stop worrying, please."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">After a few spoonfuls of soup, fed to him like a child by Rosella, Astero felt himself drift in and out of consciousness.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He woke up groggily, unaware of how much time had passed. Astero looked around the room before realizing Rosella was no longer by his bedside. He sat up with a start, panic setting in. How long had he slept? Did she really leave for the job without him? How could he just lay there in bed while she was out working hard and simultaneously caring for him? He might as well just go back to the sky at that point and marry Melody as punishment.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The very thought scared him so much he nearly felt sick again. He cursed his own cowardice.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The door slowly opened, and Rosella peeked in. Seeing that he was awake, she exclaimed, "Oh, you look better!"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Astero sighed with relief. "You're here."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Of course I am." She kneeled by his side and placed the back of her hand against his forehead. "Still a bit warm," Rosella said, concerned. "Are you comfortable?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He hesitated. The truth was, his back ached from discomfort. He had been struggling to sleep at night, and whenever he woke up in the morning, his shoulders and back nearly destroyed him.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Rosella must have seen the hesitation in his features because her expression grew increasingly worried. "You aren't." Then, her face suddenly lit up, her eyes sparkling. "You can rest in my bed instead!"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">That was the last thing he wanted. If he stayed in her bed, she would be the one sleeping on the hard floor, and Astero would rather sleep on the floor forever than have her suffer this way. He shook his head fiercely. "No, I'm fine here."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"You're clearly not," she pointed out, unamused. "I'm going out anyway. You need to be in bed all day, so you might as well stay in mine."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">So she was still going to the job without him. He couldn't just tell her not to go. That was how she had been making a living all these years. Besides, he could barely move at the moment. He was no use to her.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">However, he still refused to stay in her bed, insisting that he did not want infect her room. She had just rolled her eyes but did not argue. After making sure he had enough food and water by his bedside, Rosella left the house, leaving Astero lying in his bed, feeling worse than ever.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Ever since he visited the Fen clan with his mother when he was just fifteen years old, Astero had been using their signature paralysis needles to descend the stairway time and time again. He would tell his parents he was leaving on a trip somewhere, and then he'd go to the ground in search of Rosella. He visited many towns and many villages, wandering around for years and years. He had stumbled upon places Rosella had actually stayed, where the people had known her. Most of them said crude things about her, but Astero paid them no mind. His only goal was to find her, and all his searching had not been futile. A few days before his wedding, Astero had received information that she was living in a village in the north called Onen, quite a ways away from the northern stairway, but not too far that he couldn't reach it within a few hours. The day before his wedding, he decided to set out and find her once and for all. Astero knew it would cause a commotion, but he couldn't find it in himself to care. And when he found her, all he wanted was to repay her for giving him the life he had dreamed of.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">He had wondered what he would say to her the moment he found her. Astero had been apologizing profusely, and Rosella found it amusing, but she always believed he apologized for the littlest things. She didn't know what he had truly done. No amount of apologizing could be enough.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Twenty-three years of living, and most of it was spent in the sky thanks to her. He would probably have forgotten what life was like on the ground if he hadn't been imagining Rosella experiencing it for fifteen years. It haunted his dreams, clawing away at his mind. The guilt weighed on his shoulders, constantly reminding Astero that he was a horrible, horrible person.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">For now, all he could do was give her anything he had. But if she asked, and if he could, he would give her the world.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">If anything bad happened to her, he could not help but think that it would be all his fault.</p><br><div dir="ltr">Sent from my iPhone</div></body></html>
+--Apple-Mail-5383E5B6-30AC-4753-9A4F-E6F3EA85014D--

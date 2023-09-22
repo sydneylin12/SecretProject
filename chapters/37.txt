@@ -1,265 +1,331 @@
+Delivered-To: sydney.lin12@gmail.com
+Received: by 2002:a05:6504:1481:b0:228:cc3d:d7a5 with SMTP id m1csp374630lto;
+        Tue, 2 May 2023 21:04:35 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6UHoRU3LufKY+tiL2q9l6IRpGuNL2yYbJpn068wDMUhRZXu9UTxFTkI5VKuD5KOda720lA
+X-Received: by 2002:a05:622a:1748:b0:3e4:e8be:c3a4 with SMTP id l8-20020a05622a174800b003e4e8bec3a4mr32619244qtk.56.1683086675182;
+        Tue, 02 May 2023 21:04:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=83086675; cv=none;
+        d=google.com; s=arc-20160816;
+        b=M7tEVHDabBkZYDZBUYss6igWUBKdkM5d13JqxSxHLzmIj4X2UmEPjLLjhH4pTInKki
+         Yn6aSwua8JkiunBxAXyyDv5GVnU7f23lTNaEUcx+/u+RTtfLUWVuvo6N7dTnXaUIEkHx
+         LKU0/OqokUa3tTlpdlKLXguNzAjWplRkXOFfFlt6Gy8H+CijiGGNBRJSKXe0HydqdRrM
+         XYP5WCmHOVsScT5f73O5UUA9JpD4MGjlRG2KAGCqdyJV4KA0qadPc0+13eB7XvE2coB8
+         xvjaEoaUcDUxZRM6Zwirsp5vMkJqtDLqCRLrCbno647u95rf+wjbuHIbD2ovpuu9SMke
+         UsVQ=ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=BLz39LeKbORzh7U+ii2qiCUCnH04S+m4LJhM9w0kkXQ=;
+        b=gb2COpLp+ryHKqsAjU4kuQ8J9UnbJCqpXoBK+jDhKDjUZsdv65GICGoSibUzKKagtI
+         5odFPUIJvQDIHKpfJXfCOD6kTFTdnNDDtkOsxp146NEmNfJWc/mjIzfyksrIy6dazeKi
+         VN7On8ceQuCTuesmRKGXzSDBK6znlZ452V90mmbWwP8Dxef4S8w/XzNzzXM9q59M03dh
+         t0JqgOCrAxuzsV7aLm/MtukpApXkthwbmOz4b1QQMeIVTuey43otAy3+woR4eK/Vp/sW
+         l5J5UezAO+LwNfxSOVe1IgjeHixoDvkMqU4jWaRqu+MvU0BS7xBIZinFiZ0p26yQuXnK
+         JhkA=ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=UgOl7xgR;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.84 as permitted sender) smtp.mailfrom�rissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <carissa71555@yahoo.com>
+Received: from sonic306-22.consmr.mail.ne1.yahoo.com (sonic306-22.consmr.mail.ne1.yahoo.com. [66.163.189.84])
+        by mx.google.com with ESMTPS id bk18-20020a05620a1a1200b0074dfdfc929bsi18052961qkb.543.2023.05.02.21.04.34
+        for <sydney.lin12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=8/128);
+        Tue, 02 May 2023 21:04:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.84 as permitted sender) client-ipf.163.189.84;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=UgOl7xgR;
+       spf=pass (google.com: domain of carissa71555@yahoo.com designates 66.163.189.84 as permitted sender) smtp.mailfrom�rissa71555@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=83086674; bh=BLz39LeKbORzh7U+ii2qiCUCnH04S+m4LJhM9w0kkXQ=; h=From:Date:Subject:To:References:From:Subject:Reply-To; b=UgOl7xgRH3RbYh4jW2OS0/noSQ2uuDVw+ZWKfCL/jtTYcdy0Mef+7p3DHl4vtwIBdThX1XtWmTtAf0zgKPJunCy82lta6CCBcVTXVS5GQW917wO0IihYEKVS5rBOylHejjg23gUOGJGvdHEUK/+IOvkkZ6LbB2nKi1bEfrxVozrolH0RTiIYOc9xjHNNHtZtJKcHB2H/6K2vGPvGzcxKLVMrjSoflhVmbzXRtbly40TwePwIglfzG4XqF6fW0ZrLms3OcPXdlcadpzufsy6kzv47+jPSgswPmCBtK2P5NCwlJgoFqRmPv0bqqT6z80wU96BuRPl0guP5JMpGkPizHg=X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=83086674; bh=SqcPCwQIzFTs+Q6I9SJ5aKpF/pR2xSnaGs2BJonlvVP=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=kvuY2U8ld59nNOVq7T7KbZ7TzVpWKjtvcCIGYEtSObEMRi8hwcAOoIgGixqGkC1VqvtOfnt/WEkRVWJKNKDcWCx3fjCjFOXUs5Qu8hN+3n+MQynVV5ozQh3F9nH4RsrAbzAA08y0rugFU0Cm6JMgi+erFlE/2w1DdVxfL2L6hft9p3ygF54SratlTY/DKcn7Hc/QbX5ZyMbQtMatcbfOzK2fklJ+B/TqjeCcJmN3Jf1bChwLxcsZZ606AN5FwdUPcYU5EWo7/OMyHLW199sLzhLibm4n1N8zJOQv8nZZ05Ssgvor7x3dMeK1srM+iKZGQPYyDZvazkmsH1pz+fD+Dg=X-YMail-OSG: uCFRKHAVM1kEg.nhVHJjS.jxYCSL_bhjr4TcROmgc5qEPg4Xqo8xtY0BLihf7Ty 7lYRZQfKvm52ytbjDE2_oqsxJrK.jljLW215LhklKaArtBjalwTlmMIC8XceQVzP8tpn5Gf5cbSL F5fRhn7OMkWx1GpFNsdEIZa.iXhgiprJByuEDv9IXTYiaFqg0LXyp2SFBv7XkeUo.KIroaUkPXU2 .fCGhkkT8qcIra7jvDgy50deMdT1Y8GHWXcpUUrDZu3oWRXuuNarG9QejZ1fgyFTTsWLKbA1_UZF pqY.214381qvAJsRvQpuUmZm2my1Ykzzf39ayPbTovIM6phwD_d9Dd3zDUe2Hu4Jl4elDj0T5kCa 0Br8osDJU0fT3y8Kb4C5M3wNgUiA5y52MMrwUcTLjJrN5J36fW.ILvMVP3C1.BgJNIndbiLC269y ZqoxUeUS03QDNcX85kfwHQkqh45D6Py8CIzA06hFjj7PtM1G32msWgL3aq_g_gI1VArvI6D7qsy2 sUsmD0TJsHp7tjiMu3yioQuRjEC9Nj2ebW1THam.StZzWn961BLoCXTstHc8.17L2V2sP_4SLNdz EkT7Y5h0zTLNIIlo7TK3aKO.zswjVYAQtW_uccrPvJAqYbgJfs669HliEXWxxUa_wZcIAeNac8_1 v72pQIHfG4edV7.1jkM9HGwFqkIBb1AWEQvtGlFBCPMIFRiNyvPNaTAyX3JR9B.0_w2meKkCOwRd ENnPSyTM5ixY8WRJGs.H21Z0caKCqHu6OcUL2Wv1.uB12N8wi3_rnGHG3LMWF3icMF._DXIPaDh7 wcilnK.SmepC0zO1v4UCrTJUQ3buaXBOCGApa_7TWQWPGvDLwAw22Nk3hW8GRU25Z4Y.El8T9t6U Le8laO_N_e8G.Qj8Dhk_jC.fifjAWXhAL78C9SIGLb23bKxtUJQkNYpBF4krdG2vmtw6VWEg58mr SaJoQ2jB8_Tqv5DkqjYJ39cp7pcENM8EFRbi8DZ7Zfhy.MYBUl.MG4VQrmmL7r2sOBPtpgZSPitC e8MGQmNd4sE8WPfZKku2ac_DIWZKHr6qR.k6RXoPUS23y6l1DAPoUBbYvdLtNCEzVFyRCoEpqokZ UzK1o3arB.5bBmXA11QPqOA61T713shuZGkY9KfKrPD8AJMrHrKuA1RsDBn_ITDsO8DaJginBct6 L4jM8tDnrIhQx9M73.G5ysra8EaBUNF7uZkbhWfxvgk5u0gqsSUEyARNSv8ixyWCibHWTAKhzYf. 9FUEW.gr14WqwrZJ_0k06P.5Ny48v4hDGdDdrqOJVaZ8L.KNkD_SzW7VjtE62M5X1xvb1dbFL0k6 Upcwr16pi9sJXBWcTAe7j4kV8hnlEgUYP.nyodwR5Lhg1rgRWfZI1W2IsYi.qGw8d4jfKmCnmLxW NksCdKAmUFnxCkqsuioQHXs_bSi9HFOM7qbkDsO3SlKGRuTxZ6dhyhCaxe3tth8XaDleckaXdt.q oHkgug6636UrevRTxfst1ANlffhro34MjnHHuUJrh3yUn79NMuCGx6drmhuNJCyENCXa82VTATqm nLrbZMIH.q70pB4b1NPmAfIy0Kl6Gi2styPGbN.F2dEuz0GfaYCpqH0MI2QGc5NAMwhDVMp.IYIG ds60E7NkWwaTPV6zbpPbelgNnJC__kjnaS6Nqh7gD_3vLYBMvAFhyZBXCHQpyfLsTl75m2m55YLa 9vvUrgAORfvDbSliIMR8PHNX2MBiUgrathQ0e5YFMJ_CHnAV69Lvb2U.KcncaaG8FeIYDkyJ.sCl aV4UkhTmM5VYp.RK_61q2pOOKWQKuj4Yj8mPgyDM5osJkTQNdpUK_ghXU4UhnKm3LY_R4FIRjKbz ecXSdEelYDHXL94ryXmYyPSmIbimBGQfWT1n1_tT91lKSwJvyxXgBvN8TNRBwz_oW7h7haXz.30i ZZyx7RbjvYawsfuoMzAl_7r4lGcNV4g4cjing4CbPUuJBmRxcPF.m3u8JMuvF0SSndpF9hqPmWOy R5.lvoJIdCK7b6N02s425DxDt1ZFHXSd.yiV1d50iNaPmo2lAr.o9t1LRYVe_bv0yDZuZmEpr_eN ABjXX4JVBhi77JJWFsTB99Tk7iRpeMDy3kS7yFZ5fF2gDx9TsbWO1yoj7Yl3_L1.uzK8i778KIMU UncWJm.Yfx9xIIzRyPsJAg6XSJYUD12EXyTnrESmmSSeva70XXM_nNY2I5XeJabfp3Z7u08GTqvl SZKyydUQYNjLsx9qiA51DCefyWGrhwINWOldwzITINb.EML36saaW19zG9yGc
+X-Sonic-MF: <carissa71555@yahoo.com>
+X-Sonic-ID: 5d6b4017-0af2-48df-b9d0-46eb9de52154
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.ne1.yahoo.com with HTTP; Wed, 3 May 2023 04:04:34 +0000
+Received: by hermes--production-ne1-7dbd98dd99-tcjjg (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 3c06a9651d33f5b55fb43ea66f7f1d22;
+          Wed, 03 May 2023 04:04:30 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=Apple-Mail-5B4467D9-C3B7-4DFB-A328-6993C4A156B5
+Content-Transfer-Encoding: 7bit
+From: Carissa <Carissa71555@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 2 May 2023 21:04:19 -0700
+Subject: Chapter 37
+Message-Id: <86624434-5717-4EAF-974E-377089121D29@yahoo.com>
+To: sydney.lin12@gmail.com
+X-Mailer: iPhone Mail (20D67)
+References: <86624434-5717-4EAF-974E-377089121D29.ref@yahoo.com>
+Content-Length: 43333
+
+--Apple-Mail-5B4467D9-C3B7-4DFB-A328-6993C4A156B5
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
 The east wing of the Dorina manor happened to the furthest from the main sector of the manor, as well as the smallest. The Elessai clan—with all their servants and workers that Kairo brought—occupied the west wing. The Lem and Jourman clans, being smaller in number, both occupied the south wing, closest to the forest. The Dorina clan resided everywhere throughout the manor, mostly staying in the main sector. And, Josemi supposed, the Ozario clan were assigned to stay in the east wing. Josemi could not help but think the entire north were doing its best to keep the Ozarios excluded. 
-
-
 
 She hastened through the hallways that appeared much more empty now that workers were not putting up decorations or hurriedly delivering food to Dorina clan nobles. A sad, empty feeling crawled its way into her chest. Although she had been against forcing Astero to marry someone he did not like, she hoped they would grow to love one another, just like she did with Kairo. 
 
-
-
 Josemi sighed. And look how that turned out.
-
-
 
 Not a soul lingered in the east wing when Josemi arrived. No servants, no passing nobles. Perhaps the Ozarios did not bring anyone but themselves. 
 
-
-
 Her steps echoed through the corridors, ringing loud in her ears. The walls were royal blue, but they seemed different compared to the other wings of the manor. Patches of gray spotted the stone walls, and the brightness of the usual color appeared dim and lifeless. 
-
-
 
 Did the Dorinas hate the Ozarios that much, making them stay in the worst part of their home? 
 
-
-
 The first five room Josemi came across belonged to servants. She awkwardly apologized for disturbing them and hurriedly continued down the halls. 
-
-
 
 The sixth room had been empty. So had the seventh. And eighth. And ninth. 
 
-
-
 The tenth door was all the way at the end, almost hidden away. It loomed closer and closer, and soon, Josemi was standing right before it. If this room did not belong to Lord Ozario, then she feared she would lose all hope of finding him. 
-
-
 
 Josemi knocked hesitantly. Two small taps on the door. Perhaps the knocks were not loud enough, and she cringed at the thought of having to knock again. 
 
-
-
 However, like some sort of miracle, the door opened. A woman with wavy blonde hair and stony blue eyes appeared in front of her, wearing a light pink gown, a strange color to see in the Dorina manor. Many people wore blues mixed with pink, but to see an all-pink dress was uncommon. 
-
-
 
 "Can I help you?" she asked, her voice monotone. 
 
-
-
 "Lady Ozario," Josemi acknowledged, attempting to hide her surprise. "Is Lord Ozario present?" 
-
-
 
 The woman simply stared for a few long moments at Josemi, perhaps trying to figure out why she needed to see her husband. Her piercing blue eyes appeared ice cold. Josemi smiled uncomfortably. 
 
-
-
 After what felt like an eternity, Lady Ozario shook her head. "He is away at the moment." 
-
-
 
 "Do you know when he will be back?" Josemi pressed. 
 
-
-
 Lady Ozario shrugged halfheartedly. "Two weeks?" 
-
-
 
 Josemi's heart plummeted. Two more agonizing weeks of waiting, worrying for her son who was in a land of monsters. Two more weeks stressing over whether or not she would be doing the right thing. Two more weeks in the Dorina clan, surrounded by strangers and enemies. 
 
-
-
 "Why do you need to see him?" Lady Ozario asked, a hint of curiosity in her voice. 
-
-
 
 Then, it occurred to her that while Lord Ozario may not be around to answer her questions, Lady Ozario was. 
 
-
-
 "Do you know where my son is?" Josemi blurted out. 
-
-
 
 "What?" Lady Ozario appeared perplexed. "How would I know?" 
 
-
-
 "I — " Josemi stopped. There was a possibility Lady Ozario knew nothing at all about what her husband was scheming. "Apologies, it's just... We've been looking for him — "
-
-
 
 "Do you think my husband would know where he is?" 
 
-
-
 Josemi suddenly felt cold. Perhaps she had offended Lady Ozario. Or perhaps she had given away his plan. 
-
-
 
 Josemi said nothing, and Lady Ozario stared curiously at her before opening her door wider, gesturing inside. "Come in, Lady Elessai." 
 
-
-
 Cautiously, Josemi took a step forward. Bathed in blue like the rest of the rooms in the Dorina clan, the only difference would be the temperature. A chilling breeze swept over the room, and Josemi felt for the poor Ozarios forced into this nearly abandoned corner of the manor. 
-
-
 
 Lady Ozario shut the door quietly. She gestured to the armchair by the window. "Have a seat," she said, striding towards the chair by the vanity.
 
-
-
 Josemi took a seat, patting down the fabric of her chiton in an effort to warm up her legs. It was a warm summer day, so she left her shawl in her room, but in this room, Josemi rubbed her arms to keep from shivering. 
-
-
 
 Lady Ozario seemed unfazed by the cold. She sat perfectly still, her stony features and empty gaze giving her a statue-like appearance. 
 
-
-
 "Where are you from, Lady Ozario?" Josemi could not help but ask. 
-
-
 
 Lady Ozario said nothing for a few moments, studying Josemi through those dark blue eyes. Then, as if she had come to a decision, Lady Ozario turned to face her vanity mirror, picked up a brush, and began brushing her blonde waves without a care in the world. "The west," she replied to Josemi's question. 
 
-
-
 Although a bit taken aback, Josemi did not dare say anything about Lady Ozario's rudeness in her own room. "Which clan?" 
-
-
 
 "Aewin." 
 
-
-
 Josemi had never met anyone from the Aewin clan, nor had she ever been there. From what she had heard, the Aewin clan mostly kept to themselves and did not try fostering relations with other clans. She did not even know who the current leader was. 
-
-
 
 "May I know your given name?" Josemi inquired. 
 
-
-
 "Anessia," she replied, her voice soft and buttery, yet completely devoid of emotion. She set the brush down and picked up a charcoal pen. Carefully, Anessia Ozario outlined her eyes, her hand steady. 
-
-
 
 Josemi did not recognize the name, although that was to be expected. The only people from the Aewin clan she had even heard of were Wenma Aewin, the current clan leader, and Willem Aewin, famous for being a madman and who was rumored to have been sent to the ground, although most people believe he had been simply killed in a dispute between the Dorina and Silvora clans. 
 
-
-
 "Anessia... Aewin? Were you from the main family?" 
-
-
 
 She shook her head, continuing to draw around her other eye. "I was an Aewin, but not from the main family." 
 
-
-
 "How long have you been married?" 
-
-
 
 "I was seventeen. Crisanto was eighteen. About fifteen years." 
 
-
-
 Josemi hated being so intrusive, but for the sake of her son, she needed to know as much as possible about the people she chose to get involved with. "Were you already with him when the Ozario clan began to decline?" 
-
-
 
 Anessia's hand that had been carefully drawing around her eyes suddenly stopped. Slowly, she set the charcoal pen down and turned to face Josemi, her expression remaining statuesque. Her dark blue eyes appeared brighter amidst the dark outline. "I was," she replied calmly. "I stayed with him through it all, even though the Ozarios were no longer a reputable clan." Anessia sighed, gazing into the mirror. Josemi knew how it felt to marry into a clan where she would be an outsider. The only difference between them was that when she married Kairo, the Elessai were thriving. When Anessia Aewin married Crisanto Ozario, the Ozarios had already begun their spiral into decline and despair. 
 
-
-
 "Did you not want to leave?" Josemi asked curiously. "To go back to the Aewin clan?" 
-
-
 
 Her eyebrows creased, and she seemed confused. "Why would I leave?"
 
-
-
 Seeing the taken aback look on Josemi's face, Anessia explained, her expression resolute, her bright blue eyes showing no hint of wavering. "I am an Ozario now. And I had no intention of going back to that family." She turned back to face her mirror, powdering her face. "Crisanto's family treated me better than my own. So of course I would not want to leave." 
-
-
 
 "Was yours an arranged marriage?" 
 
-
-
 Anessia Ozario shook her head. "We met through a friend." 
-
-
 
 An unarranged marriage between clan nobles was extremely rare. To marry for love... Josemi could only dream of such a thing. Perhaps Anessia Ozario's marriage into the Ozario clan was not as unlucky as Josemi initially believed. 
 
-
-
 "I am only answering your questions, Lady Elessai, because my husband has been acting strange." Lady Ozario picked up a small brush, dipped in a tiny jar, and applied it to her lips. 
-
-
 
 Josemi's heart jumped, trying to control her expression. "Has he?" 
 
-
-
 Lady Ozario set down the brush and turned to face Josemi, her face donning the most extraordinary work of cosmetics she had ever seen. Lips the same shade of pink as her dress, cheeks rosy against her pale skin. Josemi wondered where she learned such an exquisite art. Through long eyelashes, Lady Ozario's stormy blue eyes narrowed. "I believe you know that. Why else come to find him?" 
-
-
 
 "I did not know he had been acting strange," Josemi assured. "But..."
 
-
-
 Anessia Ozario leaned forward, raising a thin blonde eyebrow. "But what?" 
-
-
 
 Josemi inhaled, exhaled, hoping she was not making a mistake. "Do you know a woman named Willow?" 
 
-
-
 A flicker of surprise sparked in Lady Ozario's eyes. "How do you..." She trailed off, contemplating. 
-
-
 
 "What is it?" Josemi pressed, eager to know. 
 
-
-
 "I don't understand," Lady Ozario murmured to herself quietly. Looking to Josemi, she asked, "How do you know her?" 
-
-
 
 "She... discussed something with me." Josemi did not know if she should go into detail. If Lady Ozario knew nothing of their plan, Josemi should not be the one to tell her. "Who is she?" 
 
-
-
 Perhaps Lady Ozario was wondering the exact same thing, for she hesitated. After a moment of inner turmoil, she seemed to have come to a decision. 
-
-
 
 "Please excuse me, Lady Elessai." Lady Ozario stood from her seat, looking everywhere but at Josemi, clutching her pink skirts. "I have matters to attend to." 
 
-
-
 Sighing, Josemi stood as well. Not all answers would come so easily, nor all at once. She would be patient. She would wait until Lord Ozario's return. 
-
-
 
 "Apologies for the intrusion," Josemi said as she made her way to the door. "Thank you for discussing this with me, Lady Ozario." 
 
-
-
 Anessia Ozario smiled tightly. It seemed all she wanted was for this conversation to be over. "Of course." She opened the door and gestured to the empty hallway. 
-
-
 
 Before Josemi stepped through the door completely, she turned back to Lady Ozario, eyes pleading. "If anything comes up, please let me know. I am currently residing in the west wing, but many Elessai servants are around the manor. You can inform one of them if you need to speak with me." 
 
-
-
 Lady Ozario continued to the push the door so that Josemi had no choice but to step into the hallway completely. Avoiding Josemi's eyes, she said, "Good day, Lady Elessai." Then she shut the door, leaving Josemi in the dark, empty corridor.
+
+--Apple-Mail-5B4467D9-C3B7-4DFB-A328-6993C4A156B5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The east wing of the Dorina manor happened to the furthest from the main sector of the manor, as well as the smallest. The Elessai clan—with all their servants and workers that Kairo brought—occupied the west wing. The Lem and Jourman clans, being smaller in number, both occupied the south wing, closest to the forest. The Dorina clan resided everywhere throughout the manor, mostly staying in the main sector. And, Josemi supposed, the Ozario clan were assigned to stay in the east wing. Josemi could not help but think the entire north were doing its best to keep the Ozarios excluded.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She hastened through the hallways that appeared much more empty now that workers were not putting up decorations or hurriedly delivering food to Dorina clan nobles. A sad, empty feeling crawled its way into her chest. Although she had been against forcing Astero to marry someone he did not like, she hoped they would grow to love one another, just like she did with Kairo.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi sighed. <span style="font-style: italic;">And look how that turned out</span>.</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Not a soul lingered in the east wing when Josemi arrived. No servants, no passing nobles. Perhaps the Ozarios did not bring anyone but themselves.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her steps echoed through the corridors, ringing loud in her ears. The walls were royal blue, but they seemed different compared to the other wings of the manor. Patches of gray spotted the stone walls, and the brightness of the usual color appeared dim and lifeless.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Did the Dorinas hate the Ozarios that much, making them stay in the worst part of their home?&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The first five room Josemi came across belonged to servants. She awkwardly apologized for disturbing them and hurriedly continued down the halls.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The sixth room had been empty. So had the seventh. And eighth. And ninth.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The tenth door was all the way at the end, almost hidden away. It loomed closer and closer, and soon, Josemi was standing right before it. If this room did not belong to Lord Ozario, then she feared she would lose all hope of finding him.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi knocked hesitantly. Two small taps on the door. Perhaps the knocks were not loud enough, and she cringed at the thought of having to knock again.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">However, like some sort of miracle, the door opened. A woman with wavy blonde hair and stony blue eyes appeared in front of her, wearing a light pink gown, a strange color to see in the Dorina manor. Many people wore blues mixed with pink, but to see an all-pink dress was uncommon.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Can I help you?" she asked, her voice monotone.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Lady Ozario," Josemi acknowledged, attempting to hide her surprise. "Is Lord Ozario present?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">The woman simply stared for a few long moments at Josemi, perhaps trying to figure out why she needed to see her husband. Her piercing blue eyes appeared ice cold. Josemi smiled uncomfortably.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">After what felt like an eternity, Lady Ozario shook her head. "He is away at the moment."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you know when he will be back?" Josemi pressed.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Ozario shrugged halfheartedly. "Two weeks?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi's heart plummeted. Two more agonizing weeks of waiting, worrying for her son who was in a land of monsters. Two more weeks stressing over whether or not she would be doing the right thing. Two more weeks in the Dorina clan, surrounded by strangers and enemies.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Why do you need to see him?" Lady Ozario asked, a hint of curiosity in her voice.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Then, it occurred to her that while Lord Ozario may not be around to answer her questions, Lady Ozario was.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you know where my son is?" Josemi blurted out.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What?" Lady Ozario appeared perplexed. "How would I know?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I — " Josemi stopped. There was a possibility Lady Ozario knew nothing at all about what her husband was scheming. "Apologies, it's just... We've been looking for him — "</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Do you think my husband would know where he is?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi suddenly felt cold. Perhaps she had offended Lady Ozario. Or perhaps she had given away his plan.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi said nothing, and Lady Ozario stared curiously at her before opening her door wider, gesturing inside. "Come in, Lady Elessai."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Cautiously, Josemi took a step forward. Bathed in blue like the rest of the rooms in the Dorina clan, the only difference would be the temperature. A chilling breeze swept over the room, and Josemi felt for the poor Ozarios forced into this nearly abandoned corner of the manor.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Ozario shut the door quietly. She gestured to the armchair by the window. "Have a seat," she said, striding towards the chair by the vanity.</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi took a seat, patting down the fabric of her chiton in an effort to warm up her legs. It was a warm summer day, so she left her shawl in her room, but in this room, Josemi rubbed her arms to keep from shivering.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Ozario seemed unfazed by the cold. She sat perfectly still, her stony features and empty gaze giving her a statue-like appearance.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Where are you from, Lady Ozario?" Josemi could not help but ask.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Ozario said nothing for a few moments, studying Josemi through those dark blue eyes. Then, as if she had come to a decision, Lady Ozario turned to face her vanity mirror, picked up a brush, and began brushing her blonde waves without a care in the world. "The west," she replied to Josemi's question.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Although a bit taken aback, Josemi did not dare say anything about Lady Ozario's rudeness in her own room. "Which clan?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Aewin."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi had never met anyone from the Aewin clan, nor had she ever been there. From what she had heard, the Aewin clan mostly kept to themselves and did not try fostering relations with other clans. She did not even know who the current leader was.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"May I know your given name?" Josemi inquired.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Anessia," she replied, her voice soft and buttery, yet completely devoid of emotion. She set the brush down and picked up a charcoal pen. Carefully, Anessia Ozario outlined her eyes, her hand steady.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi did not recognize the name, although that was to be expected. The only people from the Aewin clan she had even heard of were Wenma Aewin, the current clan leader, and Willem Aewin, famous for being a madman and who was rumored to have been sent to the ground, although most people believe he had been simply killed in a dispute between the Dorina and Silvora clans.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Anessia... Aewin? Were you from the main family?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">She shook her head, continuing to draw around her other eye. "I was an Aewin, but not from the main family."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"How long have you been married?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I was seventeen. Crisanto was eighteen. About fifteen years."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi hated being so intrusive, but for the sake of her son, she needed to know as much as possible about the people she chose to get involved with. "Were you already with him when the Ozario clan began to decline?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Anessia's hand that had been carefully drawing around her eyes suddenly stopped. Slowly, she set the charcoal pen down and turned to face Josemi, her expression remaining statuesque. Her dark blue eyes appeared brighter amidst the dark outline. "I was," she replied calmly. "I stayed with him through it all, even though the Ozarios were no longer a reputable clan." Anessia sighed, gazing into the mirror. Josemi knew how it felt to marry into a clan where she would be an outsider. The only difference between them was that when she married Kairo, the Elessai were thriving. When Anessia Aewin married Crisanto Ozario, the Ozarios had already begun their spiral into decline and despair.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Did you not want to leave?" Josemi asked curiously. "To go back to the Aewin clan?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Her eyebrows creased, and she seemed confused. "Why would I leave?"</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Seeing the taken aback look on Josemi's face, Anessia explained, her expression resolute, her bright blue eyes showing no hint of wavering. "I am an Ozario now. And I had no intention of going back to that family." She turned back to face her mirror, powdering her face. "Crisanto's family treated me better than my own. So of course I would not want to leave."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Was yours an arranged marriage?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Anessia Ozario shook her head. "We met through a friend."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">An unarranged marriage between clan nobles was extremely rare. To marry for love... Josemi could only dream of such a thing. Perhaps Anessia Ozario's marriage into the Ozario clan was not as unlucky as Josemi initially believed.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I am only answering your questions, Lady Elessai, because my husband has been acting strange." Lady Ozario picked up a small brush, dipped in a tiny jar, and applied it to her lips.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi's heart jumped, trying to control her expression. "Has he?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Ozario set down the brush and turned to face Josemi, her face donning the most extraordinary work of cosmetics she had ever seen. Lips the same shade of pink as her dress, cheeks rosy against her pale skin. Josemi wondered where she learned such an exquisite art. Through long eyelashes, Lady Ozario's stormy blue eyes narrowed. "I believe you know that. Why else come to find him?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I did not know he had been acting strange," Josemi assured. "But..."</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Anessia Ozario leaned forward, raising a thin blonde eyebrow. "But what?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Josemi inhaled, exhaled, hoping she was not making a mistake. "Do you know a woman named Willow?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">A flicker of surprise sparked in Lady Ozario's eyes. "How do you..." She trailed off, contemplating.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"What is it?" Josemi pressed, eager to know.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"I don't understand," Lady Ozario murmured to herself quietly. Looking to Josemi, she asked, "How do you know her?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"She... discussed something with me." Josemi did not know if she should go into detail. If Lady Ozario knew nothing of their plan, Josemi should not be the one to tell her. "Who is she?"&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Perhaps Lady Ozario was wondering the exact same thing, for she hesitated. After a moment of inner turmoil, she seemed to have come to a decision.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Please excuse me, Lady Elessai." Lady Ozario stood from her seat, looking everywhere but at Josemi, clutching her pink skirts. "I have matters to attend to."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Sighing, Josemi stood as well. Not all answers would come so easily, nor all at once. She would be patient. She would wait until Lord Ozario's return.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">"Apologies for the intrusion," Josemi said as she made her way to the door. "Thank you for discussing this with me, Lady Ozario."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Anessia Ozario smiled tightly. It seemed all she wanted was for this conversation to be over. "Of course." She opened the door and gestured to the empty hallway.&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Before Josemi stepped through the door completely, she turned back to Lady Ozario, eyes pleading. "If anything comes up, please let me know. I am currently residing in the west wing, but many Elessai servants are around the manor. You can inform one of them if you need to speak with me."&nbsp;</p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18); min-height: 20.5px;"><br></p>
+<p style="margin: 0px; font-stretch: normal; font-size: 18px; line-height: normal; font-family: Georgia; color: rgb(18, 18, 18);">Lady Ozario continued to the push the door so that Josemi had no choice but to step into the hallway completely. Avoiding Josemi's eyes, she said, "Good day, Lady Elessai." Then she shut the door, leaving Josemi in the dark, empty corridor.</p><div dir="ltr"></div></body></html>
+--Apple-Mail-5B4467D9-C3B7-4DFB-A328-6993C4A156B5--
