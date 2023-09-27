@@ -18,7 +18,7 @@ const getPoemData = async () => {
 const setCardData = () => {
 	const poem = data[index];
 	title.innerHTML = poem.title;
-	for (var i = 0; i < children.length; i++) {
+	for (var i = 0; i < poem.lines.length; i++) {
 		children[i].innerHTML = poem.lines[i];
 	}
 }
@@ -32,7 +32,7 @@ const handleKeyDown = async (event) => {
 	let toSwipe;
 	if (event.key === 'ArrowLeft') {
 		index -= 1;
-		index = Math.max(index, 1);
+		index = Math.max(index, 0);
 		toSwipe = 'right';
 	} else if (event.key === 'ArrowRight') {
 		index += 1;
