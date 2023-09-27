@@ -32,7 +32,7 @@ document.addEventListener("keydown", function (event) {
  */
 const getAndLoadChapterData = async () => {
 	const fileName = `${chapterNumber}.txt`;
-	const response = await fetch(`https://raw.githubusercontent.com/sydneylin12/SecretProject/main/chapters/${fileName}`);
+	const response = await fetch(`https://raw.githubusercontent.com/sydneylin12/SecretProject/main/chapters/1.txt`);
 	const data = await response.text();
 
 	title.innerHTML = `Chapter ${chapterNumber} | The Sky Full of Flowers`;
