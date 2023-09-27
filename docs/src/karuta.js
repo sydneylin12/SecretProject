@@ -18,8 +18,8 @@ const getPoemData = async () => {
 const setCardData = () => {
 	const poem = data[index];
 	title.innerHTML = poem.title;
-	for (var i = 1; i < 4; i++) {
-		children[i].innerHTML = poem.lines[i - 1];
+	for (var i = 0; i < children.length; i++) {
+		children[i].innerHTML = poem.lines[i];
 	}
 }
 
