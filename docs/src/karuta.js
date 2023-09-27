@@ -36,7 +36,7 @@ const handleKeyDown = async (event) => {
 		toSwipe = 'right';
 	} else if (event.key === 'ArrowRight') {
 		index += 1;
-		index = Math.min(index, data.length);
+		index = Math.min(index, data.length - 1);
 		toSwipe = 'left';
 	}
 
