@@ -15,7 +15,7 @@
 			"I'm a terrible poet",
 			"but - hope you enjoy!"
 		],
-		"image": ""
+		"image": "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/automobile.png"
 	},
 	{
 		"title": "Introduction",
@@ -42,7 +42,7 @@
 			"A day that i will cherish",
 			"until the end of time."
 		],
-		"image": ""
+		"image": "data:image/png;base64,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"
 	},
 	{
 		"title": "May 2022",
@@ -51,16 +51,16 @@
 			"Surrounded by joy and fear.",
 			"The true weight of love."
 		],
-		"image": ""
+		"image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cleanpng.com%2Fpng-ladybird-beetle-emoji-the-ladybug-noto-fonts-emoji-6343102%2F&psig=AOvVaw1UNiPrKRk-jO16BO68CUZS&ust=1696137092147000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCKD2-JjJ0YEDFQAAAAAdAAAAABAJ"
 	},
 	{
 		"title": "June 2022",
 		"lines": [
-			"A new page is turned.",
-			"Guiding light begins to fade,",
-			"but you are with me."
+			"You blew through college,",
+			"how could I be so happy...",
+			"but also so sad?"
 		],
-		"image": ""
+		"image": "https://static-00.iconduck.com/assets.00/graduation-cap-emoji-495x512-frvp3fdl.png"
 	},
 	{
 		"title": "July 2022",
@@ -69,7 +69,7 @@
 			"I wanted to be with you,",
 			"always by your side."
 		],
-		"image": ""
+		"image": "https://static.vecteezy.com/system/resources/previews/008/266/663/original/hawaii-simple-logo-illustration-design-for-sign-symbol-t-shirt-poster-etc-vector.jpg"
 	},
 	{
 		"title": "August 2022",
@@ -78,7 +78,7 @@
 			"celebrations all around.",
 			"Carisse met the cheebs."
 		],
-		"image": ""
+		"image": "https://www.allkpop.com/upload/2022/04/content/211210/1650557456-image.png"
 	},
 	{
 		"title": "September 2022",
@@ -87,7 +87,7 @@
 			"comfort settles in quickly",
 			"as we grow closer."
 		],
-		"image": ""
+		"image": "https://media.designrush.com/inspiration_images/137694/conversions/_1611238415_905_lego_logo_1_83e4fef53fa7-mobile.jpg"
 	},
 	{
 		"title": "October 2022",
@@ -96,16 +96,16 @@
 			"the exchange of hugs and tears,",
 			"always kicking back."
 		],
-		"image": ""
+		"image": "https://static.wikia.nocookie.net/chainsaw-man/images/5/54/Pochita_anime_design.png/revision/latest/scale-to-width/360?cb=20220919121110"
 	},
 	{
 		"title": "November 2022",
 		"lines": [
-			"Dark days, pouring rain.",
-			"Early nights end with a smile.",
-			"I have you to thank."
+			"Even on the east,",
+			"I knew my heart and soul will",
+			"always be with you."
 		],
-		"image": ""
+		"image": "https://ih1.redbubble.net/image.2403817235.0390/st,small,507x507-pad,600x600,f8f8f8.jpg"
 	},
 	{
 		"title": "December 2022",
@@ -114,7 +114,7 @@
 			"warmed by fondue and cocktails",
 			"which turned me bright red."
 		],
-		"image": ""
+		"image": "https://static-00.iconduck.com/assets.00/fondue-emoji-1013x1024-8g3z8ohr.png"
 	},
 	{
 		"title": "January 2023",
@@ -123,7 +123,7 @@
 			"I couldn't be happier",
 			"to kiss you good night."
 		],
-		"image": ""
+		"image": "https://cdn.emojidex.com/emoji/seal/bed.png?1499277636"
 	},
 	{
 		"title": "February 2023",
@@ -132,7 +132,7 @@
 			"homemade hot pot and Sushita.",
 			"My first valentine."
 		],
-		"image": ""
+		"image": "https://minisousaonline.com/cdn/shop/products/6941501530785_5-894373.jpg?v=1677753100&width=288"
 	},
 	{
 		"title": "March 2023",
@@ -141,7 +141,7 @@
 			"Ten percent success, one -",
 			"hundred percent loved."
 		],
-		"image": ""
+		"image": "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/octopus.png"
 	},
 	{
 		"title": "April 2023",
@@ -150,7 +150,7 @@
 			"crash down like a tsunami",
 			"on my only love."
 		],
-		"image": ""
+		"image": "https://pbs.twimg.com/media/F1U7I2nagAcPNQm.png"
 	},
 	{
 		"title": "May 2023",
@@ -159,7 +159,7 @@
 			"with ambition and courage,",
 			"a Shark to the Skies."
 		],
-		"image": ""
+		"image": "https://emojis.wiki/thumbs/emojis/shark.webp"
 	},
 	{
 		"title": "June 2023",
@@ -168,7 +168,7 @@
 			"to the warm summer waters.",
 			"On a shaky board."
 		],
-		"image": ""
+		"image": "https://pbs.twimg.com/media/CiUlo-yXAAAiOMy.png"
 	},
 	{
 		"title": "July 2023",
@@ -177,7 +177,7 @@
 			"will we finally be free?",
 			"Height of my summer."
 		],
-		"image": ""
+		"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvJfQPmKWnQProDDdSA-2uR_5QQcyM4PMV5w&usqp=CAU"
 	},
 	{
 		"title": "August 2023",
@@ -186,7 +186,7 @@
 			"White pork bone, red tomato...",
 			"the best of both worlds."
 		],
-		"image": ""
+		"image": "https://png.pngtree.com/png-clipart/20210310/original/pngtree-mandarin-duck-hot-pot-pot-bottom-icon-png-image_5938765.jpg"
 	},
 	{
 		"title": "September 2023",
@@ -195,7 +195,7 @@
 			"even still, \"mirai saiko!\"",
 			"Forward, hand in hand."
 		],
-		"image": ""
+		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/edbed3db-ebcd-44e2-bd1f-56753bc67068/dg3g429-c2f71493-a87f-4757-b33c-8aedde32bd97.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2VkYmVkM2RiLWViY2QtNDRlMi1iZDFmLTU2NzUzYmM2NzA2OFwvZGczZzQyOS1jMmY3MTQ5My1hODdmLTQ3NTctYjMzYy04YWVkZGUzMmJkOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.WTMsskTkc_kLgopN5ZnQinNvJ9Ivs2Eg2VEDgyALXag"
 	},
 	{
 		"title": "October 2023",

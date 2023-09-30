@@ -22,7 +22,7 @@ const setCardData = () => {
 	for (var i = 0; i < poem.lines.length; i++) {
 		children[i].innerHTML = poem.lines[i];
 	}
-	img.src = poem.image;
+	//img.src = poem.image;
 }
 
 const handleKeyDown = async (event) => {
