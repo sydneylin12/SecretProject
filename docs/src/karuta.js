@@ -1,5 +1,6 @@
 const title = document.getElementById('title');
 const card = document.getElementById('card');
+const img = document.getElementById('card-image');
 const container = document.getElementById('poem-container');
 const children = container.children;
 
@@ -21,6 +22,7 @@ const setCardData = () => {
 	for (var i = 0; i < poem.lines.length; i++) {
 		children[i].innerHTML = poem.lines[i];
 	}
+	img.src = poem.image;
 }
 
 const handleKeyDown = async (event) => {
