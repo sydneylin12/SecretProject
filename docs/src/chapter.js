@@ -12,7 +12,7 @@ document.addEventListener("keydown", function (event) {
 		chapterNumber = Math.max(chapterNumber, 1);
 	} else if (event.key === "ArrowDown") {
 		chapterNumber += 1;
-		chapterNumber = Math.min(chapterNumber, 41);
+		chapterNumber = Math.min(chapterNumber, 42); // Update this when adding new chapters
 	}
 	window.location.href = `chapter.html?chapter=${chapterNumber}`;
 });
