@@ -3,7 +3,7 @@ const el = document.getElementById('list');
 const doesChapterExist = async (chapterNumber) => {
 	const fileName = `${chapterNumber}.txt`;
 	const response = await fetch(`https://raw.githubusercontent.com/sydneylin12/SecretProject/main/chapters/${fileName}`);
-	const res = await response.status();
+	const res = await response.status;
 	return res === 200;
 };
 
