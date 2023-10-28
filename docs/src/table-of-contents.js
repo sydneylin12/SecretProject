@@ -1,6 +1,6 @@
 const el = document.getElementById('list');
 
-const CHAPTER_COUNT = 41;
+const CHAPTER_COUNT = 43;
 for (let i = 0; i < CHAPTER_COUNT; i++) {
 	const child = document.createElement('li');
 	child.innerHTML = `Chapter ${i+1}`
