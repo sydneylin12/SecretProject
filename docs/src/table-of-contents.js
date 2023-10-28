@@ -7,19 +7,23 @@ const doesChapterExist = async (chapterNumber) => {
 	return res === 200;
 };
 
-let chapterNumber = 1;
-let lastChapterFound = false;
-while (!lastChapterFound) {
-	const exists = await doesChapterExist(chapterNumber);
-	if (!exists) {
-		lastChapterFound = true;
-	} else {
-		const child = document.createElement('li');
-		child.innerHTML = `Chapter ${i}`
-		el.appendChild(child);
-		chapterNumber += 1;
+const createTableOfContents = async () => {
+	let chapterNumber = 1;
+	let lastChapterFound = false;
+	while (!lastChapterFound) {
+		const exists = await doesChapterExist(chapterNumber);
+		if (!exists) {
+			lastChapterFound = true;
+		} else {
+			const child = document.createElement('li');
+			child.innerHTML = `Chapter ${i}`
+			el.appendChild(child);
+			chapterNumber += 1;
+		}
 	}
 }
+
+createTableOfContents();
 
 // Redirect to the template with chapter number as a query param
 el.addEventListener('click', (e) => {
