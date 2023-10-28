@@ -16,7 +16,7 @@ const createTableOfContents = async () => {
 			lastChapterFound = true;
 		} else {
 			const child = document.createElement('li');
-			child.innerHTML = `Chapter ${i}`
+			child.innerHTML = `Chapter ${chapterNumber}`
 			el.appendChild(child);
 			chapterNumber += 1;
 		}
