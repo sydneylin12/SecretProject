@@ -2,9 +2,14 @@ const el = document.getElementById('list');
 
 const doesChapterExist = async (chapterNumber) => {
 	const fileName = `${chapterNumber}.txt`;
-	const response = await fetch(`https://raw.githubusercontent.com/sydneylin12/SecretProject/main/chapters/${fileName}`);
-	const res = await response.status;
-	return res === 200;
+	try {
+		const response = await fetch(`https://raw.githubusercontent.com/sydneylin12/SecretProject/main/chapters/${fileName}`);
+		const res = await response.status;
+		return res === 200;
+	} catch (error) {
+		console.log(`Error fetching chapter number: ${error}`);
+		return false;
+	}
 };
 
 const createTableOfContents = async () => {
